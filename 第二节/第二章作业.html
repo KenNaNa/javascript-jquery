@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>第二章作业2-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 div{
+			     width:120px;
+				 height:30px;
+				 text-align:center;
+				 line-height:30px;
+				 background:pink;
+				 color:#fff;
+				 margin:10px auto;
+				 border-radius:20px;
+				 cursor:pointer;
+			 }
+			 div#box1{color:red;}
+		 </style>
+	 </head>
+<body>
+     <div id="box1"></div>
+	 <div id="box2"></div>
+	 <script type="text/javascript">
+	     window.onload =function(){
+		     var oBox1 = document.getElementById("box1");
+			 var oBox2 = document.getElementById("box2");
+
+             oBox1.onclick = function(){
+			     this.innerHTML = "我被点击了";
+				 oBox2.innerHTML = "#box1被点击了";
+			 }
+			 oBox2.onclick = function(){
+			     this.innerHTML = "我被点击了";
+				 oBox1.innerHTML = "#box2被点击了";
+			 }
+			 oBox1.onmouseover = function(){
+			     this.innerHTML = "我被移入了";
+				 oBox2.innerHTML = "#box1被移入了";
+			 }
+			 oBox2.onmouseover = function(){
+			     this.innerHTML = "我被移入了";
+				 oBox1.innerHTML = "#box2被移入了";
+			 }
+		 }
+	 </script>
+</body>
+</html>

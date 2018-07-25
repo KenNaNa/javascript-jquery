@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>贪吃蛇</title>
+		<style>
+			#cav{
+				background:red;
+			}
+		</style>
+		<script src='./index.js'></script>
+		
+		<script>
+			window.onload = function(){
+				//1,获取canvas标签元素 === 画板
+				var cav = document.getElementById("cav");
+				//2,获取绘制操作的对象===画布
+				var canvas = cav.getContext('2d');
+				//3，绘制操作=== 笔，贴图。。。。
+//				canvas.fillStyle = "blue";
+				
+				//4,画上
+//				canvas.fillRect(20,20,100,100);
+				
+				//================画图
+				var bgImg = new Image();
+				bgImg.src = './images/bg.jpg';//画哪个图
+				
+				bgImg.onload = function(){
+					canvas.drawImage(bgImg,10,100,50,150);
+				}
+				
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="cav" width="500" height="500"></canvas>
+	</body>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</html>
