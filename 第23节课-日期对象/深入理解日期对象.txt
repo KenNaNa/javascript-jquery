@@ -1,0 +1,30 @@
+Date构造函数
+new Date(year,month,date?,hours?,minutes?,seconds?,milliseconds?)
+year 年0<=year<=99 建议写四位的年份
+month 月0-11（0-1月份）
+date 日 1-31
+hours 0-23
+minutes 0-59
+seconds 0-59
+milliseconds 0-999
+
+
+new Date(dateTimeStr)
+调用这个方法可以将日期时间字符串转换成数字
+new Date('2017-06-30');
+
+
+new Date(timeValue);
+用1970年1月1日00:00:00 UTC以来的毫秒书创建一个日期
+new Date(0)
+
+这个函数的逆运算是getTime()他返回毫秒数
+new Date(123).getTime()
+123
+
+你可以把NaN作为参数 创建一个特殊Date实例 无效日期
+
+Date.now()
+该函数以毫秒数返回当前的日期及时间等同于
+new Date().getTime();
+

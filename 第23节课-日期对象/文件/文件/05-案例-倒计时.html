@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            时刻（变化） ->  时刻（不变）
+             */
+
+            var endDate = new Date(2017,9);//目标时间，2017年10月01日 00:00:00
+
+            var oBox = document.getElementById("box");
+
+            setInterval(function () {
+                var nowDate = new Date();//当前时间
+                var time = endDate - nowDate;//得到相差的毫秒数
+
+                var dd = Math.floor(time/(1000*60*60*24));//天
+                var hh = Math.floor(time/(1000*60*60)) % 24;//时
+                var mm = Math.floor(time/(1000*60)) % 60;//分
+                var ss = Math.floor(time/1000) % 60;//秒
+
+                hh = toTwo(hh);
+                mm = toTwo(mm);
+                ss = toTwo(ss);
+
+                oBox.innerHTML = "距离<span style='color: red'>国庆</span>还有"+dd+"天"+hh+"时"+mm+"分"+ss+"秒";
+
+            },1000);
+
+
+            function toTwo( n ) {
+                if ( n < 10 )n = "0"+n;
+                return n;
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

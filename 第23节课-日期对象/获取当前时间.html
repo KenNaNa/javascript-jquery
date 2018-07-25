@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>获取当前时间-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box span{color:red;}
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    
+</div>
+<script>
+    var oBox = document.getElementById('box');
+	setInterval(tick(),1000)
+	function tick(){
+	   var oDate = new Date();
+	   var YY = oDate.getFullYear();
+	   var MM = toTwo(oDate.getMonth());
+	   var DD = toTwo(oDate.getDate());
+	   var hh = toTwo(oDate.getHours());
+	   var mm = toTwo(oDate.getMinutes());
+	   var ss = toTwo(oDate.getSeconds());
+	   oBox.innerHTML = '<span>'+YY+'</span>年<span>'+MM+'</span>月<span>'+DD+'</span>日<span>'+hh+'</span>时<span>'+mm+'</span>分<span>'+ss+'</span>秒';
+	   return tick;
+	}
+	function toTwo(n){
+	   if(n<10){
+	      return '0'+n;
+	   }else{
+	      return n;
+	   }
+	}
+</script>
+</body>
+</html>

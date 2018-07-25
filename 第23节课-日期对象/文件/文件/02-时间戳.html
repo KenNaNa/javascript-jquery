@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+
+            //传参数时，可以获取指定时间戳
+            var x = new Date( 1991 , 11 , 12 , 2 , 2 , 2 );
+
+            var y = new Date(); //当前的时间
+
+            //两个时间戳（日期对象）之间，可以直接减
+            var goudan = y - x;//number 得到两个时间戳之间的毫秒差值
+
+            alert( goudan / (1000*60*60*24) );
+
+            /*
+            毫秒数（和1970年1月1日0时0分0秒的间隔）
+            年，月
+            年，月，日
+             年，月，日，时
+             年，月，日，时，分
+             年，月，日，时，分，秒
+
+             没有对应参数的，日-1  时-0  分-0  秒-0
+
+            var x = new Date( 1000 );
+
+            alert( x );*/
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

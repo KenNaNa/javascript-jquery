@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+
+
+            var oBox = document.getElementById("box");
+
+            setInterval(function () {
+                var x = new Date();
+                var YY = x.getFullYear();//获取年
+                var MM = x.getMonth() + 1;//获取月，从0开始算，一月对应0
+                var DD = x.getDate();//获取日
+                var hh = x.getHours();//获取时
+                var mm = x.getMinutes();//获取分
+                var ss = x.getSeconds();//获取秒
+
+                MM = toTwo(MM);
+                DD = toTwo(DD);
+                hh = toTwo(hh);
+                mm = toTwo(mm);
+                ss = toTwo(ss);
+
+                oBox.innerHTML = YY+"年"+MM+"月"+DD+"日 "+hh+"时"+mm+"分"+ss+"秒";
+            },1000);
+
+
+            function toTwo( n ) {
+                if ( n < 10 )n = "0"+n;
+                return n;
+            }
+
+            /*var x = new Date();
+
+            setInterval(function () {
+                var y = new Date();
+
+                console.log( y - x );
+
+                x = y;
+            },1000);*/
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+日期对象
+var t = new Date();获取的是本地时间
+alert(typeof t)
+通过new 出来的东西是 对象
+
+获取年
+var y = t.getFullYear();
+typeof y ->number
+
+获取月 月份从0 开始的 所以一般加1
+var m = t.getMonth()+1;
+
+获取日 
+var d = t.getDate();
+
+获取时
+var h = t.getHours();
+
+获取分
+var ms = t.getMinutes();
+
+获取秒
+var s = t.getSeconds();
+
+
+获取星期  从0开始
+var day = t.getDay();
+
+
+时间戳  过去年份
+传参数
+
+var t = new Date(1996,3,29)
+
+两个时间戳之间 可以相-
+var n = new Date();
+n-t
+
+没有传对应的时间参数 日-1 时-0 分-0 秒-0
+
+
+获取当前时间距离固定时间的差值ms
+var T = t.getTime();
+
+需要定时获取当前时间
+
+
+格林威治时间

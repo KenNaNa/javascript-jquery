@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>什么是日期对象-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var oDate = new Date();//日期对象
+	//几个比较重要的日期对象方法
+	alert(typeof oDate);//object是个对象
+    var YY = oDate.getFullYear();//获取年
+    var MM = oDate.getMonth() + 1;//获取月，从0开始算，一月对应0
+    var DD = oDate.getDate();//获取日
+    var hh = oDate.getHours();//获取时
+    var mm = oDate.getMinutes();//获取分
+    var ss = oDate.getSeconds();//获取秒
+    var day = oDate.getDay();//获取星期 从0开始计算，但是 周日对应0 
+	console.log(YY+' 年 '+MM+' 月 '+DD+' 日 '+hh+' 时 '+mm+' 分 '+ss+' 秒 '+' 星期'+day)
+	var t = oDate.getTime();//获取时间戳到UTC 1970.1.1 0:0:0 的毫秒间隔
+	alert(t);//1498892118627天
+</script>
+</body>
+</html>

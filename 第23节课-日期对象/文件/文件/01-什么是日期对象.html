@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            日期对象：
+                new Date()
+             */
+
+            var x = new Date(); //当前你的电脑的时间，注意：如果你的电脑时间不准确，它就不准确
+            //alert( typeof x );
+
+            //几个比较重要的日期对象方法
+            var YY = x.getFullYear();//获取年
+            var MM = x.getMonth() + 1;//获取月，从0开始算，一月对应0
+            var DD = x.getDate();//获取日
+            var hh = x.getHours();//获取时
+            var mm = x.getMinutes();//获取分
+            var ss = x.getSeconds();//获取秒
+            var day = x.getDay();//获取星期 从0开始计算，但是 周日对应0
+
+            var t = x.getTime(); //获取时间戳到UTC 1970.1.1 0:0:0 的毫秒间隔
+
+            alert( t );
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

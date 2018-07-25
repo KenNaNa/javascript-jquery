@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>时钟-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{background:#000;}
+			 #box{
+			    width:700px;
+				height:100px;
+				margin:100px auto;
+			 }
+			 #box img{
+			    width:100px;
+				height:100px;
+				vertical-align:middle;
+			 }
+			 #box i{
+			    display:inline-block;
+			    color:#fff;
+				font-size:40px;
+				font-weight:bold;
+				font-style:normal;
+				vertical-align:middle;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+	<i>:</i>
+	<img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+	<i>:</i>
+	<img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+</div>
+<script src="js/toTwo.js"></script>
+<script>
+   var aImg = document.querySelectorAll('img');
+   var arr = ['images/0.jpg','images/1.jpg','images/2.jpg','images/3.jpg','images/4.jpg','images/5.jpg','images/6.jpg','images/7.jpg','images/8.jpg','images/9.jpg']
+   function tick(){
+      var oDate = new Date();
+	  var hh = oDate.getHours();
+	  var mm = oDate.getMinutes();
+	  var ss = oDate.getSeconds();
+	  aImg[0].src = arr[Math.floor(hh/10)];
+	  aImg[1].src = arr[hh%10];
+	  aImg[2].src = arr[Math.floor(mm/10)];
+	  aImg[3].src = arr[mm%10];
+	  aImg[4].src = arr[Math.floor(ss/10)];
+	  aImg[5].src = arr[ss%10];
+   }
+   /*function aImgSrc(aImg,t){
+      for( var i=0;i<aImg.length;i++ ){
+	     if(i%2==0){
+		    aImg[i].src = arr[Math.floor(t/10)]
+		 }else{
+		    aImg[i].src = arr[t%10];
+		 }
+	  }
+   }*/
+   tick();//这个技巧是为了让解决每次刷新
+   setInterval(tick,1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>时钟-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{background:#000;}
+			 #box{
+			    width:700px;
+				height:100px;
+				margin:100px auto;
+			 }
+			 #box img{
+			    width:100px;
+				height:100px;
+				vertical-align:middle;
+			 }
+			 #box i{
+			    display:inline-block;
+			    color:#fff;
+				font-size:40px;
+				font-weight:bold;
+				font-style:normal;
+				vertical-align:middle;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+	<i>:</i>
+	<img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+	<i>:</i>
+	<img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+</div>
+<script src="js/toTwo.js"></script>
+<script>
+   var aImg = document.querySelectorAll('img');
+   var str = '';
+   function tick(){
+     var oDate = new Date();
+	 var hh = oDate.getHours();
+	 var mm = oDate.getMinutes();
+	 var ss = oDate.getSeconds();
+	 str = String(toTwo(hh))+String(toTwo(mm))+String(toTwo(ss));//转化为字符串
+	 for( var i=0;i<aImg.length;i++ ){
+	     aImg[i].src = 'images/'+str.charAt(i)+'.jpg'
+	 }
+	 return tick;
+   }
+   /*tick();
+   setInterval(tick,1000);*/
+   setInterval(tick(),1000);
+</script>
+</body>
+</html>

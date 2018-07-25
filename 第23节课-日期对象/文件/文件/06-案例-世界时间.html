@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p>纽约时间：<span></span></p>
+            <p>马德里时间：<span></span></p>
+            <p>开罗时间：<span></span></p>
+            <p>莫斯科时间：<span></span></p>
+            <p>北京时间：<span></span></p>
+            <p>东京时间：<span></span></p>
+            <p>悉尼时间：<span></span></p>
+        </div>
+        <script>
+
+           /* var nowDate = new Date();
+            //var ded = nowDate.getTimezoneOffset()*60*1000; //格林威治时间 - nowDate相差的毫秒数
+            var UTCDate = nowDate.getTime() + nowDate.getTimezoneOffset()*60*1000;//当前时间对应的格林威治时间*/
+
+            //console.log( getDate(UTCDate + 2*60*60*1000) );
+
+           var aSpan = document.querySelectorAll("#box p span");
+           setInterval(fn(),1000);
+
+            function getDate( time ){
+                var date = new Date( time );
+                var MM = date.getMonth() + 1,
+                    DD = date.getDate(),
+                    hh = date.getHours(),
+                    mm = date.getMinutes(),
+                    ss = date.getSeconds();
+                MM = toTwo(MM);
+                DD = toTwo(DD);
+                hh = toTwo(hh);
+                mm = toTwo(mm);
+                ss = toTwo(ss);
+                return {
+                    YY : date.getFullYear(),
+                    MM : MM,
+                    DD : DD,
+                    hh : hh,
+                    mm : mm,
+                    ss : ss
+                }
+            }
+
+            function toTwo(n) {
+                if (n < 10) n = "0" + n;
+                return n;
+            }
+            function fn() {
+                var nowDate = new Date();
+                var UTCDate = nowDate.getTime() + nowDate.getTimezoneOffset()*60*1000;
+                var arr = [
+                    getDate(UTCDate + -5*60*60*1000),//纽约
+                    getDate(UTCDate + 60*60*1000),//马德里
+                    getDate(UTCDate + 2*60*60*1000),//开罗
+                    getDate(UTCDate + 3*60*60*1000),//莫斯科
+                    getDate(UTCDate + 8*60*60*1000),//北京
+                    getDate(UTCDate + 9*60*60*1000),//东京
+                    getDate(UTCDate + 10*60*60*1000)//悉尼
+                ];
+
+                for (var i = 0; i < 7; i++) {
+                    var data = arr[i];
+                    aSpan[i].innerHTML = data.YY+"年"+data.MM+"月"+data.DD+"日 "+data.hh+"时"+data.mm+"分"+data.ss+"秒";
+                }
+
+                return fn;
+            }
+
+
+            /*
+             2. 纽约  -5
+             4. 马德里 +1
+             3. 开罗  +2
+             5. 莫斯科 +3
+            1. 北京  +8
+            6. 东京 +9
+            7. 悉尼 +10
+             */
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
