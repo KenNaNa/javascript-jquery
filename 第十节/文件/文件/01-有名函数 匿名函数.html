@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            有名函数
+            匿名函数
+             */
+
+            /*
+
+            匿名函数不可以独自出现
+
+            function(){
+
+            }
+
+             */
+
+            document.onclick = goudan;
+
+//            goudan(); //有名函数可以自执行
+
+            function goudan() {
+                var oBox = document.getElementById("box");
+                oBox.innerHTML = "狗蛋";
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

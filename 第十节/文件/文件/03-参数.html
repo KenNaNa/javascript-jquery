@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            我们在使用函数时，加括号导致的函数执行时，可以传递参数
+
+               形参
+               实参
+               不定参
+             */
+
+            /*var ooo = 50;
+
+            Fn( ooo ); //执行函数时，可以传递 实参 (用，已知的变量 / 具体的数据)
+
+            function Fn( x ) { //形参(相当于函数局部的变量，命名规则和var相同)(定义，无中生有)
+                alert( x );
+            }*/
+
+
+            //形参 / 实参都可以有多个，用 , 隔开
+            /*sum( 80 , 90 );
+            function sum( x , y ){
+                //var x; 一个函数里面，形参不要重复，也不要和内部var定义的变量重复
+                alert( x + y );
+            }*/
+
+
+            //实参和形参个数不一定非得一样，但是不一样的时候要注意一一对应的关系
+            /*sum(5,4,3,7);
+            function sum(x,y,z) {
+                alert( x+y+z );
+            }
+            //形参多了的话，没有对应的那些形参，值就是undefined
+            sum(5,4);
+            function sum(x,y,z) {
+                alert( z );
+                alert( x+y+z );
+            }*/
+
+            //如何给形参添加默认值
+            sum(5,4);
+            function sum(x,y,z) {
+
+                x = x || 0;
+                y = y || 0;
+                z = z || 2;
+
+                alert( z );
+                alert( x+y+z );
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

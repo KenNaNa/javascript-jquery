@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+
+            过程
+
+            结果
+
+
+            每个函数默认 return undefined
+            在有需求的情况下，我们可以修改函数的 return
+
+             */
+
+            //var x = Fn();
+            //alert( x );
+
+
+            /*Fn().title = "哈哈哈哈哈";
+
+            function Fn(){
+                var oBox = document.getElementById("box");
+                oBox.innerHTML = "goudan";
+                return oBox;
+            }*/
+
+            /*var num = 10 + {};
+
+            if ( isNaN(num) ){
+
+            }*/
+
+
+            Fn()()(5);
+
+            /*var q = Fn();  //什么事都没有发生，最终返回 x
+
+            var w = q(); // alert(2);  最终返回 一坨
+
+//            var w = function(g){
+//                alert( g );
+//            }
+
+            var r = w(5); //alert(5); 最终返回 undefined*/
+
+            function Fn() {
+
+                var x = function () {
+
+                    alert( 2 );
+
+                    return function(g){
+                        alert( g );
+                    }
+                };
+
+                return x;
+            }
+
+
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

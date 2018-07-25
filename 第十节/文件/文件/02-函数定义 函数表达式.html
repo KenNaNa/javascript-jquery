@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+                函数定义
+
+                函数表达式
+                    特点：可以再后面加括号执行
+                    () + - ~ ! 可以讲匿名函数变为函数表达式
+            */
+
+
+            /*function goudan() {
+                alert( 1 );
+            }*/
+
+            //函数表达式
+            /*var goudan = function () {
+                alert( 1 );
+            };
+
+            goudan();*/
+
+            /*var goudan = function () {
+                alert( 1 );
+            }();*/
+
+            /*(function(){
+                alert(2);
+            })();*/
+
+            (function(){
+                alert(2);
+            }());
+
+            /*+function(){
+                alert(3);
+            }();
+
+            !function(){
+                alert(3);
+            }();
+
+            ~function(){
+                alert(3);
+            }();*/
+
+            -function(){
+                alert(3);
+            }();
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

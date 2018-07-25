@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            //任意的数据类型都可以当参数
+
+           /* Fn( function( x,y ) {alert(x+y);} );
+            //实参 function( x,y ) {alert(x+y);}
+
+            function Fn( a ) { //形参 a
+                a( 4 , 5);
+            }*/
+
+
+           /*
+           * 不定参
+           *
+           * */
+
+           sum(1,8,2,5,7);
+
+           function sum() {
+               //不定参 arguments，存储着所有 实参 的集合
+               // 无论有没有形参，实参都会被存在 不定参 里面
+               //alert( arguments.length );
+               //alert( arguments[1] );
+
+               var x = 0;
+
+               for (var i = 0,length=arguments.length; i < length; i++) {
+                   x += arguments[i];
+               }
+
+               alert( x );
+           }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
