@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: fixed;
+                top: 0;
+                left: -50px;
+                width: 50px;
+                height: 100%;
+                background: #666;
+            }
+            #box .list{
+                position: absolute;
+                top: 20%;
+                width: 50px;
+                height: 350px;
+            }
+            #box .list li{
+                position: relative;
+                width: 50px;
+                height: 50px;
+                margin-bottom: 20px;
+            }
+            #box .list li img{
+                position: absolute;
+                top: 7px;
+                left: 7px;
+            }
+            #box .list li .hide{
+                display: none;
+                position: absolute;
+                left: 50px;
+                top: -1px;
+                width: 200px;
+                height: 180px;
+                background: #ffc;
+                border: 1px solid #000;
+                border-left: none;
+            }
+            #box .btn{
+                position: absolute;
+                bottom: 50px;
+                left: 50px;
+                width: 50px;
+                height: 50px;
+                background-image: url("img/icon.png");
+                background-position: 0 50px;
+            }
+            #box .btn.on{
+                background-position:0 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul class="list">
+                <li>
+                    <img src="img/bq1.png" alt="">
+                    <div class="hide"></div>
+                </li>
+                <li>
+                    <img src="img/bq2.png" alt="">
+                    <div class="hide"></div>
+                </li>
+                <li>
+                    <img src="img/bq3.png" alt="">
+                    <div class="hide"></div>
+                </li>
+                <li>
+                    <img src="img/bq4.png" alt="">
+                    <div class="hide"></div>
+                </li>
+                <li>
+                    <img src="img/bq5.png" alt="">
+                    <div class="hide"></div>
+                </li>
+            </ul>
+
+            <div class="btn"></div>
+        </div>
+        <script>
+
+            var oBox = document.getElementById("box"),
+                aLi = oBox.querySelectorAll("ul li"),
+                aHide = oBox.querySelectorAll("ul li .hide"),
+                oBtn = oBox.querySelector(".btn");
+            for (var i = 0,length = aLi.length; i < length; i++) {
+
+                aLi[i].index = i;
+
+                //移入
+                aLi[i].onmouseenter = function () {
+                    this.style.backgroundColor = "#ffc";
+                    aHide[this.index].style.display = "block";
+                };
+
+                //移出
+                aLi[i].onmouseleave = function () {
+                    this.style.backgroundColor = "transparent";
+                    aHide[this.index].style.display = "none";
+                };
+
+            }
+
+            oBtn.flag = false;
+            oBtn.onclick = function () {
+                if ( this.flag ){
+                    oBox.style.left = "-50px";
+                    this.className = "btn";
+                    this.flag = false;
+                }else{
+                    oBox.style.left = "0px";
+                    this.className += " on";
+                    this.flag = true;
+                }
+
+            };
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

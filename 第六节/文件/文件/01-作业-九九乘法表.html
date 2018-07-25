@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box span{
+                display: inline-block;
+                width: 70px;
+                height: 35px;
+                border: 1px solid pink;
+                text-align: center;
+                line-height: 35px;
+                margin: 5px;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var oBox = document.getElementById("box");
+
+            //9行
+            for (var i = 1; i < 10; i++) {
+                //每一行列数不一样，根据行数不同，列数不同
+                for (var j = 1; j <= i; j++) {
+                    oBox.innerHTML += "<span>"+i+'×'+j+"="+i*j+"</span>";
+                }
+                //每一列结束后换行
+                oBox.innerHTML += "<br>";
+            }
+
+            oBox.innerHTML += "<hr><hr>";
+
+            for (i = 1; i < 10; i++) {
+                for (j = i; j <= 9; j++) {
+                    oBox.innerHTML += "<span>"+i+'×'+j+"="+i*j+"</span>";
+                }
+                oBox.innerHTML += "<br>";
+            }
+
+            oBox.innerHTML += "<hr><hr>";
+
+            for (i = 9; i >= 1; i--) {
+                for (j = 1; j <= i; j++) {
+                    oBox.innerHTML += "<span>"+i+'×'+j+"="+i*j+"</span>";
+                }
+                oBox.innerHTML += "<br>";
+            }
+
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

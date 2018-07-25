@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>QQ选项功能-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+			 }
+			 #div1{
+			    margin:100px auto;
+				width:200px;
+			 }
+			 #div1 ul{
+			    width:100%;
+				overflow:hidden;
+				height:31px;
+			 }
+			 
+			 #div1 ul li{
+			   width:100%;
+			   height:25px;
+			   background:#ccc;
+			   line-height:25px;
+			   border-bottom:1px solid #fff;
+			   text-indent:20px;
+			   cursor:pointer;
+			   font-size:14px;
+			 }
+			 #div1 ul li:hover{background:pink;}
+			 #div1 ul li.title{
+			    width:100%;
+				height:30px;
+				background:#000;
+			    line-height:30px;
+				color:#fff;
+				font-size:16px;
+				text-indent:5px;
+			}
+			
+		 </style>
+	 </head>
+<body>
+<div id="div1">
+   <ul>
+     <li class="title">老师</li>
+	 <li class="con">阿飞</li>
+	 <li class="con">凌薇</li>
+	 <li class="con">玄武</li>
+   </ul>
+   <ul>
+     <li class="title">新加朋友</li>
+     <li class="con">萌萌哒</li>
+	 <li class="con">周老头</li>
+   </ul>
+   <ul>
+     <li class="title">讲师</li>
+     <li class="con">爱很简单</li>
+	 <li class="con">每次都想呼唤你的名字</li>
+	 <li class="con">善因空间</li>
+	 <li class="con">听党指挥</li>
+   </ul>
+</div>
+<script>
+    var oDiv = document.getElementById('div1');
+    var aTitle = oDiv.querySelectorAll('.title');
+	var aUl = oDiv.querySelectorAll('ul');
+	var aLiCon = oDiv.querySelectorAll('.con');
+	//console.log(aLiCon);
+
+	//console.log(aTitle);
+	//初始化三个标题
+	/*for( var i = 0; i< aTitle.length; i++ ){
+		  aTitle[i].style.background = '#000';
+	}*/
+
+	//三个标题的点击事件
+	  for( var i = 0; i< aTitle.length; i++ ){
+		  aTitle[i].index = i;//自定义属性
+		  //aTitle[i].index = i;//第一种思维
+		  aTitle[i].ifFalse = false;//第二种思维
+		  aTitle[i].onclick = function(){
+			  /*for( var i = 0; i< aTitle.length; i++ ){
+		         aTitle[i].style.background = '#000';
+	         }*/
+			 //第二种逻辑思维
+			  if(this.ifFalse == false/*aUl[this.index].style.height = '31px'第一种思维*/){
+		         this.style.background = '#f60';
+				 aUl[this.index].style.height = 'auto';
+				 this.ifFalse = true;
+			  }else{
+			    this.style.background = '#000';
+				aUl[this.index].style.height = '31px';
+				this.ifFalse = false;
+			  }
+	  };
+	};
+	
+	//9个li.con的点击事件及鼠标移上的事件
+	for(var j = 0;j < aLiCon.length; j++){
+	    aLiCon[j].onclick = function(){
+		//初始化9个li.con标签的背景色
+		for(var j = 0;j < aLiCon.length; j++){
+			 aLiCon[j].style.background = '#ccc';
+		 }
+		    this.style.background = 'pink';
+	  };
+	}
+</script>
+</body>
+</html>
