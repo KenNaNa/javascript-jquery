@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                overflow: hidden;
+                width: 835px;
+                margin: 50px auto;
+                box-shadow: 0 0 5px pink;
+            }
+            #box ul{
+                width: 1000%;
+            }
+            #box ul li{
+                float: left;
+                width: 267px;
+                margin-right: 17px;
+            }
+            #box ul li img{
+                width: 100%;
+            }
+            #box ul li a.title{
+                display: block;
+                font-size: 16px;
+                padding: 0 10px;
+                line-height: 25px;
+                text-decoration: none;
+                color: #333;
+            }
+            #box ul li a:hover{
+                color: #b70032;
+            }
+            #box ul li div.content{
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+            }
+            #box ul li div.info{
+                width: 100%;
+                height: 40px;
+                background: #f1f1f1;
+                border-top: 1px solid #ddd;
+                font-size: 12px;
+                color: #333;
+                line-height: 40px;
+            }
+            #box div.time {
+                float: left;
+                text-indent: 10px;
+            }
+            #box div.all{
+                float: right;
+                width: 80px;
+                border-left: 1px solid #ddd;
+                text-align: center;
+            }
+            #box div.all a{
+                text-decoration: none;
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>
+                    <!--<div class="content">
+                        <img src="img/1.jpg">
+                        <a class="title" href="">你们男生都爱的倪妮 就是个大写的美好</a>
+                        <div class="info">
+                            <div class="time">2016/03/18 20:08</div>
+                            <div class="all"><a href="">阅读全文</a></div>
+                        </div>
+                    </div>-->
+                </li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script src="data.js"></script>
+        <script>
+
+            (function(){
+
+                var $box = $("#box"),
+                    $li = $box.find("ul li"),
+                    index = -1,
+                    maxLength = imgData.length-1;
+
+                fLoad(10);
+
+                $(window).scroll(function () {
+                    if ( index >= maxLength )return;
+                    var allTop = $(window).height() + $(document).scrollTop();
+                    if ( allTop > $box.offset().top+$box.height()-200 ){
+
+                        fLoad(10);
+                    }
+                });
+
+                function fLoad( num ) {
+                    var length = index+num;
+                    length = Math.min(length , maxLength);
+                    add();
+                    function add(){
+                        if ( index < length ){
+                            index ++;
+                        }else{
+                            return;
+                        }
+                        var data = imgData[index];
+                        var oImg = new Image();
+                        oImg.src = data.src;
+                        oImg.onload = function () {
+                            var $div = $('<div class="content">' +
+                                '<img src="'+data.src+'">' +
+                                '<a class="title" href="">'+data.dec+'</a>' +
+                                '<div class="info">' +
+                                '<div class="time">'+data.time+'</div>' +
+                                '<div class="all"><a href="">阅读全文</a></div>' +
+                                '</div>' +
+                                '</div>');
+                            $div.css("display" , "none");
+                            findShort().append($div);
+                            $div.fadeIn();
+                            add();
+                        }
+                    }
+                }
+
+                function findShort() {
+                    var obj;
+                    var short = 99999;
+                    $li.each(function (i) {
+                        var height = $(this).height();
+                        if ( height < short ){
+                            short = height;
+                            obj = this;
+                        }
+                    });
+                    return $(obj);
+                }
+
+            })();
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{ }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p></p>
+        </div>
+        <script>
+
+            var oP = document.querySelector("#box p");
+
+            countTime( "2017/8/19 21:32:00" , function (d,h,m,s) {
+                oP.innerHTML = "距离抢购结束，还剩"+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒"
+            } , function () {
+                oP.innerHTML = "开抢！！！";
+            } );
+
+            function countTime( setDate , fn , end ) {
+
+                var reg = /[\s\/\-:\.\,\，\。]/;
+                var arr = setDate.split(reg);
+                if ( arr[0].length < 4 )arr.unshift(""+new Date().getFullYear());
+                var Y = +arr[0],
+                    M = arr[1]-1 || 0,
+                    D = +arr[2] || 1,
+                    h = +arr[3] || 0,
+                    m = +arr[4] || 0,
+                    s = +arr[5] || 0;
+
+                setDate = new Date(Y,M,D,h,m,s);
+
+
+                var timer = setInterval(count,1000);
+                count();
+                function count() {
+                    var date = setDate - new Date;
+
+                    var day = Math.floor(date/1000/60/60/24);
+                    var hh = Math.floor(date/1000/60/60) % 24;
+                    var mm = Math.floor(date/1000/60) % 60;
+                    var ss = Math.floor(date/1000) %60;
+
+                    if ( date < 1000 ){
+                        end && end();
+                        clearInterval(timer);
+                        return;
+                    }
+
+
+                    fn(day , hh , mm , ss);
+                }
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

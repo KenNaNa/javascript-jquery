@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{ }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var oS = document.createElement("script");
+            oS.src = 'http://api.k780.com:88/?app=life.time&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json&jsoncallback=fly';
+            oS.onload = function () {
+                document.body.removeChild( this );
+            };
+            document.body.appendChild( oS );
+            function fly(json) {
+                alert(json.result.datetime_1);
+            }
+
+
+
+            //xhr.getResponseHeader()
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
