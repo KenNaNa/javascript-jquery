@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script type="text/JavaScript">
+
+var size = 1.0;  
+function zoomout() {  
+ size = size + 0.1;  
+ set(); 
+}  
+
+
+function zoomin() {  
+ size = size - 0.1;  
+ set();  
+}  
+
+
+function set() {  
+ //document.body.style.cssText = document.body.style.cssText + '; -webkit-transform: scale(' + size + ');-webkit-transform-origin: 0 0;';   
+ //document.body.style.cssText = document.body.style.cssText + '; -webkit-transform: scale(' + size + '); '; 
+ //$(body).css("width","120%);
+document.body.style.zoom = size;
+document.body.style.cssText += '; -moz-transform: scale(' + size + ');-moz-transform-origin: 0 0; ';     //
+} 
+    </script>
+</body>
+</html>

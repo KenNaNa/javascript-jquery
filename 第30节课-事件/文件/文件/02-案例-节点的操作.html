@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            body,html{
+                width: 100%;
+                height: 100%;
+                min-width: 1000px;
+                min-height: 550px;
+            }
+            body{
+                position: absolute;
+                background: -webkit-linear-gradient(top,rgb(139,193,222),rgb(249,168,134));
+            }
+            #box{
+                position: relative;
+                width: 1000px;
+                height: 550px;
+                margin: 50px auto;
+            }
+            #box .left,#box .right{
+                position: absolute;
+                top: 0;
+                width: 50%;
+                height: 100%;
+            }
+            #box .left{
+                left: 0;
+                background: rgba(255,255,255,.8);
+            }
+            #box .right{
+                right: 0;
+                background: rgba(0,0,0,.5);
+            }
+            #box .left p{
+                margin: 100px 0 0 50px;
+                color: #f60;
+                line-height: 20px;
+            }
+            #box .left p span{
+                color: #222;
+                font-size: 14px;
+                cursor: pointer;
+            }
+            #box .left p span:hover{
+                color: #F20F70;
+            }
+            #box .left ul{
+                margin-left: 50px;
+                margin-top: 10px;
+            }
+            #box .right ul{
+                margin: 100px 0 0 50px;
+             }
+            #box .left ul li,#box .right ul li{
+                float: left;
+                padding: 6px;
+                height: 16px;
+                line-height: 16px;
+                border: 1px solid #333;
+                font-size: 14px;
+                margin: 5px;
+            }
+            #box .right ul li{
+                color: #fff;
+                border-color: #ccc;
+            }
+            #box .left ul li span.name,#box .right ul li span.name{
+                font-style: italic;
+                margin-right: 5px;
+            }
+            #box .left ul li span.close{
+                cursor: pointer;
+                padding: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div class="left">
+                <p>热门目的地：
+                    <span>马来西亚</span>
+                    <span>泰国</span>
+                    <span>三亚</span>
+                    <span>新西兰</span>
+                    <span>云南</span>
+                </p>
+                <ul>
+                    <!--<li><span class="name">泰国</span>| <span class="close">×</span> </li>
+                    <li><span class="name">马来西亚</span>| <span class="close">×</span> </li>
+                    <li><span class="name"></span>| <span class="close">×</span> </li>-->
+                </ul>
+            </div>
+            <div class="right">
+                <ul>
+                    <!--<li><span class="name">泰国</span></li>
+                    <li><span class="name">马来西亚</span></li>
+                    <li><span class="name"></span></li>-->
+                </ul>
+            </div>
+        </div>
+        <script>
+
+            var leftSpan = document.querySelectorAll("#box .left p span"),
+                oLeftUl = document.querySelector("#box .left ul"),
+                oRightUl = document.querySelector("#box .right ul");
+
+            for (var i = 0,length = leftSpan.length; i < length; i++) {
+
+                //这个自定义布尔值的作用：判断是否添加过这个国家，false-没有   true-有
+                leftSpan[i].ifAdd = false;
+
+                leftSpan[i].onclick = function () {
+                    if ( !this.ifAdd ){
+                        var val = this.innerHTML;
+                        var This = this;
+
+                        var oLi = document.createElement("li"),
+                            oS = document.createElement("span"),
+                            oRLi;
+                        oLi.innerHTML = '<span class="name">'+ val +'</span>';
+                        oRLi = oLi.cloneNode(true);
+
+                        oLi.innerHTML += "|";
+                        oS.className = "close";
+                        oS.innerHTML = "×";
+                        oS.onclick = function () {
+                            oLeftUl.removeChild( this.parentNode );
+                            oRightUl.removeChild( oRLi );
+                            This.ifAdd = false;
+                        };
+
+                        oLi.appendChild(oS);
+                        oLeftUl.appendChild(oLi);
+                        oRightUl.appendChild(oRLi);
+
+                        this.ifAdd = true;
+                    }
+                };
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+            事件对象：
+                存储着和该次事件相关的信息
+
+                主流浏览器：事件函数的第一个形参，就是事件对象
+                IE8-：事件函数里面获取 window.event，就是事件对象
+
+                .clientX
+                .clientY
+                    事件发生时，鼠标距离可视区的left/top值
+
+             */
+
+            /*document.onclick = mfn;
+
+            function mfn( x ) {
+                console.log(x);
+            }*/
+
+            /*document.onclick = function (e) {
+                alert( e.clientX );
+            }*/
+
+            document.onclick = function (e) {
+                //var e = window.event;
+                //alert( e.clientX );
+                //alert( xx );
+                e = e || window.event;
+                alert( e );
+            };
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

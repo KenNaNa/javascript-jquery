@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>自定义菜单-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+				 text-decoration:none;
+			 }
+			 ul{
+			    width:200px;
+				position:absolute;
+				display:none;
+				transition:display 0.8s ease;
+			 } 
+			 ul li{
+			    width:200px;
+				height:30px;
+				margin-bottom:1px;
+				background:#ccc;
+				text-align:center;
+				line-height:30px;
+			 }
+			 ul li:hover{
+			    background:#000;
+			 }
+		 </style>
+	 </head>
+<body>
+<ul>
+	<li><a href="javascript:void(0);">百度</a></li>
+	<li><a href="javascript:void(0);">谷歌</a></li>
+	<li><a href="javascript:void(0);">火狐</a></li>
+	<li><a href="javascript:void(0);">欧鹏</a></li>
+	<li><a href="javascript:void(0);">雅虎</a></li>
+</ul>
+<script>
+    var oUl = document.querySelector('ul');
+	var aLi = document.querySelectorAll('li');
+    document.oncontextmenu = function(ev){
+	   ev = ev || window.event;
+	   var l = ev.clientX;
+	   var t = ev.clientY;
+	   oUl.style.display = 'block';
+	   oUl.style.left = l + 'px';
+	   oUl.style.top = t + 'px';
+	   return false;//去除默认事件
+	}
+	for( var i=0;i<aLi.length;i++ ){
+	   aLi[i].onclick = function(){
+	      oUl.style.display = 'none';
+	   }
+	}
+</script>
+</body>
+</html>

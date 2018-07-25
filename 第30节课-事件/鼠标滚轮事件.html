@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>8. 鼠标滚轮事件-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+IE 6.0 首先实现了 mousewheel 事件。此后， Opera、 Chrome 和 Safari 也都实现了这个事件。<br>当用
+户通过鼠标滚轮与页面交互、在垂直方向上滚动页面时（无论向上还是向下），<br>就会触发 mousewheel
+事件。<br>这个事件可以在任何元素上面触发，最终会冒泡到 document（IE8）或 window（IE9、 Opera、
+Chrome 及 Safari）对象。<br>与 mousewheel 事件对应的 event 对象除包含鼠标事件的所有标准信息外，<br>
+还包含一个特殊的 wheelDelta 属性。当用户向前滚动鼠标滚轮时， <br>wheelDelta 是 120 的倍数；<br>当用
+户向后滚动鼠标滚轮时， wheelDelta 是120 的倍数。
+<script>
+   alert(client.engine.chrome && client.engine.chrome < 9.5)
+</script>
+<br><br><br>
+Firefox 支持一个名为 DOMMouseScroll 的类似事件，也是在鼠标滚轮滚动时触发。<br>与 mousewheel
+事件一样， <br>DOMMouseScroll 也被视为鼠标事件，因而包含与鼠标事件有关的所有属性。<br>而有关鼠标滚
+轮的信息则保存在 detail 属性中，<br>当向前滚动鼠标滚轮时，这个属性的值是-3 的倍数，当向后滚动<br>
+鼠标滚轮时，这个属性的值是 3 的倍数。
+
+
+<br><br>
+IE9、 Firefox、 Chrome 和 Safari 的 event 对象都支持一个 charCode 属性，<br>这个属性只有在发生
+keypress 事件时才包含值，而且这个值是按下的那个键所代表字符的 ASCII 编码。<br>此时的 keyCode
+通常等于 0 或者也可能等于所按键的键码。<br>IE8 及之前版本和 Opera 则是在 keyCode 中保存字符的 ASCII<br>
+编码。要想以跨浏览器的方式取得字符编码，<br>必须首先检测 charCode 属性是否可用
+
+
+<br><br><br>
+支持 contextmenu 事件的浏览器有 IE、 Firefox、 Safari、 Chrome 和 Opera 11+。<br>
+4. readystatechange 事件<br>
+ uninitialized（未初始化）：对象存在但尚未初始化。<br>
+
+ loading（正在加载）：对象正在加载数据。<br>
+ loaded（加载完毕）：对象加载数据完成。<br>
+ interactive（交互）：可以操作对象了，但还没有完全加载。<br>
+ complete（完成）：对象已经加载完毕。<br>
+<br><br>
+所有 iOS 设备都支持 orientationchange 事件和 window.orientation 属性。
+移动 Safari 的 window.orientation 属性中可能包含 3 个值：<br>
+0 表示肖像模式， <br>90 表示向左旋转的横向模式（“主屏幕”按钮在右侧），<br> -90 表示向右旋转的横向模
+式（“主屏幕”按钮在左侧）。<br><br>
+2. MozOrientation 事件
+Firefox 3.6 为检测设备的方向引入了一个名为 MozOrientation 的新事件。<br>（前缀 Moz 表示这是特
+定于浏览器开发商的事件，不是标准事件。）<br><br>
+
+此时的 event 对象包含三个属性： x、 y 和 z。<br>这几个属性的值都介于 1 到-1 之间，<br>表示不同坐标
+轴上的方向。在静止状态下， x 值为 0， y 值为 0，<br> z 值为 1（表示设备处于竖直状态）。<br>如果设备向右倾
+斜， x 值会减小；反之，向左倾斜， <br>x 值会增大。类似地，如果设备向远离用户的方向倾斜， <br>y 值会减
+小，向接近用户的方向倾斜， <br>y 值会增大。 z 轴检测垂直加速度度， <br>1 表示静止不动，在设备移动时值
+会减小。（失重状态下值为 0。）<br><br>
+</body>
+</html>

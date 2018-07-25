@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>事件对象-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+	  事件对象：
+		存储着和该次事件相关的信息
+
+		主流浏览器：事件函数的第一个形参，就是事件对象
+		IE8-：事件函数里面获取 window.event，就是事件对象
+
+		.clientX
+		.clientY
+			事件发生时，鼠标距离可视区的left/top值
+	*/
+    document.onclick = function(e){
+	   console.log(e);
+	   console.log(e.clientX);
+	   console.log(e.clientY);
+	   console.log(e.offsetX);
+	   console.log(e.offsetY)
+	   console.log(e.pageX)
+	   console.log(e.pageY)
+	   console.log(e.screenX)
+	   console.log(e.screenY);
+	}
+	document.onclick = function(ev){
+	   ev = ev||window.event;//兼容主流浏览器 与 IE
+	}
+</script>
+</body>
+</html>

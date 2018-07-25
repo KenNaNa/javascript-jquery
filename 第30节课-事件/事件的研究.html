@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>事件的研究-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:100px;
+				background:pink;
+			 }
+			 #b{
+			    width:100px;
+				height:100px;
+				background:red;
+				margin-left:100px;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<div id="b"></div>
+<script>
+   var oBox = document.getElementById('box');
+   var oB = document.getElementById('b');
+   oB.onclick = function(e){
+	   /*
+	      PageX:鼠标在页面上的位置,从页面左上角开始,即是以页面为参考点,不随滑动条移动而变化
+          clientX:鼠标在页面上可视区域的位置,从浏览器可视区域左上角开始,即是以浏览器滑动条此刻的滑动到的位置为参考点,随滑动条移动 而变化.
+	   */
+	   /*
+	      很明显,红色参考块已经被滑动条截取部分,PageY不变,但是clientY已经变了
+          可是悲剧的是,PageX只有FF特有,IE这个悲剧没有啊T_T,所以大牛们想出了一个办法
+          PageY=clientY+scrollTop-clientTop;(只讨论Y轴,X轴同理,下同)
+          页面上的位置=可视区域位置+页面滚动条切去高度-自身border高度,还是直接上图比较清楚
+
+	   */
+	   /*
+	       很明显,模块交界处,scrollTop代表的是被浏览器滑动条滚过的长度,和clientY相加,刚好等于100,最后还要再减去一个clientTop,即是border-top的宽度
+          Jquery中的PageX的代码如下.十分精炼..
+
+
+			// Calculate pageX/Y if missing and clientX/Y available
+			if ( event.pageX == null && event.clientX !=  null ) {
+				var doc = document.documentElement, body = document.body;
+				event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft  || body && body.clientLeft || 0);
+				event.pageY = event.clientY + (doc && doc.scrollTop  ||  body && body.scrollTop  || 0) - (doc && doc.clientTop  || body && body.clientTop  || 0);
+			}
+	   */
+       /*console.log(e.clientX,e.clientY);
+       console.log(e.pageX,e.pageY);
+	   console.log(oB.clientTop);//0
+	   console.log(document.documentElement.scrollTop);//0
+	   paY = e.clientY+document.documentElement.scrollTop - oB.clientTop;
+	   alert(paY);*/
+       /*
+	     三.offsetX和layerX
+         接下来是offsetX和layerX
+         offsetX:IE特有,鼠标相比较于触发事件的元素的位置,以元素盒子模型的内容区域的左上角为参考点,如果有boder,可能出现负值
+	   */
+	   /*
+	      IE以内容区域开始,向上进入border将出现负值
+          layerX:FF特有,鼠标相比较于当前坐标系的位置,即如果触发元素没有设置绝对定位或相对定位,以页面为参考点,如果有,将改变参考坐标系,从触发元素盒子模型的border区域的左上角为参考点
+          也就是当触发元素设置了相对或者绝对定位后,layerX和offsetX就幸福地生活在一起^-^,几乎相等,唯一不同就是一个从border为参考点,一个以内容为参考点
+	   */
+	   console.log(e.offsetX,e.offsetY);
+	   console.log(e.layerX,e.layerY);
+   }
+   /*oBox.onclick = function(e){
+       console.log(e.clientX,e.clientY);//距离可视区的距离 除去工具栏的距离
+	   console.log(e.screenX,e.screenY);//screen是指距离屏幕的位置 包含工具栏的距离
+	   console.log(e);
+	   console.log(e.pageX,e.pageY);
+	   console.log(e.offsetX,e.offsetY);
+	   /*
+	     1、pageX/pageY：鼠标相对于整个页面文档（document）的X/Y坐标。注意，整个页面的意思就是你整个网页的全部，它不会随着滚动条而变动。特别说明：IE不支持！--兼容性：除IE6/7/8不支持外，其余浏览器均支持
+
+		2、offsetX/offsetY: 特别说明：只有IE支持！相对于当前元素的位移(即：触发点相对被触发dom的左上角距离。不过左上角基准点在不同浏览器中有区别，其中在IE中以内容区左上角为基准点不包括边框，如果触发点在边框上会返回负值，而chrome中以边框左上角为基准点。)。--兼容性：只有IE支持
+
+		3、screenX/screenY:此时的参照点也就是原点是屏幕的左上角。--兼容性：所有浏览器均支持
+
+		4、clientX/clientY：跟screenX相比就是将参照点改成了浏览器内容区域的左上角，该参照点会随之滚动条的移动而改变。特别说明：IE下此属性不规范，它们的最小值不是0而是2，也就是说IE下的clientX/clientY与火狐下的始终大2px。--兼容性：所有浏览器均支持
+	   
+   }*/
+   /*
+        FF从border开始,
+		x/y:IE特有,这个本来和layerX/layerY的作用基本一样,但是IE的当前坐标选择十分混乱,能不用就不用,不讨论
+		网上别人总结的关于这六个纠结的纠结表..
+
+
+		offsetX/offsetY：W3C- IE+ Firefox- Opera+ Safari+ chrome+
+		x/y：W3C- IE+ Firefox- Opera+ Safari+ chrome+
+		layerX/layerY：W3C- IE- Firefox+ Opera- Safari+ chrome+
+		pageX/pageY：W3C- IE- Firefox+ Opera+ Safari+ chrome+
+		clientX/clientY：W3C+ IE+ Firefox+ Opera+ Safari+ chrome+
+		screenX/screenY：W3C+ IE+ Firefox+ Opera+ Safari+ chrome+
+   */
+</script>
+</body>
+</html>

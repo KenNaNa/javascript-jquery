@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+<meta http-equiv="content-type" content="text/html;charset=utf-8">  
+<title>js控制div缩放移动</title>  
+<style type="text/css">  
+*{margin:0;padding:0;}  
+#www_ablanuxe_com{  
+    width:100%;  
+    height:100%;  
+    background:#f00;  
+    filter:alpha(opacity:0);  
+    opacity:0;  
+    z-index:9999;  
+    position:absolute;  
+    top:0;  
+    left:0;  
+    display:none;  
+}  
+#ablanuxe_com_2{  
+    width:200px;  
+    height:200px;  
+    position:relative;  
+    background:#EEEEEE;  
+    border:1px solid #f00;  
+    display: none;  
+}  
+#www_ablanuxe_com_1{  
+    width:15px;  
+    height:15px;  
+    background:#99CC00;  
+    position:absolute;  
+    right:0px;  
+    bottom:0px;  
+    cursor:nw-resize;  
+    overflow:hidden;  
+    font-size:12px;  
+    text-align:center;  
+    line-height:15px;  
+    color:#FFFFFF;  
+    float:right;  
+    z-index:3;  
+}  
+#right{  
+    width:15px;  
+    height:100%;  
+    background:#f00;  
+    float:right;  
+    position:absolute;  
+    right:0;  
+    top:0;  
+    cursor:e-resize;  
+    overflow:hidden;  
+    filter:alpha(opacity:0);  
+    opacity:0;  
+    z-index:1;  
+}  
+#bottom{  
+    width:100%;  
+    height:15px;  
+    background:#f00;  
+    position:absolute;  
+    left:0;  
+    bottom:0;  
+    cursor:n-resize;  
+    overflow:hidden;  
+    filter:alpha(opacity:0);  
+    opacity:0;  
+    z-index:1;  
+}  
+#ablanuxe_com_2 p{  
+    padding:10px;  
+    line-height:24px;  
+    font-size:13px;  
+    text-indent:24px;  
+    color:#996600;  
+}  
+#ablanuxe_com_2 h2{  
+    width:100%;  
+    height:25px;  
+    line-height:25px;  
+    font-size:14px;  
+    background:#CC9900;  
+    color:#FFFFFF;  
+    text-indent:15px;  
+    cursor:move;  
+    overflow:hidden;  
+}  
+</style>  
+<script type="text/javascript" src="jquery-1.8.3.min.js" ></script>  
+<script type="text/javascript">  
+    $(function(){  
+          
+        $(".showbtn").click(function(){  
+            var new_width=$("#showwidth").val();  
+            var new_height=$("#showheight").val();  
+            alert(new_width+"+"+new_height);  
+            $("#ablanuxe_com_2").css({"width":new_width+"px","height":new_height+"px"})  
+            $("#ablanuxe_com_2").show();  
+        })  
+    })  
+</script>  
+<script type="text/javascript">  
+window.onload=function()  
+{  
+    var oDiv=document.getElementById("www_ablanuxe_com_1");  
+    var oDiv2=document.getElementById("ablanuxe_com_2");  
+    var zhezhao=document.getElementById("www_ablanuxe_com");  
+    var h2=oDiv2.getElementsByTagName("h2")[0];  
+    var right=document.getElementById("right");  
+    var bottom=document.getElementById("bottom");  
+    var new_width=document.getElementById("showwidth");  
+    var new_height=document.getElementById("showheight");  
+    var mouseStart={};  
+    var divStart={};  
+    var rightStart={};  
+    var bottomStart={};  
+    //往右拽  
+    right.onmousedown=function(ev)  
+    {  
+        var oEvent=ev||event;  
+        mouseStart.x=oEvent.clientX;  
+        mouseStart.y=oEvent.clientY;  
+        rightStart.x=right.offsetLeft;  
+        if(right.setCapture)  
+        {  
+            right.onmousemove=doDrag1;  
+            right.onmouseup=stopDrag1;  
+            right.setCapture();  
+        }  
+        else  
+        {  
+            document.addEventListener("mousemove",doDrag1,true);  
+            document.addEventListener("mouseup",stopDrag1,true);  
+        }  
+    };  
+    function doDrag1(ev)  
+    {  
+        var oEvent=ev||event;  
+        var l=oEvent.clientX-mouseStart.x+rightStart.x;  
+        var w=l+oDiv.offsetWidth;  
+        if(w<oDiv.offsetWidth)  
+        {  
+            w=oDiv.offsetWidth;  
+        }  
+        else if(w>document.documentElement.clientWidth-oDiv2.offsetLeft)  
+        {  
+            w=document.documentElement.clientWidth-oDiv2.offsetLeft-2;  
+        }  
+        oDiv2.style.width=w+"px";  
+        new_width.value=w;  
+    };  
+    function stopDrag1()  
+    {  
+        if(right.releaseCapture)  
+        {  
+            right.onmousemove=null;  
+            right.onmouseup=null;  
+            right.releaseCapture();  
+        }  
+        else  
+        {  
+            document.removeEventListener("mousemove",doDrag1,true);  
+            document.removeEventListener("mouseup",stopDrag1,true);  
+        }  
+    };  
+    //往下拽  
+    bottom.onmousedown=function(ev)  
+    {  
+        var oEvent=ev||event;  
+        mouseStart.x=oEvent.clientX;  
+        mouseStart.y=oEvent.clientY;  
+        bottomStart.y=bottom.offsetTop;  
+        if(bottom.setCapture)  
+        {  
+            bottom.onmousemove=doDrag2;  
+            bottom.onmouseup=stopDrag2;  
+            bottom.setCapture();  
+        }  
+        else  
+        {  
+            document.addEventListener("mousemove",doDrag2,true);  
+            document.addEventListener("mouseup",stopDrag2,true);  
+        }  
+    };  
+    function doDrag2(ev)  
+    {  
+        var oEvent=ev||event;  
+        var t=oEvent.clientY-mouseStart.y+bottomStart.y;  
+        var h=t+oDiv.offsetHeight;  
+        if(h<oDiv.offsetHeight)  
+        {  
+            h=oDiv.offsetHeight;  
+        }  
+        else if(h>document.documentElement.clientHeight-oDiv2.offsetTop)  
+        {  
+            h=document.documentElement.clientHeight-oDiv2.offsetTop-2;  
+        }  
+        oDiv2.style.height=h+"px";  
+        new_height.value=h;  
+    };  
+    function stopDrag2()  
+    {  
+        if(bottom.releaseCapture)  
+        {  
+            bottom.onmousemove=null;  
+            bottom.onmouseup=null;  
+            bottom.releaseCapture();  
+        }  
+        else  
+        {  
+            document.removeEventListener("mousemove",doDrag2,true);  
+            document.removeEventListener("mouseup",stopDrag2,true);  
+        }  
+    };  
+    //往左右同时拽  
+    oDiv.onmousedown=function(ev)  
+    {  
+        var oEvent=ev||event;  
+        mouseStart.x=oEvent.clientX;  
+        mouseStart.y=oEvent.clientY;  
+        divStart.x=oDiv.offsetLeft;  
+        divStart.y=oDiv.offsetTop;  
+        if(oDiv.setCapture)  
+        {  
+            oDiv.onmousemove=doDrag;  
+            oDiv.onmouseup=stopDrag;  
+            oDiv.setCapture();  
+        }  
+        else  
+        {  
+            document.addEventListener("mousemove",doDrag,true);  
+            document.addEventListener("mouseup",stopDrag,true);  
+        }  
+        zhezhao.style.display='block';  
+    };  
+    function doDrag(ev)  
+    {  
+        var oEvent=ev||event;  
+        var l=oEvent.clientX-mouseStart.x+divStart.x;  
+        var t=oEvent.clientY-mouseStart.y+divStart.y;  
+        var w=l+oDiv.offsetWidth;  
+        var h=t+oDiv.offsetHeight;  
+        if(w<oDiv.offsetWidth)  
+        {  
+            w=oDiv.offsetWidth;  
+        }  
+        else if(w>document.documentElement.clientWidth-oDiv2.offsetLeft)  
+        {  
+            w=document.documentElement.clientWidth-oDiv2.offsetLeft-2;  
+        }  
+        if(h<oDiv.offsetHeight)  
+        {  
+            h=oDiv.offsetHeight;  
+        }  
+        else if(h>document.documentElement.clientHeight-oDiv2.offsetTop)  
+        {  
+            h=document.documentElement.clientHeight-oDiv2.offsetTop-2;  
+        }  
+        oDiv2.style.width=w+"px";  
+        oDiv2.style.height=h+"px";  
+        new_width.value=w;  
+        new_height.value=h;  
+    };  
+    function stopDrag()  
+    {  
+        if(oDiv.releaseCapture)  
+        {  
+            oDiv.onmousemove=null;  
+            oDiv.onmouseup=null;  
+            oDiv.releaseCapture();  
+        }  
+        else  
+        {  
+            document.removeEventListener("mousemove",doDrag,true);  
+            document.removeEventListener("mouseup",stopDrag,true);  
+        }  
+        zhezhao.style.display='none';  
+    };  
+    //h2完美拖拽  
+    h2.onmousedown=function(ev)  
+    {  
+        var oEvent=ev||event;  
+        mouseStart.x=oEvent.clientX;  
+        mouseStart.y=oEvent.clientY;  
+        divStart.x=oDiv2.offsetLeft;  
+        divStart.y=oDiv2.offsetTop;  
+        if(h2.setCapture)  
+        {  
+            h2.onmousemove=doDrag3;  
+            h2.onmouseup=stopDrag3;  
+            h2.setCapture();  
+        }  
+        else  
+        {  
+            document.addEventListener("mousemove",doDrag3,true);  
+            document.addEventListener("mouseup",stopDrag3,true);  
+        }  
+        zhezhao.style.display='block';  
+    };  
+    function doDrag3(ev)  
+    {  
+        var oEvent=ev||event;  
+        var l=oEvent.clientX-mouseStart.x+divStart.x;  
+        var t=oEvent.clientY-mouseStart.y+divStart.y;  
+        if(l<0)  
+        {  
+            l=0;  
+        }  
+        else if(l>document.documentElement.clientWidth-oDiv2.offsetWidth)  
+        {  
+            l=document.documentElement.clientWidth-oDiv2.offsetWidth;  
+        }  
+        if(t<0)  
+        {  
+            t=0;  
+        }  
+        else if(t>document.documentElement.clientHeight-oDiv2.offsetHeight)  
+        {  
+            t=document.documentElement.clientHeight-oDiv2.offsetHeight;  
+        }  
+        oDiv2.style.left=l+"px";  
+        oDiv2.style.top=t+"px";  
+    };  
+    function stopDrag3()  
+    {  
+        if(h2.releaseCapture)  
+        {  
+            h2.onmousemove=null;  
+            h2.onmouseup=null;  
+            h2.releaseCapture();  
+        }  
+        else  
+        {  
+            document.removeEventListener("mousemove",doDrag3,true);  
+            document.removeEventListener("mouseup",stopDrag3,true);  
+        }  
+        zhezhao.style.display='none';  
+    }  
+};  
+</script>  
+</head>  
+<body>  
+    <div style="border: #0000FF solid 1px;padding: 10px;margin: 10px;">  
+        <label>宽：<input type="text" value="" id="showwidth"/></label>  
+        <label>高：<input type="text" value="" id="showheight"/></label>  
+        <p class="showbtn" style="padding: 5px;background: #00B83F;color: #fff;margin:10px;width: 80px;text-align: center;">显示</p>  
+    </div>  
+      
+      
+<div id="ablanuxe_com_2">  
+    <div style="width:100%;height:100%;overflow:hidden;">  
+        <h2>我是标题行</h2>  
+        <p>我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容我是内容内容</p>  
+        <div id="right"></div>  
+        <div id="www_ablanuxe_com_1">拖</div>  
+        <div id="bottom"></div>  
+    </div>  
+</div>  
+<div id="www_ablanuxe_com"></div>  
+</body>  
+</html>  

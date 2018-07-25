@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>鼠标事件案例-拖拽-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    position:absolute;
+			    width:100px;
+				height:100px;
+				background:pink;
+				cursor:pointer;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   
+</div>
+<script>
+    var oBox = document.getElementById('box');
+	oBox.onmousedown = function(ev){
+	    ev = ev||window.event;
+		var scX = ev.clientX;//初始的鼠标位置
+		var scY = ev.clientY;
+		var osL = oBox.offsetLeft;//初始的box的位置
+		var osT = oBox.offsetTop;
+		oBox.onmousemove = function(e){
+		    e = e||window.event;
+			var ncX = e.clientX;//当前的初始值
+			var ncY = e.clientY;
+			var nscX = ncX - scX;//变化量
+			var nscY = ncY - scY;
+			var l = nscX + osL;//当前的left值
+			var t = nscY + osT;//当前的top值
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+	}
+	oBox.onmouseup = function(){
+	    oBox.onmousemove = null;
+	}
+</script>
+</body>
+</html>

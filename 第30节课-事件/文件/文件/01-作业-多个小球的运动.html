@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            .ball{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                /*background: radial-gradient(#fff,#000);*/
+            }
+        </style>
+    </head>
+    <body>
+
+        <script>
+
+            var maxW , maxH;
+            window.onresize = max();
+            function max(){
+                maxW = document.documentElement.clientWidth - 80;
+                maxH = document.documentElement.clientHeight - 80;
+                return max;
+            }
+
+            //生成10个 .ball
+            var oBall , bArr = [];
+            for (var i = 0; i < 10; i++) {
+                oBall = document.createElement("div");
+                oBall.className = "ball";
+                oBall.Vx = (Math.random()*10-5)+2*i;
+                oBall.Vy = (Math.random()*10-5)+2*i;
+                oBall.style.background = "radial-gradient(#ffffff,"+rColor()+")";
+                document.body.appendChild( oBall );
+                bArr.push( oBall );
+            }
+            ~function m(){
+                for (var i = 0; i < 10; i++) {
+                    var oBall = bArr[i];
+                    var left = oBall.offsetLeft + oBall.Vx,
+                        top = oBall.offsetTop + oBall.Vy;
+
+                    if ( left >= maxW ){
+                        left = maxW;
+                        oBall.Vx = -oBall.Vx;
+                    }
+                    if (left <= 0){
+                        left = 0;
+                        oBall.Vx = -oBall.Vx;
+                    }
+                    if ( top >= maxH ){
+                        top = maxH;
+                        oBall.Vy = -oBall.Vy;
+                    }
+                    if ( top <= 0 ){
+                        top = 0;
+                        oBall.Vy = -oBall.Vy;
+                    }
+
+                    if ( left===maxW || left===0 || top===maxH || top===0 ){
+                        oBall.style.background = "radial-gradient(#ffffff,"+rColor()+")";
+                    }
+
+                    oBall.style.left = left + 'px';
+                    oBall.style.top = top + 'px';
+                }
+                requestAnimationFrame(m);
+            }();
+
+            function rColor(){
+                var str = "#";
+                for (var j = 0; j < 6; j++) {
+                    str += Math.floor(Math.random()*16).toString(16);
+                }
+                return str;
+            }
+
+            /*(function (oBall) {
+
+             ~function m() {
+             var left = oBall.offsetLeft + oBall.Vx,
+             top = oBall.offsetTop + oBall.Vy;
+
+             if ( left >= maxW ){
+             left = maxW;
+             oBall.Vx = -oBall.Vx;
+             }
+             if (left <= 0){
+             left = 0;
+             oBall.Vx = -oBall.Vx;
+             }
+             if ( top >= maxH ){
+             top = maxH;
+             oBall.Vy = -oBall.Vy;
+             }
+             if ( top <= 0 ){
+             top = 0;
+             oBall.Vy = -oBall.Vy;
+             }
+
+             if ( left===maxW || left===0 || top===maxH || top===0 ){
+             oBall.style.background = "radial-gradient(#ffffff,"+rColor()+")";
+             }
+
+             oBall.style.left = left + 'px';
+             oBall.style.top = top + 'px';
+             requestAnimationFrame(m);
+             }();
+
+             })(oBall);*/
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

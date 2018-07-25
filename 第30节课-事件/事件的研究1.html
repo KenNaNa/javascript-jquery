@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>事件的研究-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:100px;
+				background:pink;
+			 }
+			 #b{
+			    width:100px;
+				height:100px;
+				background:red;
+				margin-left:100px;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<div id="b"></div>
+<script>
+   var oBox = document.getElementById('box');
+   var oB = document.getElementById('b');
+   oB.onclick = function(e){
+	   console.log(e);
+	   console.log(e.fromElement);
+	   console.log(e.srcElement);
+	   console.log(e.toElement);
+	   console.log(e.target)
+	   console.log(e.timeStamp);
+   }
+   /*
+       自然，我们都习惯了 IE，在 IE 中要在函数中获得各事件对象很容易，直接用 event、event.srcElemtn、event.fromElement、event.toElement 就行了。在 FireFox 中获得触发事件的元素可以用 event.target，但其他两个 fromElement 和 toElement 就要费些周折。
+
+ 
+1、event.srcElement ：当前事件的源
+
+   var obj = event.srcElement ? event.srcElement : event.target; //FF只能识别event.target
+ 
+2、event.fromElement、event.toElement
+   
+<script language="javascript">
+//addEventListener是为一个事件添加一个监听，使用方法见http://cindylu520.iteye.com/admin/blogs/588652
+//此处if判断是否是火狐浏览器
+if(window.addEventListener) { FixPrototypeForGecko(); }
+function  FixPrototypeForGecko()
+{
+//prototype属性允许你向一个对象添加属性和方法
+//__defineGetter__和__defineSetter__是Firefox的特有方法，可以利用来它自定义对象的方法。
+//使用方法见：http://cindylu520.iteye.com/admin/blogs/588667
+//runtimeStyle   运行时的样式！如果与style的属性重叠，将覆盖style的属性！
+HTMLElement.prototype.__defineGetter__("runtimeStyle",element_prototype_get_runtimeStyle);
+//代表事件状态，如事件发生的元素，键盘状态，鼠标位置和鼠标按钮状态。
+window.constructor.prototype.__defineGetter__("event",window_prototype_get_event);
+//event.srcElement当前事件的源,IE下,event对象有srcElement属性,但是没有target属性;Firefox下,event对象有target属性,但是没有srcElement属性.但他们的作用是相当的
+Event.prototype.__defineGetter__("srcElement",event_prototype_get_srcElement);
+//当前事件有移动成分时，如onmouseover、onmouseout等fromElement、toElement表示移动事件的两个端点
+Event.prototype.__defineGetter__("fromElement",  element_prototype_get_fromElement);
+Event.prototype.__defineGetter__("toElement", element_prototype_get_toElement);
+}
+function  element_prototype_get_runtimeStyle() { return  this.style; }
+function  window_prototype_get_event() { return  SearchEvent(); }
+function  event_prototype_get_srcElement() { return  this.target; }
+function element_prototype_get_fromElement() {
+var node;
+//relatedTarget 事件属性返回与事件的目标节点相关的节点。
+//对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
+//对于 mouseout 事件来说，该属性是离开目标时，鼠标指针进入的节点。
+//对于其他类型的事件来说，这个属性没有用。
+//详情：http://cindylu520.iteye.com/admin/blogs/588678
+if(this.type == "mouseover") node = this.relatedTarget;
+else if (this.type == "mouseout") node = this.target;
+if(!node) return;
+while (node.nodeType != 1)
+node = node.parentNode;
+return node;
+}
+function  element_prototype_get_toElement() {
+var node;
+if(this.type == "mouseout")  node = this.relatedTarget;
+else if (this.type == "mouseover") node = this.target;
+if(!node) return;
+while (node.nodeType != 1)
+node = node.parentNode;
+return node;
+}
+function  SearchEvent()
+{
+if(document.all) return  window.event;
+func = SearchEvent.caller;
+while(func!=null){
+var  arg0=func.arguments[0];
+if(arg0 instanceof Event) {
+return  arg0;
+}
+func=func.caller;
+}
+return   null;
+}
+
+好了，现在不管是在 IE 中还是在 FireFox 中，触发事件后都有了 event、event.srcElement、event.fromElement、event.toElement 属性了。这就来做个测试吧：
+
+Java代码  
+
+function test(){
+alert("event:" + event +", srcElement:"+event.srcElement.innerHTML+
+", fromElement:"+event.fromElement.innerHTML + ", toElement:"+event.toElement.innerHTML)
+}
+
+<button onmouseout="test()">MouseOut</button><button onmouseover="test()">MouseOver</button>
+页面中有两个按钮 MouseOut 和 MouseOver，你掠过第一个按钮到第二个按钮上是，有看到这样内容的窗口：
+
+
+从上图可以看出，其实我是在 Google 的 Chrome 浏览器中作的测试，也是有效的。标题虽说是兼容 IE 和 FireFox，但宽松点说就是 IE  和非 IE，因为 IE 总喜欢剑起偏锋，不按规范办事，不过这种事在 IE 8 中是收敛了许多
+   */
+</script>
+</body>
+</html>

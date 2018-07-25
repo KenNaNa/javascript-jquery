@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>移动端事件-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:100px;
+				background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+    var oBox = document.getElementById('box');
+    oBox.onmousemove = function(e){
+	    console.log(e);
+	}
+</script>
+</body>
+</html>

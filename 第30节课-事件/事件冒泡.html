@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>事件冒泡-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+IE 的事件流叫做事件冒泡（event bubbling），即事件开始时由最具体的元素（文档中嵌套层次最深
+的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）。以下面的 HTML 页面为例：
+
+<div id="myDiv">Click Me</div>
+
+如果你单击了页面中的<div>元素，那么这个 click 事件会按照如下顺序传播：
+(1) div
+(2) body
+(3) html
+(4) document
+也就是说， click 事件首先在div元素上发生，而这个元素就是我们单击的元素。然后， click
+事件沿 DOM 树向上传播，在每一级节点上都会发生，直至传播到 document 对象
+
+而事件捕获则是相反过程
+<script>
+    var oDiv = document.getElementById('myDiv');
+	oDiv.onclick = function(e){
+	    console.log(e.type);
+	}
+</script>
+</body>
+</html>

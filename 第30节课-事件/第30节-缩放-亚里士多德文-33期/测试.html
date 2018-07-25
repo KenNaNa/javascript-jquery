@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>测试-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    position:absolute;;
+			    width:300px;
+				height:100px;
+				left:50px;
+				top:50px;
+				border:1px solid #000;
+			 }
+			 #box div{
+			   position:absolute;
+			   width:5px;
+			   height:5px;
+			   background:red;
+			 }
+			 #box #rightUp{
+			   right:-3px;
+			   top:-3px;
+			   cursor:sw-resize;
+			 }
+			 #box #rightDown{
+			   right:-3px;
+			   bottom:-3px;
+			   cursor:se-resize;
+			 }
+			 #box #rightCenter{
+			   right:-3px;
+			   top:50%;
+			   cursor:e-resize;
+			 }
+			 #box #bottomCenter{
+			   left:50%;
+			   bottom:-3px;
+			   cursor:n-resize;
+			 }
+			 #box #leftDown{
+			   left:-3px;
+			   bottom:-3px;
+               cursor:sw-resize;
+			 }
+			 #box #leftCenter{
+			   left:-3px;
+			   top:50%;
+			   cursor:e-resize;
+			 }
+			 #box #topCenter{
+			   left:50%;
+			   top:-3px;
+			   cursor:n-resize;
+			 }
+			 #box #leftUp{
+			   left:-3px;
+			   top:-3px;
+			   cursor:se-resize;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   <div id="leftUp"></div>
+   <div id="rightUp"></div>
+   <div id="rightCenter"></div>
+   <div id="rightDown"></div>
+   <div id="bottomCenter"></div>
+   <div id="leftDown"></div>
+   <div id="leftCenter"></div>
+   <div id="topCenter"></div>
+</div>
+<script>
+   function getId(id){//封装一个获取id的函数
+	   return document.getElementById(id);
+    }
+	var oBox = getId('box'),
+	    rightUp = getId('rightUp'),
+		rightDown = getId('rightDown'),
+		bottomCenter = getId('bottomCenter'),
+		leftDown = getId('leftDown'),
+		leftCenter = getId('leftCenter'),
+		topCenter = getId('topCenter'),
+		leftUp = getId('leftUp'),
+		maxH = document.documentElement.clientHidth||document.body.clientHidth,
+		//console.log(maxH)
+		maxW = document.documentElement.clientWidth||document.body.clientWidth;
+	rightUp.onmousedown = function(e){
+	    e = e||window.event;
+		var scX = e.clientX;
+		var scY = e.clientY;
+		//console.log(scY)
+		var soL = rightUp.offsetLeft;
+		var soT = rightUp.offsetTop;
+        document.onmousemove = function(e){
+		    var ncX = e.clientX;
+			var ncY = e.clientY;
+			//console.log(ncY)
+			if( ncY<scY ){
+				var sncX = ncX - scX;
+				var sncY = ncY - scY;
+				if( sncY<0 )sncY = -sncY;
+				var w = 300+sncX;
+				var h = 100+sncY;
+				var l = 50;
+				var t = 50-sncY;
+			}
+			if( ncY>scY ){
+			    var sncX = ncX - scX;
+				if( sncX<0 )sncX = -sncX;
+				var sncY = ncY - scY;
+				var w = 300-sncX;
+				var h = 100-sncY;
+				var l = 50;
+				var t = 50+sncY;
+			}
+			if( h<=0 ){
+			   h=0;
+			   t=150;
+			}
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+		
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+    rightCenter.onmousedown = function(e){
+	    e = e||window.event;
+		var scX = e.clientX;
+		var soL = rightCenter.offsetLeft;
+		document.onmousemove = function(e){
+		    e = e||window.event;
+			var ncX = e.clientX,
+			    sncX = ncX - scX,
+			    h = 100,
+			    t = 50,
+			    l = 50,
+			    w;
+			if( ncX>scX ){ w = 100+sncX; }
+			if( ncX<scX ){ w = 100+sncX; }
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+	rightDown.onmousedown = function(e){
+	    e = e||window.event;
+		var scX = e.clientX,
+		    scY = e.clientY,
+			soL = rightDown.offsetLeft,
+			soT = rightDown.offsetTop;
+		document.onmousemove = function(e){
+		    e = e||window.event;
+			var ncX = e.clientX,
+			    ncY = e.clientY,
+				sncX = ncX - scX,
+				sncY = ncY - scY,
+				w = 300+sncX,
+				h = 100+sncY,
+				l = 50,
+				t = 50;
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px'
+		}
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+	bottomCenter.onmousedown = function(e){
+	    e = e||window.event;
+		var scY = e.clientY,
+		    soT = bottomCenter.offsetTop;
+		document.onmousemove = function(e){
+		    e = e||window.event;
+			var ncY = e.clientY,
+			    sncY = ncY - scY,
+				w = 300,
+				h = 100+sncY,
+				l = 50,
+				t = 50;
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+	leftDown.onmousedown = function(e){
+	    e = e||window.event;
+		var scX = e.clientX,
+		    scY = e.clientY,
+			soL = leftDown.offsetLeft,
+			soT = leftDown.offsetTop;
+		document.onmousemove = function(e){
+		    e = e||window.event;
+			var ncX = e.clientX,
+			    ncY = e.clientY,
+				sncX = ncX - scX,
+				sncY = ncY - scY,
+				w,
+				h,
+				l,
+				t = 50;
+			if( ncX<scX ){
+				sncX = -sncX;
+			    w = 300+sncX;
+				h = 100+sncY;
+				l = 50-sncX;
+			}
+			if( ncX>scX ){
+				sncY = -sncY;
+			    w = 300 - sncX;
+				h = 100 - sncY;
+				l = 50 + sncX;
+			}
+			if( w<=0 ){
+			    w = 0;
+				l = 350;
+			}
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+	leftCenter.onmousedown = function(e){
+	    e = e||window.event;
+		var scX = e.clientX,
+		    soL = leftCenter.offsetLeft;
+		document.onmousemove = function(e){
+		    e = e||window.event;
+			var ncX = e.clientX,
+			    sncX = ncX - scX,
+				h = 100,
+				t = 50;
+			    w = 300 - sncX,
+				l = 50 + sncX;
+		    if( w<=0 ){
+			    w = 0;
+				l = 350;
+			}
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+	topCenter.onmousedown = function(e){
+	    e = e||window.event;
+		var scY = e.clientY,
+		    soT = topCenter.offsetTop;
+		document.onmousemove = function(e){
+		    e = e||window.event;
+			var ncY = e.clientY,
+			    sncY = ncY - scY,
+				w = 300,
+				l = 50,
+			    h = 100 - sncY,
+				t = 50 + sncY;
+				if( h<=0 ){
+				   h = 0;
+				   t = 150;
+				}
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+	leftUp.onmousedown = function(e){
+	    e = e||window.event;
+		var scX = e.clientX,
+		    scY = e.clientY,
+			soL = leftUp.offsetLeft,
+			soT = leftUp.offsetTop;
+		document.onmousemove = function(e){
+		    e = e||window.event;
+			var ncX = e.clientX,
+			    ncY = e.clientY,
+				sncX = ncX - scX,
+				sncY = ncY - scY,
+			    w = 300 - sncX,
+				h = 100 - sncY,
+				l = 50 + sncX,
+				t = 50 + sncY;
+			if( w<=0 ){
+			    w = 0;
+				l = 350;
+			}
+			if( h<=0 ){
+			    h = 0;
+				t = 150;
+			}
+			oBox.style.width = w + 'px';
+			oBox.style.height = h + 'px';
+			oBox.style.left = l + 'px';
+			oBox.style.top = t + 'px';
+		}
+		document.onmouseup = function(){
+		    document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+</script>
+</body>
+</html>
