@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>01-jQuery鼠标拖动功能-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    position:absolute;
+			    width:100px;
+				height:100px;
+				background:pink;
+				cursor:move;
+			 }
+		 </style>
+		 <script src="jquery-1.12.4.min.js"></script>
+		 <script src="jquery-drag.js"></script>
+	 </head>
+<body>
+<div id='box'></div>
+<script type="text/javascript">
+   var $box = $('#box');
+   $box.drag();
+   /*$box.mousedown(function(e){
+       var sX = e.pageX;//初始点击的位置
+	   var sY = e.pageY;
+	   var sBX = $(this).offset().left;
+	   var sBY = $(this).offset().top;
+	   var disX = sX - sBX;
+	   var disY = sY - sBY;
+	   $(document).mousemove(function(e){
+	      var nX = e.pageX;
+		  var nY = e.pageY;
+		  var l = nX - disX;
+		  var t = nY - disY;
+		  var maxT = $(window).height()-$box.height();
+		  var maxL = $(window).width()-$box.width();
+		  //限定大小
+		  l = Math.min(l,maxL);
+		  l = Math.max(0,l);
+		  t = Math.min(t,maxT);
+		  t = Math.max(0,t);
+		  (l<50)&&(l=0);
+		  (t<50)&&(t=0);
+		  $box.css({
+		     'left':l+'px',
+			 'top':t+'px'
+		  });
+	   });
+	   $(document).mouseup(function(){
+	       $(this).off('mousemove');
+	   });
+   })*/
+
+   
+
+
+</script>
+</body>
+</html>
