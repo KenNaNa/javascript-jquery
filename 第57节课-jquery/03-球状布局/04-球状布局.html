@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>04-球状布局-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+			li{ list-style-type: none;}
+			body,html{
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+			}
+			#main{ 
+				width: 100%;
+				height: 100%;
+				background: #023b3b url("img/bg.png") center center;/*图片居中*/
+				perspective: 800px;/*景深*/
+			}
+
+			#list ul{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 120px;
+				height: 160px;
+				border: 1px solid red;
+				margin-top: -80px;
+				margin-left: -60px;
+				transform-style: preserve-3d;/*3d场景*/
+				transform: translateZ(-3000px) rotateX(0deg) rotateY(0deg);/*初始化*/
+			}
+			#list ul li{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,127,127,0.5);
+				border: 1px solid rgba(127,255,255,0.25);
+				box-shadow: 0 0 12px rgba(0,255,255,0.5);
+				line-height: 160px;
+				text-align: center;
+				color: #fff;
+				font-weight: bold;
+				cursor: default;
+                transition: 5s cubic-bezier(.78,.33,.42,1);
+			}
+			#btn{
+                position: absolute;
+                left: 20px;
+                bottom: 20px;
+                width: 300px;
+                height: 32px;
+           }
+           #btn ul li{
+                float: left;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid rgba(127,255,255,1);
+                color: rgba(127,255,255,1);
+                padding: 0 10px;
+                font-size: 12px;
+                font-weight: bold;
+                margin: 0 5px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            #btn ul li:hover{
+                background: rgba(0,127,127,0.8);
+            }
+		 </style>
+	 </head>
+<body>
+    <div id="main">
+
+		<div id="list">
+			<ul></ul>
+		</div>
+		<div id="btn">
+            <ul>
+                <li>Table</li>
+                <li>Sphere</li>
+                <li>Helix</li>
+                <li>Grid</li>
+            </ul>
+            </div>
+
+    </div>
+<script type="text/javascript">
+    (function(){
+	    var num = 5*5*5;//定义一个num
+	    //获取元素
+	    var oList = document.getElementById('list');
+	    var oUl = oList.getElementsByTagName('ul')[0];
+	    var oMain = document.getElementById('main');
+
+        
+        /*
+         * * 利用for循环来循环生成num个li标签
+         * * 给每个li对象添加自己的坐标
+         * * 然后添加到oUl里面
+         */
+        (function(){
+        for( var i=0;i<num;i++ ){
+        	var oLi = document.createElement('li');
+        	oLi.x = i%25%5;//根据oLi的序号求出oLi的x坐标
+        	oLi.y = Math.floor(i%25/5);//同理
+        	oLi.z = Math.floor(i/25);//同理
+        	oLi.innerHTML = 'x:'+ oLi.x + 'y:' + oLi.y + 'z:' + oLi.z;
+          //入场动画
+          var sx = Math.random()*6000 - 3000;
+          var sy = Math.random()*6000 - 3000;
+          var sz = Math.random()*6000 - 3000;
+          oLi.style.transform = 'translate3D('+sx+'px,'+sy+'px,'+sz+'px)';
+        	oUl.appendChild(oLi);//添加到oUl里面
+        }
+        setTimeout(Helix,200);
+      })();
+      //左下btn点击
+        (function () {
+            var aBtn = document.getElementById("btn").getElementsByTagName("li");
+            var arr = [Table , Sphere , Helix , Grid];
+            for (var i = 0 , length = aBtn.length; i < length; i++) {
+                (function(i){
+                    aBtn[i].onclick = arr[i];
+                })(i);
+            }
+        })();
+      //Grid网格布局
+      var aLi = oUl.children;//获取到所有的li标签
+      var length = aLi.length;//li的长度
+      function Grid(){
+            var disX = 350;//每个li 水平（x）方向的间距
+            var disY = 350;//每个li 垂直（y）方向的间距
+            var disZ = 800;//每个li 纵深（z）方向的间距
+
+            for( var i=0;i<length;i++ ){
+            	var oLi = aLi[i];//存储
+            	var x = (oLi.x - 2)*disX;
+            	var y = (oLi.y - 2)*disY;
+            	var z = (oLi.z - 2)*disZ;
+            	oLi.style.transform = "translate3D("+x+"px,"+y+"px,"+z+"px)";
+            } 
+        };
+        //Helix布局方式
+	   function Helix(){
+          var h = 5;//有5层
+          var num = Math.round(length/h);//每层有几个
+          var deg = 360/num;//算出角度
+          var tY = 10;//偏移量
+          var mid = Math.floor(length/2);//算出中间的序号
+          for (var i=0;i<length;i++) {
+          	  //这里要注意先旋转角度，
+          	  //
+          	  aLi[i].style.transform = 'rotateY('+i*deg+'deg) translateY('+(i-mid)*tY+'px) translateZ('+1000+'px)';
+          }
+	   };
+	   function Table(){};
+	   function Sphere(){
+	   		var arr = [1,3,7,9,11,14,21,16,12,10,9,7,4,1];//将125分成14层
+	   		var arrlength = arr.length;//求出数组的长度
+	   		var xDeg = 180/(arrlength-1);
+	   		for( var i=0;i<length;i++ ){
+  				//求出li处于哪一层 第几个
+  				//需要设置变量numC numG
+  				//求出每一层y的旋转度数
+  				//yDeg = 360/numG
+  				//numG = arr[j]-(arrsum-i)
+  				//最上面的旋转度数为 90deg
+  				//最下面的旋转度数为-90deg
+  				//所以要设置变量deg = 90
+  				var numG = 0;
+  				var numC = 0;
+  				var deg = 90;
+  				var arrsum = 0;
+  				for( var j=0;j<arrlength;j++ ){
+  					arrsum += arr[j];
+  					if(arrsum>i){
+  						numG = arr[j]-(arrsum-i);
+  						numC = j;
+  						break;
+  					}
+  				}
+  				var yDeg = 360/arr[numC];
+  				aLi[i].style.transform = 'rotateY('+(numG+1.3)*yDeg+'deg) rotateX('+(90-numC*xDeg)+'deg) translateZ('+1000+'px)';
+	   		}
+	   		
+
+	   };
+        //鼠标的拖拽功能
+        (function(){
+           //鼠标按下事件
+           //设定初始值
+           var roX = 0;
+           var roY = 0;
+           var roZ = -3000;
+           //禁止被选中
+           document.onselectstart = function(){
+           	   return false;
+           };
+           //禁止拖拽
+           document.ondrag = function(){
+           	  return false;
+           };
+           document.onmousedown = function(e){
+           	   //清除上一次的定时器
+           	   cancelAnimationFrame(mousetimer);
+               var sX = e.clientX;//鼠标按下的x坐标
+               var sY = e.clientY;//鼠标按下的y坐标
+               var lastX = sX;//存储上一次的位置
+               var lastY = sY;
+               var chagX = 0;//变化量
+               var chagY = 0;
+               var mousetimer = null;//用来停止上一个动画
+              //鼠标移动事件
+           	  document.onmousemove = function(e){
+                  var nX = e.clientX;//鼠标移动的x坐标
+                  var nY = e.clientY;//鼠标移动的y坐标
+                  chagX = nX - lastX;//x坐标的距离差
+                  chagY = nY - lastY;//y坐标的距离差
+                  roX -= chagY*0.3;
+                  roY += chagX*0.3;
+                  oUl.style.transform = "translateZ("+roZ+"px) rotateX("+roX+"deg) rotateY("+roY+"deg)";
+                  lastX = nX;
+                  lastY = nY;
+           	  };
+           	  //鼠标抬起事件
+             this.onmouseup = function(){
+           	     this.onmousemove = null;//释放掉
+           	     //给oUl添加上一个衰减指数
+           	     //形成一个惯性 使oUl在运动时
+           	     //慢慢停下来 但是他是听不了的
+           	     //因为他是无限趋近于 0
+           	     //所以我们要判断 大于某个距离就return
+           	     //不执行
+           	     function m(){
+                    chagX *= 0.9;//衰减指数0.9
+                    chagY *= 0.9;
+                    roX -= chagY*0.3;//这里与上面一样
+                    roY += chagX*0.3;
+
+                    oUl.style.transform = "translateZ("+roZ+"px) rotateX("+roX+"deg) rotateY("+roY+"deg)";
+                    mousetimer = requestAnimationFrame(m);
+           	     };
+           	     mousetimer = requestAnimationFrame(m);
+             };
+           	  
+           };
+
+           //window窗口滚动条的滚动事件
+        !function(fn){//转换为表达式
+          //兼容谷歌浏览器
+            if(document.onmousewheel===undefined){
+               document.addEventListener('mousewheel',function(e){
+                   var d = -e.wheelDelta/3;  
+                   fn.call(this,d);  
+               },false);
+            }else{//兼容火狐
+              document.addEventListener('DOMMouseScroll',function(e){
+                    var d = e.detail/120;
+                    fn.call(this,d);
+              },false);
+            }
+
+        }(function(d){
+             roZ += d*100;
+             oUl.style.transform = "translateZ("+roZ+"px) rotateX("+roX+"deg) rotateY("+roY+"deg)";
+        });
+    })()
+})()
+</script>
+</body>
+</html>
