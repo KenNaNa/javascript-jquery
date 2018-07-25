@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 1200px;
+                height: 360px;
+                overflow: hidden;
+                margin: 100px auto;
+            }
+            #box ul{
+                width: 1500px;
+            }
+            #box ul li{
+                float: left;
+                position: relative;
+                width: 230px;
+                height: 360px;
+                margin: 5px;
+                overflow: hidden;
+            }
+            #box ul li img{
+                display: block;
+            }
+            #box ul li .cover{
+                position: absolute;
+                top: 100%;
+                left: 100%;
+                width: 100%;
+                height: 100%;
+                background: url("img/new-bg.png");
+            }
+            #box ul li .cover p{
+                color: #fff;
+                font-size: 14px;
+                text-align: center;
+            }
+            #box ul li .cover p.p1{
+                margin-top: 170px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>
+                    <img src="img/1.jpg">
+                    <div class="cover">
+                        <p class="p1">春夏新品 上新无限</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/2.jpg">
+                    <div class="cover">
+                        <p class="p1">夏装新品发布 8折起</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/3.jpg">
+                    <div class="cover">
+                        <p class="p1">春装特惠 买二送一</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/4.jpg">
+                    <div class="cover">
+                        <p class="p1">春夏新品 低至158</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/5.jpg">
+                    <div class="cover">
+                        <p class="p1">美洲野牛旗舰店</p>
+                        <p>商务休闲新境界</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+
+            (function(){
+
+                var $li = $("#box").find("ul li");
+
+                $li.hover(function (e) {
+                    fn.call(this,true,e);
+                },function (e) {
+                    fn.call(this,false,e);
+                });
+
+                function fn( bool , e ) {
+                    var x = e.pageX,
+                        y = e.pageY;
+
+                    var thisOffset = $(this).offset(),
+                        left = thisOffset.left,
+                        top = thisOffset.top,
+                        right = left + $(this).outerWidth(),
+                        bottom = top + $(this).outerHeight();
+
+                    var disLeft = Math.abs(x-left),
+                        disRight = Math.abs(x-right),
+                        disTop = Math.abs(y-top),
+                        disBottom = Math.abs(y-bottom);
+
+                    var min = Math.min(disLeft,disRight,disTop,disBottom);
+
+                    var $cover = $(this).find(".cover");
+                    var json = {};
+
+                    switch (min){
+                        case disLeft:
+                            json = {top : 0,left : "-100%"};
+                            break;
+                        case disRight:
+                            json = {top : 0,left : "100%"};
+                            break;
+                        case disTop:
+                            json = {top : "-100%",left : 0};
+                            break;
+                        case disBottom:
+                            json = {top : "100%",left : 0};
+                            break;
+                    }
+
+                    if ( bool ){
+                        $cover.css(json).stop().animate({
+                            left : 0,
+                            top : 0
+                        },300);
+                    }else{
+                        $cover.stop().animate(json,300);
+                    }
+
+                }
+
+            })();
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

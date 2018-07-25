@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>02-不同方向划入-李金文</title>
+		 <style type="text/css">
+		      *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 1200px;
+                height: 360px;
+                overflow: hidden;
+                margin: 100px auto;
+            }
+            #box ul{
+                width: 1500px;
+            }
+            #box ul li{
+                float: left;
+                position: relative;
+                width: 230px;
+                height: 360px;
+                margin: 5px;
+                overflow: hidden;
+            }
+            #box ul li img{
+                display: block;
+            }
+            #box ul li .cover{
+                position: absolute;
+                top: 100%;
+                left: 100%;
+                width: 100%;
+                height: 100%;
+                background: url("img/new-bg.png");
+            }
+            #box ul li .cover p{
+                color: #fff;
+                font-size: 14px;
+                text-align: center;
+            }
+            #box ul li .cover p.p1{
+                margin-top: 170px;
+            }
+        </style>
+		<script src="jquery-1.12.4.min.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>
+                    <img src="img/1.jpg">
+                    <div class="cover">
+                        <p class="p1">春夏新品 上新无限</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/2.jpg">
+                    <div class="cover">
+                        <p class="p1">夏装新品发布 8折起</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/3.jpg">
+                    <div class="cover">
+                        <p class="p1">春装特惠 买二送一</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/4.jpg">
+                    <div class="cover">
+                        <p class="p1">春夏新品 低至158</p>
+                        <p>点击进入</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/5.jpg">
+                    <div class="cover">
+                        <p class="p1">美洲野牛旗舰店</p>
+                        <p>商务休闲新境界</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+<script type="text/javascript">
+    $(function(){
+	   (function(){
+		  //获取元素
+	      var $aLi = $('#box').find('ul li');
+	      var $cover = $aLi.find('.cover');
+          //鼠标的移入移除事件
+		  $aLi.hover(function(e){
+			 //获取鼠标移入到aLi的位置到文档顶部的距离
+			 var x = e.pageX,
+			     y = e.pageY,
+				 $this = $(this),//缓存
+				 index = $this.index(),
+				 $thisCover = $cover.eq(index),
+				 left = $this.offset().left,//获取每个li到
+				 top = $this.offset().top,//文档顶部的距离
+				 width = $this.outerWidth(),//获取li的宽高值
+				 height = $this.outerHeight(),
+				 bottom = width + top,
+				 right = width + left,
+				 //接下来判断鼠标从哪移入cover层就从哪出现
+				 disLeft = Math.abs( x-left ),
+				 disRight = Math.abs( x-right ),
+				 disBottom = Math.abs( y-bottom ),
+				 disTop = Math.abs( y-top );
+                 //求出上面的四个值中的最小值
+				 var min = Math.min( disLeft , disRight , disBottom ,  disTop );
+				 //接下来判断出从哪移入和从哪移除
+				 switch( min ){
+				     case disLeft:
+							  $thisCover.css({
+								 'left':'-100%',
+								 'top':'0'
+							  }).stop().animate({
+								 'left':'0'
+							  },300);
+					      break;
+					 case disRight:
+							  $thisCover.css({
+								 'left':'100%',
+								 'top':'0'
+							  }).stop().animate({
+								 'left':'0',
+								 'top':'0'
+							  },300);
+					      break;
+				     case disTop:
+							  $thisCover.css({
+								 'left':'0',
+								 'top':'-100%'
+							  }).stop().animate({
+								 'left':'0',
+								 'top':'0'
+							  },300);
+					      break;
+					 case disBottom:
+							  $thisCover.css({
+								 'left':'0',
+								 'top':'100%'
+							  }).stop().animate({
+								 'left':'0',
+								 'top':'0'
+							  },300);
+					      break;
+				 }
+		  },function(e){
+			 //获取鼠标移入到aLi的位置到文档顶部的距离
+			 var x = e.pageX,
+			     y = e.pageY,
+				 $this = $(this),//缓存
+				 index = $this.index(),
+				 $thisCover = $cover.eq(index),
+				 left = $this.offset().left,//获取每个li到
+				 top = $this.offset().top,//文档顶部的距离
+				 width = $this.outerWidth(),//获取li的宽高值
+				 height = $this.outerHeight(),
+				 bottom = width + top,
+				 right = width + left,
+				 //接下来判断鼠标从哪移入cover层就从哪出现
+				 disLeft = Math.abs( x-left ),
+				 disRight = Math.abs( x-right ),
+				 disBottom = Math.abs( y-bottom ),
+				 disTop = Math.abs( y-top );
+                 //求出上面的四个值中的最小值
+				 var min = Math.min( disLeft , disRight , disBottom ,  disTop );
+				 //接下来判断出从哪移入和从哪移除
+				 switch( min ){
+				     case disLeft:
+							  $thisCover.stop().animate({
+								 'left':'-100%',
+								 'top':'0'
+							  },300);
+					      break;
+					 case disRight:
+							  $thisCover.stop().animate({
+								 'left':'100%',
+								 'top':'0'
+							  },300);
+					      break;
+					 case disBottom:
+							  $thisCover.stop().animate({
+								 'left':'0',
+								 'top':'100%'
+							  },300);
+							  console.log(1);
+					      break;
+				     case disTop:
+							  $thisCover.stop().animate({
+								 'left':'0',
+								 'top':'-100%'
+							  },300);
+					      break;
+				 }
+		  });
+	   })()
+	
+	})
+</script>
+</body>
+</html>

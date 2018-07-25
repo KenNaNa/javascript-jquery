@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                text-align: center;
+                margin: 100px;
+            }
+            select{
+                width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="">
+            <div id="box">
+                <select id="province" name="" title="省">
+                    <option value="none">省</option>
+                </select>
+                <select id="city" title="市">
+                    <option value="none">市</option>
+                </select>
+                <select id="county" title="县">
+                    <option value="none">县</option>
+                </select>
+            </div>
+        </form>
+
+        <script src="areaData.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+
+            (function(){
+
+                var $province = $("#province"),
+                    $city = $("#city"),
+                    $county = $("#county");
+
+                //省的创建
+                createProvince();
+
+                //市的创建
+                $province.change(function () {
+                    var index = $(this).val();
+                    clearCity();
+                    createCity( index );
+                });
+
+                //县的创建
+                $city.change(function () {
+                    var index = $(this).val();
+                    clearCounty();
+                    createCounty( index );
+                });
+
+                function createProvince() {
+                    var data = areaData.sheng;
+                    $.each( data , function (i,d) {
+                        $province.append( "<option value='"+i+"'>"+d+"</option>" );
+                    });
+                }
+
+                function createCity( index ) {
+                    var data = areaData.shi["a_"+index];
+                    $.each(data , function (i,d) {
+                        $city.append( "<option value='"+i+"'>"+d+"</option>" );
+                    });
+                }
+
+                function createCounty( index ) {
+                    var pIndex = $province.val();
+                    var data = areaData.xian["a_"+pIndex+"_"+index];
+                    $.each(data , function (i,d) {
+                        $county.append( "<option value='"+i+"'>"+d+"</option>" );
+                    });
+                }
+
+                function clearCity() {
+                    $city.html("<option value='none'>市</option>");
+                    clearCounty();
+                }
+
+                function clearCounty() {
+                    $county.html("<option value='none'>县</option>");
+                }
+
+
+            })();
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{ }
+        </style>
+    </head>
+    <body>
+    <div id="box">
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/1.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/2.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/3.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/4.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/5.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/6.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/7.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/8.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/9.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/10.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/11.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/12.jpg" width="400"></p>
+        <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+            <img data-goudan="img/13.jpg" width="400"></p>
+    </div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+        <script>
+
+            /*
+            用jq插件lazyload实现图片延迟加载：
+                * 所有参与延迟加载的img不能有src
+                * img的src存在 data-origina 这个标签属性里面
+                *
+             */
+
+            $("#box img").lazyload({
+
+                //可选，用来当做默认图片的路径
+                placeholder : "img/loading.jpg",
+
+                //可选，默认"show" , 图片县的方式，效果有 "show"   "fadeIn"   "slideDown"
+                effect : "fadeIn",
+
+                //可选，默认0，表示距离页面多远开始加载
+                threshold : 200,
+
+                //可选，默认scroll，哪个事件来触发图片的显示，还有 "click" "scroll" "mouseover" ……
+                //event : "click",
+
+                //container :
+
+                //可选，一次性显示多少张，当布局比较混乱，在使用lazyload的时候出现加载不出来的情况下，可以选择一次性多加载几张来保证效果
+                //failurelimit : 5,
+
+                data_attribute : "goudan"
+            });
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

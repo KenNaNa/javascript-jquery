@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>02-省市级联动-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 select{
+			    width:120px;
+			 }
+			 select:focus{
+			    outline:none;
+			 }
+		 </style>
+		 <script src='jquery-1.12.4.min.js'></script>
+		 <script src='areaData.js'></script>
+	 </head>
+<body>
+<form action="">
+   <div id="box">
+      <select name="" id="province">
+	     <option value="省">省</option>
+	  </select>
+      <select name="" id="city">
+	     <option value="市">市</option>
+	  </select>
+      <select name="" id="county">
+	     <option value="区">地区</option>
+	  </select>
+   </div>
+</form>
+<script type="text/javascript">
+   $(function(){
+      (function(){
+		 //获取元素
+	     var $province = $('#province');
+		 var $city = $('#city');
+		 var $county = $('#county');
+
+         //省的创建
+         createProvince();
+		 function createProvince(){
+			//根据省的数据来动态生成option
+		    var data = areaData.sheng;//获取省的数据
+            $.each(data,function(i,val){//挨个挨个遍历动态添加option
+			   $province.append('<option value="'+i+'">'+val+'</option>');
+			});
+		 };
+		 //市的创建
+         $province.change(function(){
+		    var index = $(this).val();//获取当前的省的index值
+			clearCity();//先清除上一个省的市
+			createCity(index);//再创建当前省的市
+		 });
+		 function createCity(index){
+            clearCounty();
+		    var data = areaData.shi['a_'+index];
+            $.each(data,function(i,val){
+			   $city.append('<option value="'+i+'">'+val+'</option>');
+			});
+		 };
+         //地区的创建
+         $city.change(function(){
+		    var index = $(this).val();
+            clearCounty();
+			createCounty(index);
+		 });
+		 function createCounty(index){
+			var pindex = $province.val();
+		    var data = areaData.xian['a_'+pindex+'_'+index];
+			$.each(data,function(i,val){
+			   $county.append('<option value="'+i+'">'+val+'</option>');
+			});
+		 }
+		 //当$province改变时clearCity清除$city的内容
+		 function clearCity(){
+		    $city.html('<option value="none">市</option>')
+		 };
+		 //当$city改变时clearCounty清除$county的内容
+		 function clearCounty(){
+		    $county.html('<option value="none">地区</option>');
+		 }
+	  })()
+   })
+</script>
+</body>
+</html>

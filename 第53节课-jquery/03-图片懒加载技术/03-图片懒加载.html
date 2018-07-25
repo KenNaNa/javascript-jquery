@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>03-图片懒加载-js版-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+		 <script src='jquery-1.12.4.min.js'></script>
+	 </head>
+<body>
+<div id="box">
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/1.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/2.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/3.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/4.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/5.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/6.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/7.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/8.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/9.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/10.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/11.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/12.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/13.jpg" width="400"></p>
+        </div>
+<script type="text/javascript">
+   (function(){
+      //获取元素
+	  var oBox = document.getElementById('box');
+	  var aImg = oBox.getElementsByTagName('img');
+	  var length = aImg.length;
+	  
+
+	  //将aImg转换成数组
+	  //将类数组对象转换为真正的数组
+	  var Img = [].slice.apply(aImg)
+	  
+	  //先初始化图片
+	  for( var i=0;i<length;i++ ){
+	     aImg[i].src = 'img/loading.jpg';
+	  }
+
+	  //图片懒加载
+	  if( document.addEventListener ){
+	      window.addEventListener('scroll',scroll,false);
+	  }else{
+	      window.attachEvent('onscroll',scroll);
+	  }
+	  scroll();
+	  function scroll(){
+	     //滚动条滚动的高度
+	     var scrollTop = document.body.scrollTop
+	                     ||document.documentElement.scrollTop;
+	     //可视区的高度
+	     var top = scrollTop+
+		 document.documentElement.clientHeight||document.body.clientHeight;
+		 //砍数组
+		 for( var i=Img.length-1;i>=0;i-- ){
+			 var oImg = Img[i];
+		     if(getoffset(oImg)<= top-200){
+			     oImg.src = oImg.getAttribute('Fsrc');
+                 Img.splice(i,1);
+			 }
+			 console.log(Img)
+		 }
+
+	  }
+	  function getoffset(obj){
+	     var x = 0;
+		 while( obj!==document.body ){
+		      x += obj.offsetTop;
+			  obj = obj.offsetParent;
+		 }
+		 return x;
+	  }
+   })()
+</script>
+</body>
+</html>

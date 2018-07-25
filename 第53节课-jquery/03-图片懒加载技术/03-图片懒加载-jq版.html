@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>03-图片懒加载-js版-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+		 <script src='jquery-1.12.4.min.js'></script>
+	 </head>
+<body>
+<div id="box">
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/1.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/2.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/3.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/4.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/5.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/6.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/7.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/8.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/9.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/10.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/11.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/12.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img fsrc="img/13.jpg" width="400"></p>
+        </div>
+<script type="text/javascript">
+   $(function(){
+     (function(){
+	    var $img = $('#box').find('img');
+        //先初始化图片
+		$img.each(function(index){
+		  $img.eq(index).attr('src','img/loading.jpg'); 
+		})
+
+		//图片懒加载
+		var $window = $(window);
+		scroll();
+		$window.scroll(scroll);
+
+		function scroll(){
+		   var scrollTop = $window.scrollTop();
+		   var viewHeight = $window.height();
+
+		   var vtop = scrollTop + viewHeight;
+           $img.each(function(index){
+			 var oImg = $img.eq(index)
+			 var src = 'img/'+(index+1)+'.jpg';
+		     var atop = oImg.offset().top;
+			 if( atop < vtop + 200 ){
+			    oImg.prop('src',src);
+			 }
+		   });
+		};
+	 })();
+   })
+</script>
+</body>
+</html>

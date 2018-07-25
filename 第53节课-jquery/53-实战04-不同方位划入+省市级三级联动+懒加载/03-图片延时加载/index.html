@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{ }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/1.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/2.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/3.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/4.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/5.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/6.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/7.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/8.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/9.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/10.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/11.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/12.jpg" width="400"></p>
+            <p>这是第1张图片<br>这是第2张图片<br>这是第3张图片<br>这是第4张图片<br>这是第5张图片<br>这是第6张图片<br>这是第7张图片<br>这是第8张图片<br>这是第9张图片<br>这是第10张图片<br>
+                <img Fsrc="img/13.jpg" width="400"></p>
+        </div>
+        <script>
+
+            /*
+               用原生JS实现延迟加载（懒加载）
+                * 所有需要做延时加载的img不能给src
+                * 指定任意一个合适的标签属性存储真正的src
+                * 给需要做延迟的img加上初始显示的图片
+             */
+
+            (function(){
+
+                var aImg = document.getElementById("box").getElementsByTagName("img"),
+                    length = aImg.length;
+                aImg = [].slice.apply(aImg);
+
+                for (var i = 0; i < length; i++) {
+                    aImg[i].src = "img/loading.jpg";
+                }
+
+                if ( document.addEventListener ){
+                    window.addEventListener("scroll" , scroll , false);
+                }else{
+                    window.attachEvent("onscroll" , scroll);
+                }
+
+                scroll();
+
+                function scroll() {
+                    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    var top = scrollTop + document.documentElement.clientHeight||document.body.clientHeight;
+
+                    for (var i = aImg.length-1; i >= 0; i--) {
+                        var oImg = aImg[i];
+                        if ( oTop(oImg) <= top + 200 ){
+                            oImg.src = oImg.getAttribute("Fsrc");
+                            aImg.splice(i,1);
+                        }
+                    }
+                    console.log( aImg );
+                }
+
+                function oTop(obj) {
+                    var x = 0;
+                    while (obj !== document.body){
+                        x += obj.offsetTop;
+                        obj = obj.offsetParent;
+                    }
+                    return x;
+                }
+
+            })();
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
