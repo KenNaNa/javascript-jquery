@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>测试4-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+			 }
+            #box{
+			    width:275px;
+				height:61px;
+				margin:100px auto;
+				overflow:hidden;
+			}
+			#box ul{
+			    width:275px;
+				height:60px;
+			}
+			#box ul li{
+			    position:relative;
+				float:left;
+			    width:40px;
+				height:60px;
+			}
+			#box ul li.d{
+			    width:17px;
+				height:60px;
+			}
+			#box ul li img{
+			    position:absolute;
+				display:block;
+			    width:100%;
+				height:100%;
+			}
+		 </style>
+	 </head>
+<body>
+    <div id="box">
+	  <ul>
+	    <li class="time">
+		  <img src="images/0.png" alt=""  class="first"/>
+		  <img src="images/1.png" alt="" class="second"/>
+		</li>
+		<li class="time">
+		  <img src="images/0.png" alt=""  class="first"/>
+		  <img src="images/1.png" alt="" class="second"/>
+		</li>
+		<li class="d"><img src="images/d.png" alt="" /></li>
+		<li class="time">
+		  <img src="images/0.png" alt=""  class="first"/>
+		  <img src="images/1.png" alt="" class="second"/>
+		</li>
+		<li class="time">
+		  <img src="images/0.png" alt=""  class="first"/>
+		  <img src="images/1.png" alt="" class="second"/>
+		</li>
+		<li class="d"><img src="images/d.png" alt="" /></li>
+		<li class="time">
+		  <img src="images/0.png" alt=""  class="first"/>
+		  <img src="images/1.png" alt="" class="second"/>
+		</li>
+		<li class="time">
+		  <img src="images/0.png" alt="" class="first"/>
+		  <img src="images/1.png" alt="" class="second"/>
+		</li>
+	  </ul>
+	</div>
+<script>
+    
+    var oDiv  = document.getElementById('box')
+	var aFirst = document.querySelectorAll('img.first');
+	console.log(aFirst)
+    var aSecond = document.querySelectorAll('img.second');
+	var nowStr = '';//存储当前时间
+	var flag = true;
+	function getOnTime(obj){//获取当前时间函数
+	  var hh = obj.getHours();//获取小时
+	  var mm = obj.getMinutes();//获取分钟 
+	  var ss = obj.getSeconds();//获取秒钟
+	  nowStr = toTwo(hh)+toTwo(mm)+toTwo(ss);//转化成字符串便于获取
+	  return nowStr;//返回获取的字符串
+	}
+	/*startTime();//初始化
+	setInterval(onTime,1000);
+	function startTime(){
+       var date=new Date();
+       var arr=getOnTime(date);
+       for(var i=0;i<aFirst.length;i++){
+          aFirst[i].src="images/"+arr[i]+".png";
+          aSecond[i].src="images/"+arr[i]+".png";
+          aFirst[i].n=arr[i];
+       }
+    };
+	function onTime() {
+    	var date=new Date();
+    	var arr=getOnTime(date);
+    	for(var i=0;i<aFirst.length;i++){
+            if(aFirst[i].n==arr[i]){
+                continue;
+            }
+            aSecond[i].src=aFirst[i].src;
+            aFirst[i].src="images/"+arr[i]+".png";
+            aFirst[i].n=arr[i];
+            move(aFirst[i],"top",0,-61,61/(1000/60));   
+            move(aSecond[i],"top",61,0,61/(1000/60));
+          }
+    	};*/
+	clock();
+	setInterval(clock,1000)
+	function clock(){//时钟函数
+	   //var top = parseFloat(getComputedStyle(aImg[0]).height);//将字符串转化为字符串
+	   var oDate = new Date();
+	   var oldArr = getOnTime(oDate);//当前时间
+	   if(flag){
+		   for( var i=0;i<oldArr.length;i++ ){
+			aFirst[i].src = 'images/'+oldArr.charAt(i)+'.png';//先初始化一次
+			aSecond[i].src = 'images/'+oldArr.charAt(i)+'.png';//先初始化一次
+		   }
+		   flag = false;
+	   }else{
+		   for( var i=0;i<oldArr.length;i++ ){
+	         aSecond[i].src = aFirst[i].src;//把上一张图片的路径赋给第二张图片有一定位的问题第二张图在第一张图上面
+			 aFirst[i].src = 'images/'+oldArr.charAt(i)+'.png';//然后获取下一秒的图片
+		   }
+		   for( var i=0;i<oldArr.length;i++ ){
+			   if(lastArr[i]!==oldArr[i]){///判断前一秒与后一秒的数字是否相等
+				
+				 move(aFirst[i],'top',60,0,2)//第一个也跟着上移
+				  move(aSecond[i],'top',0,-60,2);//第二个上移
+			   }
+		   }
+		   
+	   }
+	   lastArr = oldArr;//储存后一秒的时间
+	}
+	function move(obj,attr,start,end,speed){//运动函数
+		window.requestAnimationFrame = window.requestAnimationFrame||function(fn){
+		  return setTimeout(fn,1000/60);
+		}
+		window.cancleAnimationFrame = window.cancleAnimationFrame||clearTimeout;
+		
+		var bool = start>end?true:false;//判断目标值与初始值的大小
+		obj.style[attr] = start + 'px';//设定初始值
+		speed = bool?-speed:speed;//判断速度值
+		//console.log(bool);
+	    (function fn(){
+		  start += speed;//在这个示例过程start始终要小于end
+		  (bool?start <= end:start >= end)?start = end:requestAnimationFrame(fn);
+		  obj.style[attr] = start + 'px';
+		})();//函数自执行
+	}
+	function toTwo(n){//补位转化为字符串函数
+	  if(n<10){
+	     return '0'+n;
+	  }else{
+	     return ''+n;
+	  }
+	}
+	
+	function getStyle(obj){//获取样式
+	  return obj.currenStyle || getComputedStyle(obj);
+	}
+</script>
+</body>
+</html>

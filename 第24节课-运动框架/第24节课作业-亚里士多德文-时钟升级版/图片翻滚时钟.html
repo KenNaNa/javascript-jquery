@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>图片翻滚时钟-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{background:#000;}
+			 #box{
+			    
+			    width:656px;
+				height:100px;
+				margin:100px auto;
+				overflow:hidden;
+			 }
+			 #box img{
+			    position:relative;
+			    width:100px;
+				height:100px;
+				vertical-align:middle;
+				transition:all 0.6s ease;
+			 }
+			 #box i{
+			    display:inline-block;
+			    color:#fff;
+				font-size:40px;
+				font-weight:bold;
+				font-style:normal;
+				vertical-align:middle;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+	<i>:</i>
+	<img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+	<i>:</i>
+	<img src="images/0.jpg" alt="" />
+	<img src="images/0.jpg" alt="" />
+</div>
+<script>
+    var aImg = document.getElementsByTagName('img');
+	var str = '';
+    var arr = ['images/0.jpg',
+	'images/1.jpg',
+	'images/2.jpg',
+	'images/3.jpg',
+	'images/4.jpg',
+	'images/5.jpg',
+	'images/6.jpg',
+	'images/7.jpg',
+	'images/8.jpg',
+	'images/9.jpg'];
+	var start=0;
+	//console.log(arr[Number(str[1])];)
+	//延时
+	setInterval(clock(),1000);//在这里必须用setInterval();
+	//封装一个时钟函数
+	function clock(){
+	  var oDate = new Date();
+	  var hh = oDate.getHours();//获取时
+	  var mm = oDate.getMinutes();//获取分
+	  var ss = oDate.getSeconds();//获取秒
+	  str =toTwo(hh)+toTwo(mm)+toTwo(ss);//转化为字符串
+	  for( var i=0;i<str.length;i++ ){
+		 //move(aImg[i],'marginTop',100);
+		 var index = Number(str[i]);
+	     aImg[i].src = arr[index];
+	  }
+	  //move(aImg[0],'marginTop',100)
+	  return clock;
+	}
+    
+	//封装一个运动函数
+	function move(obj,attr,speed){
+	  start += speed;
+	  obj.style[attr] = start + 'px';//这里不能点操作
+	}
+	//封装以补位函数
+	function toTwo(n){
+	  if(n<10)
+	     return '0'+n;
+	  else
+	     return ''+n;
+	}
+</script>
+</body>
+</html>

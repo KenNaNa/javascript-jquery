@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 100px;
+                height: 100px;
+                background: pink;
+            }
+            .box{
+                width: 100px;
+                height: 100px;
+                background: pink;
+            }
+
+            #box{
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <div id="box"></div>
+        <script>
+
+            var oBox = document.getElementById("box");
+
+            //var w = oBox.style.width;//这样获取不到元素的宽度，因为这个方式获取的是行内样式
+
+            //如何获取元素的最终样式
+            /*
+             getComputedStyle()
+                兼容IE9及以上
+                接收一个参数：object 节点对象
+                返回：一个对象，包含着元素所有最终样式的对象
+                兼容IE9及以上
+
+             节点对象.currentStyle.属性
+                只兼容 所有 IE
+                节点对象.currentStyle  存储着元素所有最终样式的对象  相当于  getComputedStyle()的返回值
+             */
+
+            //var w = getComputedStyle( oBox );//返回一个包含着元素所有最终样式的对象
+
+           /* var width = w.width;//从返回的对象中，获取width属性对应的值
+            alert( width );*/
+
+           //alert(  w.backgroundColor   );
+            //document.body.style.backgroundColor = w.backgroundColor;
+
+            //alert( w.top );
+
+            /*var w = oBox.currentStyle;
+            alert( w );*/
+
+            /*var cssJson;
+            if ( oBox.currentStyle ){
+                cssJson = oBox.currentStyle;
+            }else{
+                cssJson = getComputedStyle(oBox);
+            }
+
+            alert( cssJson.backgroundColor );*/
+
+
+            //alert( window.getComputedStyle );
+
+            /*var cssJson;
+            if ( window.getComputedStyle ){
+                cssJson = getComputedStyle(oBox);
+            }else{
+                cssJson = oBox.currentStyle;
+            }
+
+            alert( cssJson.backgroundColor );*/
+
+            //返回 包含元素的最终样式的对象
+            function getCssJson( obj ) {
+                return obj.currentStyle || getComputedStyle(obj);
+            }
+            //return window.getComputedStyle?getComputedStyle(obj):obj.currentStyle;
+
+            alert( getCssJson(oBox) );
+
+
+            /*
+            1.尽量使用详细驼峰属性代替复合属性去获取样式
+            2.颜色值，可能会被转换成rgb的格式，所以用来判断时要谨慎
+              路径，相对路径会被转换成绝对路径，所以用来判断时要谨慎
+            3. 在获取位置相关信息的时候，不推荐使用这种方式获取
+               节点对象.offsetTop  获取元素的top到定位父级top的距离
+               节点对象.offsetLeft  获取元素的left到定位父级的left距离
+             */
+
+
+            //  false   0    ""   NaN  undefined  null
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

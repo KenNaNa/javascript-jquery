@@ -1,0 +1,57 @@
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>无标题文档</title>  
+<style>  
+    div{  
+        position:absolute;  
+    }  
+</style>  
+</head>  
+<body>  
+<div id="divimg">  
+<img src="http://www.ztu68.com/uploads/png/c100901/12s31649450-234b6.png" width="150" height="150">  
+</div>  
+  
+<script language="javascript" type="text/javascript">  
+      
+    //获取图片div对象  
+    var img=document.getElementById("divimg");  
+  
+    //设置div左上角 起始点坐标  
+    var x=0,y=0;  
+      
+    //设置图片的行进速度  
+    var xSpeed=5,ySpeed=5;  
+      
+    //设置图片的最大浮动高度和宽度  
+    var w=document.body.clientWidth-150,h=document.body.clientHeight-150;  
+      
+      
+    function floatimg(){  
+    //比较图片是否到达边界  
+      
+    //如果到达边界以后，我控制图片改变方向  
+        if(x>w||x<0) xSpeed= -xSpeed;       
+        if(y>h||y<0) ySpeed= -ySpeed;  
+    //如果没有到达边界，设置图片的左上角坐标，  
+      
+    //设置坐标值  起始坐标+速度  
+          
+        x+=xSpeed;  
+        y+=ySpeed;  
+      
+    img.style.top=y+"px";  
+    img.style.left=x+"px";  
+      
+    setTimeout("floatimg()",50);  
+      
+    }  
+floatimg();  
+</script>  
+  
+  
+  
+  
+</body>  
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>requestAnimationFrame-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    //兼容
+    window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {return setTimeout(fn , 1000/60)};
+    window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+</script>
+</body>
+</html>

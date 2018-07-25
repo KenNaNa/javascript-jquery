@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片时钟</title>
+    <style>
+        *{margin::0; padding:0;}
+        li{list-style:none;}
+        .wrap{
+            width: 950px;
+            height: 200px;
+            margin: 100px auto;
+        }
+        .wrap li{
+            float: left;
+            width: 50px;
+            height: 80px;
+            overflow: hidden;
+        }
+        .wrap li div{
+            position: relative;
+        }
+        .wrap li img{
+            position: absolute;
+            left: 0;
+            width:  100%;
+            height: 80px;
+
+        }
+        .wrap li img:nth-of-type(1){
+            top: 0;
+        }
+        .wrap li img:nth-of-type(2){
+            top: 80px;
+        }
+        .wrap li span{
+            display: inline-block;
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-size: 40px;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul class="wrap">
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><span>年</span></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><span>月</span></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><span>日</span></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><span class="dot">:</span></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><span class="dot">:</span></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+    <li><div><img src="images/0.png" alt=""></div></li>
+</ul>
+
+<script>
+var xmt = {
+    doMove: function( obj , attr , endTarget , speed , callback ){
+            var startTarget = parseInt(xmt.getStyle( obj , attr ));
+            speed = startTarget>endTarget ? -speed : speed;
+
+            clearInterval( obj.timer );
+            obj.timer = setInterval(function(){
+                startTarget += speed;
+                if(startTarget > endTarget && speed>0 || startTarget < endTarget && speed<0){
+                    startTarget = endTarget;
+                    clearInterval( obj.timer );
+                    callback && callback();
+                }
+                obj.style[attr] = startTarget +"px";
+            },50);
+    },
+
+    shake: function( obj , attr , callback ) {
+        var arr = [];
+        var val = parseInt(xmt.getStyle(obj, attr));
+        for (var i = 20; i > 0; i = i - 2) {
+            arr.push(i, -i);
+        }
+        arr.push(0);
+
+        var num = 0;
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            val += parseInt(arr[num]);
+            obj.style[attr] = val + "px";
+            num++;
+            if (num >= arr.length) {
+                num = arr.length;
+                clearInterval(obj.timer);
+                callback && callback();
+            }
+        }, 50);
+    },
+
+    fadeOut: function( obj , callback ){
+        var num = 1;
+        clearInterval( obj.timer );
+        obj.timer = setInterval(function(){
+            obj.style.opacity = num;
+            num-=0.1;
+            if( num<=0 ){
+                num = 0;
+                clearInterval( obj.timer );
+                callback && callback();
+            }
+        },50);
+    },
+    fadeIn: function( obj , callback ){
+        var num = 0;
+        clearInterval( obj.timer );
+        obj.timer = setInterval(function(){
+            obj.style.opacity = num;
+            num+=0.1;
+            if( num>=1 ){
+                num = 1;
+                clearInterval( obj.timer );
+                callback && callback();
+            }
+        },50);
+    },
+
+    mix: function( obj , attr/* Array */ , endTarget/* array */ , speed/* array */ , callback ){
+        var startTarget = [];
+        for( var i=0; i<attr.length; i++ ){
+            startTarget.push( parseInt(xmt.getStyle( obj , attr[i] )) );
+            speed[i] = startTarget[i] - endTarget[i] > 0 ? -speed[i] : speed[i];
+        }
+
+        clearInterval( obj.timer );
+        obj.timer = setInterval(function(){
+            for( var i=0; i<attr.length; i++ ){
+                startTarget[i] += speed[i];
+                if( startTarget[i] <= endTarget[i] && speed[i] < 0 || startTarget[i] >= endTarget[i] && speed[i] > 0 ){
+                    startTarget[i] = endTarget[i];
+                    clearInterval( obj.timer );
+                    callback && callback();
+                }
+                obj.style[attr[i]] = startTarget[i] + "px";console.log( startTarget[i] );
+            }
+        },50);
+    },
+    addClass: function( name ){
+        if((typeof name).toLowerCase() == "string"){
+            if(this.className ==""){
+                this.className = name;
+            }else{
+                var array_name = this.className.split(" ");
+                var array_class = name.split(" ");
+                for(var i=0;i<array_class.length;i++){
+                    for( var j=0;j<array_name.length;j++){
+                        if(array_class[i] !== array_name[j] ){
+                            this.className += " " + array_class[i];
+                        }
+                    }
+                }
+            }
+        }else if((typeof name).toLowerCase() == "function"){
+            name();
+        }
+
+    },
+    getStyle: function( obj , attr ){
+        return obj.currentStyle ? obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+    }
+
+};
+    var oLi = document.getElementsByTagName("li");
+    var oDiv = document.getElementsByTagName("div");
+    var oImg = document.getElementsByTagName("img");
+    var oSpan = document.getElementsByTagName("span");
+    var oDot = document.getElementsByClassName("dot");
+    //设置“：”的自定义属性(开关);
+    for(var i=0;i<oDot.length;i++){
+       oDot[i].onOff = true;
+    }
+    setInterval(getTime,1000);
+    setInterval(dotFlash,500);
+
+    function getTime (){
+        var date = new Date();
+
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+
+        var str = year + toTwo( month ) + toTwo( day ) + toTwo( hour ) + toTwo( min ) + toTwo( sec );  //当前时间
+        var strPrev = (parseInt(str)-1).toString();    //当前时间上一秒
+        var array = str.split("");
+        var arrayPrev = strPrev.split("");
+
+
+
+        /*  初始化图片对应数字
+        for(var i=0;i<oImg.length;i++){
+            oImg[i].src = "img/"+ parseInt(array[i]) +".jpg";
+        }*/
+
+        //更换图片切换为当前时间
+        for(var j=0;j<str.length;j++ ){
+            if(strPrev[j] !== str[j]){
+                oDiv[j].innerHTML ="<img src='images/"+ parseInt(arrayPrev[j]) +"png' alt=''><img src='images/"+ parseInt(array[j]) +".png' alt=''>";
+                xmt.doMove( oDiv[j].getElementsByTagName('img')[0] , "top" ,  -80 , 7 , xmt.doMove(oDiv[j].getElementsByTagName('img')[1] , "top" , 0 , 7)  ) ;
+            }else{
+                oDiv[j].innerHTML = "<img src='images/"+ parseInt(arrayPrev[j]) +".png' alt=''>";
+            }
+        }
+    }
+
+    //“：”闪动
+    function dotFlash(){
+        for(var i=0;i<oDot.length;i++){
+            if( oDot[i].onOff ){
+                oDot[i].style.display = "block";
+                oDot[i].onOff = false;
+            }else{
+                oDot[i].style.display = "none";
+                oDot[i].onOff = true;
+            }
+        }
+    }
+    getTime();
+    dotFlash();
+    function toTwo(n){
+        if(n<10){
+            return "0"+n;
+        }else{
+            return ""+n;
+        }
+    }
+
+
+</script>
+</body>
+</html>

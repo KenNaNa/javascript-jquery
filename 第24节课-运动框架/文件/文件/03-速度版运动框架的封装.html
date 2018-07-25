@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        #goudan{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="goudan"></div>
+<script>
+
+    var oGou = document.getElementById("goudan");
+
+    move( oGou , "paddingLeft" , 300 , 10 );
+
+    //速度版运动框架
+    function move( obj , attr , endW , speed ) {
+        window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {return setTimeout(fn , 1000/60)};
+        window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+        var cssJson = obj.currentStyle || getComputedStyle(obj);
+        var startW = parseFloat(cssJson[attr]);
+        //var endW = target;
+        //var speed = 10;
+        var flag = startW > endW;
+        if ( flag )speed = -speed;
+        (function fn(){
+            startW += speed;
+            (flag?startW <= endW:startW >= endW)?startW = endW:requestAnimationFrame(fn);
+            obj.style[attr] = startW+'px';
+        })();
+    }
+    //在处理多个属性同时变化的时候，很难控制同时完成，所以不是很适用于多个属性的变化，不考虑多个属性同时变化的写法
+
+
+
+    /*
+
+
+        if ( flag?startW <= endW:startW >= endW ){
+            startW = endW;
+        }else{
+            requestAnimationFrame(fn);
+        }
+     */
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

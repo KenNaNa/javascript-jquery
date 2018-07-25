@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>测试3-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+			 }
+			 #box{
+			     margin:100px auto;
+			     width:328px;
+				 height:61px;
+				 overflow:hidden;
+			 }
+			 #box ul{
+			    width:328px;
+				height:61px;
+			 }
+			 #box ul li{
+			    position:relative;
+				float:left;
+			    width:41px;
+				height:61px;
+			 }
+			 #box ul li img{
+			    position:absolute;
+				display:block;
+				top:0;
+				left:0;
+			    width:41px;
+				height:61px;
+			 }
+            #box ul li.d img{
+			    width:17px;
+                margin-left:10px;
+			}
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   <ul>
+      <li class="time"></li>
+	  <li class="time"></li>
+	  <li class="d"><img src="images/d.png" alt="" /></li>
+	  <li class="time"></li>
+	  <li class="time"></li>
+	  <li class="d"><img src="images/d.png" alt="" /></li>
+	  <li class="time"></li>
+	  <li class="time"></li>
+   </ul>
+</div>
+<script>
+   var aTime = document.querySelectorAll('li.time');
+   
+   
+   var str = '';
+   for( var i=0;i<aTime.length;i++ ){
+      for( var j=0;j<10;j++ ){
+	     str += '<img src="images/'+j+'.png">';
+	  }
+	  aTime[i].innerHTML = str;
+	  str = '';//清除上一个str里面的内容准备下一次的赋值
+   }
+   var aLi= document.querySelectorAll('li.time')
+   var aImg = document.querySelectorAll('li.time img');
+   console.log(aLi)
+   setInterval(clock(),1000);//在这里必须用setInterval();
+	//封装一个时钟函数
+	function clock(){//初始化
+	  var oDate = new Date();
+	  var str = getTime(oDate);
+	  for( var i=0;i<str.length;i++ ){
+		 //move(aImg[i],'marginTop',100);
+	     aLi[i].innerHTML = '<img src="images/'+str[i]+'.png">';
+	  }
+	  return clock;
+	}
+	//获取时间并转化为字符串函数
+    function getTime(obj){
+	  var hh = obj.getHours();//获取时
+	  var mm = obj.getMinutes();//获取分
+	  var ss = obj.getSeconds();//获取秒
+	  str =toTwo(hh)+toTwo(mm)+toTwo(ss);//转化为字符串
+	  return str;
+	}
+	//封装以补位函数
+	function toTwo(n){
+	  if(n<10)
+	     return '0'+n;
+	  else
+	     return ''+n;
+	}
+	function move(obj,attr,startNew,endNew,speed){
+        var objAttr=obj.currentStyle||getComputedStyle(obj);
+        var bol=endNew-startNew>=0?true:false;
+        obj.style[attr]=startNew+"px";//给obj设定初始位置
+        speed=bol>0?speed:-speed;
+        window.requestAnimationFrame=window.requestAnimationFrame||function (fn){
+             setTimeout(fn,1000/60);
+        };
+        window.cancelAnimationFrame=window.cancelAnimationFrame||clearTimeout;
+            //requestAnimationFrame(onAnimation);
+        (function onAnimation(){
+            startNew+=speed;      
+            bol?startNew>=endNew?startNew=endNew:requestAnimationFrame(onAnimation): startNew<=endNew?startNew=endNew:requestAnimationFrame(onAnimation);
+            obj.style[attr]=startNew+"px";
+        })();
+      };
+</script>
+</body>
+</html>

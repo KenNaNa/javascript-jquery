@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+    <title>Document</title>
+ <style>
+ .fl{
+     float: left;
+}
+ img{
+     display: block;
+     position: relative;
+ }
+ div{
+     width: 123px;
+     height: 173px;
+     overflow: hidden;
+ }
+ </style>
+ <script>
+ window.onload = function(){
+     function toDou(n){
+         return n<10?'0'+n:''+n;
+     }
+     function toMove(obj,value,M){
+         var aImg = obj.getElementsByTagName('img');
+         var    t=0;
+         var timer=null;
+         if(value<0){value = M-1;}
+         //console.log(value);
+         aImg[0].style.top=aImg[1].style.top=t+'px';
+         aImg[0].src = 'images/'+value+'.png';
+         aImg[1].src = 'images/'+(value+1)%M+'.png';
+ 
+         clearInterval(timer);
+         timer = setInterval(function(){
+             t-=10;
+             aImg[0].style.top=aImg[1].style.top=t+'px';
+             
+             if(t<-163){
+                 clearInterval(timer);
+             }
+         },30);
+     }
+     function time(){
+         var oDate = new Date();
+         var oS = oDate.getSeconds();
+         var oH = oDate.getHours();
+         var oM = oDate.getMinutes();
+         var str = toDou(oH)+toDou(oM)+toDou(oS);
+         //console.log(str);
+         for(var i=0;i<str.length;i++){
+             if(aDiv[i].index != str.charAt(i)){
+                 toMove(aDiv[i],str.charAt(i)-1,arr[i]);
+                 //alert(i);
+             }
+             aDiv[i].index = str.charAt(i);
+         }    
+     }
+ 
+     var aDiv = document.getElementsByTagName('div');
+    var oColon1 = document.getElementById('colon1');
+     var oColon2 = document.getElementById('colon2');
+     arr = ['3','4','6','10','6','10'];
+     var onOff = true;
+ 
+     time();
+     setInterval(time,1000);
+     setInterval(function(){
+         onOff=!onOff;
+ 
+         if(onOff){
+             oColon1.src=oColon2.src='img/black.jpg';
+         }else{
+             oColon1.src=oColon2.src='img/colon.jpg';
+         }
+ 
+     },500);
+ };
+ </script>
+ </head>
+ <body>
+     <div class="fl">
+         <img src="images/0.png" alt="">
+         <img src="images/0.png" alt="">
+     </div>
+     <div class="fl">
+         <img src="images/0.png" alt="">
+         <img src="images/0.png" alt="">
+     </div>
+     <img src="images/d.png" alt="" class="fl" id="colon1">
+     <div class="fl">
+         <img src="images/0.png" alt="">
+         <img src="images/0.png" alt="">
+     </div>
+     <div class="fl">
+         <img src="images/0.png" alt="">
+         <img src="images/0.png" alt="">
+     </div>
+     <img src="images/d.png" alt="" class="fl" id="colon2">
+     <div class="fl">
+         <img src="images/0.png" alt="">
+         <img src="images/0.png" alt="">
+     </div>
+     <div class="fl">
+         <img src="images/0.png" alt="">
+         <img src="images/0.png" alt="">
+     </div>
+ </body>
+ </html>

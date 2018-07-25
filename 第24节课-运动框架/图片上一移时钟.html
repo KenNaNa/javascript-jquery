@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+             *{ padding:0; margin:0; list-style:none;}
+              ul{width:200px; margin: 100px auto;}
+              li{ float:left; height:35px; overflow:hidden; line-height:35px;}
+		 </style>
+	 </head>
+<body>
+<ul>
+<li><img src="img/num.png" alt="javascript很炫的数字时钟滚动效果" /></li>
+<li><img src="img/num.png" alt="javascript很炫的数字时钟滚动效果" /></li>
+<li>:</li>
+<li><img src="img/num.png" alt="javascript很炫的数字时钟滚动效果" /></li>
+<li><img src="img/num.png" alt="javascript很炫的数字时钟滚动效果" /></li>
+<li>:</li>
+<li><img src="img/num.png" alt="javascript很炫的数字时钟滚动效果" /></li>
+<li><img src="img/num.png" alt="javascript很炫的数字时钟滚动效果" /></li>
+</ul>
+<script>
+    window.onload=function(){
+function toDou(n){
+return n<10?"0"+n:""+n;
+}
+var oImg=document.getElementsByTagName("img");
+setInterval(clock,1000);
+clock()
+function clock(){
+var oDate=new Date();
+var oH=oDate.getHours();
+var oF=oDate.getMinutes();
+var oM=oDate.getSeconds();
+var str=toDou(oH)+toDou(oF)+toDou(oM);
+for(var i=0;i<oImg.length;i++){
+move(oImg[i],{"marginTop":-35*str.charAt(i)});
+}
+}
+}
+</script>
+</body>
+</html>

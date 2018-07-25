@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        div{
+            width: 386px;
+            height: 386px;
+            border: 1px solid red;
+            margin: 100px auto auto auto;
+        }
+
+        li{
+            float: left;
+            width: 100px;
+            height: 100px;
+            border-radius:20px;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid red;
+            list-style: none;
+            margin: 20px auto auto 20px;
+            background-color: red;
+            font-size: 30px;
+            color:white;
+            font-family: "幼圆";
+
+            transition-property:all;
+            -webkit-transition-property:all;
+            -moz-transition-property:all;
+            -o-transition-property:all;
+            -mz-transition-property:all;
+
+            transition-duration:1s;
+            -webkit-transition-duration:1s;
+            -moz-transition-duration:1s;
+            -o-transition-duration:1s;
+            -mz-transition-duration:1s;
+
+
+        }
+
+        .fanzhuan{
+            -webkit-transform: rotateY(360deg);
+        }
+
+
+
+    </style>
+
+    <script type="text/javascript">
+        var num = Math.floor((Math.random()*9))+1;
+
+        window.onload = function(){
+            var lis = document.getElementsByTagName("li");
+            for(var i=0;i<lis.length;i++){
+                lis[i].onmouseover = function(){
+                    this.innerHTML = "猜猜看";
+                }
+                lis[i].onmouseout= function(){
+                    this.innerHTML = "";
+                    this.className = "";
+                }
+                lis[i].onclick = function(){
+                    if(num==parseInt(this.getAttribute("id"))){
+                        alert("中奖了！")
+                    }
+                    this.className = "fanzhuan";
+                    this.innerHTML = parseInt(this.getAttribute("id"));
+                }
+            }
+
+
+        }
+
+
+
+
+    </script>
+
+</head>
+<body>
+    <div>
+        <ul>
+            <li id="1"></li>
+            <li id="2"></li>
+            <li id="3"></li>
+            <li id="4"></li>
+            <li id="5"></li>
+            <li id="6"></li>
+            <li id="7"></li>
+            <li id="8"></li>
+            <li id="9"></li>
+
+        </ul>
+    </div>
+</body>
+</html

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>获取元素样式-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:200px;
+				height:200px;
+				background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+<div class="box"></div>
+<div id="box"></div>
+<script>
+    var oBox = document.getElementById('box');
+	//var w = oBox.style.width;//这样获取不到元素的宽度，因为这个方式获取的是行内样式
+
+	//如何获取元素的最终样式
+	/*
+             getComputedStyle()
+                兼容IE9及以上
+                接收一个参数：object 节点对象
+                返回：一个对象，包含着元素所有最终样式的对象
+                兼容IE9及以上
+
+             节点对象.currentStyle.属性
+                只兼容 所有 IE
+                节点对象.currentStyle  存储着元素所有最终样式的对象  相当于  getComputedStyle()的返回值
+             */
+	/*var cssJson = getComputedStyle(oBox);
+	console.log(cssJson);//是个集合CSSStyleDeclaration
+	console.log(cssJson.width);//获取200px
+	console.log(cssJson[124]);//也可以通过数字text-overflow
+	console.log(cssJson.backgroundColor);//rgb(255, 0, 0)
+	console.log(cssJson.marginLeft);//0px
+	console.log(cssJson.height);//200px;
+	//但是只兼容到Ie 9以上 谷歌 火狐*/
+
+	/*var css = oBox.currentStyle;
+	console.log(css);//兼容到Ie9一下
+	console.log(css.width);//200px;*/
+
+	/*if(oBox.currentStyle){
+	   var cssJson = oBox.currentStyle;
+	}else{
+	   var cssJson = getComputedStyle(oBox);
+	}
+	alert(cssJson);//对所有的浏览器都兼容*/
+
+	/*if ( window.getComputedStyle ){
+        cssJson = getComputedStyle(oBox);
+    }else{
+        cssJson = oBox.currentStyle;
+    }
+	//兼容所有的浏览器
+	alert(cssJson);*/
+
+	/*
+            1.尽量使用详细驼峰属性代替复合属性去获取样式
+            2.颜色值，可能会被转换成rgb的格式，所以用来判断时要谨慎
+              路径，相对路径会被转换成绝对路径，所以用来判断时要谨慎
+            3. 在获取位置相关信息的时候，不推荐使用这种方式获取
+               节点对象.offsetTop  获取元素的top到定位父级top的距离
+               节点对象.offsetLeft  获取元素的left到定位父级的left距离
+             */
+
+
+            //  false   0    ""   NaN  undefined  null
+</script>
+</body>
+</html>

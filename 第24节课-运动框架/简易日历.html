@@ -1,0 +1,63 @@
+<!doctype html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.date{
+				width: 150px;
+				height: 180px;
+				background: #369;
+				border-radius: 5px;
+				margin: 60px auto;
+			}
+			p{
+				font: 14px/60px "微软雅黑";
+				color: #fff;
+				text-align: center;
+				
+			}
+			span{
+				display: block;
+				width: 75px;
+				height: 75px;
+				color: #333;
+				background: yellowgreen;
+				font: 50px/75px simsun ;
+				margin: 0 auto;
+				text-align: center;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="date">
+			<p>2017-08-08 星期六</p>
+			<span>08</span>
+		</div>
+		<script type="text/javascript">
+			var date = document.querySelector(".date");
+			var boys = date.children;
+			var d = new Date();
+			
+			var year = d.getFullYear(); //获取年
+			var month = d.getMonth()+1; //获取月
+			var data = d.getDate();//获取日
+			var day = week(d.getDay()); //获取星期?
+			
+			boys[1].innerHTML = z(data);
+			boys[0].innerHTML = year+'-'+z(month)+'-'+z(data)+' '+day;
+			
+			
+			//封装 补0 函数
+			function z(v){
+				return v<10?'0'+v:''+v;
+			}
+			//封装 星期函数
+			function week(w){
+				return ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"][w];
+			}
+		</script>
+	</body>
+</html>
