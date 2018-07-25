@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>多个弹性小球-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{overflow:hidden;}
+			 div{
+			    position:absolute;
+				left:0;
+				top:0;
+				width:50px;
+				height:50px;
+				border-radius:50%;
+			 }
+
+		 </style>
+	 </head>
+<body>
+<div style="background:red"></div>
+<div style="background:green"></div>
+<div style="background:pink"></div>
+<div style="background:yellow"></div>
+<div style="background:black"></div>
+<div style="background:orange"></div>
+<div style="background:purple"></div>
+<div style="background:#3fc"></div>
+<div style="background:#30f"></div>
+<div style="background:#c09"></div>
+<script>
+    var color = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+	var arrColor = [];//动态存储颜色值
+	var str = '#';
+	var w = 50;//每个球的宽度
+	var h = 50;//每个球的高度
+	var maxW=document.documentElement.clientWidth - w;//浏览器的可视区宽度
+	var maxH=document.documentElement.clientWidth - w;//浏览器的可视区高度
+	window.requestAnimationFrame = window.requestAnimationFrame || function(fn){return setTimeout(fn,1000/60)};
+	window.cancleAnimationFrame = window.cancleAnimationFrame || clearTimeout;
+	window.onresize = m();
+	function m(){
+	   maxW = document.documentElement.clientWidth - w;
+	   maxH = document.documentElement.clientHeight - h;
+	   return m;
+	}
+	function rColor(){
+		for( var i=0;i<6;i++ ){
+	     str += Math.floor(Math.random()*16);
+		}
+		return str;
+	}
+    var aBox = document.querySelectorAll('div');
+	//console.log(aBox)
+	for( var i=0;i<10;i++ ){
+	   aBox[i].Vx = getRandom(10,20);//横向速度
+	   aBox[i].Vy = getRandom(10,20);//纵向速度
+	}
+	//console.log(getRandom(10,20))
+	function getRandom(min,max){
+	   var v = max - min;
+	   return Math.floor(Math.random()*v+min);
+	}
+	
+	(function move(){
+	   var l = [];
+	   var t = [];
+	  
+	   for( var i=0;i<10;i++ ){
+	     l[i] = aBox[i].offsetLeft + aBox[i].Vx;
+		 t[i] = aBox[i].offsetTop + aBox[i].Vy;
+	   }
+	   for( var j=0;j<10;j++ ){
+	        if ( l[j] >= maxW )
+			{   
+				l[j] = maxW;
+				aBox[j].Vx = -aBox[j].Vx;
+				//console.log(aBox[j])
+			}
+			if ( l[j] <= 0 )
+			{
+				l[j] = 0;
+				aBox[j].Vx = -aBox[j].Vx;
+			}
+
+			if ( t[j] >= maxH )
+			{
+				t[j] = maxH;
+				aBox[j].Vy = -aBox[j].Vy;
+			}
+			if ( t[j] <= 0 )
+			{
+				t[j] = 0;
+				aBox[j].Vy = -aBox[j].Vy;
+			}
+            if( l[j]===maxW || l[j]===0 || t[j]===maxH || t[j]===0 ){
+			   //aBox[j].style.background = rColor();
+			}
+	   }
+	   requestAnimationFrame(move);
+	   for( var k=0;k<10;k++ ){
+		   aBox[k].style.left = l[k] + 'px';
+		   aBox[k].style.top = t[k] + 'px';
+	   }
+	})();
+</script>
+</body>
+</html>

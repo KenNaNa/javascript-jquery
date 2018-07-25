@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>01-定位父级以及定位距离-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+             #box{
+			    position:relative;
+				left:20px;
+				top:20px;
+				width:100px;
+				height:100px;
+				background:#000;
+				padding:10px;
+				margin:10px;
+			 }
+			 #box .box{
+			    /* position:absolute; */
+				left:0;
+				top:20px;
+				margin-left:20px;
+				margin-top:20px;
+				width:50px;
+				height:50px;
+				background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   <div class="box"></div>
+</div>
+<script>
+   /*
+				
+	.offsetParent
+		获取定位父级（object 元素节点）
+		无论自身有没有定位，都可以获取
+	    如果没有定位的父级的话 获取到的是body
+	.offsetLeft
+	.offsetTop
+		元素到定位父级的left / top的距离（number 具体的数值）
+		（无论自身有没有定位）
+		只读属性
+*/
+var oDiv = document.querySelector('.box');
+var oBox = oDiv.offsetParent;
+console.log(oBox);//<div id="box"><div class="box"></div></div>
+console.log(oDiv.offsetLeft);//1自身到定位父级的距离+自身margin值  2如果父级没有定位 子元素也没有定位的话 自身的margin值+父级元素的padding值 +父级元素的margin值  3如果只有父级（relative）定位的话 自身的margin值+父级元素的padding值
+console.log(oDiv.offsetTop);//自身到定位父级的距离+自身margin值  如果父级没有定位 子元素也没有定位的话 自身的margin值+父级元素的padding值 +父级元素的margin值
+</script>
+</body>
+</html>

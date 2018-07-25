@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>弹性小球案例-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{
+			    overflow:hidden;
+			 }
+			 #box{
+			    position:absolute;
+				width:50px;
+				height:50px;
+				border-radius:50%;
+				left:0;
+				top:0;
+				background:pink;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+    var oBox = document.getElementById('box');
+	var w = oBox.offsetWidth;
+	var h = oBox.offsetHeight;
+	var Vx = 4;//横向速度
+	var Vy = 3;//纵向速度
+	//边界值
+	var maxW;
+	var maxH;
+	window.onresize = max();//自动监视浏览器窗口的大小变化
+	function max(){
+	    maxW = document.documentElement.clientWidth-w;//可视区的宽度
+	    maxH = document.documentElement.clientHeight-h;//可视区的高度
+		return max;
+	}
+	window.requsetAnimationFrame = window.requsetAnimationFrame || function(fn){
+	   return setTimeout(fn,1000/60);
+	}
+	window.cancleAnimationFrame = window.cancleAnimationFrame || clearTimeout;
+	(function m(){
+		var left = oBox.offsetLeft + Vx,
+					top = oBox.offsetTop + Vy;
+				
+				if ( left >= maxW )
+				{
+					left = maxW;
+					Vx = -Vx;
+				}
+				if ( left <= 0 )
+				{
+					left = 0;
+					Vx = -Vx;
+				}
+
+				if ( top >= maxH )
+				{
+					top = maxH;
+					Vy = -Vy;
+				}
+				if ( top <= 0 )
+				{
+					top = 0;
+					Vy = -Vy;
+				}
+
+				requestAnimationFrame(m);
+
+				oBox.style.left = left + 'px';
+				oBox.style.top = top + 'px';
+	})()
+</script>
+</body>
+</html>

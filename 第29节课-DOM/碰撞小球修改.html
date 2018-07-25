@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {margin: 0;padding: 0;}
+		.ball {
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			box-shadow: 2px 2px 2px #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+	(function balls() {
+		/**
+		 * 生成小球
+		 */
+		for (var i = 0; i < 1; i++) {
+			var odiv = document.createElement('div');
+			odiv.className = 'ball';	
+			create(odiv);
+			box.appendChild(odiv);
+		}
+
+		/**
+		 * 运动函数
+		 */
+		(function move() {
+			var oball = document.getElementsByClassName('ball'),
+			maxT = document.documentElement.clientHeight - oball[0].offsetHeight,
+			maxL = document.documentElement.clientWidth - oball[0].offsetWidth,
+			ballJson = [],xv = 5,yv = 10;
+			for (var i = 0; i < oball.length; i++) {
+					ballJson.push({
+						startT : oball[i].offsetTop,
+						startL : oball[i].offsetLeft,
+						index : i,
+						x :xv,
+						y :yv
+					})
+				}
+			(function run(){
+				//console.log("a");
+				
+
+				for(var key in ballJson) {
+					ballJson[key].startT=ballJson[key].startT + ballJson[key].y ;
+					if(ballJson[key].startT>= maxT){
+						console.log(ballJson.length);
+						ballJson[key].y = -ballJson[key].y;
+						//console.log(ballJson[key].y);
+						ballJson[key].startT = maxT ;
+						
+					}else if(ballJson[key].startT < 0){
+						ballJson[key].startT =0;
+						ballJson[key].y = -ballJson[key].y;
+					}
+
+					oball[ballJson[key].index].style.top =ballJson[key].startT+'px'; 
+					//oball[ballJson[key].index].style.left = ballJson[key].startL + xv +'px';
+					// console.log(ballJson[key]);
+				}
+				setTimeout(run,16);
+			})();
+
+			//setInterval(run,16);
+			
+			
+		})();
+
+		/**
+		 * 生成随机数
+		 */
+		function rnum(min,max) {
+			return Math.round(Math.random()*(max-min)) + min;
+		}
+
+		/**
+		 * 生成随机 颜色和位置		
+		 */
+		function create(obj) {
+			var cstr = '#',num = '';
+
+			for (var i = 0; i < 6; i++) {
+				// 16不取
+				num = parseInt(Math.random()*16).toString(16);
+				cstr += num;
+			}
+			obj.style.backgroundColor = cstr;
+			obj.style.top = rnum(50,700) + 'px';
+			obj.style.left = rnum(50,700) + 'px';
+		}
+
+	})()
+	</script>
+</body>
+</html>

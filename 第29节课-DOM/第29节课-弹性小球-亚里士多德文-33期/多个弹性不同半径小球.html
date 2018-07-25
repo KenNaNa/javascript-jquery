@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>多个弹性不同半径小球-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{
+			    overflow:hidden;
+			 }
+             .ball{
+			    position:absolute;
+			    border-radius:50%;
+				width:50px;
+				height:50px;
+				background:pink;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var num = 10,
+		str = '#',
+		maxW = document.documentElement.clientWidth||document.body.clientWidth,
+		maxH = document.documentElement.clientHeight||document.body.clientHeight;
+		setInterval(m,3000)
+function m(){
+	var oBall;
+	for( var i=0;i<num;i++ ){
+	    document.body.innerHTML = '';
+	}
+	for( var i=0;i<num;i++ ){
+	    oBall = document.createElement('div');//创建元素
+		oBall.className = 'ball';//添加类名
+		oBall.style.background = '-webkit-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+		oBall.style.background = '-moz-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+		oBall.style.background = '-ms-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+		oBall.style.background = '-o-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+		oBall.style.background = '-xHTML-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+		oBall.x = Math.random()*maxW ;
+	    oBall.y = Math.random()*maxH ;
+		oBall.style.borderRadius = '50%';
+	    oBall.Vx = -0.5+Math.random();//横向速度
+	    oBall.Vy = -0.5+Math.random();//纵向速度
+	    oBall.style.width = Math.random()*10+'px';//半径
+		oBall.style.height = oBall.style.width;
+	    document.body.appendChild(oBall);
+		(function(oBall){//产生闭包+-
+		~function move(){
+			   var l = oBall.offsetLeft + oBall.Vx+ oBall.x;//获取初始状态的left值
+			   var t = oBall.offsetTop + oBall.Vy+ oBall.y;//获取初始状态的top值
+			   if( l>=maxW ){
+				   l = maxW;
+				   oBall.Vx = -oBall.Vx;//速度取反向速度
+			   }
+			   if( l<=0 ){
+				   l = 0;
+				   oBall.Vx = -oBall.Vx;//速度取反向速度
+			   }
+			   if( t>=maxH ){
+				   t = maxH;
+				   oBall.Vy = -oBall.Vy;
+			   }
+			   if( t<=0 ){
+				   t = 0;
+				   oBall.Vy = -oBall.Vy;
+			   }
+			   if( l===maxW || l===0 || t===maxH || t===0 ){
+				   oBall.style.background = '-webkit-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+				   oBall.style.background = '-moz-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+				   oBall.style.background = '-ms-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+				   oBall.style.background = '-o-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+				   oBall.style.background = '-xHTML-radial-gradient(#ffffff,'+color()+')';//兼容浏览器
+			   }
+			
+			oBall.style.left = l + 'px';
+			oBall.style.top = t + 'px';
+			requestAnimationFrame(move);
+		}();
+	})(oBall);
+	}
+}
+	//console.log(color())
+	function color(){
+	   for( var i=0;i<6;i++ ){
+	      str += Math.floor(Math.random()*16).toString(16);
+	   }
+	   return str;
+	}
+</script>
+</body>
+</html>

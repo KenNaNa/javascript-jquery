@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>碰撞改变颜色</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{padding: 0;margin:0;}
+	.box{
+		position:relative;
+	}
+	.circle{
+		position: absolute;
+		width:40px;
+		height:40px;
+		background-color:pink;
+		border-radius:50%;
+	}
+</style>
+</head>
+<body>
+    
+    	<div class="box">
+    		<div class ="circle"></div>
+    		</div>
+    
+    <script>
+	    window.requestAnimationFrame=window.requestAnimationFrame||function(fn){
+	    	setTimeout(fn,1000/60);
+	    };
+	    window.cancelAnimationFrame=window.cancelAnimationFrame||clearTimeout;
+	    var MaxWidth;
+	    var MaxHeight;
+	    var oCircle=document.querySelector(".circle");
+    	window.onresize=function OnResize(){
+    		MaxWidth=document.documentElement.clientWidth-oCircle.offsetWidth;
+    		MaxHeight=document.documentElement.clientHeight-oCircle.offsetHeight;
+    		//document.body.innerHTML=MaxWidth
+    		return OnResize;
+    	}();
+
+
+
+	 	-function (){
+
+	 		var arr=[];
+	 		var num=10;//小球的个数
+	 		
+	 		for(var i=0;i<num;i++){
+	 			var c="#";
+	 			if(i==0){
+		 				
+		 			for(var m=0;m<6;m++){
+		 					c+=Math.floor(Math.random()*16).toString(16);
+	 					}
+	 				
+	 				oCircle.style.backgroundColor=c;
+	 				oCircle.index=i;
+	 				oCircle.bol=true;//判断是否可以变色
+	 				oCircle.vx=Math.floor(Math.random()*10+1);
+	 				oCircle.vy=Math.floor(Math.random()*10+1);
+
+	 				//move(oCircle);
+	 				arr.push(oCircle);
+	 			}else{
+	 				for(var m=0;m<6;m++){
+		 					c+=Math.floor(Math.random()*16).toString(16);
+	 					}
+	 				var newCircle=oCircle.cloneNode();
+	 				newCircle.style.backgroundColor=c;
+	 				newCircle.bol=true;//判断是否可以变色
+	 				newCircle.vx=Math.floor(Math.random()*10+1);
+	 				newCircle.vy=Math.floor(Math.random()*10+1);
+		 			oCircle.parentNode.appendChild(newCircle);
+		 			arr.push(newCircle);
+		 			
+	 			}
+	 			
+	 		}
+
+	 		for(var m=0;m<arr.length;m++){
+				for(var n=arr.length-1;n>m;n--){
+
+					arr[m][m+"And"+n]=true;//自定义碰撞名称
+
+				}
+	    	}
+	  
+	 		-function move(){
+	 			
+	    		requestAnimationFrame(OnAction);
+	    		function OnAction(){
+	    			//碰撞检测
+	    			for(var p=0;p<arr.length;p++){
+	    				for(var pp=arr.length-1;pp>p;pp--){
+	    					var st=p+"And"+pp;
+	    					Collistion(arr[p],arr[pp],st);
+	    					//console.log(pp+""+p);
+	    				}
+	    				OnMove(arr[p]);
+	    			}
+	    			
+	    			
+	    			
+	    			requestAnimationFrame(OnAction);
+	    		}
+	 		}();
+	 		function OnMove(obj){
+	 			var sx=obj.offsetLeft+obj.vx;
+	    			var sy=obj.offsetTop+obj.vy;
+	    			if(sx>=MaxWidth){
+	    				obj.vx=-obj.vx;
+	    				sx=MaxWidth;
+	    			}
+	    			if(sx<=0){
+	    				obj.vx=-obj.vx;
+	    				sx=0;
+	    			}
+	    			if(sy>=MaxHeight){
+	    				obj.vy=-obj.vy;
+	    				sy=MaxHeight;
+	    			}
+	    			if(sy<=0){
+	    				obj.vy=-obj.vy;
+	    				sy=0;
+	    			}
+	    			obj.style.left=sx+"px";
+	    			obj.style.top=sy+"px";
+	 		};
+    		//console.log(getCircle(oCircle));
+    		function Collistion(a,b,st){
+	 			var Apoint=getCircle(a);
+	 			var Bpoint=getCircle(b);
+	 			var dix=Apoint.x-Bpoint.x;
+	 			var diy=Apoint.y-Bpoint.y;
+	 			var dis=Math.sqrt(dix*dix+diy*diy)
+	 			if(dis<a.offsetWidth/2+b.offsetWidth/2){
+	 				if(!a[st]||!b[st]){
+	 					return;
+	 				}
+	 				var ac="#";
+	 				var bc="#";
+ 					for(var m=0;m<6;m++){
+	 					ac+=Math.floor(Math.random()*16).toString(16);
+	 					bc+=Math.floor(Math.random()*16).toString(16);
+ 					}
+	 				a.style.backgroundColor=ac;
+	 				b.style.backgroundColor=bc;
+	 				a[st]=false;
+	 				b[st]=false;
+	 				
+	 			}else{
+	 				a[st]=true;
+	 				b[st]=true;
+	 				
+	 			}
+	 		}
+    		function getCircle(obj){
+    			var circleJson={};
+    			circleJson.x=obj.offsetLeft+obj.offsetWidth/2;
+    			circleJson.y=obj.offsetTop+obj.offsetHeight/2;
+    			return circleJson;
+    		}
+
+	    }();
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+
+			#box{
+				position:relative;
+			}
+
+			#box .goudan{
+				/* position:absolute; */
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<div class="child">
+				<p class="goudan"></p>
+			</div>
+			<p></p>
+		</div>
+
+		<script type="text/javascript">
+			/*
+				
+				.offsetParent
+					获取定位父级（object 元素节点）
+					无论自身有没有定位，都可以获取
+				
+				.offsetLeft
+				.offsetTop
+					元素到定位父级的left / top的距离（number 具体的数值）
+					（无论自身有没有定位）
+					只读属性
+			*/
+			var oBox = document.getElementById('box'),
+				oP = oBox.querySelector(".goudan");
+
+			console.log( oP.offsetParent );
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>insertBefore-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+   /*
+.insertBefore()
+	往对象的某个儿子前面加内容
+	两个参数： object 添加什么内容 ， object 在哪个儿子之前
+
+*/
+var oBox = document.getElementById('box');
+var oP = document.createElement('p');
+oBox.appendChild(oP);//添加到oBox里面
+var oA = document.createElement('a');
+oBox.insertBefore(oA,oP);//a标签添加到p标签的前面
+//注意如果 oBox里面没有内容的话 oBox.insertBefore(oA,oBox.children[0])也是可以添加的
+</script>
+</body>
+</html>

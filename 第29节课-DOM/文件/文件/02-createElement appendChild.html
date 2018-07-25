@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<a>hello~</a>
+		</div>
+
+		<script type="text/javascript">
+			/*
+				在实际开发中，很少使用innerHTML去改变元素内容，使用的时候需要考虑覆盖的问题
+
+				document.createElement( '标签名' );
+				document.createTextNode( '文本' );
+
+				.appendChild()
+			*/
+
+			var oBox = document.getElementById("box"),
+				oA = oBox.children[0];
+
+			oA.onclick = function(){
+				alert(1);
+			};
+
+			//oBox.innerHTML = oBox.innerHTML + "<p>pppppp</p>";
+			/*var go = document.createElement("p");
+				go.innerHTML = "pppppp";
+				go.style.color = "red";
+
+			oBox.appendChild( go );*/
+
+			var oT = document.createTextNode('阿飞老师很帅！');
+			oBox.appendChild(oT);
+
+		</script>
+	</body>
+</html>

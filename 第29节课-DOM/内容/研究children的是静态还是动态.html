@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>研究children的是静态还是动态-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+   var oBox = document.getElementById('box');
+   var child = oBox.children;
+   console.log(child);
+   var oP = document.createElement('p');
+   oBox.appendChild(oP);
+   console.log(child);//children是动态的
+</script>
+</body>
+</html>

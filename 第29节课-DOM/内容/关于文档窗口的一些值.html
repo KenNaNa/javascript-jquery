@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>关于文档窗口的一些值-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+		可视窗口的宽高
+			document.documentElement.clientWidth
+			document.documentElement.clientHeight
+
+		浏览器宽高
+			window.innerWidth (和上面的值一样，但是不兼容IE8-)
+			window.outerWidth (不兼容IE8-)
+		
+		分辨率：
+			实际的分辨率
+			window.screen.width
+			window.screen.height
+			
+			去除任务栏之后的分辨率
+			window.screen.availHeight
+			window.screen.availWidth
+
+		滚动宽高度
+			document.documentElement.scrollTop || document.body.scrollTop
+			document.documentElement.scrollLeft || document.body.scrollLeft
+
+	*/
+	document.onclick = function(){
+	   console.log(document.documentElement.clientWidth);//1366
+	   console.log(document.documentElement.clientHeight);
+	   console.log(window.innerWidth);//浏览器宽高 1366
+	   console.log(window.outerWidth);//浏览器宽高 1366
+	   console.log(window.screen.width);//最大浏览器宽度 1366
+	   console.log(window.screen.height);//最大浏览器高度
+	   console.log(window.screen.availHeight);
+	   console.log(window.screen.availWidth);//1366
+	   alert(document.documentElement.scrollTop || document.body.scrollTop)
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+
+		</style>
+	</head>
+	<body>
+		
+		<div id="goudan">
+			<p id="mm"></p>
+		</div>
+
+		<script type="text/javascript">
+			
+			/*	
+				元素的删除：
+					元素是没有办法自杀的！！只能通过爸爸干掉自己
+				
+				爸爸.removeChild( 要删的儿子 );
+			*/
+
+			/*var oM = document.getElementById('mm');
+			
+			oM.parentNode.removeChild( oM );*/
+
+			var oBox = document.getElementById("goudan");
+			var oM = document.getElementById('mm');
+			oBox.removeChild( oM );
+
+
+		</script>
+	</body>
+</html>

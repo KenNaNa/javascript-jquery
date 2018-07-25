@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+    body{margin: 0;padding: 0;}
+    #div2{height: 100px;width: 200px;background-color: orange;position: absolute;left: 0px;top:0px;z-index: 1;}
+    #div1{height: 100px;width: 100px;background-color: #a6e22e;position: absolute;left: 600px;top:400px;}
+    </style>
+    <script type="text/javascript">
+    //获取对象样式属性值
+    function getObjStyle(obj,attr)
+    {
+        return getComputedStyle(obj)?getComputedStyle(obj)[attr]:obj.currentStyle[attr];
+    }
+    </script>
+    <script type="text/javascript">
+    window.onload=function (){
+        var oDiv1=document.getElementById('div1');
+        var oDiv2=document.getElementById('div2');
+
+
+
+        oDiv2.onmousedown=function (onEvent,obj){//对div1实现拖拽,并对碰撞进行检测
+            obj=this;
+            var ev=onEvent||event;
+            var distance={};
+            distance.disX=ev.clientX-obj.offsetLeft;//到左边框的距离
+            distance.disY=ev.clientY-obj.offsetTop;//到上边框的距离
+
+            //获取div1的四个值
+            oDiv1.div1L=getObjStyle(oDiv1,'left');
+            oDiv1.div1R=parseInt(getObjStyle(oDiv1,'left'))+parseInt(getObjStyle(oDiv1,'width'))+'px';
+            oDiv1.div1T=getObjStyle(oDiv1,'top');
+            oDiv1.div1B=parseInt(getObjStyle(oDiv1,'top'))+parseInt(getObjStyle(oDiv1,'height'))+'px';
+
+
+
+
+            if(obj.setCapture)
+                obj.setCapture();
+
+            document.onmousemove=function (onEvent){
+                var ev=onEvent||event;
+                obj.style.left=ev.clientX-distance.disX+'px';
+                obj.style.top=ev.clientY-distance.disY+'px';
+
+                //获取div2的四个值
+                oDiv2.div2L=getObjStyle(oDiv2,'left');
+                oDiv2.div2R=parseInt(getObjStyle(oDiv2,'left'))+parseInt(getObjStyle(oDiv2,'width'))+'px';
+                oDiv2.div2T=getObjStyle(oDiv2,'top');
+                oDiv2.div2B=parseInt(getObjStyle(oDiv2,'top'))+parseInt(getObjStyle(oDiv2,'height'))+'px';
+
+                /*console.log('oDiv2.div2L:'+oDiv2.div2L+'  oDiv2.div2R:'+oDiv2.div2R+'  oDiv2.div2T:'+oDiv2.div2T+'  oDiv2.div2B:'+oDiv2.div2B);*/
+
+                //碰撞检测
+                if(oDiv2.div2R<oDiv1.div1L || oDiv2.div2L>oDiv1.div1R || oDiv2.div2B<oDiv1.div1T || oDiv2.div2T>oDiv1.div1B){
+                    //未发送碰撞
+                }else{
+                    //发生碰撞
+                    alert('发生碰撞');
+                }
+
+            }
+
+            document.onmouseup=function (){
+                document.onmouseup=document.onmousemove=null;
+                if(obj.setCapture)
+                    obj.releaseCapture();
+            }
+            return false;
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="div2">div2</div>
+    <div id="div1">div1</div>
+</body>
+</html>

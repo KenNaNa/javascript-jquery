@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+			#box{
+				position:absolute;
+				top: 0;
+				left: 0;
+				width: 50px;
+				height: 50px;
+				background: pink;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="box"></div>
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+        <div id="box4"></div>
+
+		<script type="text/javascript">
+            var oBox = document.getElementById('box');
+            var aBox1 = document.querySelectorAll('div');
+            console.log(aBox1)
+
+            var width = oBox.offsetWidth;
+            var height = oBox.offsetHeight;
+
+            var nL = 10;
+            var nT = 20;
+
+            var maxW;
+            var maxH;
+            //浏览器的窗口在改变大小的时候触发
+            window.onresize = max();
+            function max(){
+                maxW = document.documentElement.clientWidth - width;
+                maxH = document.documentElement.clientHeight - height;
+                //console.log(maxW);
+                return max;
+            };
+
+            //requestAnimationFrame 兼容性
+            window.requestAnimationFrame = window.requestAnimationFrame || function(a){return setTimeout(a,1000/60)};
+            window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+
+            for( var i=0;i<aBox1.length;i++ ){
+                move(i);
+                function move( j ){
+                    var left = aBox1[j].offsetLeft + nL+j;
+                    //console.log(aBox1[0].offsetLeft);
+                    var top = aBox1[j].offsetTop + nT+j;
+                    if(left>=maxW){
+                        left = maxW;
+                        aBox1[j].style.backgroundColor = "#"+color();
+                        nL = -nL;
+                    }
+                    if(left<0){
+                        left = 0;
+                        aBox1[j].style.backgroundColor = "#"+color();
+                        nL = -nL;
+                    }
+                    if(top >maxH){
+                        top = maxH;
+                        aBox1[j].style.backgroundColor = "#"+color();
+                        nT = -nT;
+                    }
+                    if(top <0){
+                        top = 0;
+                        aBox1[j].style.backgroundColor = "#"+color();
+                        nT = -nT;
+                    }
+                    requestAnimationFrame( move );
+                    aBox1[j].style.left = left + 'px';
+                    aBox1[j].style.top = top + 'px';
+                };
+            }
+
+
+
+
+            //颜色随机；
+            function color(){
+                var colorStr = "";//颜色字符串
+                var randomArr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f',]
+                for (var j=0;j<6 ;j++ ){
+                    colorStr += randomArr[Math.ceil(Math.random()*15)];
+                }
+                return colorStr;
+            };
+        </script>
+
+
+
+
+
+
+
+
+			<!--/*var oBall = document.getElementById("box"),
+				width = oBall.offsetWidth,
+				height = oBall.offsetHeight;
+
+			var Vx = 10;
+			var Vy = 20;
+
+			//边界
+			var maxW,maxH;
+			//浏览器的窗口在改变大小的时候触发
+			window.onresize = max();
+			function max(){
+				maxW = document.documentElement.clientWidth - width;
+				maxH = document.documentElement.clientHeight - height;
+				return max;
+			}
+
+			window.requestAnimationFrame = window.requestAnimationFrame || function(a){return setTimeout(a,1000/60)};
+			window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+
+			~function m(){
+				var left = oBall.offsetLeft + Vx,
+					top = oBall.offsetTop + Vy;
+
+				if ( left >= maxW )
+				{
+					left = maxW;
+					Vx = -Vx;
+				}
+				if ( left <= 0 )
+				{
+					left = 0;
+					Vx = -Vx;
+				}
+
+				if ( top >= maxH )
+				{
+					top = maxH;
+					Vy = -Vy;
+				}
+				if ( top <= 0 )
+				{
+					top = 0;
+					Vy = -Vy;
+				}
+
+				requestAnimationFrame(m);
+
+				oBall.style.left = left + 'px';
+				oBall.style.top = top + 'px';
+			}()
+*/
+-->
+	</body>
+</html>

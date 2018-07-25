@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+        .box{
+            position:absolute;
+            top:0;
+            left:0;
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+    <script>
+        /*//思路
+        * 1.生成10个小球
+        * 2.随机颜色
+        * 3.小球运动
+        * */
+        var ball = document.getElementById('box');
+
+        //生成小球
+        for (var i = 0; i < 10; i++) {
+            (function create(i) {
+                var aBall = document.createElement('div');
+                aBall.className = 'box';
+                ball.appendChild(aBall);
+                changeColor(aBall);
+                aBall.x = i;
+                aBall.y = 2*i;
+                move(aBall,aBall.x,aBall.y);
+
+            })(i);
+        }
+        window.onresize = resize();
+            function resize() {
+                var topMax = document.documentElement.clientHeight - 50;
+                var leftMax = document.documentElement.clientWidth - 50;
+                return resize;
+            }
+        //随机颜色
+        function changeColor(obj){
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            obj.style.background = 'rgb('+r+','+g+','+b+')';
+        }
+
+        //小球运动
+        function move(obj,x,y) {
+            window.requestAnimationFrame = window.requsetAnimationFrame||function (a) {return setTimeout(a,1000/60);};
+            window.cancelAnimationFrame = window.cancelAnimationFrame||clearTimeout;
+            var topMax = document.documentElement.clientHeight - 50;
+            var leftMax = document.documentElement.clientWidth - 50;
+                var Top = obj.offsetTop + y;
+                var Left = obj.offsetLeft + x;
+                if (Top>=topMax){
+                    Top=topMax;
+                    y = -y;
+                    changeColor(obj);
+                }
+                if(Top<=0){
+                    Top = 0;
+                    y = -y;
+                    changeColor(obj);
+                }
+                if (Left>=leftMax){
+                    Left=leftMax;
+                    x = -x;
+                    changeColor(obj);
+                }
+                if(Left<=0){
+                    Left = 0;
+                    x= -x;
+                    changeColor(obj);
+                }
+                requestAnimationFrame(move);
+                obj.style.left = Left +'px';
+                obj.style.top = Top +'px';
+        }
+        //            for (var i = 0; i < 10; i++) {
+        //
+        //                var Top = aBall[i].offsetTop + aBall[i].y;
+        //                var Left = aBall[i].offsetLeft + aBall[i].x;
+        //                if (Top >= topMax) {
+        //                    Top = topMax;
+        //                    aBall[i].y = -aBall[i].y;
+        //                    changeColor(aBall[i]);
+        //                }
+        //                if (Top <= 0) {
+        //                    Top = 0;
+        //                    aBall[i].y = -aBall[i].y;
+        //                    changeColor(aBall[i]);
+        //                }
+        //                if (Left <= 0) {
+        //                    Left = 0;
+        //                    aBall[i].x = -aBall[i].x;
+        //                    changeColor(aBall[i]);
+        //                }
+        //                if (Left >= leftMax) {
+        //                    Left = leftMax;
+        //                    aBall[i].x = -aBall[i].x;
+        //                    changeColor(aBall[i]);
+        //                }
+        //                requestAnimationFrame(move);
+        //                aBall[i].style.top = Top + 'px';
+        //                aBall[i].style.left = Left + 'px';
+        //
+        //            }
+
+    </script>
+</body>
+</html>

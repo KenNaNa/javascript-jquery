@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<p>111</p>
+		</div>
+
+		<script type="text/javascript">
+			
+			// .children是动态的！
+
+			var oBox = document.getElementById("box");
+
+			var child = oBox.children;
+
+			console.log( child );
+
+			var oI = document.createElement('i');
+			oBox.appendChild(oI);
+
+			console.log( child );
+
+		</script>
+	</body>
+</html>

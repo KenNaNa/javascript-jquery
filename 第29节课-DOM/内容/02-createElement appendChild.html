@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>02-createElement appendChild-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   <a>hello~</a>
+</div>
+<script>
+   /*
+	在实际开发中，很少使用innerHTML去改变元素内容，使用的时候需要考虑覆盖的问题
+
+	document.createElement( '标签名' );
+	document.createTextNode( '文本' );
+
+	.appendChild()
+*/
+var oBox = document.getElementById("box"),
+	oA = oBox.children[0];
+
+oA.onclick = function(){
+	alert(1);
+};
+var oP = document.createElement('p');//创建一个p标签
+oP.innerHTML = 'pppp';
+oP.style.color = 'red';
+oBox.appendChild(oP);
+var oCo = document.createTextNode('李金文');//创建一个文本节点
+oBox.appendChild(oCo);
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+			
+			html,body{
+				min-width:1000px;
+			}
+		</style>
+	</head>
+	<body style="height:5000px">
+		
+		<script type="text/javascript">
+			
+			/*
+				可视窗口的宽高
+					document.documentElement.clientWidth
+					document.documentElement.clientHeight
+
+				浏览器宽高
+					window.innerWidth (和上面的值一样，但是不兼容IE8-)
+					window.outerWidth (不兼容IE8-)
+				
+				分辨率：
+					实际的分辨率
+					window.screen.width
+					window.screen.height
+					
+					去除任务栏之后的分辨率
+					window.screen.availHeight
+					window.screen.availWidth
+
+				滚动宽高度
+					document.documentElement.scrollTop || document.body.scrollTop
+					document.documentElement.scrollLeft || document.body.scrollLeft
+
+			*/
+
+			document.onclick = function(){
+				//alert( document.documentElement.clientWidth );
+				//alert( window.outerWidth );
+				//console.log( window.screen );
+				alert( document.documentElement.scrollTop || document.body.scrollTop );
+			}
+
+		</script>
+	</body>
+</html>

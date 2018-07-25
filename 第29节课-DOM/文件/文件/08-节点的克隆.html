@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="潭州学院-阿飞老师">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+			.box{
+				width:100px;
+				height:100px;
+				background:pink;
+			}
+			.box p{
+				color:#fff;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+			<p>9999</p>
+		</div>
+		
+
+		<script type="text/javascript">
+			/*
+				
+				节点.cloneNode( 布尔值 )
+					返回一个克隆的对象
+					布尔值决定着带不带里面的子元素
+
+			*/
+			var box = document.querySelector(".box"),
+				p = box.children[0];
+			
+			box.onclick = function(){
+				alert( "box" );
+			};
+			p.onclick = function(){
+				alert( "p" );
+			};
+
+			var obj = box.cloneNode(true);
+			document.body.appendChild(obj);
+
+			//document.body.appendChild(box);
+
+			//console.log( obj );
+
+		</script>
+	</body>
+</html>

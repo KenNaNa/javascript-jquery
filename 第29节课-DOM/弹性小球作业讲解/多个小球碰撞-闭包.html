@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>多个小球碰撞-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+             div.ball{
+			    position:absolute;
+				width:20px;
+				height:20px;
+				left:0;
+				top:0;
+				border-radius:50%;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var num = 100;//10个小球
+	var maxW;//浏览器可视区的最大宽度
+	var maxH;//浏览器可视区的最大高度
+	var w = 20;//小球的宽度
+	var h = 20;//小球的高度
+	var vw = document.documentElement.clientWidth||document.body.clientWidth;//兼容
+	var vh = document.documentElement.clientHeight||document.body.clientHeight;//兼容
+	window.requestAnimationFrame = window.requestAnimationFrame || function(fn){return setTimeout(fn,1000/60)};
+	window.cancleAnimationFrame = window.cancleAnimationFrame || clearTimeout;
+	window.onresize = resize();
+    function resize(){//监听浏览器窗口大小变化
+	   maxW = vw - w;
+	   maxH = vh - h;
+	   return resize;
+    }
+	//console.log(rColor())
+    function rColor(){//随机生成颜色值
+		var str='#';
+		for( var i=0;i<6;i++ ){
+		    str+=Math.floor(Math.random()*16).toString(16);
+		}
+	    return str;
+	}
+	var oBall;
+	for( var i=0;i<num;i++ ){
+	    oBall = document.createElement('div');//创建元素
+		oBall.className = 'ball';//添加类名
+		oBall.style.background = '-webkit-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+		oBall.style.background = '-moz-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+		oBall.style.background = '-ms-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+		oBall.style.background = '-o-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+		oBall.style.background = '-xHTML-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+		oBall.Vx = i+0.5;//横向速度
+		oBall.Vy = i+0.5;//纵向速度
+		document.body.appendChild(oBall);
+		(function(oBall){//产生闭包+-
+		~function move(){
+			   var l = oBall.offsetLeft + oBall.Vx;//获取初始状态的left值
+			   var t = oBall.offsetTop + oBall.Vy;//获取初始状态的top值
+			   if( l>=maxW ){
+				   l = maxW;
+				   oBall.Vx = -oBall.Vx;//速度取反向速度
+			   }
+			   if( l<=0 ){
+				   l = 0;
+				   oBall.Vx = -oBall.Vx;//速度取反向速度
+			   }
+			   if( t>=maxH ){
+				   t = maxH;
+				   oBall.Vy = -oBall.Vy;
+			   }
+			   if( t<=0 ){
+				   t = 0;
+				   oBall.Vy = -oBall.Vy;
+			   }
+			   if( l===maxW || l===0 || t===maxH || t===0 ){
+				   oBall.style.background = '-webkit-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+				   oBall.style.background = '-moz-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+				   oBall.style.background = '-ms-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+				   oBall.style.background = '-o-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+				   oBall.style.background = '-xHTML-radial-gradient(#ffffff,'+rColor()+')';//兼容浏览器
+			   }
+			
+			oBall.style.left = l + 'px';
+			oBall.style.top = t + 'px';
+			requestAnimationFrame(move);
+		}();
+	})(oBall);
+}
+	function getRandomV( min,max ){
+	   var v = max - min;
+	   return Math.floor(Math.random()*v+min);
+	}
+	/*
+	  ~function(){}
+	  +function(){}
+	  -funvtion(){}
+	  !function(){}
+	  是把函数转化为表达式
+	*/
+</script>
+</body>
+</html>
