@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>04-球状布局-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+			li{ list-style-type: none;}
+			body,html{
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+			}
+			#main{ 
+				width: 100%;
+				height: 100%;
+				background: #023b3b url("img/bg.png") center center;/*图片居中*/
+				perspective: 800px;/*景深*/
+			}
+
+			#list ul{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 120px;
+				height: 160px;
+				border: 1px solid red;
+				margin-top: -80px;
+				margin-left: -60px;
+				transform-style: preserve-3d;/*3d场景*/
+				transform: translateZ(-3000px) rotateX(0deg) rotateY(0deg);/*初始化*/
+			}
+			#list ul li{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,127,127,0.5);
+				border: 1px solid rgba(127,255,255,0.25);
+				box-shadow: 0 0 12px rgba(0,255,255,0.5);
+				line-height: 160px;
+				text-align: center;
+				color: #fff;
+				font-weight: bold;
+				cursor: default;
+                transition: 5s cubic-bezier(.78,.33,.42,1);
+			}
+			#btn{
+                position: absolute;
+                left: 20px;
+                bottom: 20px;
+                width: 300px;
+                height: 32px;
+           }
+           #btn ul li{
+                float: left;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid rgba(127,255,255,1);
+                color: rgba(127,255,255,1);
+                padding: 0 10px;
+                font-size: 12px;
+                font-weight: bold;
+                margin: 0 5px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            #btn ul li:hover{
+                background: rgba(0,127,127,0.8);
+            }
+      #alert{
+          display: none;
+          position: absolute;
+          top: 10%;
+          left: 10%;
+          width: 80%;
+          height: 80%;
+          background: rgba(0,127,127,0.5);
+          border: 1px solid rgba(127,255,255,0.25);
+          box-shadow: 0 0 12px rgba(0,255,255,0.5);
+          border-radius: 3px;
+          transform : rotateY(0deg) scale(2);
+          opacity: 0;
+          transform-style: preserve-3d;
+      }
+      #alert .title,#alert .img,#alert .author,#alert .info{
+          border: 1px solid rgba(127,255,255,0.25);
+          box-shadow: 0 0 12px rgba(0,255,255,0.5);
+          background: rgba(0,0,0,.5);
+          border-radius: 3px;
+      }
+      #alert .title{
+          position: absolute;
+          top: 15%;
+          left: 25%;
+          width: 50%;
+          height: 10%;
+      }
+      #alert .title span{
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          color: #fff;
+          font-weight: bold;
+          font-size: 18px;
+          text-align: center;
+          transform: translateY(-50%);
+      }
+      #alert .img{
+          overflow: hidden;
+          position: absolute;
+          top: 35%;
+          left: 5%;
+          width: 45%;
+          height: 50%;
+      }
+      #alert .img img{
+          width: 100%;
+      }
+      #alert .author{
+          position: absolute;
+          top: 35%;
+          right: 5%;
+          width: 35%;
+          height: 5%;
+      }
+      #alert .author span{
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          color: #fff;
+          font-weight: bold;
+          font-size: 14px;
+          text-align: center;
+          transform: translateY(-50%);
+      }
+      #alert .info{
+          position: absolute;
+          top: 45%;
+          right: 5%;
+          width: 35%;
+          height: 40%;
+      }
+      #alert .info span{
+          position: absolute;
+          top: 5%;
+          padding: 15px;
+          color: #fff;
+          font-weight: bold;
+          font-size: 14px;
+      }
+
+		 </style>
+	 </head>
+<body>
+    <div id="main">
+
+		<div id="list">
+			<ul></ul>
+		</div>
+		<div id="btn">
+      <ul>
+        <li>Table</li>
+        <li>Sphere</li>
+        <li>Helix</li>
+        <li>Grid</li>
+      </ul>
+    </div>
+    <!--li点击后的弹出层-->
+    <div id="alert" class="before">
+      <div class="title"><span>课题：VIP57课-潭州案例库的制作</span></div>
+      <div class="img"><img src="img/test.png" /></div>
+      <div class="author"><span>主讲老师：阿飞老师</span></div>
+      <div class="info"><span>描述：这大概是最屌的案例了……</span></div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function(){
+	    var num = 5*5*5;//定义一个num
+	    //获取元素
+	    var oList = document.getElementById('list');
+	    var oUl = oList.getElementsByTagName('ul')[0];
+	    var oMain = document.getElementById('main');
+	    var timer = null;//全局定时器
+        /*
+         * * 利用for循环来循环生成num个li标签
+         * * 给每个li对象添加自己的坐标
+         * * 然后添加到oUl里面
+         */
+        (function(){
+        for( var i=0;i<num;i++ ){
+        	var oLi = document.createElement('li');
+        	oLi.x = i%25%5;//根据oLi的序号求出oLi的x坐标
+        	oLi.y = Math.floor(i%25/5);//同理
+        	oLi.z = Math.floor(i/25);//同理
+        	oLi.innerHTML = 'x:'+ oLi.x + 'y:' + oLi.y + 'z:' + oLi.z;
+          //入场动画
+          var sx = Math.random()*6000 - 3000;
+          var sy = Math.random()*6000 - 3000;
+          var sz = Math.random()*6000 - 3000;
+          oLi.style.transform = 'translate3D('+sx+'px,'+sy+'px,'+sz+'px)';
+        	oUl.appendChild(oLi);//添加到oUl里面
+        }
+        setTimeout(Grid,200);
+      })();
+      //左下btn点击
+        (function () {
+            var aBtn = document.getElementById("btn").getElementsByTagName("li");
+            var arr = [Table , Sphere , Helix , Grid];
+            for (var i = 0 , length = aBtn.length; i < length; i++) {
+                (function(i){
+                    aBtn[i].onclick = arr[i];
+                })(i);
+            }
+        })();
+        //<!--li点击后的弹出层-->
+      (function(){
+      	    //获取元素
+      		var oAlert = document.getElementById('alert');
+      		//运用事件委托的方法
+      		//通过点击li的父级ul
+      		//然后再让ul通过e.target去找到li
+      		//再显示弹窗
+      		//tartget.nodeName为LI
+      		//要把他转为小写
+      		//判断点击的是不是当前的li
+      		//这个过程需要阻止一下冒泡
+      		oUl.onclick = function(e){
+      			var target = e.target;
+      			var isLi = (/li/i).test(target.nodeName);
+      			if( isLi ){
+      				//显示弹窗
+      				show();
+      			}
+      			e.cancelBubble = true;//阻止事件冒泡
+      			//return false;//阻止默认事件
+      		};
+      		//阻止一下alert的事件冒泡
+      		oAlert.onclick = function(e){
+      			e.cancelBubble = true;
+      		}
+      		//当document被点击时oAlert隐藏
+      		document.onclick = function(e){
+      			(oAlert.style.display==='block')&&hide();
+      		}
+      		//弹窗显示函数
+      		function show(){
+      			//一上来就清楚定时器
+      			cancelAnimationFrame(timer);
+      			//一开始要让弹窗变得很大透明度为0
+      			oAlert.style.display = 'block';
+      			oAlert.style.transform = 'rotateX(0deg) scale(2)'
+      			oAlert.style.opacity = 0;
+      			//接着就是要让透明变大
+      			//弹窗大小变小
+      			var scale = 2;//初始透明度
+      			var tscale = 1;//目标透明度
+      			var time = 300;//动画的总时间
+      			var stime = new Date();//动画的初始时间
+      			//开启动画
+      			function m(){
+      				var etime = new Date();
+      				var prop = (etime-stime)/time;//求出时间变化量
+      			//从而根据时间变化量求出opacity
+      			//检查prop是否比1大
+      			//比1大就赋值为1
+      			//否则执行动画
+      			    if(prop>1){
+      			    	prop = 1;
+      			    }else{
+      			    	timer = requestAnimationFrame(m);//相当于
+      			    }
+      			    var sca = (tscale-scale)*prop+scale; 
+      			    oAlert.style.opacity = prop;
+      			    oAlert.style.transform = 'rotateX(0deg) scale('+sca+')';
+      				
+      			};
+      			requestAnimationFrame(m);//
+      		};
+      		//弹窗隐藏函数
+      		function hide(){
+      			//一上来就清除定时器
+      			cancelAnimationFrame(timer);
+      			oAlert.style.display = 'block';
+      			oAlert.style.transform = 'rotateX(0deg) scale(1)';
+      			oAlert.style.opacity = 1;
+      			var time = 1000;
+      			var stime = new Date();
+      			function m(){
+      				var etime = new Date();
+      				var prop = (etime-stime)/time;
+      				if( prop>1 ){
+      					prop = 1;
+      					oAlert.style.display = 'none';
+      				}else{
+      					timer = requestAnimationFrame(m);
+      				}
+      				var pa = 1-prop;
+      				oAlert.style.opacity = pa;
+      				oAlert.style.transform = 'rotateX('+ 270*prop +'deg) scale('+pa+')';
+      			}
+      			requestAnimationFrame(m);
+      		};
+
+
+      })();
+      //Grid网格布局
+      var aLi = oUl.children;//获取到所有的li标签
+      var length = aLi.length;//li的长度
+      function Grid(){
+            if( Grid.arr ){
+              for( var i=0;i<length;i++ ){
+                aLi[i].style.transform = Grid.arr[i];
+              }
+            }else{
+              Grid.arr = [];
+              var disX = 350;//每个li 水平（x）方向的间距
+              var disY = 350;//每个li 垂直（y）方向的间距
+              var disZ = 800;//每个li 纵深（z）方向的间距
+
+              for( var i=0;i<length;i++ ){
+                var oLi = aLi[i];//存储
+                var x = (oLi.x - 2)*disX;
+                var y = (oLi.y - 2)*disY;
+                var z = (oLi.z - 2)*disZ;
+                var val = "translate3D("+x+"px,"+y+"px,"+z+"px)";
+                Grid.arr[i] = val;
+                oLi.style.transform = val;
+              } 
+            }
+            
+        };
+        //Helix布局方式
+	   function Helix(){
+          if( Helix.arr ){
+            for( var i=0;i<length;i++ ){
+              aLi[i].style.transform = Helix.arr[i];
+            }
+          }else{
+            Helix.arr = [];
+            var h = 5;//有5层
+            var num = Math.round(length/h);//每层有几个
+            var deg = 360/num;//算出角度
+            var tY = 10;//偏移量
+            var mid = Math.floor(length/2);//算出中间的序号
+            for (var i=0;i<length;i++) {
+                //这里要注意先旋转角度，
+                var val = 'rotateY('+i*deg+'deg) translateY('+(i-mid)*tY+'px) translateZ('+1000+'px)';
+                Helix.arr[i] = val;
+                aLi[i].style.transform = val;
+            }
+          }
+          
+	   };
+	   function Table(){
+        if( Table.arr ){
+          for( var i=0;i<length;i++ ){
+            aLi[i].style.transform = Table.arr[i];
+          }
+        }else{
+          //先确定x轴的中心线
+          //现确定y轴的中心线
+          //求出x轴的中心坐标midX
+          //求出y轴的中心坐标midY
+          //设置每个li在x轴方向的距离disX
+          //设置每个li在y轴方向的距离disY
+          //先把前18个元素给确定了坐标
+          Table.arr = [];
+          var num = 18;
+          var half = 0.5;
+          var n = Math.ceil(length/num)+2;
+          var midY = n/2-half;
+          var midX = num/2-half;
+          var disX = 170;
+          var disY = 210;
+          var x,y;
+          var arr = [
+                      {x : 0, y : 0},
+                      {x : 17, y : 0},
+                      {x : 0, y : 1},
+                      {x : 1, y : 1},
+                      {x : 12, y : 1},
+                      {x : 13, y : 1},
+                      {x : 14, y : 1},
+                      {x : 15, y : 1},
+                      {x : 16, y : 1},
+                      {x : 17, y : 1},
+                      {x : 0, y : 2},
+                      {x : 1, y : 2},
+                      {x : 12, y : 2},
+                      {x : 13, y : 2},
+                      {x : 14, y : 2},
+                      {x : 15, y : 2},
+                      {x : 16, y : 2},
+                      {x : 17, y : 2}
+                  ];
+
+          for( var i=0;i<length;i++ ){
+            if( i<18 ){
+              var j,k;
+              j = arr[i].x;
+              k = arr[i].y;
+            }else{
+              j = i%18;
+              k = Math.floor(i/18)+2;
+            } 
+            var val = "translate3D("+(j-midX)*disX+"px,"+(k-midY)*disY+"px,0px)";
+            Table.arr[i] = val;
+            aLi[i].style.transform = val ;
+          }
+        }
+        
+     };
+	   function Sphere(){
+        if( Sphere.arr ){
+          for( var i=0;i<length;i++ ){
+            aLi[i].style.transform = Sphere.arr[i];
+          }
+        }else{
+          Sphere.arr = [];
+          var arr = [1,3,7,9,11,14,21,16,12,10,9,7,4,1];//将125分成14层
+          var arrlength = arr.length;//求出数组的长度
+          var xDeg = 180/(arrlength-1);
+          for( var i=0;i<length;i++ ){
+            //求出li处于哪一层 第几个
+            //需要设置变量numC numG
+            //求出每一层y的旋转度数
+            //yDeg = 360/numG
+            //numG = arr[j]-(arrsum-i)
+            //最上面的旋转度数为 90deg
+            //最下面的旋转度数为-90deg
+            //所以要设置变量deg = 90
+            var numG = 0;
+            var numC = 0;
+            var deg = 90;
+            var arrsum = 0;
+            for( var j=0;j<arrlength;j++ ){
+              arrsum += arr[j];
+              if(arrsum>i){
+                numG = arr[j]-(arrsum-i);
+                numC = j;
+                break;
+              }
+            }
+            var yDeg = 360/arr[numC];
+            var val = 'rotateY('+(numG+1.3)*yDeg+'deg) rotateX('+(90-numC*xDeg)+'deg) translateZ('+1000+'px)';
+            Sphere.arr[i] = val;
+            aLi[i].style.transform = val;
+          }
+        }
+	   };
+        //鼠标的拖拽功能
+        (function(){
+           //鼠标按下事件
+           //设定初始值
+           var roX = 0;
+           var roY = 0;
+           var roZ = -3000;
+           //禁止被选中
+           document.onselectstart = function(){
+           	   return false;
+           };
+           //禁止拖拽
+           document.ondrag = function(){
+           	  return false;
+           };
+           document.onmousedown = function(e){
+           	   //清除上一次的定时器
+           	   cancelAnimationFrame(mousetimer);
+               var sX = e.clientX;//鼠标按下的x坐标
+               var sY = e.clientY;//鼠标按下的y坐标
+               var lastX = sX;//存储上一次的位置
+               var lastY = sY;
+               var chagX = 0;//变化量
+               var chagY = 0;
+               var mousetimer = null;//用来停止上一个动画
+              //鼠标移动事件
+           	  document.onmousemove = function(e){
+                  var nX = e.clientX;//鼠标移动的x坐标
+                  var nY = e.clientY;//鼠标移动的y坐标
+                  chagX = nX - lastX;//x坐标的距离差
+                  chagY = nY - lastY;//y坐标的距离差
+                  roX -= chagY*0.3;
+                  roY += chagX*0.3;
+                  oUl.style.transform = "translateZ("+roZ+"px) rotateX("+roX+"deg) rotateY("+roY+"deg)";
+                  lastX = nX;
+                  lastY = nY;
+           	  };
+           	  //鼠标抬起事件
+             this.onmouseup = function(){
+           	     this.onmousemove = null;//释放掉
+           	     //给oUl添加上一个衰减指数
+           	     //形成一个惯性 使oUl在运动时
+           	     //慢慢停下来 但是他是听不了的
+           	     //因为他是无限趋近于 0
+           	     //所以我们要判断 大于某个距离就return
+           	     //不执行
+           	     function m(){
+                    chagX *= 0.9;//衰减指数0.9
+                    chagY *= 0.9;
+                    roX -= chagY*0.3;//这里与上面一样
+                    roY += chagX*0.3;
+
+                    oUl.style.transform = "translateZ("+roZ+"px) rotateX("+roX+"deg) rotateY("+roY+"deg)";
+                    mousetimer = requestAnimationFrame(m);
+           	     };
+           	     mousetimer = requestAnimationFrame(m);
+             };
+           	  
+           };
+
+           //window窗口滚动条的滚动事件
+        !function(fn){//转换为表达式
+          //兼容谷歌浏览器
+            if(document.onmousewheel===undefined){
+               document.addEventListener('mousewheel',function(e){
+                   var d = -e.wheelDelta/3;  
+                   fn.call(this,d);  
+               },false);
+            }else{//兼容火狐
+              document.addEventListener('DOMMouseScroll',function(e){
+                    var d = e.detail/120;
+                    fn.call(this,d);
+              },false);
+            }
+
+        }(function(d){
+             roZ += d*100;
+             oUl.style.transform = "translateZ("+roZ+"px) rotateX("+roX+"deg) rotateY("+roY+"deg)";
+        });
+    })()
+})()
+</script>
+</body>
+</html>
