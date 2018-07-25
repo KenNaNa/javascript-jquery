@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: relative;
+                width: 420px;
+                height: 520px;
+                background: #0cf;
+                margin: 0 auto;
+            }
+            #box h1{
+                height: 40px;
+                background: #09c;
+                color: #fff;
+                font-size: 20px;
+                line-height: 40px;
+                text-align: center;
+            }
+            #box ul li{
+                margin: 5px 0;
+                height: 42px;
+                overflow: hidden;
+                transition: 0.2s;
+            }
+            #box ul li input{
+                display: block;
+                width: 260px;
+                height: 40px;
+                margin: 0 auto;
+                border: 1px solid #bbb;
+                text-indent: 10px;
+                outline: none;
+            }
+            #box ul li.right input{
+                border: 1px solid #07d968;
+            }
+            #box ul li.wrong input{
+                border: 1px solid #ff0000;
+            }
+            #box ul li.wrong{
+                height: 63px;
+            }
+            #box ul li span{
+                font-size: 12px;
+                color: #ff7965;
+                font-weight: bold;
+            }
+            #sub{
+                display: block;
+                width: 266px;
+                height: 40px;
+                color: #fff;
+                font-size: 18px;
+                background: #09c;
+                margin: 0 auto;
+                border: none;
+                outline: none;
+            }
+            #tip{
+                position: absolute;
+                top: 40%;
+                left: 50%;
+                width: 100px;
+                height: 40px;
+                background: rgba(0,0,0,0.7);
+                line-height: 40px;
+                text-align: center;
+                color: #fff;
+                font-size: 14px;
+                margin-top: -20px;
+                margin-left: -50px;
+                opacity: 0;
+                z-index: -1;
+                transition: top .2s,opacity .2s;
+            }
+            #tip.show{
+                z-index: 0;
+                top: 50%;
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+
+            <h1>注册</h1>
+
+            <form action="" method="get">
+                <ul>
+                    <li>
+                        <input type="text" name="user" placeholder="请输入用户名">
+                        <span>输入有误：字母、数组、_ ，不能以数字开头，长度6~18位</span>
+                    </li>
+                    <li>
+                        <input type="password" name="pwd" placeholder="请输入密码">
+                        <span>输入有误：密码格式不正确</span>
+                    </li>
+                    <li>
+                        <input type="password" placeholder="请再次输入密码">
+                        <span>输入有误：两次输入密码不一致</span>
+                    </li>
+                    <li>
+                        <input type="text" name="tel" placeholder="请输入手机号">
+                        <span>输入有误：手机号输入不正确</span>
+                    </li>
+                    <li>
+                        <input type="text" name="mail" placeholder="请输入e-mail地址">
+                        <span>输入有误：e-mail地址输入不正确</span>
+                    </li>
+                    <li>
+                        <input type="text" name="card" placeholder="请输入身份证号">
+                        <span>输入有误：身份证号输入不正确</span>
+                    </li>
+                </ul>
+            </form>
+
+            <input id="sub" type="button" value="点击注册">
+
+            <p id="tip">请先输入密码</p>
+
+        </div>
+        <script>
+
+            (function () {
+
+                var reg = {
+                    user : /^[a-zA-Z_]\w{5,17}$/,//用户名
+                    pwd : /^[\w~!@#%$^&*()+{}:"<>?|`,/\[\]\-\\\.]{6,18}$/,//密码
+                    tel : /^1[3-8]\d{9}$/,//手机号
+                    mail : /^[1-9a-z_]\w{5,17}@[\da-z]{2,}(\.[a-z]{2,4}){1,2}$/i,//邮箱
+                    IDCard : /^[1-9]\d{16}[\dx]$/i//身份证号
+                };
+
+                var oBox = document.getElementById("box"),
+                    oTip = document.getElementById("tip"),
+                    oSub = document.getElementById("sub"),
+                    aLi = oBox.querySelectorAll("ul li"),
+                    aInp = oBox.querySelectorAll("ul li input"),
+                    length=aLi.length,
+                    regNameArr = ["user","pwd","","tel","mail","IDCard"],//便于input和正则对应
+                    timer = null;
+
+                for (var i = 0; i < length; i++) {
+                    aInp[i].i = i;
+                    if ( i !== 2 ){
+                        aInp[i].onblur = function () {
+                            var val = this.value;
+                            var index = this.i;
+                            if ( val ){
+                                var r = reg[regNameArr[index]]; //获取对应的正则
+                                if ( !r.test(val) ){//如果不满足规则
+                                    this.focus();//重新获得焦点
+                                    aLi[index].className = "wrong";
+                                }else{//如果满足规则
+                                    aLi[index].className = "right";
+                                    aLi[index].ifDone = true;
+                                }
+                            }else{
+                                aLi[index].className = "";
+                                aLi[index].ifDone = false;
+                            }
+                        }
+                    }else{
+                        aInp[i].onfocus = function () {
+                            if ( !aInp[1].value ){
+                                aInp[1].focus();
+                                oTip.className = "show";
+                                clearTimeout(timer);
+                                timer = setTimeout(function () {
+                                    oTip.className = "";
+                                },2000);
+                            }
+                        };
+                        aInp[i].onblur = function () {
+                            var val = this.value;
+                            if ( val ){//判断是否为空
+                                if ( aInp[1].value === val ){
+                                    aLi[2].className = "right";
+                                    aLi[index].ifDone = true;
+                                }else{
+                                    aInp[1].focus();//重新获得焦点
+                                    aLi[2].className = "wrong";
+                                }
+                            }else{
+                                aLi[index].className = "";
+                                aLi[index].ifDone = false;
+                            }
+                        };
+                    }
+                }
+
+                oSub.onclick = function () {
+                    for (var j = 0; j < length; j++) {
+                        if ( !aLi[j].ifDone ){
+                            return;
+                        }
+                    }
+                    //表单.submit();
+                    //ajax提交
+                }
+
+            })();
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

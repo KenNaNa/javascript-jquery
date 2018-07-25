@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>测试-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+	//获取当前时间 
+	var date=new Date(); 
+	var expireDays=10; 
+	//将date设置为10天以后的时间 
+	date.setTime(date.getTime()+expireDays*24*3600*1000); 
+	//将userId和userName两个cookie设置为10天后过期 
+	document.cookie="userId=828; userName=hulk; expire="+date.toGMTString(); 
+	//--> 
+    var c = document.cookie;
+	console.log(c);
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>cookie方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*var j = {
+                name : "阿飞",
+                age : 18
+            };
+
+            setCookie(j,2);*/
+
+            /*var val = getCookie("name"); //agekk
+            alert( val );*/
+
+            alert( getCookie("age") );
+
+
+            //设置cookie
+            function setCookie(vJson , time){
+                var data = new Date( new Date().getTime() + time*24*60*60*1000 ).toGMTString();
+                for (var key in vJson)document.cookie = key+"="+vJson[key]+"; expires="+data;
+            }
+
+            //获取cookie
+            function getCookie(key){
+                var arr = document.cookie.match(new RegExp("(\\s|^)"+key+"=([^;]*)(;|$)"));
+                return arr?arr[2]:"";
+            }
+
+            //移出cookie
+            function removeCookie(key){
+                var json = {};
+                json[key] = "";
+                setCookie(json , -1);
+            }
+
+
+
+            /*function getCookie(key){
+                var cookie = document.cookie;
+                var reg = new RegExp("(\\s|^)"+key+"=([^;]*)(;|$)");    //   (\s|^)age=(.*)(;|$)
+                var s = cookie.match(reg)[2];
+                return s;
+            }*/
+</script>
+</body>
+</html>
