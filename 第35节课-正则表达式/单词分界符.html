@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>单词分界符-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var reg = /[\<cat]/;//\<是指以cat开头
+	var str = 'cats';
+	var b = reg.test(str);
+	alert(b);//true
+    
+	var reg = /[cat\>]/;//\>是指以cat结尾
+	var str = 'scat';
+	var b = reg.test(str);
+	alert(b);//true
+
+	var reg = /[\<cat\>]/;//\>是指以cat结尾
+	var str = 'catscat';
+	var b = reg.test(str);
+	alert(b);//true
+	
+
+</script>
+</body>
+</html>

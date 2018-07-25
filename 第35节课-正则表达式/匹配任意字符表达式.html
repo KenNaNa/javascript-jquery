@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>匹配任意字符表达式-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var reg = /gr[e|a]y/;//grey|gray
+	var str = 'gray';
+	var b = reg.test(str);
+	alert(b);//true
+    
+	var reg = /^(From|Subject|Date):*/;//grey|gray
+	var str = 'From:http://www.baidu/ Subject:being Date:mon';
+	var b = reg.test(str);
+	alert(b);//true
+	
+
+</script>
+</body>
+</html>

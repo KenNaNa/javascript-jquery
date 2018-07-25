@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+
+            1. 字符集后面也能加量词
+            2. 数字转义是有特殊意义的，在字符串里面也是一样，但是不需要去了解是什么东西
+
+            */
+
+            /*var reg = /[abc]{3}/;
+            var str = "cab";*/
+
+            /*var reg = /a\1/;
+            var str = "aaa\1";
+
+            console.log( str.match( reg ) );*/
+
+
+            /*
+            str.search(reg)
+                返回正则第一次出现的位置，匹配失败返回-1
+
+            str.split(reg)
+                意思同前面章节讲解的字符串的方法
+                可以传字符串，也可以传正则表达式
+             */
+
+            var reg = /[abc]/;
+
+            var str = "阿飞a狗蛋b大锤c心艾";
+
+            console.log( str.split(reg) );
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

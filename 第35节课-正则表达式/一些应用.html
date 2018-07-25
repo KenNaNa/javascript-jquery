@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>一些应用-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+	  1.字符串中出现次数最多的字符
+var re = /(\w)\1+/g; 
+(\w)外面的圆括号表示分组,\1表示重复第一分组中的内容 ，\1+表示 \w匹配到的字符重复n次，后面的g表示执行全部替换
+str.replace的第二个参数是个函数,参数a表示整个匹配到的字符串，b表示第一捕获分组也就是出现重复的单个字符 ，将a.length 与已经记录 过的最多重复num比较，如果a.length 更大，就将它赋值给num,用value记录重复字符 b，这个函数返回的是替换文本，但这里没有返回值，也就是说替换 为空，每次替换这个函数都被执行
+	*/
+	var str = 'mmmmmmmmaaammmmmmmmmbbbbsccc';
+function most(str) {
+  var arr = str.split('');
+  str = arr.sort().join('');//将字符串按单个字符分割，然后排序组合，经过这一步，相同的字符就会排列到一起
+  var reg = /(\w)\1+/g;
+  var num = 0;
+  var value = '';
+  str.replace(reg, function (a,b) {
+  // console.log(a);
+    if (num<a.length) {
+      num = a.length;
+      value = b;
+    }
+  });
+  return '出现次数最多的字符是' + value + '出现了' + num + '次';
+}
+console.log(most(str));
+
+/*
+  2.从url中提取子域名
+*/
+var url = "http://www.abc.com";
+    var reg = /[^.]+/;//匹配除了.之外的其他字符
+    var res = reg.exec(url)[0].substr(7);
+    console.log(reg.exec(url));//["http://www", index: 0, input: "http://www.abc.com"]
+    console.log(res);//www
+
+	/*
+	  3.给字符串加千分符
+	*/
+
+	var str = "12345678912312";
+  function fn(str){
+       var reg = /(?=(?!b)(\d{3})+$)/g;
+       return str.replace(reg,',');
+      }
+      var res = fn(str);
+     console.log(res);//12,345,678,912,312
+</script>
+</body>
+</html>

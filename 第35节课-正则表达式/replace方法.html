@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>replace方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+	  replace方法
+      replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+      返回值：一个新的字符串，是用 replacement 替换了 regexp 的第一次匹配或所有匹配之后得到的。
+      字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 replacement 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。 
+	*/
+	var str = "xxx";
+    console.log(str.replace('x','y'));//yxx
+    console.log(str.replace(/x/,'y'));//yxx
+    console.log(str.replace(/x/g,'y'));//yyy
+
+	//用子表达式替换：$1和$2
+  //正则表达式中()就是一个子表达式，$1对应是第一个表达式的内容，即java，$2为script
+  var str = "javascript";
+  console.log(str.replace(/(java)(script)/,'$2$1')); //输出：scriptjava 
+  //$& 为正则表达式匹配的字符串
+  //正则表达式通过直接量java来匹配，匹配结果为java，则 $&的值为java，然后用字符串$&-来替换匹配的字符串
+  var str1 = "javascript";
+  console.log(str1.replace(/java/,'$&-')); //输出：java-script
+ 
+  var str2 = "javascript";
+  // $`为匹配子串ava的左侧文本，则为j
+  console.log(str2.replace(/ava/,"$`")); //输出：jjscript
+  // $'为匹配子串ava的右侧文本，则为script
+  console.log(str2.replace(/ava/,"$'")); //输出：jscriptscript
+  // $$为直接量符号，即插入一个$符号
+    console.log(str2.replace(/ava/,"$$"));//输出：j$script
+
+	/*
+	  replace的参数replacement是函数
+      match 为匹配整个字符串，即：xyz45678%$&^
+     a1 为第一个子表达式，([^\d]*)，匹配0个或多个非数字的字符，即:xyz
+     a2 为第二个子表达式,(\d*)，匹配0个或多个的数字，即：45678
+      a3 为第三个子表达式，([^\w]*)，匹配0个或匹配任何非单词字符。等价于 [^A-Za-z0-9_]，即 %$&^
+      index为模式匹配出现的位置，从第一个字符已经匹配成功，则位置为0
+      string为字符串本身，即 xyz45678%$&^
+	*/
+	function replacer(match, a1, a2, a3, index, string) {
+      return [a1, a2, a3].join(' ~ ');
+    }
+    var str = 'xyz45678%$&^';
+    var reg = /([^\d]*)(\d*)([^\w]*)/
+    var res = str.replace(reg, replacer); 
+    console.log(res);//xyz ~ 45678 ~ %$&^
+</script>
+</body>
+</html>

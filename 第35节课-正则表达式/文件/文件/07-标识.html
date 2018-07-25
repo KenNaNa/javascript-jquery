@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+            标识：
+                g 全局匹配
+                i 不区分大小写
+                m 换行匹配
+             */
+            /*var reg = /1{2}/g;
+            var str = "11狗11蛋11";*/
+
+            /*var reg = /abc/gi;
+            var str = "Abc";*/
+
+            /*var x = "ig";
+            var reg = new RegExp("" , x);
+
+            console.log( str.match(reg) );*/
+
+            var str = "123gou888dan753";
+            var arr = str.match(/\d+/g);
+            console.log( arr );
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

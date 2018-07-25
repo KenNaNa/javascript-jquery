@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+            正则表达式写法：
+
+            正则的使用：
+                reg.test( str );   返回一个布尔值，匹配成功返回true，匹配失败返回false
+             */
+            /*var r = /12 3/;
+
+            var str = "狗蛋123";
+
+            alert( r.test( str ) );*/
+
+            var a = "123";
+
+            var r = new RegExp(a);
+            //var r = new RegExp( "1"+"23" );
+
+            var str = "狗蛋123";
+
+            alert( r.test( str ) );
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

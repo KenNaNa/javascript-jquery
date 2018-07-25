@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+
+            .  正则里面代表任意字符
+
+            ^  在字符集之外，代表起始部分
+
+            $  代表结束部分
+
+            惰性： 给任意量词后加 ? 变成惰性匹配，尽量往少着匹配
+
+
+            特殊字符：
+                / \ { } ( ) [ ] . ^ $ + * ? |
+                （字符集里面要注意与上面不同）
+             */
+
+            //var reg = /./;
+
+            /*var reg = /^b/;
+            var str = "bagb";
+
+            alert( reg.test(str) );*/
+
+            var reg = /a{2,4}?/;
+            var str = "aaaaa";
+
+            console.log( str.match( reg ) );
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            str.replace(reg , rStr)
+                str 字符串
+                reg 正则表达式
+
+                rStr  1.  string 将匹配成功的部分替换为 该字符串
+                      2.  function 将匹配成功的部分替换为 该函数的返回值
+                            该函数形参分别对应 ====  匹配整体，第一个子项，第二个子项…………
+
+                最终返回新字符串（不改变原来的字符串str）
+             */
+
+            /*var reg = /[abc]/g;
+
+            var str = "阿飞abc";
+
+            var nS = str.replace( reg , "6666666" );*/
+
+            /*var str = "abc";
+            var nS = str.replace("a" , "x");*/
+
+            /*var reg = /[abc]/g;
+            var str = "阿飞abc";
+
+            var nS = str.replace(reg , function () {
+                return "x";
+            });*/
+
+
+            /*var reg = /狗蛋(阿飞)(66)/;
+
+            var str = "sss狗蛋阿飞66ppp";
+
+            var nS = str.replace(reg , function (i,j,k) {
+                console.log( i + "---" + j + "---" + k );
+            });*/
+
+
+            var reg = /[abc]/g;
+            var str = "阿飞abc";
+
+            var nS = str.replace(reg , function (f) {
+                return f+"x";
+            });
+
+            console.log( nS );
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

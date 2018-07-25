@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var reg = {
+                qq : /^[1-9]\d{4,9}$/,//QQ号
+                user : /^[a-zA-Z_]\w{5,17}$/,//用户名
+                pwd : /^[\w~!@#%$^&*()+{}:"<>?|`,/\[\]\-\\\.]{6,18}$/,//密码
+                tel : /^1[3-8]\d{9}$/,//手机号
+                mail : /^[1-9a-z_]\w{5,17}@[\da-z]{2,}(\.[a-z]{2,4}){1,2}$/i,//邮箱
+                IDCard : /^[1-9]\d{16}[\dx]$/i//身份证号
+            };
+
+            var str = "tanzhou_fly@qq.com";
+            alert( reg.mail.test( str ) );
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

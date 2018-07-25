@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>脏字过滤-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+
+            #box{
+                width: 300px;
+                margin: 50px auto;
+            }
+            #txt{
+                height: 30px;
+            }
+            #btn{
+                width: 50px;
+                height: 34px;
+            }
+            #list li{
+                position: relative;
+                margin: 10px 0;
+                border-bottom:1px solid pink;
+            }
+            #list li .time{
+                display: block;
+                color: #999;
+                font-size: 12px;
+
+            }
+            #list li .word{
+                font-size: 16px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+
+            <input type="text" id="txt"><input type="button" id="btn" value="发送">
+
+            <ul id="list">
+                <!--<li><i class="time">21:57</i><span class="word">ssss</span></li>-->
+            </ul>
+
+        </div>
+<script>
+
+            var oTxt = document.getElementById("txt"),
+                oBtn = document.getElementById("btn"),
+                oUl = document.getElementById("list"),
+                reg = /傻.{0,2}逼|(操)?你(妈|爸)|SB/ig;
+
+            oBtn.onclick = function () {
+                var val = oTxt.value;
+                if ( val ){
+                    val = val.replace(reg , function($){
+                        var s = "";
+                        for (var i = 0,length=$.length; i < length; i++) {
+                            s += "*";
+                        }
+                        return s;
+                    });
+
+                    //获取日期：
+                    var data = new Date(),
+                        hh = data.getHours(),
+                        mm = data.getMinutes(),
+                        ss = data.getSeconds();
+                    hh = toTwo(hh);
+                    mm = toTwo(mm);
+                    ss = toTwo(ss);
+
+                    //生产li
+                    var oLi = document.createElement("li");
+                    oLi.innerHTML = "<i class='time'>"+hh+":"+mm+":"+ss+"</i><span class='word'>"+val+"</span>";
+                    oUl.insertBefore(oLi , oUl.children[0]);
+                    oTxt.value = "";
+                }
+            };
+
+            function toTwo(n) {
+                return n<10?"0"+n:n+"";
+            }
+
+
+        </script>
+</body>
+</html>

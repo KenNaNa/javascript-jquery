@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+            字符集： []
+                1.  一段连续的内容：
+                    [0-9]
+                    [a-z]
+                    [A-Z]
+                    [\u4e00-\u9fa5]
+
+                2. 或者
+
+                3. 除了 [^],
+                    放在字符集最开始才有除了的意思，否则就是没有特殊意义
+
+                注意：
+                    ①：- 在字符集里面（可能）是有特殊意义的，所以在字符集里面要匹配 "-" 本身最好加 \；
+                    ②：- 在字符集之外是没有特殊意义的；
+                    ③：大多数在正则里面有特殊意义的字符，在字符集里面都没有特殊意义；
+                          (){}?+*
+
+
+            或者： |
+
+
+             */
+            /*var reg = /[0-9]/;
+
+            var str = "hsha12";*/
+
+            /*//var reg = /a|bc/; //整体的或者   a  bc
+            var reg = /(a|b)c/; //局部的子集内的或者  ac  bc
+            var str = "123bc";*/
+
+            /*var reg = /[a\-0]/;
+            var str = "-";*/
+
+           /* var reg = /1-3/;
+            var str = "1-3";*/
+
+           /*//var reg = /[(a{8,9})]/;
+            var reg = /[\d]/;
+            var str = "d";*/
+
+           var reg = /[a^b]/g;
+           var str = "^ac";
+
+            console.log( str.match(reg) );
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

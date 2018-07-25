@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>加号星号-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var reg = /<H[1-6] *>/;//只匹配与*之前元素紧邻的元素一个或者多个 也可以不出现
+	var str = '<H2  >';
+	var b = reg.test(str);
+	alert(b);//true
+
+	var reg = /<H[1-6] *>/;//只匹配与*之前元素紧邻的元素一个或者多个 也可以不出现
+	var str = '<H2  >';
+	var b = reg.test(str);
+	alert(b);//true
+
+	var reg = /<H[1-6] *>/;//只匹配与*之前元素紧邻的元素一个或者多个 也可以不出现
+	var str = '<H2>';
+	var b = reg.test(str);
+	alert(b);//true
+
+
+	var reg = /<H[1-6] +>/;//只匹配与*之前元素紧邻的元素一个或者多个
+	var str = '<H2>';//至少匹配一个空格
+	var b = reg.test(str);
+	alert(b);//false
+</script>
+</body>
+</html>

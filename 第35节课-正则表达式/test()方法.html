@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>test()方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+     test方法
+	 检索字符串中指定的值。返回 true 或 false。 
+	 如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false。
+	 Demo1:
+	 如果正则表达式带有g修饰符，则每一次test方法都从上一次匹配结束的位置开始匹配。
+	 使用了g修饰符的正则表达式，表示要记录每一次搜索的位置，接着使用test方法，每次开始搜索的位置都是上一次匹配的后一个位置。
+   */
+    var reg = /abc/g;
+    var str = "123abc456abc";
+    console.log(reg.lastIndex);//0
+    console.log(reg.test(str));//true
+    console.log(reg.lastIndex);//6
+    console.log(reg.test(str));//true
+    console.log(reg.lastIndex);//12
+    console.log(reg.test(str));//false
+
+	/*
+	  如果正则表达式是一个空字符串，则会匹配所有的字符串，但需要使用new RegExp()方式
+	*/
+	console.log(new RegExp('').test('abc'));//true
+    console.log(/''/.test('abc'));//false只匹配空格字符串
+    console.log(/''/.test("''"));//true
+</script>
+</body>
+</html>

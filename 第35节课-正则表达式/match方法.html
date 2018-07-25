@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>match方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+	  match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。该方法类似 indexOf() 和 lastIndexOf()，但是它返回指定的值，而不是字符串的位置。
+     字符串对象的match方法与正则对象的exec方法比较类似：
+     但是如果正则表达式带有g修饰符，那么match方法与exec方法就有差别了:
+     可以看到match返回了所有成功匹配的结果，但是exec方法只返回了一个。 
+	*/
+	var str = "abcd";
+    var reg1 = /a/;
+    var reg2 = /x/;
+    console.log(str.match(reg1));//["a", index: 0, input: "abcd"]
+    console.log(str.match(reg2));//null
+ 
+    var str = "abcdabc";
+    var reg = /a/g;
+    console.log(str.match(reg));//["a", "a"]
+    console.log(reg.exec(str));//["a", index: 0, input: "abcdabc"]
+</script>
+</body>
+</html>

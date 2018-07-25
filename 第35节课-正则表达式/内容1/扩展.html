@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>扩展-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+
+	1. 字符集后面也能加量词
+	2. 数字转义是有特殊意义的，在字符串里面也是一样，但是不需要去了解是什么东西
+
+	*/
+	/*var reg = /[abc]{3}/;//匹配三个属于[abc]字符
+	var str = 'acb';
+	alert(reg.test(str));//true*/
+
+	/*var reg = /[abc]{3,}/;//匹配多于三个属于[abc]字符
+	var str = 'acbbbb';
+	alert(reg.test(str));//true*/
+
+	/*var reg = /[abc]{3,6}/;//匹配三个属于[abc]字符
+	var str = 'aaaaaaaaa';//超过6了
+	alert(reg.test(str));//true*/
+    
+
+	var reg = /[abc]{3,6}/;//匹配三个属于[abc]字符
+	var str = 'a';//超过6了
+	alert(reg.test(str));//false
+	
+
+	/*
+            str.search(reg)
+                返回正则第一次出现的位置，匹配失败返回-1
+
+            str.split(reg)
+                意思同前面章节讲解的字符串的方法
+                可以传字符串，也可以传正则表达式
+             */
+    var reg = /[abc]/;
+
+            var str = "阿飞a狗蛋a大锤a心艾";
+
+            console.log( str.split(reg) );// ["阿飞", "狗蛋", "大锤", "心艾"]
+    
+	var reg = /[abc]{3}/;
+
+            var str = "阿飞abc狗蛋cab大锤abc心艾";
+
+            console.log( str.split(reg) )// ["阿飞", "狗蛋", "大锤", "心艾"]
+    
+	var reg = /(abc)/;
+
+            var str = "阿飞abc狗蛋cab大锤abc心艾";
+
+            console.log( str.split(reg) )//["阿飞", "abc", "狗蛋cab大锤", "abc", "心艾"]
+
+	var reg = /(abc){3}/;
+
+            var str = "阿飞abc狗蛋cab大锤abc心艾";
+
+            console.log( str.split(reg) );//["阿飞abc狗蛋cab大锤abc心艾"]
+
+    var reg = /(ab)c/;
+
+            var str = "阿飞abc狗蛋abc大锤abc心艾";
+
+            console.log( str.split(reg) );// ["阿飞", "ab", "狗蛋", "ab", "大锤", "ab", "心艾"]
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>字符集-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+            字符集： []
+                1.  一段连续的内容：
+                    [0-9]
+                    [a-z]
+                    [A-Z]
+                    [\u4e00-\u9fa5]
+
+                2. 或者
+
+                3. 除了 [^],
+                    放在字符集最开始才有除了的意思，否则就是没有特殊意义
+
+                注意：
+                    ①：- 在字符集里面（可能）是有特殊意义的，所以在字符集里面要匹配 "-" 本身最好加 \；
+                    ②：- 在字符集之外是没有特殊意义的；
+                    ③：大多数在正则里面有特殊意义的字符，在字符集里面都没有特殊意义；
+                          (){}?+*
+
+
+            或者： |
+         
+			 */
+    /*var reg = /[0-9]/;//匹配字符集里面的任意一个字符
+	//var reg = /0-9/;//是指匹配0 - 9
+	//var str = '0';
+	//var str = '021';
+	var str = 'asdf1';//只要字符串李面有数字字符就可以匹配得到
+	var b = reg.test(str);
+	alert(b);//true*/
+    
+	/*var reg = /[.*\/]/;//匹配字符集里面的任意一个字符
+	//var reg = /0-9/;//是指匹配0 - 9
+	//var str = '0';
+	//var str = '021';
+	var str = '.';//只要字符串李面有数字字符就可以匹配得到
+	var b = reg.test(str);
+	alert(b);*/
+
+	/*var reg = /a|b|c/;//或者的意思 匹配的是字符表达式
+	var str = 'a';
+	var b = reg.test(str);
+	alert(b);//true*/
+
+	/*var reg = /a|b|c/;//或者的意思 匹配的是字符表达式 只要能匹配到其中一个就行了
+	var str = 'ab';
+	var b = reg.test(str);
+	alert(b);//true*/
+
+	/*var reg = /a|b|c/;//或者的意思 匹配的是字符表达式
+	var str = 'abcx';
+	var b = reg.test(str);
+	alert(b);//true*/
+
+
+	/*var reg = /(a|b)c/;//或者的意思 匹配的是字符表达式 ac 或者bc
+	var str = 'bc';
+	var b = reg.test(str);
+	alert(b);//true*/
+
+	/*var reg = /(ab)c/;//或者的意思 匹配的是字符表达式 后面加g就只有abc了
+	var str = 'abc';
+	var b = str.match(reg);//匹配的是abc ab
+	alert(b);//true*/
+
+	/*var reg = /(ab)c/g;//或者的意思 匹配的是字符表达式
+	var str = 'ab';
+	var b = reg.test(str);
+	alert(b);//false*/
+
+	/*var reg = /a|b|c/g;//或者的意思 匹配的是字符表达式
+	var str = 'abc';
+	var b = str.match(reg);//a b c
+	alert(b);//true*/
+
+    /*var reg = /abc/;
+	var str = '123abc';
+	console.log(str.match(reg));//['abc'];类数组*/
+
+	/*var reg = /(abc)/;
+	var str = '123abc';
+	console.log(str.match(reg));//['abc','abc']类数组*/
+
+	var reg = /[^abbc]/;//意思是匹配除去abbc这几个字符之外的字符
+	//var str = 'acbshff';
+	//alert(reg.test(str));//true
+	var str = 'abbc';
+	alert(reg.test(str);//报错了
+</script>
+</body>
+</html>

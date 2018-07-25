@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-">
+ <title>正则验证常用表单方法</title>
+ <script type="text/javascript">
+ function focus_username() {
+  var resultObj=document.getElementById('result_username');
+  resultObj.innerHTML="以字母开头的-位的字符";
+  resultObj.style.color="blue";
+  document.form.username.style="border:px solid red";
+ } 
+ // function blur_username () {
+ //第一种方法：
+ // var resultObj=document.getElementById('result_username') 
+ // if (document.form.username.value=='') {
+ // resultObj.innerHTML="用户名不能为空";
+ // resultObj.style.color="red";
+ // return false;
+ // }else if (document.form.username.value.length<||document.form.username.value.length>) {
+ // resultObj.innerHTML="用户名字符长度必须介于到个之间";
+ // resultObj.style.color="red";
+ // return false;
+ // }else{
+ // resultObj.innerHTML="ok";
+ // resultObj.style.color="green";
+ // }
+ // }
+ function blur_username () {
+  //第二种方法：
+  var resultObj=document.getElementById('result_username') 
+  var pre=document.form.username.value;
+  var reg=/^[a-zA-Z]\w{,}$/;
+  if (pre=='') {
+  resultObj.innerHTML="(必填项)用户名不能为空";
+  resultObj.style.color="red";
+  return false;
+  }else if (!reg.test(pre)) {
+  resultObj.innerHTML="用户名字符输入不合法";
+  resultObj.style.color="red";
+  return false;
+  }else{
+  resultObj.innerHTML="ok";
+  resultObj.style.color="green";
+  return true;
+  }
+ }
+ function focus_userpwd() {
+ var resultObj=document.getElementById('result_userpwd');
+ resultObj.innerHTML="(必填项)介于-位的非特殊字符";
+ resultObj.style.color="blue";
+ document.form.userpwd.style="border:px solid red";
+ } 
+ // function blur_userpwd () {
+ // var resultObj=document.getElementById('result_userpwd') 
+ // if (document.form.userpwd.value=='') {
+ // resultObj.innerHTML="用户名密码不能为空";
+ // resultObj.style.color="red";
+ // return false;
+ // }else if (document.form.userpwd.value.length<||document.form.userpwd.value.length>) {
+ // resultObj.innerHTML="用户名密码字符长度必须介于到个之间";
+ // resultObj.style.color="red";
+ // return false;
+ // }else{
+ // resultObj.innerHTML="ok";
+ // resultObj.style.color="green";
+ // return true;
+ // }
+ // }
+ function blur_userpwd () { 
+ var resultObj=document.getElementById('result_userpwd') 
+  var pre=document.form.userpwd.value;
+  var reg=/^\w{,}$/;
+ if (pre=='') {
+  resultObj.innerHTML="(必填项)用户名密码不能为空";
+  resultObj.style.color="red";
+  return false;
+  }else if (!reg.test(pre)) {
+  resultObj.innerHTML="用户名密码字符输入不合法";
+  resultObj.style.color="red";
+  return false;
+  }else{
+  resultObj.innerHTML="ok";
+  resultObj.style.color="green";
+  return true;
+  }
+ }
+ function focus_userpwd() {
+ var resultObj=document.getElementById('result_userpwd');
+ resultObj.innerHTML="(必填项)介于-位的非特殊字符";
+ resultObj.style.color="blue";
+ document.form.userpwd.style="border:px solid red";
+ } 
+ // function blur_userpwd () {
+ // var resultObj=document.getElementById('result_userpwd') 
+ // if (document.form.userpwd.value=='') {
+ // resultObj.innerHTML="用户名密码不能为空";
+ // resultObj.style.color="red";
+ // return false;
+ // }else if (document.form.userpwd.value!=document.form.userpwd.value) {
+ // resultObj.innerHTML="两次用户名密码输入不一致";
+ // resultObj.style.color="red";
+ // return false;
+ // }else{
+ // resultObj.innerHTML="ok";
+ // resultObj.style.color="green";
+ // return true;
+ // }
+ // } 
+ function blur_userpwd () {
+  var resultObj=document.getElementById('result_userpwd') 
+  var pre=document.form.userpwd.value;
+  var reg=/^\w{,}$/;
+  if (pre=='') {
+  resultObj.innerHTML="(必填项)用户名密码不能为空";
+  resultObj.style.color="red";
+  return false;
+  }else if (!reg.test(pre)) {
+  resultObj.innerHTML="用户名密码字符输入不合法";
+  resultObj.style.color="red";
+  return false;
+  }else if(document.form.userpwd.value!=document.form.userpwd.value){
+  resultObj.innerHTML="两次用户名密码输入不一致";
+  resultObj.style.color="red";
+  return false;
+  }else {resultObj.innerHTML="ok";
+  resultObj.style.color="green";
+  return true;
+  }  
+ }
+ function focus_Mobile() {
+  var resultObj=document.getElementById('result_Mobile');
+  resultObj.innerHTML="请输入你位数的手机号码";
+  resultObj.style.color="blue";
+  document.form.Mobile.style="border:px solid red";
+ } 
+ function blur_Mobile() { 
+  var resultObj=document.getElementById('result_Mobile') 
+  var pre=document.form.Mobile.value;
+  var reg=/^[||][-]{}$/;
+  if (pre=='') {
+  resultObj.innerHTML="手机号码不能为空";
+  resultObj.style.color="red";  
+  }else if (!reg.test(pre)) {
+  resultObj.innerHTML="手机号码字符输入不合法";
+  resultObj.style.color="red";  
+  }else {
+  resultObj.innerHTML="ok";
+  resultObj.style.color="green";  
+  }  
+ }
+ function focus_Tel() {
+  var resultObj=document.getElementById('result_Tel');
+  resultObj.innerHTML="请输入你的座机号码";
+  resultObj.style.color="blue";
+  document.form.Tel.style="border:px solid red";
+ } 
+ function blur_Tel() { 
+  var resultObj=document.getElementById('result_Tel') 
+  var pre=document.form.Tel.value;
+  var reg=/^{}[-]{,}\-[]?[-]{}$/;
+  if (pre=='') {
+  resultObj.innerHTML="座机号码不能为空";
+  resultObj.style.color="red";
+  }else if (!reg.test(pre)) {
+  resultObj.innerHTML="座机号码字符输入不合法";
+  resultObj.style.color="red";
+  }else {
+  resultObj.innerHTML="ok";
+  resultObj.style.color="green";  
+  }  
+ }
+ function focus_mail() {
+  var resultObj=document.getElementById('result_mail');
+  resultObj.innerHTML="请输入你的邮箱号码";
+  resultObj.style.color="blue";
+  document.form.mail.style="border:px solid red";
+ } 
+ function blur_mail() { 
+  var resultObj=document.getElementById('result_mail');
+  var pre=document.form.mail.value;
+  var reg=/^[a-zA-Z-][a-zA-Z-\._]+@[a-z-]+\.(com)(\.(cn))?$/;
+  if (pre=='') {
+  resultObj.innerHTML="邮箱号码不能为空";
+  resultObj.style.color="red";
+  }else if (!reg.test(pre)) {
+  resultObj.innerHTML="邮箱号码字符输入不合法";
+  resultObj.style.color="red";
+  }else {
+  resultObj.innerHTML="ok";
+  resultObj.style.color="green";
+  }  
+ }
+ function focus_ID() {
+  var resultObj=document.getElementById('result_ID');
+  resultObj.innerHTML="(必填项)请输入你位的二代身份证号码";
+  resultObj.style.color="blue";
+  document.form.ID.style="border:px solid red";
+ } 
+ function blur_ID() { 
+  var resultObj=document.getElementById('result_ID');
+  var pre=document.form.ID.value;
+  var reg=/^[-]{}[-x]$/;
+  if (pre=='') {
+  resultObj.innerHTML="(必填项)二代身份证号码字符不能为空";
+  resultObj.style.color="red";
+  return false;
+  }else if (!reg.test(pre)) {
+  resultObj.innerHTML="二代身份证号码字符输入不合法";
+  resultObj.style.color="red";
+  return false;
+  }else {
+  resultObj.innerHTML="ok";
+  resultObj.style.color="green";
+  return true;
+  }  
+ }
+ function checkForm(){
+  var flag_username=blur_username();
+  var flag_userpwd=blur_userpwd();
+  var flag_userpwd=blur_userpwd();
+  var flag_ID=blur_ID();  
+  if (flag_username==true&&flag_userpwd==true&&flag_userpwd==true&&flag_ID==true) {  
+  return true;
+  }else{
+  return false;
+  } 
+ }
+ </script>
+ <style type="text/css">
+ body{background-image: url(images/.jpg);background-size: cover;}
+ table{margin-left: px;margin-top: px;background-image: url(images/.jpg);background-size: cover;box-shadow: px px px #C}
+ .vip{font-size: px;}
+ </style>
+ </head>
+ <body>
+ <form name="form" action=".php" method="post" onsubmit="return checkForm()">
+ <table width="px" border="px" bordercolor="red" cellpadding="px" cellspacing="px" align="center" >
+ <tr>
+  <th colspan="" class="vip">VIP会员注册</th>
+ </tr>
+ <tr>
+  <td width="px" align="right" >用户名：</td>
+  <td width="px"><input type="text" name="username" onfocus="focus_username()" onblur="blur_username()" ></td>
+  <td><div width="px" id="result_username"></div></td>
+ </tr>
+ <tr>
+  <td align="right">密码：</td>
+  <td><input type="password" name="userpwd" onfocus="focus_userpwd()" onblur="blur_userpwd()" /></td>
+  <td><div id="result_userpwd"></div></td>
+ </tr>
+ <tr>
+  <td align="right">确认密码：</td>
+  <td><input type="password" name="userpwd" onfocus="focus_userpwd()" onblur="blur_userpwd()"/></td>
+  <td><div id="result_userpwd"></div></td>
+ </tr>
+ <tr>
+  <td align="right">手机号码：</td>
+  <td><input type="text" name="Mobile" onfocus="focus_Mobile()" onblur="blur_Mobile()"/></td>
+  <td><div id="result_Mobile"></div></td>
+ </tr>
+ <tr>
+  <td align="right">座机号码：</td>
+  <td><input type="text" name="Tel" onfocus="focus_Tel()" onblur="blur_Tel()"/></td>
+  <td><div id="result_Tel"></div></td>
+ </tr>
+ <tr>
+  <td align="right">邮箱号码：</td>
+  <td><input type="text" name="mail" onfocus="focus_mail()" onblur="blur_mail()"/></td>
+  <td><div id="result_mail"></div></td>
+ </tr>
+ <tr>
+  <td align="right">二代身份证：</td>
+  <td><input type="text" name="ID" onfocus="focus_ID()" onblur="blur_ID()"/></td>
+  <td><div id="result_ID"></div></td>
+ </tr>
+ <tr>
+  <td align="center" colspan=""><input type="submit" value="提交注册" />
+  <input type="reset" value="重置资料" /></td>
+  <td></td>
+ </tr>
+ </table>
+ </form> 
+ </body>
+ </html>

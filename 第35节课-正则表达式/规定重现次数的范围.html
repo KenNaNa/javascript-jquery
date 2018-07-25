@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>规定重现次数的范围-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var reg = /[a-zA-Z]{1,5}/;//只匹配与*之前元素紧邻的元素一个或者多个 也可以不出现
+	var str = 'adfg6';
+	var b = reg.test(str);
+	alert(b);//true
+    
+
+	var reg = /\"[^\"]*\"/;//匹配双引号""
+	var str = '""';
+	var b = reg.test(str);
+	alert(b);//true
+
+	var reg = /\$[0-9]+(\.[0-9]*)?/;//匹配美元金额
+	var str = '$99.09';
+	var b = reg.test(str);
+	alert(b);//true
+
+	var reg = /http:\/\/[^ ]*\.com/ ;//匹配网址
+	var str = 'http://www.baidu.com/';
+	var b = reg.test(str);
+	alert(b);
+
+
+    var reg = /[0-9]{4}\/([1-9]|(1[0-2]))\/([0-2][0-9])|[30]|[31]\//;
+	var str = '2017/7/19/15:50';
+
+	var c = '50';
+	var b = (/^[0-9]+$/).test(c);
+	if(b){
+	    console.log(1)
+	}
+
+	var a = /^[-+]?[0-9]+(\.[0-9]*)?$/;
+	var str = '+32.34';
+	var b = a.test(str);
+	alert(b);//true
+
+	var s = /\s/;//匹配空白
+	var str = 'asc v b';
+	var b = s.test(str);
+	alert(b);
+
+
+	var IP = /^\d+\.\d+\.\d+\.\d+$/;//匹配IP地址
+	var str = '1234.5678.9101112.131415';
+	var b = IP.test(str);
+	alert(b);
+</script>
+</body>
+</html>

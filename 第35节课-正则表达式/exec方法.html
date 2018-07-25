@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*exec方法
+    exec() 方法用于检索字符串中的正则表达式的匹配。
+    返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。*/
+	  var str = "xyz";
+	  var reg1 = /x/;
+	  var reg2 = /a/;
+	  var res1 = reg1.exec(str);
+	  var res2 = reg2.exec(str);
+	  console.log(res1);//["x", index: 0, input: "xyz"]
+	  console.log(res2);//null
+	
+	/*
+	   如果正则表达式包含圆括号，则返回的数组会包括多个元素。首先是整个匹配成功的结果，后面是圆括号里匹配成功的结果，如果有多个圆括号，他们的匹配成功的结果都会成为数组元素
+	   对于调用exec方法后返回的数组具有以下两个属性：
+       input 整个原待匹配的字符串
+       index 整个模式匹配成功的开始位置
+       支持正则表达式的 String 对象的方法
+	*/
+	var str = 'abcdabc';
+    var reg = /(a)b(c)/;
+    var res = reg.exec(str);
+    console.log(res);//["abc", "a", "c", index: 0, input: "abcdabc"]
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            子集：
+
+             */
+
+            /*var reg = /狗蛋((12)(3))/;
+            var str = "去去去狗蛋123我我我";
+
+            */
+
+            var reg = /(12){2,3}/g;
+            var str = "12121212";
+
+            console.log( str.match(reg) );
+            //match 在匹配加了标识g的正则的时候，成功的话返回的是一个真正的数组，并且不包含子集
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

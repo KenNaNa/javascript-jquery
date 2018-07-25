@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>特殊字符-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+
+	.  正则里面代表任意字符
+
+	^  在字符集之外，代表起始部分
+
+	$  代表结束部分
+
+	惰性： 给任意量词后加 ? 变成惰性匹配，尽量往少着匹配
+
+
+	特殊字符：
+		/ \ { } ( ) [ ] . ^ $ + * ? |
+		（字符集里面要注意与上面不同）
+	 */
+
+	 /*var reg = /./;
+	 var str = 'absvm,.';
+	 alert(reg.test(str));
+	 console.log(str.match(reg));//a
+
+	 var reg = /./g;
+	 var str = 'absvm,.';
+	 alert(reg.test(str));
+	 console.log(str.match(reg));// ["a", "b", "s", "v", "m", ",", "."]*/
+
+	 /*var reg = /^[0-9a-zA-Z]/;
+	 var str = '123asdsdf=--';
+	 console.log(str.match(reg));//["1", index: 0, input: "123asdsdf=--"]
+
+	 var reg = /^[0-9a-zA-Z]/g;
+	 var str = '123asdsdf=--';
+	 console.log(str.match(reg));//["1"]*/
+
+	 /*var reg = /abc$/;
+	 var str = 'scabc';
+	 console.log(str.match(reg));//["abc", index: 2, input: "scabc"]
+
+
+	 var reg = /abc$/g;
+	 var str = 'scabc';
+	 console.log(str.match(reg));//["abc"]
+
+	 var reg = /(ab)c$/;
+	 var str = 'scabc';
+	 console.log(str.match(reg));// ["abc", "ab", index: 2, input: "scabc"] 
+
+	 var reg = /^abc$/;
+	 var str = 'abc';
+	 console.log(str.match(reg));//["abc", index: 0, input: "abc"]
+     
+	 var reg = /^abc$/;
+	 var str = 'sabc';
+	 console.log(str.match(reg));//null*/
+
+	 var reg = /a{2,4}?/;
+            var str = "aaaaa";
+
+            console.log( str.match( reg ) );//["aa", index: 0, input: "aaaaa"]
+
+    var reg = /a{2,4}/;
+            var str = "aaaaa";
+
+            console.log( str.match( reg ) );//["aaaa", index: 0, input: "aaaaa"]
+
+    var reg = /a{2,}/;
+            var str = "aaaaa";
+
+            console.log( str.match( reg ) );//["aaaaa", index: 0, input: "aaaaa"]
+</script>
+</body>
+</html>

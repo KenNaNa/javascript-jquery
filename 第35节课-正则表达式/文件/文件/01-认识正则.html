@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+                正则表达式：
+                    规则
+                    用来匹配某一段字符串满不满足某个规则的对象
+             */
+
+            //找出字符里面的数字集合['123','6','753']
+
+
+            /*
+             var str = "123gou60dan753";
+            var arr = [];
+
+            var s = "";
+            for (var i = 0,length=str.length; i < length; i++) {
+                if ( !isNaN(str.charAt(i)) ){
+                    s += str.charAt(i);
+                }else if ( s ){
+                    arr.push( s );
+                    s = "";
+                }
+            }
+            if ( s ){
+                arr.push( s );
+            }
+
+            console.log( arr );*/
+
+            var str = "123gou888dan753";
+            var arr = str.match(/\d+/g);
+            console.log( arr );
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+            转义：\
+                1. 当我们在匹配有特殊意义的字符的时候，我们需要加 \ 符号
+                   特殊字符有哪些？
+                    / \ { } ? + * ( )
+
+                2. \符号，在配合一些特定的字符的时候，有特殊的意义
+                    \n \r \t 字符串里面也有这些
+
+                    \s 空格
+                    \S 非空格
+                    \d 数字
+                    \D 非数字
+                    \w 字符（数字、字母、_）
+                    \W 非字符
+                    \b 独立部分 起始、结束、连词符(除了\w包含的之外)
+                    \B 非独立部分
+             */
+
+            /*var reg = /\S/;
+            var str = "789  8";*/
+
+            /*var reg = /\d\d/;
+            var str = "Goudan00";*/
+
+            /*var reg = /\w/;
+            var str ="狗_蛋";*/
+
+            var reg = /\b1234\b/;
+            var str = "1234-dgfdgsd";
+
+            alert( reg.test(str) );
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

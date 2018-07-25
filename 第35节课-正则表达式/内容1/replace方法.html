@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>replace方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+            str.replace(reg , rStr)
+                str 字符串
+                reg 正则表达式
+
+                rStr  1.  string 将匹配成功的部分替换为 该字符串
+                      2.  function 将匹配成功的部分替换为 该函数的返回值
+                            该函数形参分别对应 ====  匹配整体，第一个子项，第二个子项…………
+
+                最终返回新字符串（不改变原来的字符串str）
+             */
+	
+	/*var reg = /[abc]/g;
+	var str = '李金文abc';
+	var ns = str.replace(reg,'666');
+	console.log(ns);//李金文666666666*/
+
+    /*var reg = /[abc]/;
+	var str = '李金文abc';
+	var ns = str.replace(reg,'666');
+	console.log(ns);//李金文666bc*/
+
+	/*var reg = /[abc]/;
+	var str = '李金文abc';
+	var ns = str.replace('abc','xxx');
+	console.log(ns);//李金文xxx*/
+
+	/*var reg = /[abc]/;
+	var str = '李金文abc';
+	var ns = str.replace(reg,function(){
+	    return '666'
+	});
+	console.log(ns);//李金文666bc*/
+
+	/*var reg = /[abc]/g;
+	var str = '李金文abc';
+	var ns = str.replace(reg,function(){
+	    return '666'
+	});
+	console.log(ns);//李金文666666666*/
+
+    var reg = /狗蛋(阿飞)(66)/;
+    var str = "sss狗蛋阿飞66ppp";
+    var nS = str.replace(reg , function (i,j,k) {
+        console.log( i + "---" + j + "---" + k );//狗蛋阿飞66---阿飞---66
+    });
+    
+
+	 var reg = /[abc]/g;
+            var str = "阿飞abc";
+
+            var nS = str.replace(reg , function (f) {
+                return f+"x";
+            });
+			console.log( nS );//阿飞axbxcx
+</script>
+</body>
+</html>

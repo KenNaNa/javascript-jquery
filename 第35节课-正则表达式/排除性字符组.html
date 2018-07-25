@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>排除性字符组-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   var reg = /[^1-6]/;//匹配任意字符串
+   var str = 'asdfghjhgf';
+   var b = reg.test(str);
+   alert(b);//true;
+
+   var reg = /^[1-6]/;//匹配以1-6开头字符串
+   var str = 'asdfghjhgf';
+   var b = reg.test(str);
+   alert(b);//false;
+</script>
+</body>
+</html>
