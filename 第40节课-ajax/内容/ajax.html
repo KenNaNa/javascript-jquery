@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>ajax-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<a href='aaa.text'>aaaa</a>
+<script>
+    window.onload = function(){
+	   var oA = document.querySelector('a');
+	   oA = onclick = function(){
+		   //1创建一个XMLHttpRequest()对象
+	       var xhr = new XMLHttpRequest();
+          //2准备发送请求的数据url .open(url,method)
+		   var url = this.href;
+		   var method = 'GET';
+		   //var method = 'POST';
+		   //xhr.setRequestHeader('ContentType','application/x-www-form-urlencoded')
+		   xhr.open(url,method);
+          //3发送中send()
+
+		  xhr.send();
+         //4onreadystatechange
+
+		 xhr.onreadystatechange = function(){
+		    if(this.readyState == 4){//5判断是否响应完成 readyState = 4
+			   if(this.status==304||this.status==200){//6status=304||status=200
+			      console.log(this.responseText)//7 responseText
+			   }
+			}
+		 }
+		 return false;
+	   }
+	}
+    
+</script>
+</body>
+</html>
