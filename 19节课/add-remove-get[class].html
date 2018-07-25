@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>by一只鸭子</title>
+</head>
+<body>
+<div id="box">
+   <div class="a b c"></div>
+   <div class="a ab c"></div>
+   <div class="a b bc"></div>
+</div>
+</body>
+<script>
+    var div = document.getElementsByTagName("div");
+
+    function addClass(obj,className){
+        var acn =obj.className?obj.className.split(" "):"";
+        className = className.replace(/(^\s*)|(\s*$)/g, "");
+        /*去除首尾空格*/
+        if(acn.length === 0){
+            obj.className = className;
+            return;
+        }
+        var x = -1, y = false,adn;
+        var j = 0,length = className.length,i = 0,len = acn.length;
+        for(;j<length;j++){
+            if(className[j] === " "){
+                y = true;
+               break;
+            }
+            /*判断是否输入的className有多个*/
+        }
+
+        if(y){
+            className = className.split(" ");
+            length = className.length;
+            for( j = 0;j<length;j++){
+                for( i = 0;i<len;i++){
+                    if(acn[i] === className [j]){
+                        x = i;
+                        className.splice(j,1);
+                        /*去除相同项*/
+
+                    }
+                }
+            }
+            className = className.join(" ");
+            adn = " "+className;
+            acn = (acn.join(" "))+adn;
+            obj.className = acn;
+        }else {
+            for(length=className.length;i<len;i++){
+                if (acn[i] === className){
+                    x = i;
+                    break;
+                }
+            }
+            /*不使用indexOF*/
+        }
+        if(x === -1){
+            adn = " "+className;
+            console.log(acn);
+            acn = acn.join(" ");
+            obj.className = acn+adn
+        }
+    }
+    //可添加多可className  完成去重
+ //   addClass(div[1]," a ");//a b c
+ //   addClass(div[1]," a d");//a b c d
+ //   addClass(div[1],"x");//a b c x
+   addClass(div[0]," a x c y b "); // a b c x y
+   addClass(div[1]," a x c y b "); // a b c x y
+    function removeClass(obj,className){
+        var acn = obj.className.split(" "),i= 0,len,x = -1;
+        for(len = acn.length;i<len;i++){
+           if(acn[i] === className){
+               x = i;
+               acn.splice(i,1);
+           }
+        }
+        if (x !== -1){
+            acn = acn.join(" ");
+            obj.className = acn;
+        }else {
+          throw "Don on find ！"
+        }
+    }
+
+//    removeClass(div[2],"a");//ab c
+////    removeClass(div[2],"aa"); //抛出错误
+
+    function getClassName(oParent,className){
+        var all = oParent.getElementsByTagName("*"),
+            i= 0,length,v= 0,result = [];
+        var re = new RegExp('\\b' + className + '\\b', 'i');
+        //匹配单词边界
+        for(length=all.length;i<length;i++ ){
+            if(re.test(all[i].className)){
+                result[v] = all[i];
+                v ++;
+                //模拟push
+            }
+        }
+        return result ;
+    }
+    /*使用正则方便可以少写点代码*/
+    console.log(getClassName(document, "ab"));//div[1]
+
+</script>
+</html>
