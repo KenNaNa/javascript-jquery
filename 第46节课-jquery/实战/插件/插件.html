@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        a img{ display: block;}
+
+        #banner{
+            position: relative;
+            width: 520px;
+            height: 280px;
+            margin: 50px auto;
+        }
+        #banner .pic{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul{
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .tab{
+            overflow: hidden;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 70px;
+            height: 14px;
+            margin-left: -35px;
+            background: rgba(255,255,255,.2);
+            border-radius: 8px;
+        }
+        #banner .tab ul{
+            position: absolute;
+            top: 0;
+            width: 1000px;
+        }
+        #banner .tab li{
+            float: left;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 3px;
+            cursor: pointer;
+        }
+        #banner .tab li.on{
+            background: #f40;
+        }
+        #banner .btn{
+            display: none;
+        }
+        #banner:hover .btn{
+            display: block;
+        }
+        #banner .btn div{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            width: 25px;
+            height: 35px;
+            margin-top: -17px;
+            line-height: 35px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+            background: rgba(0,0,0,.2);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #banner .btn div.left{
+            left: 0;
+        }
+        #banner .btn div.right{
+            right: 0;
+        }
+        #banner .btn div:hover{
+            background: rgba(0,0,0,.7);
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+
+    <div class="pic">
+        <ul>
+            <li><a href=""><img src="img/1.webp" alt=""></a></li>
+            <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/4.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/5.webp" alt=""></a></li>
+        </ul>
+    </div>
+
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="btn">
+        <div class="left"> < </div>
+        <div class="right"> > </div>
+    </div>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jq-banner.js"></script>
+<script>
+    //fade和非无缝轮播(左右轮播)
+    /*$.fn.extend({
+	    banner:function(json){
+		  var  type = json.type || 'fade',
+		       picLi = json.picLi,
+		       tabLi = json.tabLi,
+			   btnDiv = json.btnDiv,
+			   tabBtnType = json.tabBtnType || 'click',//默认为点击事件
+			   time = json.time;
+			   //seamless = json.seamless || false;//false默认为非无缝轮播
+		   var $pic,
+		       $tab,
+               $btn;
+		   (picLi)&&( $pic = this.find(picLi) );
+		   (tabLi)&&( $tab = this.find(tabLi) );
+		   (btnDiv)&&( $btn = this.find(btnDiv) );
+		   var  length = $pic.length,
+                index = 0,
+                clickTime = 0,
+                timer1 = null,
+                timer2 = null;
+		  var $picUl,
+		      width;
+          //初始化样式
+		  this[0].onselectstart = function(){return false;}//阻止默认选中
+		  $tab.eq(0).addClass("on");
+		  if( type == 'fade' ){
+			  $pic.hide().eq(0).show();
+		  }else
+		  if( type == 'LRslide' ){//非无缝轮播
+
+			  $picUl = $pic.parent();
+              width = $pic.width();
+			  $picUl.width((length+10)*width).parent().css("overflow" , "hidden");
+			  $pic.css({
+				 width : width,
+				 position : "static",
+				 float : 'left'
+			  });
+		  }
+
+          //tab区
+		  if( tabLi ){//判断传进去的参数是否存在
+		     tabTime = (tabBtnType=='click')?10:200;
+			 $tab[tabBtnType](function () {
+				var x = $(this).index();
+				if ( x !== index ){
+					clearTimeout(timer1);
+					timer1 = setTimeout(change,tabTime,x);
+				}
+			 });
+		  }
+		  //btn区
+		  if( btnDiv ){
+		     $btn.click(function () {
+				if ( new Date - clickTime > 500 ){
+					var x = index;
+					if ( $(this).index() ){
+						x ++;
+						x %= length;
+					}else{
+						x --;
+						if(x<0)x=length-1;
+					}
+					change(x);
+					clickTime = new Date;
+				}
+			 });
+
+		  }
+		  //定时器
+        this.hover(function () {
+            clearInterval(timer2);
+        },auto());
+        function auto() {
+            timer2 = setInterval(function () {
+                var x = index;
+                x ++;
+                x %= length;
+                change(x);
+            },3000);
+            return auto;
+        }
+        //变化函数
+        function change(i) {
+            $tab.eq(index).removeClass("on");
+            index = i;
+            $picUl.stop().animate({
+                marginLeft : -index*width
+            },300);
+            $tab.eq(index).addClass("on");
+        }
+	}
+	});*/
+    $("#banner").banner({
+        type : 'LRslide',
+        seamless : false,
+        picLi : ".pic ul li",
+        tabLi : ".tab ul li",
+        btnDiv : ".btn div",
+        tabBtnType : "click",
+        time : 5000
+    });
+    
+</script>
+</body>
+</html>

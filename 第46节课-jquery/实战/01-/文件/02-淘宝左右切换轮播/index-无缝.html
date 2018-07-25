@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        a img{ display: block;}
+
+        #banner{
+            position: relative;
+            width: 520px;
+            height: 280px;
+            margin: 50px auto;
+        }
+        #banner .pic{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul{
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .tab{
+            overflow: hidden;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 70px;
+            height: 14px;
+            margin-left: -35px;
+            background: rgba(255,255,255,.2);
+            border-radius: 8px;
+        }
+        #banner .tab ul{
+            position: absolute;
+            top: 0;
+            width: 1000px;
+        }
+        #banner .tab li{
+            float: left;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 3px;
+            cursor: pointer;
+        }
+        #banner .tab li.on{
+            background: #f40;
+        }
+        #banner .btn{
+            display: none;
+        }
+        #banner:hover .btn{
+            display: block;
+        }
+        #banner .btn div{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            width: 25px;
+            height: 35px;
+            margin-top: -17px;
+            line-height: 35px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+            background: rgba(0,0,0,.2);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #banner .btn div.left{
+            left: 0;
+        }
+        #banner .btn div.right{
+            right: 0;
+        }
+        #banner .btn div:hover{
+            background: rgba(0,0,0,.7);
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+
+    <div class="pic">
+        <ul>
+            <li><a href=""><img src="img/1.webp" alt=""></a></li>
+            <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/4.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/5.webp" alt=""></a></li>
+        </ul>
+    </div>
+
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="btn">
+        <div class="left"> < </div>
+        <div class="right"> > </div>
+    </div>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+
+    $.fn.extend({
+        banner : function (mJson) {
+
+            var type = mJson.type || "fade",
+                seamless = mJson.seamless || false,
+                pic = mJson.picE,
+                tab = mJson.tabE,
+                btn = mJson.btnE,
+                time = mJson.time,
+                tabType = mJson.tabType || "click";
+
+            var $pic = this.find(pic),
+                $tab,
+                $btn,
+                length = $pic.length,
+                index = 0;
+
+            var $picUl,width,tabTime,
+                timer1 = null,
+                timer2 = null,
+                clickTime = 0;
+
+            //初始化
+            this[0].onselectstart=function(){return false};
+            if ( type === "fade" ){
+                $pic.hide().eq(0).show();
+            }else if ( type === "LRslide" ){
+                    $picUl = $pic.parent();
+                    width = $pic.width();
+                if ( seamless ){
+                    $picUl.prepend( $pic.last().clone(true,true) );
+                    $picUl.append( $pic.first().clone(true,true) );
+                    $picUl.width((length+10)*width).css("marginLeft",-width).parent().css("overflow" , "hidden");
+                    $pic = $picUl.children();
+                }else{
+                    $picUl.width((length+10)*width).parent().css("overflow" , "hidden");
+                }
+                $pic.css({
+                    width : width,
+                    position : "static",
+                    float : 'left'
+                });
+            }
+
+            //关于tab
+            if ( tab ){
+                $tab = this.find(tab);
+                tabTime = "click"?10:200;
+                $tab.eq(0).addClass("on");
+                $tab[tabType](function () {
+                    var x = $(this).index();
+                    if ( x !== index ){
+                        clearTimeout(timer1);
+                        timer1 = setTimeout(change,tabTime,x);
+                    }
+                });
+            }
+
+            //关于btn
+            if ( btn ){
+                $btn = this.find(btn);
+                $btn.click(function () {
+                    if ( new Date - clickTime > 510 ){
+                        var x = index;
+                        $(this).index()?x++:x--;
+                        change(x);
+                        clickTime = new Date;
+                    }
+                });
+            }
+
+            //关于自动轮播
+            if ( time ){
+                this.hover(function () {
+                    clearInterval(timer2);
+                },auto());
+                function auto() {
+                    timer2 = setInterval(function () {
+                        var x = index;
+                        x ++;
+                        change(x);
+                    },1000);
+                    return auto;
+                }
+            }
+
+            //变化函数
+            function change(i) {
+                var moveIndex = seamless?i+1:i;
+                var ifFade = type === "fade";
+                i %= length;
+                if(i<0)i=length-1;
+                ifFade && $pic.eq(index).stop().fadeOut();
+                $tab.eq(index).removeClass("on");
+                index = i;
+                if ( ifFade ){
+                    $pic.eq(index).stop().fadeIn();
+                }else{
+                    $picUl.stop().animate({
+                        marginLeft : -(moveIndex)*width
+                    },500,function () {
+                        if ( index === 0 || index === length-1 ){
+                            $(this).css("marginLeft" , -(index+1)*width);
+                        }
+                    });
+                }
+                $tab.eq(index).addClass("on");
+            }
+
+        }
+    });
+
+    $("#banner").banner({
+        type : 'LRslide',
+        seamless : true,
+        picE : ".pic ul li",
+        tabE : ".tab ul li",
+        btnE : ".btn div",
+        tabType : "click",
+        time : 5000
+    });
+
+    //无缝的左右轮播
+    /*(function(){
+
+        var $banner = $("#banner"),
+            $pic = $banner.find(".pic ul li"),
+            $tab = $banner.find(".tab ul li"),
+            $btn = $banner.find(".btn div"),
+            length = $pic.length,
+            index = 0,
+            clickTime = 0,
+            timer1 = null,
+            timer2 = null;
+
+        //初始化样式
+        var $picUl = $pic.parent(),
+            width = $pic.width();
+        $picUl.prepend( $pic.last().clone(true,true) );
+        $picUl.append( $pic.first().clone(true,true) );
+        $picUl.width((length+10)*width).css("marginLeft",-width).parent().css("overflow" , "hidden");
+        $pic = $picUl.children();
+        $pic.css({
+            width : width,
+            position : "static",
+            float : 'left'
+        });
+        $tab.eq(0).addClass("on");
+
+        //tab点击事件
+        $tab.click(function () {
+            var x = $(this).index();
+            if ( x !== index ){
+                clearTimeout(timer1);
+                timer1 = setTimeout(change,10,x);
+            }
+        });
+
+        //btn点击事件
+        $btn.click(function () {
+            if ( new Date - clickTime > 510 ){
+                var x = index;
+                $(this).index()?x ++: x --;
+                change(x);
+                clickTime = new Date;
+            }
+        });
+
+        //定时器
+        $banner.hover(function () {
+            clearInterval(timer2);
+        },auto());
+        function auto() {
+            timer2 = setInterval(function () {
+                var x = index;
+                x ++;
+                change(x);
+            },1000);
+            return auto;
+        }
+
+        //变化函数
+        function change(i) {
+
+            var moveIndex = i;
+
+            i %= length;
+            if(i<0)i=length-1;
+
+            $tab.eq(index).removeClass("on");
+            index = i;
+            $picUl.stop().animate({
+                marginLeft : -(moveIndex+1)*width
+            },500,function () {
+                if ( index === 0 || index === length-1 ){
+                    $(this).css("marginLeft" , -(index+1)*width);
+                }
+            });
+            $tab.eq(index).addClass("on");
+        }
+    })();*/
+
+</script>
+</body>
+</html>

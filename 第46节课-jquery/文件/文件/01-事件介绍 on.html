@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 100px;
+                height: 100px;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>1111</li>
+                <li>2222</li>
+                <li>3333</li>
+                <li>4444</li>
+                <li>5555</li>
+            </ul>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+
+
+            /*
+                jquery里面的事件
+                    * 都是函数形式的，去掉on那种
+                    * event已经做了兼容
+                    * 原理上事件都是事件绑定的形式而不是赋值的形式
+
+                 jquery事件绑定/解绑
+                    * 所有事件的添加都是绑定的形式
+                    * 可以通过on来添加事件
+             */
+
+            var $box = $("#box");
+
+            /*$box.click(function (e) {
+                alert( e.pageX );
+            });
+
+            $box.click(function (e) {
+                alert( 1 );
+            });*/
+
+            //on 绑定单个事件
+            /*$box.on("click" , function () {
+                alert( "我是通过on绑定的click事件！" );
+            });*/
+
+            //on绑定多个事件
+           /*$box.on({
+                click : function () {
+                    console.log( 22 );
+                },
+                mouseenter : function () {
+                    console.log( 11 );
+                }
+            });*/
+
+           //on实现事件委托
+            /*$(document).click(function () {
+                $(this.body).append("<div>22222</div>");
+            });
+            $("body").on("click" , "div" , function (e) {
+                alert( "我被点击了！" );
+                e.stopPropagation();
+            });*/
+
+
+
+            /*$("#box li").click(function () {
+                alert( $(this).html() );
+            });*/
+
+            console.time(1);
+            $("#box").on("click" , "li" , function () {
+                alert( $(this).html() );
+            });
+            console.timeEnd(1);
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

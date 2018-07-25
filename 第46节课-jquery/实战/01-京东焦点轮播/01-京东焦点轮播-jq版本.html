@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>01-京东焦点轮播-jq版本-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        a img{ display: block;}
+
+        #banner{
+            position: relative;
+            width: 790px;
+            height: 340px;
+            margin: 50px auto;
+        }
+        #banner .pic{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul{
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+			transition:all 0.8s;
+        }
+        #banner .pic ul li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .tab{
+            overflow: hidden;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 180px;
+            height: 20px;
+            margin-left: -90px;
+            background: rgba(255,255,255,.5);
+            border-radius: 10px;
+        }
+
+        #banner .tab ul{
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 1000px;
+        }
+
+        #banner .tab li{
+            float: left;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 3px;
+        }
+        #banner .tab li.on{
+            background: #db192a;
+        }
+        #banner .btn{
+            display: none;
+        }
+        #banner:hover .btn{
+            display: block;
+        }
+        #banner .btn div{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            width: 30px;
+            height: 60px;
+            margin-top: -30px;
+            line-height: 60px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+            background: rgba(0,0,0,.2);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #banner .btn div.left{
+            left: 0;
+        }
+        #banner .btn div.right{
+            right: 0;
+        }
+        #banner .btn div:hover{
+            background: rgba(0,0,0,.7);
+        }
+    </style>
+	<script src = 'jquery-1.12.4.min.js'></script>
+</head>
+<body>
+<div id="banner">
+
+    <div class="pic">
+        <ul>
+            <li><a href=""><img src="img/1.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/4.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/5.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/6.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/7.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/8.jpg" alt=""></a></li>
+        </ul>
+    </div>
+
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="btn">
+        <div class="left"> < </div>
+        <div class="right"> > </div>
+    </div>
+
+</div>
+<script>
+    //获取元素
+	var $Banner = $('#banner');
+	var $Pic = $Banner.find('.pic ul li');
+	var $Tab = $Banner.find('.tab ul li');
+	var $Btn = $Banner.find('.btn div');
+	var index = 0;
+	var length = $Pic.length;
+	var timer1 = null;
+	var timer2 = null;
+	var oldTime = 0;
+
+	//初始化样式
+	$Banner.get(0).onselectstart = function(){
+	   return false;//禁止选中
+	};
+	$Pic.hide()//全部隐藏
+	    .eq(0)//选中第一张图片
+		.show();//显示
+	$Tab.eq(0)//选中第一按钮
+	    .addClass('on');//为第一个按钮添加类名
+
+	//tab区按钮的点击事件
+    $Tab.click(function(){
+	    //获取当前鼠标点击的按钮的index索引值
+	    var x = $(this).index();
+		
+		//判断接下来点击是不是还是当前这个按钮
+		if( x!==index ){
+		   clearTimeout(timer1);//先清除上一个定时器
+		   setTimeout(change,300,x);//再开一个定时器
+		   //其中x是指change函数的参数
+		}
+	})
+
+	//btn区的按钮的点击事件
+    $Btn.click(function(){
+		if( new Date() - oldTime>800 ){//设置时间间隔就会产生渐变过渡下过
+			var i = $(this).index();//获取当前点击的按钮index索引值
+			var x = index;
+			if( i ){//如果是第二个按钮
+			  x++;//index加加
+			  x %= length;//取余
+			}else{//否则就是第一个按钮
+			  x--;
+			  (x<0)&&(x = length-1);
+			}
+			change(x);
+			oldTime = new Date();
+		}
+	});
+
+    //自动轮播
+	$Banner.hover(function(){
+	   clearInterval(timer2);
+	},autoPlay());
+	function autoPlay(){
+       var x = index;
+	   timer2 = setInterval(function(){
+	       x++;
+	       x %= length;
+	       change(x);
+	   },3000);
+	   return autoPlay;//返回自身
+	}
+	function change(i){
+	  //先清除上一张图的样式 以及 按钮的类名 
+	  $Pic.eq(index).stop().fadeOut();//隐藏上一张图片
+	  $Tab.eq(index).removeClass('on');//清除上一张图片对应的按钮类名
+	  index = i;//获取当前index值
+	  $Pic.eq(index).stop().fadeIn();//将当前图片显示出来
+	  $Tab.eq(index).addClass('on');//为当前图片添加类名
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>03-淘宝非无缝轮播-js版本-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        a img{ display: block;}
+
+        #banner{
+            position: relative;
+            width: 520px;
+            height: 280px;
+            margin: 50px auto;
+        }
+        #banner .pic{
+            position: relative;
+			overflow:hidden;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul{
+		    position:relative;
+            width: 700%;
+            height: 100%;
+        }
+        #banner .pic ul li{
+            float:left;
+            width: 520px;
+            height: 100%;
+        }
+        #banner .pic ul li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .tab{
+            overflow: hidden;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 70px;
+            height: 14px;
+            margin-left: -35px;
+            background: rgba(255,255,255,.2);
+            border-radius: 8px;
+        }
+        #banner .tab ul{
+            position: absolute;
+            top: 0;
+            width: 1000px;
+        }
+        #banner .tab li{
+            float: left;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 3px;
+            cursor: pointer;
+        }
+        #banner .tab li.on{
+            background: #f40;
+        }
+        #banner .btn{
+            display: none;
+        }
+        #banner:hover .btn{
+            display: block;
+        }
+        #banner .btn div{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            width: 25px;
+            height: 35px;
+            margin-top: -17px;
+            line-height: 35px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+            background: rgba(0,0,0,.2);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #banner .btn div.left{
+            left: 0;
+        }
+        #banner .btn div.right{
+            right: 0;
+        }
+        #banner .btn div:hover{
+            background: rgba(0,0,0,.7);
+        }
+    </style>
+	<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<div id="banner">
+
+    <div class="pic">
+        <ul>
+            <li><a href=""><img src="img/1.webp" alt=""></a></li>
+            <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/4.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/5.webp" alt=""></a></li>
+        </ul>
+    </div>
+
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="btn">
+        <div class="left"> < </div>
+        <div class="right"> > </div>
+    </div>
+<script>
+  var $banner = $("#banner"),
+	  $pic = $banner.find(".pic ul li"),
+	  $picUl = $banner.find('.pic ul'),
+	  $tab = $banner.find(".tab ul li"),
+	  $btn = $banner.find(".btn div"),
+	  length = $pic.length,
+	  index = 0,
+	  oldTime = 0,
+	  timer1 = null,
+	  timer2 = null,
+	  width = $pic.width();
+
+	  //初始化样式
+	  $tab.eq(0).addClass('on');//第一步让tab按钮第一个显示红色
+	  //第二部克隆$pic里面的第一个元素添加到$picUl最后一个元素的后面
+	  var oLi1 = $pic.first().clone(true,true);
+	  $picUl.append(oLi1);
+	  //第三部克隆$pic里面的最后一个元素添加到$picUl第一个元素的前面
+      var oLi5 = $pic.last().clone(true,true);
+	  $picUl.prepend(oLi5);
+	  //第四部让刚添加进去的第一张图片往左移动-width像素 让真正的第一张图片显示
+	  $picUl.css({'left':-width});
+	  
+      //tab区的按钮点击事件
+	  $tab.click(function(){
+	     //第一步让每个tab按钮点击之后都显示红色
+		 //第一种方式
+		 var x = $(this).index();//获取index
+		 clearTimeout(timer1);//先清除上一个定时器
+		 timer1 = setTimeout(move,10,x);//限定点击时间间隔
+ 
+	  });
+      //btn区的按钮点击事件
+	  $btn.click(function(){
+	     //判断点击是哪个被按下
+		 var i = $(this).index();
+		 var x = index;
+		 if( new Date() - oldTime > 500 ){
+		    i ? x++ : x--; 
+			move(x);
+			oldTime = new Date();
+		 }
+	     
+	  });
+
+	  //自动轮播
+	  $banner.hover(function(){clearInterval(timer2)},autoplay());
+	  function autoplay(){
+	     timer2 = setInterval(function(){
+		     var x = index;
+			 x++;
+			 move(x);
+		 },1000);
+		 return move;
+	  }
+	  function move(i){
+		 var moveindex = i;
+		 i %= length;
+		 (i<0) && (i=length-1);
+	     $tab.eq(index).removeClass('on');//给第一个移除类名
+		 index = i;//获取当前的index索引值
+		 $picUl.stop().animate({'left':-(moveindex+1)*width},function(){//index+1是因为必须显示第一张图片 callback函数
+		     if( index ==0 || index == length-1 ){
+			      $(this).css({'left':-(index+1)*width});//当走到第一张和最后一张时瞬间拉回
+			 }
+		 });
+		 $tab.eq(index).addClass('on');
+		 /*//第二种方式
+		 $tab.eq(index).addClass('on').siblings().removeClass('on');*/
+	  }
+</script>
+</body>
+</html>

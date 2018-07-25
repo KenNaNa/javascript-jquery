@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>02-淘宝非无缝轮播-js版本-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        a img{ display: block;}
+
+        #banner{
+            position: relative;
+            width: 520px;
+            height: 280px;
+            margin: 50px auto;
+        }
+        #banner .pic{
+            position: relative;
+			overflow:hidden;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul{
+		    position:relative;
+            width: 500%;
+            height: 100%;
+        }
+        #banner .pic ul li{
+            float:left;
+            width: 520px;
+            height: 100%;
+        }
+        #banner .pic ul li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .tab{
+            overflow: hidden;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 70px;
+            height: 14px;
+            margin-left: -35px;
+            background: rgba(255,255,255,.2);
+            border-radius: 8px;
+        }
+        #banner .tab ul{
+            position: absolute;
+            top: 0;
+            width: 1000px;
+        }
+        #banner .tab li{
+            float: left;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 3px;
+            cursor: pointer;
+        }
+        #banner .tab li.on{
+            background: #f40;
+        }
+        #banner .btn{
+            display: none;
+        }
+        #banner:hover .btn{
+            display: block;
+        }
+        #banner .btn div{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            width: 25px;
+            height: 35px;
+            margin-top: -17px;
+            line-height: 35px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+            background: rgba(0,0,0,.2);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #banner .btn div.left{
+            left: 0;
+        }
+        #banner .btn div.right{
+            right: 0;
+        }
+        #banner .btn div:hover{
+            background: rgba(0,0,0,.7);
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+
+    <div class="pic">
+        <ul>
+            <li><a href=""><img src="img/1.webp" alt=""></a></li>
+            <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/4.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/5.webp" alt=""></a></li>
+        </ul>
+    </div>
+
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="btn">
+        <div class="left"> < </div>
+        <div class="right"> > </div>
+    </div>
+<script>
+    var oBanner = document.getElementById('banner'),//获取banner
+	    oBUl = oBanner.querySelector('#banner ul'),
+	    oPic = oBanner.querySelector('.pic'),//获取pic
+		aPicLi = oPic.getElementsByTagName('li'),//获取pic ul li
+		length = aPicLi.length,//数组长度
+		oTab = oBanner.querySelector('.tab'),//获取tab
+        aTabLi = oTab.getElementsByTagName('li'),//获取tab ul li
+		oBtn = oBanner.querySelector('.btn'),//获取btn按钮
+        oLeft = oBtn.querySelector('.left'),//获取left按钮
+		oRight = oBtn.querySelector('.right'),//获取right按钮
+		aBtn = oBtn.querySelectorAll('.btn div'),
+		index = 0,
+		timer = null,
+		width = oBUl.offsetWidth/5,
+		w1 = 0,
+		w2 = oBUl.offsetWidth,
+		w3 = 0,
+		w4 = oBUl.offsetWidth,
+		timer2 = null,
+		timer3 = null,
+		timer4 = null,
+		timer5 = null;
+	//样式初始化
+	aTabLi[index].className = 'on';
+
+	//tab区的点击事件
+	for( var i=0;i<length;i++ ){
+	   aTabLi[i].index = i;
+	   aTabLi[i].onclick = function(){
+		   //aTabLi[index].className = '';//清除上一个tab按钮的类名
+		   for( i=0;i<length;i++ ){
+		     aTabLi[i].className = '';
+		   }
+		   index = this.index;//存储当前的tab的按钮索引值
+           timer = setInterval(function (){
+				w1 += 130;
+				if( w1 > index*width ){
+				  w1 = index*width;
+				  clearInterval(timer);
+				}
+				oBUl.style.left = -w1+'px';
+			},30);
+			timer2 =setInterval(function(){
+			    w2 += -130;
+				if( w2 <= index*width ){
+				   w2 = index*width;
+				  clearInterval(timer2);
+				}
+				oBUl.style.left = -w2+'px';
+			},30);
+		   this.className = 'on';//给当前tab按钮添加上类名
+	   }
+	}
+	
+	//btn区的点击事件
+	var inx = 0;
+	for( var i=0,len=aBtn.length;i<len;i++ ){
+	   aBtn[i].index = i;
+	   aBtn[i].onclick = function(){
+		 
+	     for( i=0;i<length;i++ ){
+		    aTabLi[i].className = '';
+		 }
+		 if( this.index ){
+		    inx++;
+			inx %= length;
+			timer3 = setInterval(function(){
+			  w3 += 130;
+				if( w3 > inx*width ){
+				  w3 = inx*width;
+				  clearInterval(timer3);
+				}
+				oBUl.style.left = -w3+'px';
+			},30);
+			aTabLi[inx].className = 'on';
+		 }else{
+		    inx--;
+			if(inx<0)inx=length-1;
+            timer4 = setInterval(function(){
+			  w4 += -130;
+				if( w4 < inx*width ){
+				  w4 = inx*width;
+				  clearInterval(timer4);
+				}
+				oBUl.style.left = -w4+'px';
+				aTabLi[inx].className = 'on';
+			},30);
+		 }
+	   }
+	}
+
+	//自动轮播
+    timer5 = setInterval(auto(),1000);
+	oBanner.onmouseenter = function(){
+	   clearInterval(timer5);
+	}
+	oBanner.onmouseleave = function(){
+	   timer5 = setInterval(auto(),1000);
+	}
+
+	function auto(){
+		for( i=0;i<length;i++ ){
+		    aTabLi[i].className = '';
+		 }
+	    inx++;
+		inx %= length;
+		timer3 = setInterval(function(){
+		w3 += 130;
+		if( w3 > inx*width ){
+		  w3 = inx*width;
+		  clearInterval(timer3);
+		}
+		  oBUl.style.left = -w3+'px';
+		},30);
+		aTabLi[inx].className = 'on';
+		return auto;
+	}
+</script>
+</body>
+</html>

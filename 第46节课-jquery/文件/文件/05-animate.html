@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 100px;
+                height: 100px;
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="box"></div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+
+            /*
+                animate
+                    传参：
+                        * obj  必传  json格式代表的变化的属性和目标值
+                        * number/string 可缺省 代表毫秒数 或者 三个预设好的值 默认300
+                        * string 可缺省，代表运动曲线，只能是三个预设好的运动缺陷 默认easing
+                        * function 可缺省，代表动画结束后的回调函数
+             */
+
+
+            $("#box").animate({
+                width : "500px",
+                height : 200,
+                marginLeft : 200
+            },1000,function () {
+                alert( 1 );
+            });
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

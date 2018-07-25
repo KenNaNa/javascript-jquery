@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        #box{
+            width: 150px;
+            height: 30px;
+            background: red;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+    $(document).click(function () {
+        //$("#box").delay(1000).fadeOut(500);
+        $("#box").delay(1000).queue(function () {
+            $(this).css("background" , "pink");
+        });
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

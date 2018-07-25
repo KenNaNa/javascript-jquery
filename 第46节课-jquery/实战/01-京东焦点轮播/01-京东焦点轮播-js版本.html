@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>01-京东焦点轮播-js版本-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        a img{ display: block;}
+
+        #banner{
+            position: relative;
+            width: 790px;
+            height: 340px;
+            margin: 50px auto;
+        }
+        #banner .pic{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul{
+            width: 100%;
+            height: 100%;
+        }
+        #banner .pic ul li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+			opacity:0;
+			transition:all 0.8s;
+        }
+        #banner .pic ul li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #banner .tab{
+            overflow: hidden;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 180px;
+            height: 20px;
+            margin-left: -90px;
+            background: rgba(255,255,255,.5);
+            border-radius: 10px;
+        }
+
+        #banner .tab ul{
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 1000px;
+        }
+
+        #banner .tab li{
+            float: left;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 3px;
+        }
+        #banner .tab li.on{
+            background: #db192a;
+        }
+        #banner .btn{
+            display: none;
+        }
+        #banner:hover .btn{
+            display: block;
+        }
+        #banner .btn div{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            width: 30px;
+            height: 60px;
+            margin-top: -30px;
+            line-height: 60px;
+            text-align: center;
+            color: #fff;
+            background: #000;
+            background: rgba(0,0,0,.2);
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #banner .btn div.left{
+            left: 0;
+        }
+        #banner .btn div.right{
+            right: 0;
+        }
+        #banner .btn div:hover{
+            background: rgba(0,0,0,.7);
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+
+    <div class="pic">
+        <ul>
+            <li><a href=""><img src="img/1.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/4.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/5.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/6.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/7.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/8.jpg" alt=""></a></li>
+        </ul>
+    </div>
+
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="btn">
+        <div class="left"> < </div>
+        <div class="right"> > </div>
+    </div>
+
+</div>
+<script>
+    //获取元素
+	var oBanner = document.getElementById('banner'),//获取banner
+	    oPic = oBanner.querySelector('.pic'),//获取pic
+		aPicLi = oPic.getElementsByTagName('li'),//获取pic ul li
+		length = aPicLi.length,//数组长度
+		oTab = oBanner.querySelector('.tab'),//获取tab
+        aTabLi = oTab.getElementsByTagName('li'),//获取tab ul li
+		oBtn = oBanner.querySelector('.btn'),//获取btn按钮
+        oLeft = oBtn.querySelector('.left'),//获取left按钮
+		oRight = oBtn.querySelector('.right'),//获取right按钮
+		aBtn = oBtn.querySelectorAll('.btn div'),
+		index = 0,
+		timer = null;
+
+	//初始化样式
+	aTabLi[index].className = 'on';//给第一张图片按钮加类名
+	aPicLi[index].style.display = 'block';//让第一张图显示
+	aPicLi[index].style.opacity = '1';
+
+	//tab区按钮的点击事件
+    for( var i=0;i<length;i++ ){
+	   aTabLi[i].index = i;//自定义属性
+       aTabLi[i].onclick = function(){
+	      //初始化所有样式
+		  /*for( i=0;i<length;i++ ){
+			 aPicLi[i].style.opacity = '0';
+			 aTabLi[i].className = '';
+		  }*/
+		  //第二种初始化所有样式
+		  aTabLi[index].className = '';//将上一张的按钮类名清空
+		  aPicLi[index].style.opacity = '0';//将上一张图片的透明度变为0
+
+		  index = this.index;//改变index的值
+
+		  aTabLi[index].className = 'on';//给当前的图片添加类名
+		  aPicLi[index].style.opacity = '1';//透明度为1
+
+	   }
+	}
+
+	//btn区的按钮的点击事件
+
+	for( i=0,len=aBtn.length;i<len;i++ ){
+	    aBtn[i].index = i;//自定义属性
+		aBtn[i].onclick = function(){
+		   for( i=0;i<length;i++ ){
+			 aPicLi[i].style.opacity = '0';
+			 aTabLi[i].className = '';
+		   }
+		   if( this.index ){
+			   index++;
+			   (index>length-1)&&(index = 0);
+		   }else{
+		       index--;
+			   ( index<0 )&&(index = length-1);
+		   }
+		   aTabLi[index].className = 'on';
+		   aPicLi[index].style.opacity = '1';
+		}
+		
+	}
+
+	//自动轮播
+    oBanner.onmouseenter = function(){
+	  clearInterval(timer);//先清除上一个定时器
+	}
+	oBanner.onmouseleave = function(){
+	  timer = setInterval(autoPlay(),3000);
+	}
+	
+
+	//自动轮播函数
+	function autoPlay(){
+	  for( i=0;i<length;i++ ){
+		aPicLi[i].style.opacity = '0';
+		aTabLi[i].className = '';
+	  }
+	  index++;
+	  index %= length;
+      aTabLi[index].className = 'on';
+	  aPicLi[index].style.opacity = '1';
+	  return autoPlay;
+	}
+</script>
+</body>
+</html>

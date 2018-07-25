@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box ul li{
+                float: left;
+                width: 150px;
+                height: 30px;
+                overflow: hidden;
+                border-right: 1px solid #fff;
+            }
+            #box ul li p{
+                height: 200px;
+                text-align: center;
+                line-height: 30px;
+                background: pink;
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>
+                    <p>首页</p>
+                </li>
+                <li>
+                    <p>衣服</p>
+                </li>
+                <li>
+                    <p>裤子</p>
+                </li>
+                <li>
+                    <p>内裤</p>
+                </li>
+                <li>
+                    <p>帽子</p>
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+
+            /*
+
+            stop
+                清空动画队列，可以接受两个布尔值参数
+                第一个不用管
+                第二个决定是否瞬间到达队列重点，true 到   false(默认) 不到
+             */
+
+            $("#box ul li").hover(function () {
+                $(this).stop(true,false).animate({height : 200} , 500);
+            },function () {
+                $(this).stop(true,false).animate({height : 30} , 500);
+            });
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

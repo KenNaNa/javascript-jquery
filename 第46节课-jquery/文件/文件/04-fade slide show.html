@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+    /*
+
+    show
+    hide
+    toggle
+        * 不传参数 瞬间显示隐藏
+        * 传一个数字参数 改变 宽、高、透明度
+
+    fadeIn
+    fadeOut
+    fadeToggle
+    fadeTo    时间参数不能省略
+        * 改变 透明度
+
+    slideDown
+    slideUp
+    slideToggle
+        * 改变 高度
+
+
+       这三组，不仅仅可以接受一个数字参数，能接受的参数有：
+            * number / string  代表动画时间（可缺省）   毫秒数 / （"fast" "normal" "slow"）
+            * string   代表运动曲线（可缺省）
+            * function   代表回调函数
+
+
+     */
+
+    /*var $box = $("#box");
+    $(document).click(function () {
+        $box.fadeToggle();
+    });*/
+
+    /*var off = false;
+
+
+    $(document).click(function () {
+        if ( off ){
+            //$box.show("normal");
+            //$box.fadeIn();
+            $box.slideDown();
+        }else{
+            //$box.hide("normal");
+            //$box.fadeOut();
+            $box.slideUp();
+        }
+        off = !off;
+    });*/
+
+    var $box = $("#box");
+    $(document).click(function () {
+        $box.fadeTo(300, "0.2");
+    });
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
