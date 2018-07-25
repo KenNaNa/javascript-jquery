@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>第11节作业-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+				 text-decoration:none;
+			 }
+			 #box{
+			    width:720px;
+				height:303px;
+				margin:100px auto;
+			 }
+			 #box ul{
+			    width:120px;
+				float:left;
+			 }
+			 #box ul li{
+			   width:100%;
+			   height:100px;
+			   text-align:center;
+			   color:#fff;
+			   line-height:100px;
+			   background:#000;
+			   margin-bottom:1px;
+			   cursor:pointer;
+			 }
+			 #box #cars,#box #food,#box #natrue{
+			   width:600px;
+			   position:relative;
+			   display:none;
+			   float:right;
+			   
+			 }
+			 #box #cars img,#box #food img,#box #natrue img{
+			   position:absolute;
+			   left:0;
+			   top:0;
+			   width:600px;
+			   height:303px;
+			   display:none;
+			   opacity:0;
+			 }
+			 #box #cars p,#box #food p,#box #natrue p{
+			   position:absolute;
+			   bottom:-303px;
+			   width:600px;
+			   height:30px;
+			   text-align:right;
+			   line-height:30px;
+			 }
+            #box #cars a,#box #food a,#box #natrue a{
+			  display:inline-block;
+			  width:30px;
+			  height:30px;
+			  text-align:center;
+			  line-height:30px;
+			  background:#000;
+			  color:#fff;
+			  cursor:pointer;
+			}
+		 </style>
+	 </head>
+<body>
+    <div id="box">
+	   <ul>
+	      <li style="background:#f60;">汽车</li>
+	      <li>美食</li>
+	      <li>美景</li>
+	   </ul>
+	   <div id="cars" style="display:block;">
+	      <img src="images/1.jpg" alt="" style="display:block;opacity:1;">
+	      <img src="images/2.jpg" alt="" style="opacity:0">
+	      <img src="images/3.jpg" alt="" style="opacity:0">
+	      <img src="images/4.jpg" alt="" style="opacity:0">
+		  <p>
+		     <a href="javascript:void(0);" style="background:#f60;">1</a>
+		     <a href="javascript:void(0);">2</a>
+		     <a href="javascript:void(0);">3</a>
+		     <a href="javascript:void(0);">4</a>
+		  </p>
+	   </div>
+	   <div id="food" style="display:none;">
+	     <img src="images/m1.jpg" alt="" style="display:block;opacity:1;"/>
+	     <img src="images/m2.jpg" alt="" style="opacity:0"/>
+	     <img src="images/m3.jpg" alt="" style="opacity:0"/>
+	     <img src="images/m4.jpg" alt="" style="opacity:0"/>
+	     <img src="images/m5.jpg" alt="" style="opacity:0"/>
+		 <p>
+		   <a href="javascript:void(0);" style="background:#f60;">1</a>
+		   <a href="javascript:void(0);">2</a>
+		   <a href="javascript:void(0);">3</a>
+		   <a href="javascript:void(0);">4</a>
+		   <a href="javascript:void(0);">5</a>
+		 </p>
+	   </div>
+	   <div id="natrue" style="display:none;">
+	     <img src="images/s1.jpg" alt="" style="display:block;opacity:1;"/>
+	     <img src="images/s2.jpg" alt="" style="opacity:0"/>
+	     <img src="images/s3.jpg" alt="" style="opacity:0"/>
+	     <img src="images/s4.jpg" alt="" style="opacity:0"/>
+	     <img src="images/s5.jpg" alt="" style="opacity:0"/>
+		 <p>
+		   <a href="javascript:void(0);" style="background:#f60;">1</a>
+		   <a href="javascript:void(0);">2</a>
+		   <a href="javascript:void(0);">3</a>
+		   <a href="javascript:void(0);">4</a>
+		   <a href="javascript:void(0);">5</a>
+		 </p>
+	   </div>
+	</div>
+<script>
+    var aLi = document.querySelectorAll('#box ul li');
+	var aDiv = document.querySelectorAll('#box div');
+	var aCarsImg = document.querySelectorAll('#box #cars img');
+	var aFoodImg = document.querySelectorAll('#box #food img');
+	var aNatrueImg = document.querySelectorAll('#box #natrue img');
+	var aCarsA = document.querySelectorAll('#box #cars p a');
+	var aFoodA = document.querySelectorAll('#box #food p a');
+	var aNatrueA = document.querySelectorAll('#box #natrue p a');
+	var CLength = aCarsImg.length;
+	var FLength = aFoodImg.length;
+	var NLength = aNatrueImg.length;
+	var LLength = aLi.length;
+	//console.log(aCarsA)
+	//给三个li标签添加点击事件
+	for( var i=0;i<LLength;i++ ){
+	  aLi[i].index = i;
+	  aLi[i].onclick = function(){
+		change(aLi,aDiv,LLength,this.index);
+	  };
+	  
+	}
+	//给汽车图片加效果
+	for( var i=0;i<CLength;i++ ){
+	   aCarsA[i].index = i;
+	   aCarsA[i].onclick = function(){
+		   change(aCarsA,aCarsImg,CLength,this.index);
+	   };
+	}
+	//给美食，美景添加效果
+	for( var i=0;i<FLength;i++ ){
+	   aFoodA[i].index = i;
+	   aNatrueA[i].index = i;
+	   aFoodA[i].onclick = function(){
+		 change(aFoodA,aFoodImg,FLength,this.index);
+	   };
+	   
+	   aNatrueA[i].onclick = function(){
+	   change(aNatrueA,aNatrueImg,NLength,this.index);
+	}
+	function change(obj1,obj2,index,This){
+	   for( var i=0;i<index;i++ ){
+		   obj1[i].style.backgroundColor = '#000';
+		   obj2[i].style.display = 'none';
+		   obj2[i].style.opacity = '0';
+		   obj2[i].style.transition = 'opacity 0.8s ease'; 
+		 }
+		 obj1[This].style.backgroundColor = '#f60';
+		 obj2[This].style.display = 'block';
+		 obj2[This].style.opacity = '1';
+		 obj2[This].style.transition = 'opacity 0.8s ease';
+	   }; 
+	}
+</script>
+</body>
+</html>
