@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    #div1{
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+        position: absolute;
+        left: 0;
+		border-radius:50%;
+		margin:0 auto;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+<script type="text/javascript" src="Tween.js"></script>
+<script type="text/javascript">
+    var div1 = document.querySelector("#div1");
+    var timer = null;
+    document.onclick = function (){
+        /*
+        t:当前的步数
+        s:开始的位置
+        c:变化量
+        d:总步数
+        */
+        var s = div1.offsetLeft;
+        var end = 500;
+        var c = end-s;
+        var t = 0;
+        var endT = 30;
+        //clearInterval(timer);
+        timer = setInterval(function (){
+            t++;
+            if (t>=endT){
+                clearInterval(timer);
+            }
+            div1.style.top = Tween.Bounce.easeOut(t,s,c,endT)+"px";
+        },30);
+    }
+</script>
+</html

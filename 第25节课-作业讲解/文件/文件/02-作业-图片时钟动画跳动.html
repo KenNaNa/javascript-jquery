@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        #box{
+            width: 360px;
+            margin: 50px auto;
+        }
+        #box ul li{
+            float: left;
+            margin: 0 5px;
+        }
+        #box ul li.num{
+            overflow: hidden;
+            position: relative;
+            width: 40px;
+            height: 60px;
+        }
+        #box ul li.num div{
+            position: absolute;
+            width: 40px;
+            height: 120px;
+        }
+        #box ul li.num span{
+            display: block;
+            width: 40px;
+            height: 60px;
+        }
+
+        #box ul li.dot{
+            width: 17px;
+            height: 60px;
+            background-image: url("img/d.png");
+        }
+
+        #box ul li span.l0{
+            background-image: url("img/0.png");
+        }
+        #box ul li span.l1{
+            background-image: url("img/1.png");
+        }
+        #box ul li span.l2{
+            background-image: url("img/2.png");
+        }
+        #box ul li span.l3{
+            background-image: url("img/3.png");
+        }
+        #box ul li span.l4{
+            background-image: url("img/4.png");
+        }
+        #box ul li span.l5{
+            background-image: url("img/5.png");
+        }
+        #box ul li span.l6{
+            background-image: url("img/6.png");
+        }
+        #box ul li span.l7{
+            background-image: url("img/7.png");
+        }
+        #box ul li span.l8{
+            background-image: url("img/8.png");
+        }
+        #box ul li span.l9{
+            background-image: url("img/9.png");
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="dot"></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="dot"></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+    </ul>
+</div>
+<script>
+
+    var aNumDiv = document.querySelectorAll("#box ul li.num div"),
+        aFirst = document.querySelectorAll("#box ul li.num div span.first"),
+        aSecond = document.querySelectorAll("#box ul li.num div span.second"),
+        length = aNumDiv.length,
+        goudan = true,
+        lastStr = "";
+
+    setInterval(fn(),1000);
+    function fn() {
+        var nowTime = new Date(),//当前日期对象
+            hh = nowTime.getHours(),//时
+            mm = nowTime.getMinutes(), //分
+            ss = nowTime.getSeconds();//秒
+
+        //时间补0
+        hh = toTwo(hh);
+        mm = toTwo(mm);
+        ss = toTwo(ss);
+
+        var str = hh + mm + ss;//讲时分秒拼接成一个长度为 6 的字符串
+
+        if ( goudan ){
+            for (var i = 0; i < length; i++) {
+                aNumDiv[i].i = i;
+                aFirst[i].className = "first l"+str.charAt(i);
+            }
+            goudan = false;
+        }else{
+            for (i = 0; i < length; i++) {
+                aSecond[i].className = "second l"+str.charAt(i);
+            }
+            for (i = 0; i < length; i++) {
+                if ( lastStr.charAt(i) !== str.charAt(i) ){
+                    move( aNumDiv[i] , "top" , -60 , 5 , function () {
+                        this.style.top = '0px';
+                        aFirst[this.i].className = "first l"+str.charAt(this.i);
+                    }  );
+                }
+            }
+        }
+        lastStr = str;
+        return fn;
+    }
+
+    //个位数补0变两位数
+    function toTwo(n) {
+        return n<10?"0"+n:n+"";
+    }
+
+    //运动框架
+    function move( obj , attr , endW , speed , callback ) {
+        window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {return setTimeout(fn , 1000/60)};
+        window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+        var cssJson = obj.currentStyle || getComputedStyle(obj);
+        var startW = parseFloat(cssJson[attr]);
+        var flag = startW > endW;
+        if ( flag )speed = -speed;
+        (function fn(){
+            startW += speed;
+            (flag?startW <= endW:startW >= endW)?startW = endW:requestAnimationFrame(fn);
+            obj.style[attr] = startW+'px';
+            if( startW === endW ){
+                callback && callback.call(obj);
+            }
+        })();
+    }
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>瞬时调图时钟-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 li{ list-style-type: none;}
+            #box{
+                width: 360px;
+                margin: 50px auto;
+            }
+            #box ul li{
+                float: left;
+                margin: 0 5px;
+            }
+            #box ul li.num{
+                width: 40px;
+                height: 60px;
+            }
+
+            #box ul li.dot{
+                width: 17px;
+                height: 60px;
+                background-image: url("images/d.png");
+            }
+
+            #box ul li.l0{
+                background-image: url("images/0.png");
+            }
+            #box ul li.l1{
+                background-image: url("images/1.png");
+            }
+            #box ul li.l2{
+                background-image: url("images/2.png");
+            }
+            #box ul li.l3{
+                background-image: url("images/3.png");
+            }
+            #box ul li.l4{
+                background-image: url("images/4.png");
+            }
+            #box ul li.l5{
+                background-image: url("images/5.png");
+            }
+            #box ul li.l6{
+                background-image: url("images/6.png");
+            }
+            #box ul li.l7{
+                background-image: url("images/7.png");
+            }
+            #box ul li.l8{
+                background-image: url("images/8.png");
+            }
+            #box ul li.l9{
+                background-image: url("images/9.png");
+            }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+ <ul>
+    <li class="l0 num"></li>
+    <li class="l0 num"></li>
+    <li class="dot"></li>
+    <li class="l0 num"></li>
+    <li class="l0 num"></li>
+    <li class="dot"></li>
+    <li class="l0 num"></li>
+    <li class="l0 num"></li>
+ </ul>
+ <script>
+    var aNum = document.querySelectorAll('#box ul li.num');
+	//console.log(aNum)
+	var length = aNum.length;
+    var str = '';//存储时间字符串
+	clock();
+	setInterval(clock,1000);
+    function clock(){
+	   var oDate = new Date();
+	   var arr = getTime(oDate);
+	   for( var i=0;i<length;i++ ){
+	      aNum[i].className = "num l"+arr.charAt(i);
+	   }
+	   //return clock;
+	}   
+	
+	function getTime(obj){
+	   var hh = obj.getHours();//小时
+	   var mm = obj.getMinutes();//分钟
+	   var ss = obj.getSeconds();//秒钟
+	   str = toTwo(hh)+toTwo(mm)+toTwo(ss);//转化为字符串
+	   return str;
+	}
+	function toTwo(n){
+	   if(n<10)return '0'+n;
+	   else return ''+n;
+	}
+ </script>
+</div>
+</body>
+</html>

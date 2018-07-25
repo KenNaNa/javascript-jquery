@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100px;
+                height: 100px;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var oBox = document.getElementById("box");
+
+            //将box的left属性，通过2000毫秒变到500px
+            tMove( oBox , "left" , 500 , 10000 );
+
+            //时间版运动框架
+            function tMove( obj , attr , end , time ) {
+                window.requestAnimationFrame = window.requestAnimationFrame||function(a){return setTimeout(a,1000/60)};
+                window.cancelAnimationFrame = window.cancelAnimationFrame||clearTimeout;
+                var cssJson = obj.currentStyle || getComputedStyle(obj),
+                    start = parseFloat( cssJson[attr] ),
+                    sTime = new Date(),
+                    S = end - start;
+                (function fn() {
+                    var prop = (new Date() - sTime) / time;
+                    prop>=1?prop = 1:requestAnimationFrame(fn);
+                    obj.style[attr] = S * prop*prop + start + 'px';
+                })();
+            }
+
+            /*//时间版运动框架
+            function tMove( obj , attr , end , time ) {
+                window.requestAnimationFrame = window.requestAnimationFrame||function(a){return setTimeout(a,1000/60)};
+                window.cancelAnimationFrame = window.cancelAnimationFrame||clearTimeout;
+                var cssJson = obj.currentStyle || getComputedStyle(obj),
+                    start = parseFloat( cssJson[attr] ),
+                    sTime = new Date(),
+                    S = end - start;
+                (function fn() {
+                    var prop = (new Date() - sTime) / time;
+                    prop>=1?prop = 1:requestAnimationFrame(fn);
+                    obj.style[attr] = S * prop + start + 'px';
+                })();
+            }*/
+
+           /* //时间版运动框架
+            function tMove( obj , attr , end , time ) {
+
+                //兼容
+                window.requestAnimationFrame = window.requestAnimationFrame||function(a){return setTimeout(a,1000/60)};
+                window.cancelAnimationFrame = window.cancelAnimationFrame||clearTimeout;
+
+                //获取元素初始的样式存储器
+                var cssJson = obj.currentStyle || getComputedStyle(obj);
+
+                //获取动画所需要的初始数值
+                var start = parseFloat( cssJson[attr] );
+                var sTime = new Date();//初始时间
+                var S = end - start;//总路程
+
+                (function fn() {
+
+                    var nTime = new Date();//当前时间
+
+                    var t_ = nTime - sTime;//经过了多长时间
+
+                    var prop = t_ / time;// 经过的时间 / 总时间 ， 时间占比
+
+                    prop>=1?prop = 1:requestAnimationFrame(fn);//判断是否停止
+
+                    var s = S * prop + start;// 总路程*比例 + 初始位置
+
+                    obj.style[attr] = s + 'px';
+                })();
+            }*/
+
+
+            /*var timer = setInterval(function () {
+                console.log( 1 );
+            } , 20);
+
+            setTimeout(function () {
+                clearInterval( timer );
+            },1000);*/
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

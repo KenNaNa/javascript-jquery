@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>图片滚动时钟-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 li{ list-style-type: none;}
+        #box{
+            width: 360px;
+            margin: 50px auto;
+        }
+        #box ul li{
+            float: left;
+            margin: 0 5px;
+        }
+        #box ul li.num{
+            overflow: hidden;
+            position: relative;
+            width: 40px;
+            height: 60px;
+        }
+        #box ul li.num div{
+            position: absolute;
+            width: 40px;
+            height: 120px;
+        }
+        #box ul li.num span{
+            display: block;
+            width: 40px;
+            height: 60px;
+        }
+
+        #box ul li.dot{
+            width: 17px;
+            height: 60px;
+            background-image: url("images/d.png");
+        }
+
+        #box ul li span.l0{
+            background-image: url("images/0.png");
+        }
+        #box ul li span.l1{
+            background-image: url("images/1.png");
+        }
+        #box ul li span.l2{
+            background-image: url("images/2.png");
+        }
+        #box ul li span.l3{
+            background-image: url("images/3.png");
+        }
+        #box ul li span.l4{
+            background-image: url("images/4.png");
+        }
+        #box ul li span.l5{
+            background-image: url("images/5.png");
+        }
+        #box ul li span.l6{
+            background-image: url("images/6.png");
+        }
+        #box ul li span.l7{
+            background-image: url("images/7.png");
+        }
+        #box ul li span.l8{
+            background-image: url("images/8.png");
+        }
+        #box ul li span.l9{
+            background-image: url("images/9.png");
+        }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <ul>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="dot"></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="dot"></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+        <li class="num"><div><span class="first l0"></span><span class="second l0"></span></div></li>
+    </ul>
+</div>
+<script>
+    var aFirst = document.querySelectorAll('#box ul li.num div span.first');
+	var aSecond = document.querySelectorAll('#box ul li.num div span.second');
+	var aNumDiv = document.querySelectorAll('#box ul li.num div');
+	var flag = true;
+	var lastStr = '';//储存下一秒的时间字符串
+    clock();
+	setInterval(clock,1000)
+	function clock(){
+	   var oDate = new Date();
+	   var arr = getTime(oDate);
+	   if( flag ){
+		   for( var i=0;i<arr.length;i++ ){
+			  aFirst[i].className = 'first l'+arr.charAt(i);
+			  aSecond[i].className = 'second l'+arr.charAt(i);
+		   }
+		   flag = false;//只执行一次
+	   }else{
+	      for( var i=0;i<arr.length;i++ ){
+			  aFirst[i].className = 'first l'+arr.charAt(i);
+			  aSecond[i].className = aFirst[i].className;
+			  if(lastStr.charAt(i)!==arr.charAt(i))
+			  move(aNumDiv[i],'top',0,-60,2);
+		   } 
+	   }
+	   lastStr = arr;
+	}
+	function getTime(obj){//获取时间函数
+	   var hh = obj.getHours();//小时
+	   var mm = obj.getMinutes();//分钟
+	   var ss = obj.getSeconds();//秒钟
+	   str = toTwo(hh)+toTwo(mm)+toTwo(ss);//转化为字符串
+	   return str;
+	}
+	function toTwo(n){//补位函数
+	   if(n<10)return '0'+n;
+	   else return ''+n;
+	}
+	function move(obj,attr,start,end,speed){//运动函数
+		window.requestAnimationFrame = window.requestAnimationFrame||function(fn){
+		  return setTimeout(fn,1000/60);
+		}
+		window.cancleAnimationFrame = window.cancleAnimationFrame||clearTimeout;
+		
+		var bool = start>end?true:false;//判断目标值与初始值的大小
+		obj.style[attr] = start + 'px';//设定初始值
+		speed = bool?-speed:speed;//判断速度值
+		//console.log(bool);
+	    (function fn(){
+		  start += speed;//在这个示例过程start始终要小于end
+		  (bool?start <= end:start >= end)?start = end:requestAnimationFrame(fn);
+		  obj.style[attr] = start + 'px';
+		})();//函数自执行
+	}
+</script>
+</body>
+</html>

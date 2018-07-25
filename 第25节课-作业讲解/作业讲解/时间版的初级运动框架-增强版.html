@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>时间版的初级运动框架-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    position:absolute;
+			    width:100px;
+				height:100px;
+				background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+   var oBox= document.getElementById('box');
+   //tMove(oBox,'left',200,1000)
+   tMove(oBox,{left:200,top:200,width:200,height:200},1000)
+   function tMove(obj,json,time,callback){//时间版的运动函数
+     window.requestAnimationFrame = window.requestAnimationFrame || function(fn){
+	    return setTimeout(fn,1000/60);}//兼容
+	 window.cancleAnimationFrame = window.cancleAnimationFrame || clearTimeout;
+	 var cssJson = getStyle(obj);//获取元素对象的属性
+	 var start = {};//创建一个
+	 var S = {};//总路程已知
+	 for( var key in json){
+	    start[key] = parseInt(cssJson[key]);//初始值
+	 }
+	 for( var key in start ){
+	    S[key] = json[key]-start[key];//存储每个属性的 总路程
+		if ( !S[key] ){//判断S[key]是否为空
+            delete start[key];
+            delete S[key];
+        }
+	 }
+	 var oldDate = new Date();//初始时间
+	 (function fn(){
+	    var nowDate = new Date();//获取当前时间
+		var t = nowDate - oldDate;//经过多长时间已知
+		var prop = t/time;//时间比例值
+		prop>=1?prop=1:requestAnimationFrame(fn);
+		var s = {};//当前所走的路程
+		for( var key in start ){
+			if( key=='opacity' ){//兼容opacity
+			   s[key] = S[key]*prop*prop+start[key];
+			   obj.style[key]=s[key];
+			   obj.style.filter = 'alpha(opacity='+s[key]*100+')';
+			}else{
+			   s[key] = S[key]*prop+start[key];
+			   obj.style[key] = s[key] + 'px';
+			}
+		}
+		//var s = S/time*t+start;
+		if( prop==1 ){
+		   callback&&callback.call(obj);
+		}
+		
+	 })();
+   }
+
+
+   function getStyle(obj){//获取样式
+      return obj.currentStyle || getComputedStyle(obj);
+   }
+</script>
+</body>
+</html>

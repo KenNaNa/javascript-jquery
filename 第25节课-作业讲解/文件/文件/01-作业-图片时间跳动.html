@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 360px;
+                margin: 50px auto;
+            }
+            #box ul li{
+                float: left;
+                margin: 0 5px;
+            }
+            #box ul li.num{
+                width: 40px;
+                height: 60px;
+            }
+
+            #box ul li.dot{
+                width: 17px;
+                height: 60px;
+                background-image: url("img/d.png");
+            }
+
+            #box ul li.l0{
+                background-image: url("img/0.png");
+            }
+            #box ul li.l1{
+                background-image: url("img/1.png");
+            }
+            #box ul li.l2{
+                background-image: url("img/2.png");
+            }
+            #box ul li.l3{
+                background-image: url("img/3.png");
+            }
+            #box ul li.l4{
+                background-image: url("img/4.png");
+            }
+            #box ul li.l5{
+                background-image: url("img/5.png");
+            }
+            #box ul li.l6{
+                background-image: url("img/6.png");
+            }
+            #box ul li.l7{
+                background-image: url("img/7.png");
+            }
+            #box ul li.l8{
+                background-image: url("img/8.png");
+            }
+            #box ul li.l9{
+                background-image: url("img/9.png");
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li class="l0 num"></li>
+                <li class="l0 num"></li>
+                <li class="dot"></li>
+                <li class="l0 num"></li>
+                <li class="l0 num"></li>
+                <li class="dot"></li>
+                <li class="l0 num"></li>
+                <li class="l0 num"></li>
+            </ul>
+        </div>
+        <script>
+
+            var aNum = document.querySelectorAll("#box ul li.num"),
+                length = aNum.length;
+
+            setInterval(fn(),1000);
+            function fn() {
+                var nowTime = new Date(),//当前日期对象
+                    hh = nowTime.getHours(),//时
+                    mm = nowTime.getMinutes(), //分
+                    ss = nowTime.getSeconds();//秒
+
+                //时间补0
+                hh = toTwo(hh);
+                mm = toTwo(mm);
+                ss = toTwo(ss);
+
+                var str = hh + mm + ss;//讲时分秒拼接成一个长度为 6 的字符串
+
+                //循环，让str的每一位 对应 aNum的每一个
+                for (var i = 0; i < length; i++) {
+                    //var index = str.charAt(i);//获取str的第i位的字符
+                    aNum[i].className = "num l"+str.charAt(i);
+                }
+                return fn;
+            }
+
+            //个位数补0变两位数
+            function toTwo(n) {
+                return n<10?"0"+n:n+"";
+            }
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
