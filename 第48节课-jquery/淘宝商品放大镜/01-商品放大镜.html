@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>01-商品放大镜-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: relative;
+                width: 400px;
+                height: 500px;
+                margin: 100px;
+                border: 1px solid #ddd;
+            }
+            #show{
+                position: relative;
+                width: 400px;
+                height: 400px;
+                background: #dbffed;
+                overflow: hidden;
+            }
+            #pic{
+                display: none;
+                position: absolute;
+                top: 1px;
+                right: -410px;
+                width: 400px;
+                height: 400px;
+            }
+            #show .pic{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+            #show .pic img{
+                width: 100%;
+                height: 100%;
+            }
+            #show .cover{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 150px;
+                height: 150px;
+                background: url("img/cover.png");
+                cursor: move;
+            }
+            #tab{
+                width: 100%;
+                height: 100px;
+                overflow: hidden;
+            }
+            #tab ul{
+                width: 2000px;;
+                height: 100%;
+            }
+            #tab ul li{
+                overflow: hidden;
+                position: relative;
+                float: left;
+                width: 50px;
+                height: 50px;
+                border: 2px solid #fff;
+                margin: 23px 13px;
+                cursor: pointer;
+            }
+            #tab ul li.on{
+                border-color: #f60;
+            }
+            #tab ul li img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+        </style>
+		<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+    </head>
+    <body>
+        <div id="box">
+
+            <!--左上中图-->
+            <div id="show">
+                <div class="pic">
+                    <img src="" alt="">
+                    <div class="cover"></div>
+                </div>
+
+            </div>
+
+            <!--右边的大图-->
+            <div id="pic"></div>
+
+            <!--小图-->
+            <div id="tab">
+                <ul>
+                    <li class="on">
+                        <img src="img/1.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/2.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/3.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/4.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/5.jpg" alt="">
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+<script type="text/javascript">
+    (function(){
+	     //获取元素
+		 var $tabLi = $('#tab').find('ul li');
+         var length = $tabLi.length;
+		 //获取每个li的宽高值由于宽高值一样就只获取宽的值了
+		 var tLW = $tabLi.width();
+         var tLH = $tabLi.height();
+		 var propArr = [];
+		 //设置小图图片的样式
+	     $tabLi.each(function(i){
+		    var $img = $(this).find('img');//获取每个li下面的img
+			var W = $img.width();//获取原始图片的宽高值
+            /*console.log(W);
+			   经过测试之后W后为0的值
+			   也就是说有些图片还没加载完成 
+			   所以我们要判断图片是否全部加载完成
+
+			   1 如果W全部不为0的话就直接执行beforeLoad函数
+			   2 否则就等待图片加载完后执行
+			*/
+
+			W?beforeLoad():($img[0].onload = beforeLoad);
+			function beforeLoad(){
+				//图片加载后再获取他的宽高值
+			    var iW = $(this).width();//this是指$img[0]
+				var iH = $(this).height();
+
+				if( iW===iH ){
+				    this.width = tLW;//this是指$img[0]
+					this.height = tLH;
+				}else if( iW>iH ){
+				    this.width = tLW;
+					this.height = tLH/(iW/iH);
+				}else{
+				    this.width = tLW*(iW/iH);
+					this.height = tLH;
+				}
+			}
+            
+			/*console.log(iW+'>>>>>>>>>>>>>>>'+iH);
+			   可以还看出结果总是不一样的 
+			   因为有时候图片还没有加载完成
+			   所以有时候的值为0>>>>>>>0
+			   等等
+
+			   所以我们要等待图片加载完成后在进行一系列操作
+
+			   js中用的是onload事件来监听图片是否全部加载完成
+			*/
+            
+		 })
+	})()
+</script>
+</body>
+</html>

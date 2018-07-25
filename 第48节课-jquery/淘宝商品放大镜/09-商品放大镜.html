@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>09-商品放大镜-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: relative;
+                width: 400px;
+                height: 500px;
+                margin: 100px;
+                border: 1px solid #ddd;
+            }
+            #show{
+                position: relative;
+                width: 400px;
+                height: 400px;
+                background: #dbffed;
+                overflow: hidden;
+            }
+            #pic{
+                display: none;
+                position: absolute;
+                top: 1px;
+                right: -410px;
+                width: 400px;
+                height: 400px;
+            }
+            #show .pic{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+            #show .pic img{
+                display:block;
+				position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+            #show .cover{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 150px;
+                height: 150px;
+                background: url("img/cover.png");
+                cursor: move;
+            }
+            #tab{
+			    position:relative;
+                width: 100%;
+                height: 100px;
+                overflow: hidden;
+
+            }
+            #tab ul{
+                width: 2000px;;
+                height: 100%;
+            }
+            #tab ul li{
+                overflow: hidden;
+                position: relative;
+				z-index:10;
+                float: left;
+                width: 50px;
+                height: 50px;
+                /* border: 2px solid #fff; */
+                margin: 23px 13px;
+                cursor: pointer;
+            }
+            #tab ul li img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+			#tab #border{
+			   position:absolute;
+			   z-index:9;
+               left:12px;
+			   top:22px;
+			   width:48px;
+			   height:48px;
+			   border:2px solid #f60;
+			}
+        </style>
+		<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+    </head>
+    <body>
+        <div id="box">
+
+            <!--左上中图-->
+            <div id="show">
+                <div class="pic">
+                    <img src="" alt="">
+                    <div class="cover"></div>
+                </div>
+
+            </div>
+
+            <!--右边的大图-->
+            <div id="pic"></div>
+
+            <!--小图-->
+            <div id="tab">
+                <ul>
+                    <li class="on">
+                        <img src="img/1.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/2.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/3.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/4.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="img/5.jpg" alt="">
+                    </li>
+                </ul>
+				<div id='border'></div>
+            </div>
+
+        </div>
+<script type="text/javascript">
+    (function(){
+	     //获取元素
+		 var $tabLi = $('#tab').find('ul li');
+		 var $show = $('#show');
+		 var $pic = $('#pic');
+		 var tabFirstLiImg = $tabLi.eq(0).children();//获取第一的元素的子元素
+		 var $showPic = $show.find('.pic');
+		 var spW = $showPic.width();
+		 var spH = $showPic.height();
+		 var $showImg = $showPic.find('img');
+         var length = $tabLi.length;
+		 //获取每个li的宽高值由于宽高值一样就只获取宽的值了
+		 var tLW = $tabLi.width();
+         var tLH = $tabLi.height();
+		 var propArr = [];
+		 var $cover = $show.find('.cover');
+		 var sLeft = $tabLi.eq(0).position().left+12;
+		 //初始化样式
+         $showImg.prop('src',tabFirstLiImg.prop('src'));
+		 $showImg.width(400);
+		 $showImg.height(400);
+
+		 //设置小图图片的样式
+	     $tabLi.each(function(i){
+		    var $img = $(this).find('img');//获取每个li下面的img
+			var W = $img.width();//获取原始图片的宽高值
+            /*console.log(W);
+			   经过测试之后W后为0的值
+			   也就是说有些图片还没加载完成 
+			   所以我们要判断图片是否全部加载完成
+
+			   1 如果W全部不为0的话就直接执行beforeLoad函数
+			   2 否则就等待图片加载完后执行
+			*/
+            var img = $img[0];//先把this=$img[0]用个全局变量存起来
+			W?beforeLoad():(img.onload = beforeLoad);
+			function beforeLoad(){
+				//图片加载后再获取他的宽高值
+			    var iW = $(img).width();//$(img)将DOM对象转为jQuery对象
+				var iH = $(img).height();
+				propArr[i] = iW/iH;//存储原始比例制
+				( iW>iH )?( img.width = tLW ):( img.height = tLW );
+				for( var j=0;j<length;j++ ){
+			       if( !propArr[j] ) return;
+			    }
+				afterLoad();
+			}
+			/*console.log(iW+'>>>>>>>>>>>>>>>'+iH);
+			   可以还看出结果总是不一样的 
+			   因为有时候图片还没有加载完成
+			   所以有时候的值为0>>>>>>>0
+			   等等
+
+			   所以我们要等待图片加载完成后在进行一系列操作
+
+			   js中用的是onload事件来监听图片是否全部加载完成
+			*/
+			
+			function afterLoad(){
+				$tabLi.mouseenter(function(i){
+				   var prop = propArr[$(this).index()];
+				   var tLeft = $(this).position().left;
+				   var tWidth = $(this).width();
+				   var thisImg = $(this).find("img");
+                   if( prop>1 ){//判断prop是否比1大
+				     $showImg.width(spW);//设置图片的宽为show的宽的值
+					 $showImg.height(spH/prop)
+				   }else{
+				     $showImg.height(spH);
+					 $showImg.width(spW*prop);
+				   }
+                   $showImg.prop("src" , thisImg.prop("src"));
+				   $('#border').stop().animate({
+				      left:tLeft+12
+				   },200)
+				});
+				
+				$('#box').mouseleave(function(){
+				   $('#border').stop().animate({
+				      left:sLeft
+				   },300)
+                   $showImg.prop('src',tabFirstLiImg.prop('src'));
+				   $showImg.width(400);
+				   $showImg.height(400);
+				});
+				
+
+
+				//鼠标hover事件
+				$show.hover(function(){
+				   $pic.show();
+				   $cover.show();
+				   //求出图片的宽高值
+				   var IW = $showImg.width();
+				   var IH = $showImg.height();
+				   //求出$pic的宽高值
+				   var picW = $pic.width();
+				   var picH = $pic.height();
+				   //求出$showPic的自身宽高
+				   var pW = $showPic.width();
+				   var pH = $showPic.height();
+				   //求出$showPic到文档的距离
+				   var osL = $showPic.offset().left;
+				   var osT = $showPic.offset().top;
+				   //求出$cover的自身宽高
+				   var cW = $cover.width();
+				   var cH = $cover.height();
+				   //限制left和Top值得大小
+				   var maxTop = Math.max(0,pH-cH);
+				   var maxLeft = Math.max(0,pW-cW);
+				   //获取当前图片路径
+				   var src = $showImg.attr('src');
+				   //设置backgroundSize
+				   var size = IW*picW/cW+'px '+IH*picH/cH+'px';
+				   //鼠标移动事件
+                   $(this).mousemove(function(e){
+				      //求出鼠标点击的位置到文档的距离
+					  var ePL = e.pageX;
+					  var ePT = e.pageY;
+					  var _LX = ePL - osL;
+					  var _TY = ePT - osT;
+                      //求出鼠标的中心位置
+					  var x = _LX - cW/2;
+					  var y = _TY - cH/2;
+
+					  //限制大小
+                      x = Math.min(maxLeft,x);
+					  x = Math.max(0,x);
+					  y = Math.min(maxTop,y);
+					  y = Math.max(0,y);
+
+					  //设置$cover的left值和Top值
+					  $cover.css({
+					      left:x+'px',
+						  top:y+'px'
+					  });
+
+					  //设置$pic图片放大区
+					  $pic.css({
+					     backgroundImage:'url('+src+')',
+						 backgroundRepeat:'no-repeat',
+						 backgroundSize:size,
+						 backgroundPosition:-x*picW/cW+'px '+-y*picH/cH+'px'
+					  })
+
+				   });
+				},function(){
+				   $(this).off('mousemove');//解绑函数
+				   $pic.hide();
+				   $cover.hide();
+				});
+
+			}
+            /*
+			   鼠标移入的事件是在图片加载完成之后才能移入有效
+			   而鼠标移入事件添加在$tabLi身上的
+
+			   判断propArr的每个值是存在 不是undefined
+			   全部不是undefined 才执行鼠标移入事件
+			*/
+		 })
+	})()
+</script>
+</body>
+</html>
