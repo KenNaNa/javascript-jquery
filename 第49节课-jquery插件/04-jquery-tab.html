@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>tab-李金文</title>
+		 <style type="text/css">
+		     *{margin:0; padding:0;}
+			 body{margin:50px;}
+			 li{list-style:none;}
+			 .tabNav li{
+			     float:left;
+				 width:150px;
+				 height:26px;
+				 line-height:26px;
+				 text-align:center;
+				 margin-right:3px;
+				 border:1px solid #abcdef;
+				 border-bottom:none;
+				 cursor:pointer;
+			 }
+			 .tabContent{
+			     clear:both;
+			 }
+			 .tabContent div{
+			     border:1px solid #abcdef;
+				 display:none;
+				 width:500px;
+				 height:200px;
+			 }
+			 .tabNav li.current{
+			     background:#abcdef;
+				 color:#fff;
+				 font-weight:bold;
+
+			 }
+		 </style>
+		 <script src="jquery-1.12.4.min.js"></script>
+		 <script src="jquery-tab.js"></script>
+	 </head>
+<body>
+<div class="tab">
+	<ul class="tabNav">
+		<li class='current'>html</li>
+		<li>css</li>
+		<li>javascript</li>
+	</ul>
+	<div class="tabContent">
+		<div style='display:block;'>html</div>
+		<div>css</div>
+		<div>javascript</div>
+	</div>
+</div>
+<script type="text/javascript">
+  $(function(){
+     $('.tab').tab();
+     
+  })
+</script>
+</body>
+</html>

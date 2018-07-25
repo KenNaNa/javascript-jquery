@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>tab</title>
+	<script src="jquery.js"></script>
+	<script src="jquery.tab.1.0.js"></script>
+	<style>
+		*{padding: 0;margin: 0;}
+		body{margin: 50px;}
+		.tabNav1 {list-style-type: none;}
+		.tabNav1 li{float: left;width: 150px;height: 26px;line-height: 26px;text-align: center;margin-right: 3px;border: 1px solid #abcdef;border-bottom: none;cursor: pointer;}
+		.tabNav1 li.current1{background: #abcdef;color: #fff;font-weight: 700;}
+		.tabContent{clear: both;}
+		.tabContent div{border: 1px solid #abcdef;display: none;width: 500px;height: 200px;}
+	</style>
+	<script>
+		$(function(){
+			$('.tab').tab({
+				eventType:'mouseover',
+				tabNav:'.tabNav1>li',
+				currentClass:'current1'
+			}).find('.tabNav1>li').css('background','red');
+		})
+	</script>
+</head>
+<body>
+	
+	<div class="tab">
+		
+		<ul class="tabNav1">
+			<li class="current1">html</li>
+			<li>css</li>
+			<li>javascript</li>
+		</ul>
+
+		<div class="tabContent">
+			<div style="display:block">html</div>
+			<div>css</div>
+			<div>javascript</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

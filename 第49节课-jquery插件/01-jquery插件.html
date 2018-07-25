@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>01-jquery插件-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+		 <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+	 </head>
+<body>
+<input type="button" value="按钮" />
+<script type="text/javascript">
+   /*
+     1 直接给jquery添加全局函数
+
+   */
+   /* jQuery.myAlert = function(){
+      alert('我是通过调用插件弹出的警告框');
+   }
+   $.myAlert(); */
+
+   /*
+     2 用$.extend()
+   */
+
+   /*$.extend({
+      myalert2:function(){
+	     alert('我是通过调用插件弹出的警告框2')
+	  }
+   })
+   $.myalert2();*/
+
+   /*
+     3 命名空间
+   */
+
+   jQuery.Li = {
+      myAlert:function(){
+	     alert(1);
+	  }
+   }
+   $('input').click(function(){
+     jQuery.Li.myAlert();
+   })
+   
+</script>
+</body>
+</html>

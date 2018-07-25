@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>table</title>
+	<style>
+		table{width: 100%;border: 1px solid #abcdef;border-collapse: collapse;}
+		th,td{height: 28px;border: 1px solid #abcdef;text-align: center;}
+		.evenRow1{background: #38a38a;}
+		.oddRow1{background:#09f;}
+		.currentRow1{background: yellow;}
+	</style>
+	<script src="jquery.js"></script>
+	<script src="jquery-table-1.0.js"></script>
+	<script>
+		$(function(){
+			$('#table1').table({
+				evenRowClass:'evenRow1',
+				oddRowClass:'oddRow1',
+				currentRowClass:'currentRow1',
+				eventType:'click'
+			});
+		})
+	</script>
+</head>
+<body>
+	<!-- 需求：
+	开发一个插件：要求奇数行的颜色是#38a38a，偶数行的颜色是#09f,当鼠标移动到当前行的时候，当前行的颜色变成yellow，当鼠标移开时还是显示原来的颜色 -->
+
+	<table id="table1">
+		<tr>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>身高</th>
+			<th>体重</th>
+		</tr>
+
+		<tr>
+			<td>张三</td>
+			<td>22</td>
+			<td>187</td>
+			<td>70KG</td>
+		</tr>
+
+		<tr>
+			<td>李四</td>
+			<td>20</td>
+			<td>170</td>
+			<td>60KG</td>
+		</tr>
+
+		<tr>
+			<td>小四</td>
+			<td>30</td>
+			<td>148</td>
+			<td>40KG</td>
+		</tr>
+
+		<tr>
+			<td>张三</td>
+			<td>22</td>
+			<td>187</td>
+			<td>70KG</td>
+		</tr>
+
+		<tr>
+			<td>李四</td>
+			<td>20</td>
+			<td>170</td>
+			<td>60KG</td>
+		</tr>
+
+		<tr>
+			<td>小四</td>
+			<td>30</td>
+			<td>148</td>
+			<td>40KG</td>
+		</tr>
+
+		<tr>
+			<td>张三</td>
+			<td>22</td>
+			<td>187</td>
+			<td>70KG</td>
+		</tr>
+
+		<tr>
+			<td>李四</td>
+			<td>20</td>
+			<td>170</td>
+			<td>60KG</td>
+		</tr>
+
+		<tr>
+			<td>小四</td>
+			<td>30</td>
+			<td>148</td>
+			<td>40KG</td>
+		</tr>
+
+		<tr>
+			<td>张三</td>
+			<td>22</td>
+			<td>187</td>
+			<td>70KG</td>
+		</tr>
+
+		<tr>
+			<td>李四</td>
+			<td>20</td>
+			<td>170</td>
+			<td>60KG</td>
+		</tr>
+
+		<tr>
+			<td>小四</td>
+			<td>30</td>
+			<td>148</td>
+			<td>40KG</td>
+		</tr>
+
+	</table>
+</body>
+</html>

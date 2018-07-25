@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>03-jquery插件-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 table{
+			    width:100%;
+				border:1px solid #abcdef;
+				border-collapse:collapse;
+			 }
+			 tr td{
+			    height:28px;
+				border:1px solid #abcdef;
+				text-align:center;
+				line-height:30px;
+			 }
+			 .oddRow1{
+			    background:#38a38a;
+			 }
+			 .evenRow1{
+			    background:#09f;
+			 }
+			 .currentRow1{
+			    background:yellow;
+			 }
+		 </style>
+		 <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+		 <script type="text/javascript" src="jquery-table.js"></script>
+	 </head>
+<body>
+<table id='table1'>
+	<tr>
+		<th>姓名</th>
+		<th>年龄</th>
+		<th>身高</th>
+		<th>体重</th>
+	</tr>
+	<tr>
+		<td>张三</td>
+		<td>22</td>
+		<td>187</td>
+		<td>70k</td>
+	</tr>
+	<tr>
+		<td>李四</td>
+		<td>20</td>
+		<td>170</td>
+		<td>60k</td>
+	</tr>
+	<tr>
+		<td>王五</td>
+		<td>23</td>
+		<td>187</td>
+		<td>80k</td>
+	</tr>
+	<tr>
+		<td>张三</td>
+		<td>22</td>
+		<td>187</td>
+		<td>70k</td>
+	</tr>
+	<tr>
+		<td>李四</td>
+		<td>20</td>
+		<td>170</td>
+		<td>60k</td>
+	</tr>
+	<tr>
+		<td>王五</td>
+		<td>23</td>
+		<td>187</td>
+		<td>80k</td>
+	</tr>
+	<tr>
+		<td>张三</td>
+		<td>22</td>
+		<td>187</td>
+		<td>70k</td>
+	</tr>
+	<tr>
+		<td>李四</td>
+		<td>20</td>
+		<td>170</td>
+		<td>60k</td>
+	</tr>
+	<tr>
+		<td>王五</td>
+		<td>23</td>
+		<td>187</td>
+		<td>80k</td>
+	</tr>
+	<tr>
+		<td>张三</td>
+		<td>22</td>
+		<td>187</td>
+		<td>70k</td>
+	</tr>
+	<tr>
+		<td>李四</td>
+		<td>20</td>
+		<td>170</td>
+		<td>60k</td>
+	</tr>
+	<tr>
+		<td>王五</td>
+		<td>23</td>
+		<td>187</td>
+		<td>80k</td>
+	</tr>
+	<tr>
+		<td>张三</td>
+		<td>22</td>
+		<td>187</td>
+		<td>70k</td>
+	</tr>
+	<tr>
+		<td>李四</td>
+		<td>20</td>
+		<td>170</td>
+		<td>60k</td>
+	</tr>
+	<tr>
+		<td>王五</td>
+		<td>23</td>
+		<td>187</td>
+		<td>80k</td>
+	</tr>
+</table>
+<script type="text/javascript">
+   /*
+     要求开发一个插件
+	    奇数行颜色为#38a38a
+		偶数行颜色为#09f
+		但鼠标移入时颜色变yellow
+		移除时还是原来的颜色
+   */
+   var table = $('#table1');
+   table.table({
+       evenRowClass:'evenRow1',
+	   oddRowClass:'oddRow1',
+	   currentRowClass:'currentRow1'
+   });
+</script>
+</body>
+</html>

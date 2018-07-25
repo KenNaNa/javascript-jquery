@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>demo1</title>
+	<script src="jquery.js"></script>
+	<script src="demo1.js"></script>
+</head>
+<body>
+	<input type="button" value="点击" />
+	<script>
+		// var a = '我是通过调用插件参数参数参数参数参数弹出的警告框'
+		// var a = '我是通过extend()方法写的插件弹出的警告框'
+		 var a = '我是有命名空间的插件警告框'
+		$('input').click(function(){
+			$.zxit.myAlert(a);
+		});
+	</script>
+</body>
+</html>
