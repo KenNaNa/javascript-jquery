@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作用域练习题14-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var a = 10;
+	alert(a);
+	a();
+	function a(){
+	  alert(20);
+	}
+	/*
+	  解析：
+	      仓库 找
+		       var a = undefined
+			       a = function a(){
+				     alert(20);
+				   }
+		  执行 自上而下
+		       var a = 10;
+			   alert(10) = > 10;
+			   a() = > 10()报错 a is not a function
+
+	*/
+</script>
+</body>
+</html>

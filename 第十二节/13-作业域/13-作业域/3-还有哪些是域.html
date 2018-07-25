@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        /*
+        *   script 本身就是一个最大作用域
+        *   函数  也是一个作用域
+        * */
+        /*  1
+        *
+        *   var a = 0;
+             function fn1() {
+                a++;
+             }
+             function fn2() {
+                a--;
+             }
+             fn1();
+             fn2();
+             alert( a );
+        *
+        * */
+
+
+        /*   1
+            解析：
+                 1 找
+                    a = und -》 a = 0 -> a = 1 -> a=0
+                    fn1 = function fn1() {
+                        a++;
+                     }
+                    fn2 = function fn2() {
+                        a--;
+                     }
+                  2 执行
+                    a = 0;
+                    fn1();
+                        a++; -> a = a+1 -> a = 0+1 =1
+                    fn2();
+                        a--; -> a = a-1 -> a = 1-1 = 0
+                    alert( a );  -> 0
+        *
+        * */
+
+        /*  2
+            alert( a ); // und
+            if( true ){
+                var a = 1;
+
+            }
+            alert( a );  // 1
+         */
+        /*  2
+        *  如果说 if它不是作用域 alert( a ) -> 1
+        * */
+
+        /*
+            function fn() {
+                var a = '美女';
+            }
+            fn();
+            alert(a);
+         */
+        /*  解决方案：找美女
+            var b = '';
+            function fn() {
+                var a = '美女';
+                b = a;
+            }
+            fn();
+            alert(b);
+         */
+        /*
+            function fn1() {
+                var a = '帅哥';
+            }
+            fn1();
+            function fn2() {
+                alert( a );
+            }
+         */
+        /*     解决方案： 帅哥
+            function fn1() {
+                var a = '帅哥';
+                fn2( a );
+            }
+            fn1();
+            function fn2(b) {
+                alert( b );
+            }
+         */
+
+        /*
+            for( var i=0;i<5;i++ ){
+                var a = 1;
+                function fn() {
+                    alert('么么哒');
+                }
+            }
+            alert(a);
+            fn();
+        */
+        /*
+        *  如果for不是作用域 alert( a )->1
+        * */
+
+        /*相当于
+            var a = 1;
+            function fn() {
+                alert('么么哒');
+            }
+            alert(a);
+            fn();
+        */
+    </script>
+</body>
+</html>
+

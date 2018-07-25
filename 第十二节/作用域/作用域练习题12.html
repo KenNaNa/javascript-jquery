@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作用域练习题12-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var a =5;
+	function fn(){
+	  var a = 10;
+	  alert(a);
+	  function b(){
+	    a++;
+		alert(a);
+	  };
+	  return b;
+	}
+	var c = fn();
+	c();
+	fn()();
+	c();
+</script>
+</body>
+</html>

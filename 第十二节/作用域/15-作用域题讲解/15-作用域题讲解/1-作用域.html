@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			/*	1
+				alert( a );
+				var a = 10;
+				alert( a );
+				a(); 
+				function a(){ 
+					alert(2);
+				};
+			
+			
+			
+				1 找
+					//a = und
+					//a = function(){
+						alert( 2 );
+					}
+					a = 10;
+				2 执行
+					alert( a ); -> 函数块
+					a = 10; 
+					alert( a );  -> 10
+					a(); -> 10(); 报错
+			*/
+			
+			/*  2
+				alert( a );  
+				var a = 10;  
+
+				alert( a ); 
+				function a(){alert(20)};
+
+				alert( a ); 
+				var a = 30; 
+
+				alert( a );
+
+				function a(){alert(40)};
+				alert( a ); 
+				
+
+			
+				1 找 var 定义函数 参数
+					//a = und;
+					//a = function a(){alert(20)};
+					//a = und;
+					//a = function a(){alert(40)};
+					//a = 10;
+					a = 30
+				2 执行
+					alert( a );  -> 函数块
+					a = 10;   
+					alert( a );  -> 10
+					alert( a );  -> 10
+					a = 30; 
+					alert( a );  -> 30
+					alert( a );  -> 30
+			*/
+			
+			
+			/*  3
+				a();
+				var a = function(){alert( 1 );}
+				a();
+				function a(){alert(2);}
+				a();
+				var a = function b(){alert(3);}
+				a();
+			
+			
+				1 找 var 定义函数 参数
+					//a = und;
+					//a = function a(){alert(2);}
+					//a = und
+					//a = function(){alert( 1 );}
+					a = function b(){alert(3);}
+				2 执行
+					a(); -> 新的作用域：
+										1 找 var 定义函数 参数
+											
+										2 执行
+											alert(2); -> 2
+					a(); -> 新的作用域： 
+										1 找 var 定义函数 参数
+											
+										2 执行
+											alert( 1 ); ->1
+					a(); -> 新的作用域： 
+										1 找 var 定义函数 参数
+											
+										2 执行
+											alert( 1 ); ->1
+					a(); -> 新的作用域： 
+										1 找 var 定义函数 参数
+											
+										2 执行
+											alert( 3 ); ->3
+			*/
+			/*	4
+				var a = 0;
+				function fn(){
+					alert( a );
+					var a = 1;
+					alert( a );
+				}
+				fn();
+			
+			
+				1 找 var 定义函数 参数
+					a = und; -> a=0
+					fn = function fn(){
+						alert( a );
+						var a = 1;
+						alert( a );
+					}
+				2 执行
+					a = 0;
+					fn();   -> 新的作用域： 
+											1 找 var 定义函数 参数
+												a = und; -> a = 1
+												
+											2 执行 
+												alert( a ); -> und
+												a = 1;
+												alert( a ); ->  1
+			*/
+
+			/*  5
+
+				fn();
+				alert(a)
+				var a = 0;
+				alert(a);
+				function fn(){
+					var a = 1;
+				}
+
+
+
+			
+				1 找 var 定义函数 参数
+					a = und; -> a = 0;
+					fn = function fn(){
+						var a = 1;
+					}
+				2 执行
+					fn(); -> 新的作用域：
+										1 找 var 定义函数 参数
+											a = und; -> a =1;
+										2 执行
+											a = 1;
+					alert(a);  -> und
+					a = 0;
+					alert(a);  -> 0
+			*/				
+
+			/*	6
+			  
+				//alert( fn() );  //结果 函数块
+				fn()();
+				var a =0;
+				function fn(){
+					alert(a);
+					var a =3;
+					function c(){
+						alert(a)
+					}
+					return c;
+				}
+			
+			
+				1 找 var 定义函数 参数
+					a = und; -> a = 0;
+					fn = function fn(){
+						alert(a);
+						var a =3;
+						function c(){
+							alert(a)
+						}
+						return c;
+					}
+				2 执行
+					fn(); -> 新的作用域：
+										1 找 var 定义函数 参数
+											a = und; -> a = 3;
+											c = function c(){
+												alert(a)
+											}
+										2 执行
+											alert(a);  -> und;
+											a =3;
+											return c;
+												c = function c(){
+													alert(a)
+												}();
+					a =0;  
+			*/
+
+
+			/*	7
+				//alert( fn() );  und
+				//var b = und;
+				//alert( b ); // und
+				// 这是就是接收 结果
+
+				fn( );
+				var a =0;
+				function fn(){  // 有名字的函数 
+					alert(a);
+					var a =3;
+					function c(){
+						alert(a)
+					}
+					return c();
+				}
+			
+			
+				1 找 var 定义函数 参数
+					a = und;
+					fn = function fn(){
+						alert(a);
+						var a =3;
+						function c(){
+							alert(a)
+							
+						}
+						return c();
+					}
+				2 执行
+					fn();   -> 新的作用域：在解析的时候分为二个步骤
+										1 找 var 定义函数 参数
+											a= und -> a = 3
+											c =function c(){
+												alert(a)
+											}
+										2 执行
+										alert(a); -> und
+										a =3;
+										c(); -> 新的作用域：在解析的时候分为二个步骤
+											1 找 var 定义函数 参数
+												
+											2 执行
+											过程：alert(a); -> 3
+											结束：如果没return,默认返回und
+										return c();
+											
+			*/
+
+			
+			/*   8
+				var a = 1;
+
+				function fn(a){
+					alert( a );
+					a ++;
+					alert( a );
+				}
+				fn(a);
+
+				alert( a );
+			
+
+			
+				1 找 var 定义函数 参数
+					a = und ->  a= 1
+					fn = function fn(a){  函数代码块
+						alert( a );
+						a ++;
+						alert( a );
+					}
+				2 执行
+					a = 1; 
+					fn(1);	1 找 var 定义函数 参数
+								a = und; -> a = 1 -> a = 2
+							2 执行
+								a = 1;
+								alert( a );  -> 1
+								a ++; a = a+1; a = 1+1 => a = 2
+								alert( a ); -> 2
+								
+					alert( a );  -> 1
+			*/
+			
+			
+			
+
+
+
+
+
+			/*  9
+
+				var x = 5;
+				a();
+				function a(){
+					alert( x );
+					var x = 10;
+				}
+				alert( x )
+				
+
+			
+				1 找 var 定义函数 参数
+					x = und; -> x =5;
+					a = function a(){
+						alert( x );
+						var x = 10;
+					}
+				2 执行
+					x = 5; 
+					a();    1 找 var 定义函数 参数
+								x = und  -> a =10
+							2 执行
+							alert( x );  -> und
+							x = 10;
+					alert( x )  ->  5
+			*/
+
+			
+			/*  10
+				a();
+				function a(){
+					alert( x );
+					var x = 10;
+				}
+				alert( x )
+
+			
+			
+				1 找 var 定义函数 参数
+					a = function a(){
+						alert( x );
+						var x = 10;
+					}
+				2 执行
+					a();	
+							1 找 var 定义函数 参数
+								x = und; -> a =10
+							2 执行
+								alert( x );  -> und
+								x = 10; 
+					alert( x )
+			*/
+
+			
+
+			
+			/*  11
+				function a(){
+					alert( 1 )
+				}
+				var a;
+				alert( a )
+			
+			
+				1 找 var 定义函数 参数
+					//a = und;
+					a = function a(){
+						alert( 1 )
+					}
+				2 执行
+					alert( a )
+			*/
+
+
+			
+			/*  12
+
+				alert( a );
+				var a = 10;
+				alert( a );
+				function a(){
+					alert( 20 );
+				}
+				alert( a );
+				var a = 30;
+				alert( a );
+				function a(){
+					alert( 40 );
+				}
+				alert( a );
+
+			
+				1 找 var 定义函数 参数
+					//a = und;
+					//a = function a(){
+						alert( 20 );
+					}
+					//a = und;
+					//a = function a(){
+						alert( 40 );
+					}
+					//a = 10;
+					a = 30
+				2 执行
+					alert( a );  -> 函数块
+					a = 10; 
+					alert( a );  -> 10
+					alert( a );  -> 10
+					a = 30; 
+					alert( a );  -> 30
+					alert( a );  -> 30
+			*/
+
+			/*  13
+			
+				alert( a );
+				var a = 10;
+				alert( a );
+				function a(){
+					alert( 20 );
+				}
+				var a= 5;
+				alert( a );
+				a( );
+				alert( a );
+				function a(){
+					alert( 40 );
+				}
+				alert( a );
+					
+			
+			
+				1 找 var 定义函数 参数
+					//a = und;
+					//a = function a(){
+						alert( 20 );
+					}
+					//a = und
+					//a = function a(){
+						alert( 40 );
+					}
+					a = 10;
+					a = 5
+				2 执行
+					alert( a );  -> 函数块
+					a = 10;  
+					alert( a );  -> 10
+					a= 5;
+					alert( a );  -> 5
+					a( );  -> 5();
+			*/
+
+			
+			/*  14
+				a();
+				var a = function(){
+					alert( 1 );
+				}
+				a();
+				function a(){ 
+					alert( 2 )
+				}
+				a();
+				var a = function(){
+					alert( 3 )
+				}
+				a();
+
+				
+				表达式 会 重新赋值
+				1 找 var 定义函数 参数
+					//a = und
+					//a = function a(){ 
+						alert( 2 )
+					}
+					//a = und;
+					//a = function(){
+						alert( 1 );
+					}
+					a = function(){
+						alert( 3 )
+					}
+				2 执行
+					a();  -> 2
+					a = function(){
+						alert( 1 );
+					}
+					a();  ->  1
+					a();  ->  1
+					a = function(){
+						alert( 3 )
+					}
+					a();  ->  3
+			*/
+			
+			/*  15
+				var a = 0;
+				function fn(){
+					alert( a );
+					var a = 1;
+					alert( a);
+				}
+				fn();
+				alert( a );
+			
+			
+			
+				1 找 var 定义函数 参数
+					a = und;  ->  a = 0
+					fn = function fn(){
+						alert( a );
+						var a = 1;
+						alert( a);
+					}
+				2 执行
+					a = 0;
+					fn();   1 找 var 定义函数 参数
+								a = und -> a= 1
+							2 执行
+								alert( a );  -> und
+								a = 1; 
+								alert( a);  -> 1
+					alert( a ); -> 0
+			*/
+
+
+			/*  16
+				fn();
+				alert( a );
+				var a = 0;
+				alert( a );
+				function fn(){
+					var a = 1;
+				}
+
+			
+				1 找 var 定义函数 参数
+					a = und -> a = 0
+					fn = function fn(){
+						var a = 1;
+					}
+				2 执行
+					fn(); 
+					alert( a );  ->  und
+					a = 0; 
+					alert( a );  ->  0
+			*/
+			
+
+			/*  17
+				fn();
+				alert( a );
+				var a = 0;
+				alert( a );
+				function fn(){
+					a = 1;
+				}
+			
+			
+				1 找 var 定义函数 参数
+					a = und  ->  a = 1 -> a = 0
+					fn = function fn(){
+						a = 1;
+					}
+				2 执行
+					fn();  新的作用域 
+										1 找 var 定义函数 参数
+											
+										2 执行
+											a = 1;
+					alert( a );  -> 1
+					a = 0; 
+					alert( a );  -> 0
+			*/
+			
+			/*  18
+				fn()();
+				var a = 0;
+				function fn(){
+					alert( a );
+					var a = 3;
+					function c(){
+						alert( a );
+					}
+					return c;
+				}
+			
+			
+				1 找 var 定义函数 参数
+					a = und;
+					fn = function fn(){
+						alert( a );
+						var a = 3;
+						function c(){
+							alert( a );
+						}
+						return c;
+					}
+				2 执行
+					fn();	1 找 var 定义函数 参数
+								a= und; -> a = 3
+								c = function c(){
+									alert( a );
+								}()
+							2 执行
+								alert( a ); ->  und
+								a = 3; 
+								return c;
+					fn()();
+			*/
+			
+			var a = 5;
+			function fn(){
+				var a =10;
+				alert( a );
+				function b(){
+					a ++;
+					alert( a );
+				}
+				return b;
+			}
+
+			var c = fn();
+			c();
+			fn()();
+			c();
+			
+			console.log( a )
+
+			/*
+				1 找 var 定义函数 参数
+					a = und -> a = 5
+					fn = function fn(){
+						var a =10;
+						alert( a );
+						function b(){
+							a ++;
+							alert( a );
+						}
+						return b;
+					}
+					c = und   ->  
+					c = function b(){
+							a ++;
+							alert( a );
+						}
+					
+
+				2 执行
+					a = 5;
+					var c = fn();
+						fn();  1 找 var 定义函数 参数
+									a = und -> a = 10
+									b = function b(){
+										a ++;
+										alert( a );
+									}
+								2 执行
+									a =10;
+									alert( a );  -> 10
+									return b;
+					c = fn();  ->
+								c = function b(){
+										a ++;
+										alert( a );
+									}()
+					c();    1 找 var 定义函数 参数
+								
+							2 执行
+								a++; a = a+1 => a = 10+1 =>a=11
+					
+					fn()();	
+						fn();  1 找 var 定义函数 参数
+									a = und -> a =10
+									b =function b(){
+										a ++;
+										alert( a );
+									}()
+								2 执行
+									a =10; 
+									alert( a );  ->10
+						fn()()		a ++; a= a+1 => a=10+1 => a=11
+									alert( a );  -> 11
+						
+						c();   ->  c = function b(){
+										a ++;
+										alert( a );
+									}()    
+
+									a ++  => a = a+1 => a = 11+1 = 12
+									alert( a );  -> 12
+			*/
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>还有哪些域呢-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var a = 0;
+             function fn1() {
+                a++;
+             }
+             function fn2() {
+                a--;
+             }
+             fn1();
+             fn2();
+             alert( a );
+    /*
+	   解析：
+	       找 var a = undefined => 0
+		          function fn1(){
+				     a++;
+				  }
+				  function(){
+				     a--;
+				  }
+		   执行
+		       a = 1;
+			   fn1();
+			      找 a = 0;
+				  执行 a = a+1;=1;
+			   fn2();
+			      找 a = 1;
+				  执行 a = a-1;
+	*/
+</script>
+</body>
+</html>

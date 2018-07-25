@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		
+		<!-- 要想理清此题，请先了解 闭包 的机制 -->
+		<script type="text/javascript">
+			
+			
+			var a = 5;
+			function fn(){
+				var a =10;
+				alert( a );
+				function b(){
+					a ++;
+					alert( a );
+				}
+				return b;
+			}
+
+			var c = fn();
+			c();
+			fn()();
+			c();
+			
+			console.log( a )
+			
+			/*
+				1 找 var 定义函数 参数
+					a = und; -> a = 5
+					fn = function fn(){
+						var a =10;
+						alert( a );
+						function b(){
+							a ++;
+							alert( a );
+						}
+						return b;
+					}
+					c = und;
+					c = function b(){
+							a ++;
+							alert( a );
+						}
+
+				2 执行
+					a = 5; 
+					c = fn();  -> 新作用域
+								1 找 var 定义函数 参数
+									a = und; -> a = 10
+									b = function b(){
+										a ++;
+										alert( a );
+									}
+								2 执行
+									a =10;
+									alert( a ); ==> 10
+										
+					c();  ==> c = function b(){
+								a ++;
+								alert( a );
+							}()
+							1 找 var 定义函数 参数
+
+							2 执行
+								a++ ; a= a+1;  a = 10+1 ==> a=11
+								alert( a );  => 11
+
+					fn()();  ==>
+								fn();  
+									a = und => a =10
+									b= function b(){
+										a ++;
+										alert( a );
+									}
+									2 执行 
+										a =10
+										alert( a );  ->10
+								fn()();  ==> b= function b(){
+												a ++;
+												alert( a );
+											}()
+
+											2 执行 
+												a ++;  a=a+1 => a= 10+1 =>> a =11
+					c();   =>  c = function b(){
+									a ++;
+									alert( a );
+								}()
+								
+								2 执行 
+									a ++;  a= a+1 ==> a= 11+1 ===> a=12
+									alert( a );  => 12
+				
+				
+					console.log( a )  全局里的a
+			*/
+		</script>
+
+		<!-- 
+			闭包的特征：
+				函数1嵌套函数2
+				函数2里面变量引用函数2外面的变量
+			闭包的特点：
+				会把函数1里面的代码 永久存在内存中
+		-->
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作用域练习题9-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var x = 5;
+	a();
+	function a(){
+	  alert(x);
+	  var x = 10;
+	}
+	alert(x);
+	/*
+	  解析：
+	    仓库 找
+		     var x = undefined 由于函数的优先级高于变量
+			     function a(){
+				  alert(x);
+				  var x =10;
+				 }
+		     执行
+			     a();
+				 alert(x) undefined 
+				 alert(x) 5;
+
+	*/
+</script>
+</body>
+</html>

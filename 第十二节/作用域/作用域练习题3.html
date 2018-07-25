@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作用域练习题3-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   //a();报错 函数未定义
+   //a();
+   //function a(){alert(0);}
+   var a = function(){
+     alert(1);
+   }
+   a();//1
+   var a = function(){
+     alert(2);
+   }
+   a();//2
+   var a = function(){
+     alert(3);
+   }
+   a();//3
+   /*
+     解析：
+	   仓库 找
+	       var a = undefined
+		       a = function(){alert(1);}
+			   a = function(){alert(2);}
+			   a = function(){alert(3);}
+		执行
+		   a() :alert(3) => 3
+   */
+</script>
+</body>
+</html>

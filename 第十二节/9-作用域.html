@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>9-作用域-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+        *  作用域
+        *     作用：读写操作
+        *       域：范围、空间、区域
+        *
+        *       解析：
+        *           从上至下
+        *              1 '找' var  定义函数  参数
+        *                   函数的优先 比 变量高
+        *              2 执行
+        *
+        *                   函数 从里往外 -》 当前作用域没有的 会去父作用域找
+        *                   表达式 是会改变值的
+        *
+        * */
+		var a = function () {  // 表达式
+            alert( 1 )
+        };
+        function a() {  // 函数定义
+            alert( 2 )
+        }
+        a();
+		/*
+		  解析：
+		      找
+		*/
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-追梦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        /*
+        *  作用域
+        *     作用：读写操作
+        *       域：范围、空间、区域
+        *
+        *       解析：
+        *           从上至下
+        *              1 '找' var  定义函数  参数
+        *                   函数的优先 比 变量高
+        *              2 执行
+        *
+        *                   函数 从里往外 -》 当前作用域没有的 会去父作用域找
+        *                   表达式 是会改变值的
+        *
+        * */
+
+        /*  1
+            alert( a ); // und
+            var a = 1;
+            alert( a );  // 1
+        */
+        
+        /* 1
+        *   解析：
+        *       a = und => a =1
+        *
+        *
+        * */
+
+        /*  2
+            alert( a )  // 函数块
+            function a() {
+                alert(1)
+            }
+            alert( a )  // 函数块
+         */
+        /*  2
+        *   解析：
+        *       1 找
+        *           a = function a() {
+                         alert(1)
+                        }
+                2 执行
+        *
+        * */
+
+        /*  3
+            alert( a );  //
+            function a() {
+                alert(1)
+            }
+            a();
+            alert( a );  //
+         */
+        /*
+        * 解析：
+        *       1 找
+        *           a => function a() {
+                     alert(1)
+                     }
+                2 执行
+                    alert( a );  // 函数块
+                    a();   函数调用 是新的作用域 只要是作用域 解析时就要二步曲
+                            1 找
+                            2 执行
+                                alert(1)  =》 1
+
+                    alert( a );  // 函数块
+
+        * */
+
+        /*  4
+            alert( a );
+            function a() {
+                alert(1);
+            }
+            var a = 520;
+            alert( a );
+        */
+        /*
+        *  解析：
+        *       1 找
+        *
+        *           a = 520
+                2 执行
+                    alert( a );   =》 函数块
+                    a = 520; 表达式 值的改变
+                    alert( a );  -》 520
+        *
+        *
+        * */
+
+        /*   5
+            var a = 1;
+            function fn() {
+                alert(2);
+                var a = 3;
+            }
+            fn();
+            alert( a );
+         */
+        /*  5
+        *   解析：
+        *          1 找
+        *               a = 1   全局
+        *               fn = function fn() {
+                             alert(2);
+                             var a = 3;
+                         }
+                    2 执行
+                        a = 1;
+                        fn();  新的作用域
+                            1 找
+                                a = 3   局部变量
+                            2 执行
+                                alert(2);   -》  2
+                                a = 3;
+                        alert( a );  -》 1
+
+        * */
+        /*  6
+            var a = 1;
+            function fn() {
+                alert(2);
+                a = 3;
+            }
+            fn();
+            alert( a );
+        */
+        /*
+        *   解析：
+        *       1 找
+        *           a = und -》 a= 1  -》 a=3
+         *           fn =function fn() {
+                            alert(2);
+                            a = 3;
+                         }
+         *
+        *       2 执行
+        *           a = 1;
+        *           fn();
+        *               1 找
+        *
+        *               2 执行
+        *                  alert(2);  -> 2
+        *                  a = 3;  此函数没有 会从里往外找 去父级作用域
+        *           alert( a )  -> 3
+        * */
+
+        /*  7
+            var a = 1;
+            function fn( a ) {
+                alert(2);
+                a = 3;
+            }
+            fn();
+            alert( a );
+        */
+        /*
+        *   解析：
+        *       1 找
+        *               a = und -》 a = 1
+        *               fn = function fn( a ) {
+                             alert(2);
+                             a = 3;
+                        }
+        *       2 执行
+        *             a = 1;
+        *             fn();
+        *                   1 找 参数
+        *                         a = und -> a = 3
+        *                   2 执行
+        *                       alert(2); -> 2
+        *                       a = 3;
+        *
+        *             alert( a ); -> 1
+        * */
+
+        /*  8
+             var a = 1;
+             function fn( a ) {
+             alert(2);
+             a = 3;
+             }
+             fn( a );
+             alert( a );
+        *
+        * */
+
+        /*
+        *    解析：
+        *       1 找
+        *           a = und -》 a = 1
+        *           fn = function fn( a ) {
+                         alert(2);
+                         a = 3;
+                     }
+                 2 执行
+                     a = 1;
+                     fn( a ); -> fn( 1 )
+                                    1 找
+                                        a= und -> a=1 -> a=3
+
+                                    2 执行
+                                        a = 1 ;
+                                        alert(2);  -> 2
+                                        a = 3;
+        *            alert( a );  => 1
+        *
+        * */
+
+        var a = function () {  // 表达式
+            alert( 1 )
+        };
+        function a() {  // 函数定义
+            alert( 2 )
+        }
+        a();
+        /*
+        *
+        *   解析：
+        *       1 找
+        *
+                     a = function () {
+                        alert( 1 )
+                     };
+        *       2 执行
+        *           a = function () {
+                     alert( 1 )
+                   };
+                    a();  -》 1
+        *
+        * */
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作用域练习题4-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var a = 0;
+	function fn(){
+		alert( a );
+		var a = 1;
+		alert( a );
+	}
+	fn();
+	/*
+	  解析：
+	     仓库 找
+		      var a = undefined 
+			      fn(){
+				    alert(a);
+					var a = 1;
+					alert(a);
+				  }
+
+	     执行 
+		     var a = 0
+			 fn();
+			 找 var a = undefined
+			 执行 alert(a) = >undefined
+			      var a = 1;
+				  alert(a) = >1
+	*/
+</script>
+</body>
+</html>

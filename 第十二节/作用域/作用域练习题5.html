@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作用域练习题5-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    fn();//alert(1);
+	alert(a)
+	var a = 0;
+	alert(a);
+	function fn(){
+		var a = 1;
+		alert(1);
+	}
+    /*
+	  解析：
+	     仓库 找
+		     var a = undefined
+			     fn(){
+				   var a = 1;
+				 }
+		 执行 
+		    fn(); =>var a = 1;
+			alert(a); = > undefined;
+			var a = 0;
+			alert(a); = > 0;
+	*/
+</script>
+</body>
+</html>

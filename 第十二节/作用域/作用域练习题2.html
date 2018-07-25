@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作用域练习题2-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    alert(a);//function a(){alert(40);}
+	var a = 10;
+	alert(a);//alert(10) => 10
+	function a(){
+	  alert(20);
+	}
+	alert(a);//alert(10) => 10
+	var a = 30;
+	alert(a);//alert(30) => 30
+
+	function a(){
+	  alert(40);
+	}
+	alert(a);//alert(30) => 30
+	/*
+	  解析： 
+	  仓库  
+	     找  var a = undefined 10 30
+		     function a(){alert(20);}
+			 function a(){alert(30);}
+			 function a(){alert(40);}
+         执行 
+		     自上而下
+			 var a = 10;
+			 alert(a) = > 10;把函数块
+			 function a(){alert(20);}
+			 function a(){alert(30);}
+			 function a(){alert(40);}
+			 覆盖
+			 alert(a) = > 10;
+			 var a = 30;
+			 alert(a) = >30;
+			 alert(a) = >30; 
+	*/
+</script>
+</body>
+</html>
