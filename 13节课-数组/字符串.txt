@@ -1,0 +1,83 @@
+字面量的定义 :单引号和双引号表示字符串字面量
+字符串字面量的转义字符
+
+避免换行
+1通过反斜杠对行结束字符进行转义
+var str = 'written\
+over \
+multriple \
+lines';
+2使用加号进行跨行拼接
+var str = 'written'+
+'over'+
+'multriple'+
+'lines';
+
+手动转换字符串
+1 String(value)
+2 ''+value
+3 value.toString();
+值得注意的是 在展示数据时 JSON.stringify()要优于基本的字符串转行方法
+
+陷阱: 转换是不可逆的
+
+字符串的比较
+.区分大小写
+.不能很好的处理变音字符和重音字符
+其次 使用String.prototype.localeCompare(other)进行字符串比较
+这种方法往往更好 
+
+字符串拼接
+合并：加号（+）运算符  str = '' + value
+合并：拼接字符串数组
+var arr = []
+arr.push('say hello');
+arr.push('7');
+arr.push(' times fast');
+arr.join('');
+
+字符串函数 String(value)
+new String(str);
+
+字符串原形方法
+String.prototype.
+
+提取字符串
+String.prototype.charAt(pos)
+pos 是指返回指定位置pos的字符
+
+String.prototype.charCodeAt(pos)
+该方法是返回给定位置pos的javascript字符串对应的ASCII码
+charCodeAt() 的逆函数是fromCharCode();
+
+String.prototype.slice(start,end?)
+该方法返回一个字符串，它包括start开始到end结束的所有字符（包括start 但是不包括end）
+
+
+String.prototype.substring(start,end?)
+该方法可以替代slice()可以处理负的位置参数且可以更好的兼容浏览器
+
+
+String.prototype.split(separator?,limit?)
+
+字符串变换
+String.prototype.trim()
+该方法去除字符串开头和结尾的空格
+>'\r\nabc \t'.trim();
+>'abc';
+
+String.prototype.concat(str1?,str2?,....)
+该方法返回由待拼接字符串str1,str2,...
+
+String.prototype.toLowerCase()
+String.prototype.toLocaleLowerCase()
+String.prototype.toUpperCase()
+String.prototype.toLocaleUpperCase()
+
+字符串的索引和比较
+String.prototype.indexOf(searchString,position?)
+该方法返回从字符串的position位置（默认为0）开始检索
+返回searchString在字符串中出现的位置 若找不到则返回-1 
+
+String.prototype.lastIndexOf(searchString,position?)
+

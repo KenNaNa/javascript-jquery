@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>查找-替换-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+				 text-decoration:none;
+			 }
+			 .clearfixed:after{
+			     display:block;
+				 content:"";
+				 clear:both;
+			 }
+             #box{
+			     padding:10px;
+				 width:400px;
+				 margin:100px auto;
+				 margin-bottom:0;
+				 border:10px solid #ccc;
+			 }
+			 #box p{
+			     width:100%;
+				 font-size:14px;
+			 }
+			 #list{
+			     padding:10px;
+                 margin:0px auto;
+			     width:400px;
+			 }
+			 #list ul li:first-child{
+			     background:#f60;
+			 }
+			 #list ul li:nth-child(2){
+			     background:#f96;
+			 }
+			 #list ul li:last-child{
+			     margin-right:0;
+				 background:#f66;
+			 }
+			 #list ul li{
+			     width:120px;
+				 height:30px;
+				 float:left;
+				 margin-right:17px;
+				 background:red;
+				 text-align:center;
+				 line-height:30px;
+				 color:#fff;
+				 font-weight:bold;
+				 cursor:pointer;
+			 }
+			 #find{
+			    position:relative;
+				width:420px;
+				margin:10px auto;
+				border:10px solid #ccc;
+				display:none;
+				transition:display 0.8s ease-in-out;
+			 }
+			 #find.show{
+			    display:block;
+				
+			 }
+			 #find input{
+			    width:100%;
+				height:50px;
+				outline:none;
+			 }
+			 #find span{
+			    position:absolute;
+				top:1px;
+				right:-3px;
+				display:block;
+				width:30px;
+				height:52px;
+				color:#fff;
+				line-height:52px;
+				text-align:center;
+				background:rgba(0,0,0,0.4);
+				cursor:pointer;
+				font-size:20px;
+			 }
+			 #box p i{
+			    color:red;
+				font-size:20px;
+				font-weight:bold;
+			 }
+			 #trans{
+			    position:relative;
+			    padding:10px;
+				width:420px;
+				margin:10px auto;
+				background:red;
+				display:none;
+			 }
+			 #trans.show{
+			    display:block;
+			 }
+			 #trans input{
+			    height:20px;
+			 }
+			 #trans span{
+			    position:absolute;
+				right:0;
+				top:0;
+				width:20px;
+				height:20px;
+				line-height:20px;
+				text-align:center;
+				background:rgba(0,0,0,0.5);
+				color:#fff;
+				font-weight:bold;
+				cursor:pointer;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <p>
+	   中星9A卫星,是我国首颗国产广播电视直播卫星,采用中国航天科技集团公司空间技术研究院自主研发的东方红四号卫星平台，提供Ku BSS规划频段转发器直播服务.中星9A卫星,将定点于东经101.4度,星上设计的24个Ku BSS频段转发器，覆盖全中国(含港、澳、台地区),满足我国广播电视,新媒体和直播产业发展需求.此外,中星9A卫星专门设计了南海波束,将彻底解决南海海域,岛礁的政府,军队,人民群众收看广播电视节目的难题,确保了中国主权地区的直播卫星覆盖.
+	</p>
+</div>
+<div id="find">
+    <input type="text" placeholder= '请输入要搜索或替换的词句'/>
+	<span>&times;</span>
+</div>
+<div id="trans">
+    <input type="text" id="txt1"/>
+	<input type="text" id="txt2"/>
+	<span>&times;</span>
+</div>
+<div id="list">
+	<ul>
+	  <li>查找</li>
+	  <li>替换</li>
+	</ul>
+</div>
+<script>
+    var oTxt = document.getElementById('find');
+	var oList = document.getElementById('list');
+	var aLi = oList.querySelectorAll('#list ul li');
+	var oSpan = oTxt.querySelector('#find span');
+	var oBox = document.getElementById('box');
+	var oP = oBox.querySelector('#box p');
+	var oIpt = oTxt.querySelector('#find input');
+	var oTran = document.getElementById('trans');
+	var aInpt = oTran.querySelectorAll('#trans input');
+	var oSp = oTran.querySelector('#trans span');
+	var str = oP.innerHTML;
+	//console.log(s.length);
+	//console.log(str);
+	//console.log(str.length);
+	//展开事件
+	oSpan.onclick = function(){
+	   oTxt.className = '';
+	};
+	oSp.onclick = function(){
+	   oTran.className = '';
+	};
+    //查找
+	aLi[0].onclick = function(){
+		oTxt.className = 'show';
+		oTran.className = '';
+		var s = oIpt.value;
+		if(str.indexOf(s)!=-1){
+		  var arr = str.split(s);
+		  s = arr.join('<i>'+s+'</i>');
+		  oP.innerHTML = s;
+		}else{
+		  alert('未查找到您要查找的字符串');
+		}
+	};
+    aLi[1].onclick = function(){
+	    oTran.className = 'show';
+		oTxt.className = '';
+		var oValue0 = aInpt[0].value;
+		var oValue2 = aInpt[1].value;
+		if(str.indexOf(oValue0)!=-1){
+		   var arr = str.split(oValue0);
+		   oValue0 = arr.join(oValue2);
+	       oP.innerHTML = oValue0;
+		}
+	};
+</script>
+</body>
+</html>

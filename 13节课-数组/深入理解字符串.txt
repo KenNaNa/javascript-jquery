@@ -1,0 +1,190 @@
+导读：字符串是由JavaScript字符组成的不可变序列。其中每个字符是一个16位的UTF-16编码单元。这意味着一个Unicode字符相当于一个或两个JavaScript字符。无论是计算字符串还是分割字符串，只需关注两个JavaScript字符的情况。这点我们会在后续章节展开。
+
+（1） 字符串字面量
+
+
+单引号和双引号都可以表示字符串字面量，因此，你可以任意选择单引号或者双引号。不过有以下几点需要注意：
+
+1. 最常见的做法是在HTML中使用双引号，在JavaScript中使用单引号。
+
+2. 最好在多编码环境下使用双引号。
+
+3. 在JSON中，必须使用双引号。
+
+（2） 字符串字面量中的转义字符
+
+1. 避免换行
+
+通过反斜杠对行结束符进行转义，使一个字符能够跨行书写
+
+2. 转义序列
+
+\b是空格符，\f是换页符，\n是换行符，\r是回车符，\t是水平制表符，\v是垂直制表符
+
+\'是单引号，\"是双引号，\\是反斜杠
+
+3.NUL字符
+
+该字符由\0表示
+
+4. 十六进制转义序列
+
+5. Unicode转义序列
+
+例如\uHHHH(HHHH是4个十六进制数字)表示一个UTF-16编码单元
+
+（3） 字符访问
+
+有两种方式：
+
+'abc'.charAt(1);  // b
+'abc'[1];  // b
+不过第二种方式，在某些低版本浏览器中不支持。
+
+（4） 手动转换字符串
+
+1. String(value)
+
+2. '' + value
+
+3. value.toString()
+
+（5） 字符串拼接
+
+1. 合并： 加号（+）运算符
+
+如果你想将字符串集中在一个变量中，你可以使用 += 运算符：
+
+var str = '';
+str += 'Hello ';
+str += 'World';
+console.log(str);  // Hello World
+2. 合并： 拼接字符串
+
+可以将所有的字符串添加进一个数组中，然后调用join方法拼接起来：
+
+var str = [];
+str.push('Hello');
+str.push('World');
+str.join(' ');
+console.log ( str );  // ["Hello", "World"]
+我：这里和书上不一样，所以我个人建议还是不要用这种方法了。
+
+（6） 字符串函数
+
+与Numer一样，有两种方式：
+
+1. String(value)
+
+2. new String
+
+比较常用的是第一种。
+
+（7） 字符串构造器方法
+
+String.fromCharCode()返回一个由UTF-16编码单元组成的字符串，其中每一UTF-16编码对应一个无符号整数。例如：
+
+console.log ( String.fromCharCode(97,98,99) );  // abc
+注：String.fromCharCode()是String.CharCodeAt()的逆操作。
+
+（8） length属性
+
+length属性表示JavaScript字符串字符的个数，且它是不可枚举的。
+
+（9） 字符串原型方法
+
+1. 提取字字符串
+
+① String.prototype.charAt(pos)
+
+该方法返回给定位置的pos的字符
+
+'abc'.charAt(1);  // b
+② String.prototype.charCodeAt(pos)
+
+该方法返回给定位置pos的JavaScript字符（UTF-16编码单元）对应的无符号整数。
+
+③ String.prototype.slice(start,end?)
+
+该方法返回一个子字符串，它包括原字符串从start开始到end结束的所有字符（包括start，不包括end）。两个参数都可以为负数，此时会将参数与字符串的length属性相加：
+
+'abc'.slice(2);  // c
+'abc'.slice(1,2);  // b
+'abc'.slice(-2);  // bc
+'abc'.slice(-2,-1);  // b
+String.prototype.substring(start,end?)方法可以代替slice()。
+
+④ String.prototype.split(separator?,limit?)
+
+该方法通过在separator指定的边界处将原字符串分割成子字符串，返回由子字符串组成的数组。
+
+●  separator：可以为字符串或者正则表达式。若未传入，将会把整个字符串封装在数组中返回。
+
+●  limit：若传入，则返回的数组最多只能包括limit个元素。
+
+console.log ( 'a,b,c,d'.split(',') );  //  ["a", "b", "c", "d"]
+2. 字符串的变换
+
+接下来的方法是介绍如何将一个给定字符串变换为一个新字符串。换句话说，原始字符串会在变换后被丢弃。
+
+① String.prototype.trim()
+
+该方法去除字符串开头和结尾的空格。
+
+② String.prototype.concat()
+
+该方法返回由拼接的字符串与str1、str2等参数拼接形成的新字符串。
+
+console.log ( 'hello'.concat(' ' , 'World' , '!' ) );  // hello World!
+③ String.prototype.toLowerCase()
+
+该方法将原字符串中的字符转换成小写并返回。
+
+console.log ( 'hELLO WoLrD'.toLowerCase() );  // hello World
+String.prototype.toLocalLowerCase()的功能与String.prototype.toLowerCase()一样，但是转换时其遵循本地规则。
+
+④ String.prototype.toUpperCase()
+
+该方法将原字符串中的字符转换成大写并返回。
+
+console.log ( 'hELLO WoLrD'.toUpperCase() );  // HELLO WORLD
+String.prototype.toLocalUpperCase()的功能与String.prototype.toUpperCase()一样，但是转换时其遵循本地规则。
+
+3. 字符串的检索和比较
+
+① String.prototype.indexOf(searchString,position?)
+
+该方法从字符串的position位置（默认为0）开始检索，返回searchString在字符串中出现的位置，若未找到则返回-1。
+
+② String.prototype.lastIndexOf(searchString,position?)
+
+该方法从字符串的position位置（默认为结尾位置）开始从后向前检索，返回searchString在字符串中出现的位置，若未找到则返回-1。
+
+③ String.prototype.localCompare(other)
+
+该方法用本地特定的顺序对字符串和other进行比较。其返回的是数字：
+
+●  字符串在字母表中排在other前面时则返回值小于0；
+
+●  字符串等于other时返回值等于0；
+
+●  字符串在字母表中排在other后面时则返回值大于0。
+>'apple'.localeCompare('banana');
+>-2
+>'apple'.localeCompare('apple');
+>0;
+
+4. 支持正则表达式的方法
+
+① String.prototype.search(regexp)
+
+该方法返回字符串中第一个与regexp相匹配的字符串的起始位置（若未匹配则返回-1）。
+
+console.log ( '-yy-xxx-y'.search(/x+/) );  // 4
+② String.prototype.match(regexp)
+
+该方法将regexp与字符串进行匹配。若regexp未设置全局标志/g则返回一个对象，它存放了第一次匹配相关的信息；若设置的/g，那么将所有匹配的字符串存放在一个数组中返回。
+
+③ String.prototype.replace(search,replacement)
+
+该方法检索与search匹配的字符串并用replacement替换。search可以是字符串或正则表达式，replacement可以是字符串或者函数。除非search是设置了/g标志的正则表达式，否则仅第一个匹配项会被替换

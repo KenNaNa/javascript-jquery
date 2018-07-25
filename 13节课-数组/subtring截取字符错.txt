@@ -1,0 +1,29 @@
+　在程序开发过程中，按指的长度截取字符串是十分常见的操作，大多数编程语言都提供了截取字符串的方法。javascript 功能十分强大，自然也提供的截取字符串的方法，主要有两个方法，分别是 substring 和 substr，本篇主要介绍前者的用法。
+
+　　一、substring 的用法
+
+　　substring 主要用于截取字符串中指定子字符串的长度，它的格式及具体说明如下：
+
+　　1、格式：stringObject.substring(start [,stop]);
+
+　　2、说明：
+
+　　1）stringObject 表示待截取字符串；
+
+　　2）start 是必选参数，且 0 <= start < stringObject 的长度，它是待截取的子字符串的第1个字符在 stringObject 中的位置；
+
+    3）stop 是可选参数，且 0 <= stop < stringObject 的长度，若省略 stop，则截取 stringObject 中的从 start 开始直到结尾的所有字符。
+
+　　3、注意问题：
+
+　　1）substring 包含 start 处的字符，但不包含 stop 处的字符；
+
+　　2）如果 start = stop，则返回一个空字符串；
+
+　　3）如果 start > stop，则在截取子字符串之前，自动交换它们的位置；
+
+　　4）如果 start < 0 或 stop < 0，则自动替换为0。
+
+　　2、使用 substring 截取 url 中的相对路径
+
+　　实现过程：首先通过 document.location 获得网址，然后以 // 为分隔符用 split 方法把网址分为两部分；再在后一部分 arrObj[1] 中找到 /  的位置，然后用 substring 方法从此位置开始截取到结尾的所有字符

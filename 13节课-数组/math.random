@@ -1,0 +1,73 @@
+Math.random()
+该Javascript示例解释：这个示例用到了Math.random()，这个函数返回值是一个大于等于0，且小于1的随机数
+Random函数在flash里是非常有用的，可以生成基本的随机数，创建随机的移动，以及随机的颜色和其他更多的作用。在下面这个例子中当你每次按下按钮就会显示一个从-100到100的随机数,这个教程将解释如何做出这个例子以及如何利用Random函数产生其他不同的结果。
+
+基本的Random函数如下
+
+Math.random();
+
+可以产生出0-1之间的任意小数，例如0.0105901374530933 或
+0.872525005541986，有几个其他的函数可以用来改变产生的数字，从而可以更好的在你的影片中使用:
+
+Math.round();
+Math.ceil();
+Math.floor();
+
+这几个函数都是用来取得整数的，Math.round();是采用四舍五入方式取得最接近的整数。Math.ceil();是向上取得一个最接近的整数，Math.floor();
+和Math.ceil();相反，Math.floor();向下 取得一个最接近的整数
+
+结合这些函数，你就可以这样写:
+
+Math.round(Math.random());
+
+这个表达式可以生成一个0.0和1.0之间的一个数，然后四舍五入取得一个整数。这样所生成的数字就是0或1。这个表达式可以用在各有50％的可能的情况下，例如抛硬币，或者true/false指令。
+
+*10 是将你所生成的小数乘以10，然后四舍五入取得一个整数:
+
+Math.round(Math.random()*10);
+
+要创建一个1到10之间的随机数，可以这样写:
+
+Math.ceil(Math.random()*10);
+
+应为是Math.ceil向上取值，所以不会产生0。要创建一个5到20的随机数可以这样写
+
+Math.round(Math.random()*15)+5;
+
+也就是说，如果要创建一个从x到y的随机数，就可以这样写
+
+Math.round(Math.random()*(y-x))+x;
+
+x和y可以是任何的数值，即使是负数也一样。
+
+要制作上面的那个例子，首先要创建一个按钮符号，拖动到主场景中，然后创建一个新的动态文本框，赋予动态文本框的变量名为“display”。创建的工作到此结束，下面来添加脚本.
+
+选中按钮，打开actions窗口，输入下面的代码，你可以在下拉菜单中选择，也可以直接将下面的代码拷贝进去:
+
+on (release) {
+display = Math.round (Math.random ()*200)-100;
+}
+
+完成了，下面测试一下你的影片，你会注意到代码中的值遵循了那个公式。如果x =
+-100, y =100，那么y-x=200， +x = -100.
+
+随机数在flash中还可以有多种不同的应用。要让一个movieclip在随机的屏幕上不同的位置上出现，显示的位置在0到200之间，可以这样写，注意movieclip的实例名为“bob”.
+
+bob._x = Math.round(Math.random()*200);
+bob._y = Math.round(Math.random()*200);
+
+或者随机的控制movieclip的大小（从0到100之间）:
+
+bob._width = Math.round(Math.random()*100);
+bob._height = Math.round(Math.random()*100);
+
+也可以随机的载入一个movieclip，如果你的movieclip的命名是"bob1", "bob2"
+一直到"bob5"，我们可以这样写。
+
+i = Math.ceil(Math.random()*5);
+attachMovie("bob"+i, "fred"+i, 1);
+
+运行这个代码以后。就会随机的载入一个movieclip，例如"bob3"，放在level 1
+，赋予实例名为"fred3"。
+
+以上就是flash5中random函数的基本用法，希望你能运用到你的影片中去，创造出令人惊讶的flash作品。

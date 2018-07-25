@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    // 从字符串的最右边往左找  找不到就返回 -1  
+
+			var str = '湖南潭州教a育网络科技有限公司是国内一家规模庞大、师资丰富、教育产品类别众多的在线教育a集团公司';
+			console.log( str.length );
+			console.log( str.lastIndexOf('a') ); // 默认是从 str的最后一位 开始往左找
+
+			console.log( str.lastIndexOf('潭',5) ); // 从下标 5的位置 往左找
+
+			console.log( str.lastIndexOf('潭'-5) );//-1
+</script>
+</body>
+</html>

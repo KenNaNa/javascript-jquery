@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//var str = 'www.tanzhouedu.com/app';
+			//  str.indexOf(字符) 从左往右  通过 字符 找对对应的 下标  [只找一次]
+			//console.log( str.indexOf('o') ); 
+
+			//console.log( str.indexOf('o',10) );  // 从下标10 开始 往后找
+
+			//console.log( str.indexOf('o',17) ); // 如果没有找到 那么 返回 -1
+			
+
+			//console.log( str.indexOf('o',-10) ); // 如果负数 默认从 0位置 开始找
+			
+			var str = '湖南潭州教育网络科技有限公司是国内一家规模庞大、师资丰富、教育产品类别众多的在线教育集团公司，总部座落于美丽的星城长沙，2015年9月正式入驻芯城科技园，目前拥有近2万平米办公面积。在潭州学习的学员已突破1000万人次，在线学员覆盖全球，包括中国、加拿大、日本、美国、韩国等诸多国家。';
+			
+			var s = '教育';
+
+			//console.log( str.indexOf(s) );
+			
+			// 解决indexOf只找 一次的问题
+			var i =0;
+			
+				for( ;str.indexOf(s,i) !=-1; ){  // 从第0位开始往后找，直接找不到，直到返回 -1 ,for的条件就不成立 循环终止
+					console.log( str.indexOf(s,i) );
+					i = str.indexOf(s,i) + s.length;
+				}
+			
+	/*
+			while 先判断 后执行  先吃付钱 后开房
+			while( str.indexOf(s,i) !=-1 ){ // 不等于 -1 说明可以找到
+				console.log( str.indexOf(s,i) );
+				i = str.indexOf(s,i) + s.length;
+			}
+			
+			str.indexOf(s,0) !=-1
+			console.log( str.indexOf(s,i) );  -> 4
+			i = 4+2 = 6
+			
+			str.indexOf(s,6) !=-1
+			console.log( str.indexOf(s,i) );  _> 29
+			i = 29+2
+	*/		
+	
+	/*		
+			// do while 先执行 后判断  先开房 完事后再付钱
+			var str = '湖南潭州湖南潭州湖南潭州';
+
+			var i =0;
+			do{
+				var s = str.indexOf('湖',i);
+				if( s != -1 ){
+					console.log( s );
+				}
+				
+				
+				i = s + 1;
+			}while( i !=0 );
+
+	*/
+		
+			// 从字符串的最右边往左找  找不到就返回 -1  
+
+			//var str = '湖南潭州教a育网络科技有限公司是国内一家规模庞大、师资丰富、教育产品类别众多的在线教育a集团公司';
+			//console.log( str.length );
+			//console.log( str.lastIndexOf('a') ); // 默认是从 str的最后一位 开始往左找
+
+			//console.log( str.lastIndexOf('潭',5) ); // 从下标 5的位置 往左找
+
+			//console.log( str.lastIndexOf('潭',-5) );
+
+			
+		</script>
+	</body>
+</html>

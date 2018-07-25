@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			// 截取字符串
+			var str = '湖南潭州教育 网络科技有限公司是国内一家规模庞大、师资丰富、教育产品类别众多的在线教育集团公司，总部座落于美丽的星城长沙，2015年9月正式入驻芯城科技园，目前拥有近2万平米办公面积。在潭州学习的学员已突破1000万人次，在线学员覆盖全球，包括中国、加拿大、日本、美国、韩国等诸多国家。';
+
+			//console.log( str.substring() ); // 默认截取完整的字符串
+			console.log( str.substring(1) ); // 从下标为0开始，从左到右截取完整的字符串
+			//console.log( str.substring(24,28) ); // >=24 <27
+
+			//console.log( str.substring(-10,23) ); // 如果是负数 当作是从下标为0开始往右找
+			//console.log( str.substring(5,-10) ); // 换顺（-10，5）>=0 <5
+
+			//console.log( str.slice() );  // 默认截取完整的字符串
+			//console.log( str.slice(0) );  同上
+			//console.log( str.slice(1,10) );  同上
+			//console.log( str.slice(5,0) ); //''
+			//console.log( str.slice(-5) ); // >=5 诸多国家。
+			//console.log( str.slice(-5,-2) );  // >=5 <-2
+			//console.log( str.slice(5,-5) );  >=5 <-5
+
+
+		</script>
+	</body>
+</html>

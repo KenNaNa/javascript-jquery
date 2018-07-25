@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>indexOf的应用-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   var str = 'www.tanzhouedu.com/app';
+   console.log(str.indexOf('o'));//输出9
+   //indexOf(字符) 自左向右的 只找一遍 默认从0下标开始找
+   console.log(str.indexOf('o',3));//数字是指在这个数字之后开始找
+   console.log(str.indexOf('o',-5));//如果数字为负数自动从0 开始找
+   console.log(str.indexOf('o',17));//找不到 就返回-1;
+
+   var string = '湖南潭州教育网络科技有限公司是国内一家规模庞大、师资丰富、教育产品类别众多的在线教育集团公司，总部座落于美丽的星城长沙，2015年9月正式入驻芯城科技园，目前拥有近2万平米办公面积。在潭州学习的学员已突破1000万人次，在线学员覆盖全球，包括中国、加拿大、日本、美国、韩国等诸多国家。';	
+   var s = '教育';
+   //查找 s 的位置起点
+   /*var i = 0;
+   for( ;string.indexOf(s,i)!=-1; ){//string.indexOf(s,i)+1;
+       console.log(string.indexOf(s,i));
+	   i = string.indexOf(s,i) + s.length;//在找到位置之后找
+   }*/
+   /*var i = 0;while 是先判断 后执行 
+   while(string.indexOf(s,i)!=-1){//string.indexOf(s,i)+1;
+      console.log(string.indexOf(s,i));
+	  i = string.indexOf(s,i) + s.length;//在找到位置之后找
+   }*/
+   //do{}while();先执行后判断
+  /* do{
+      var i = 0;
+	  if(string.indexOf(s,i)!=-1){
+	     console.log(string.indexOf(s,i));
+	     
+	  }
+	  i = string.indexOf(s,i) + s.length;
+   }while(i)
+   */
+
+</script>
+</body>
+</html>

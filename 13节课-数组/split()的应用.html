@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>split()的应用-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var str = '小明:80;小红:70;小张:90;小李:100;小黄:88;小潘:90;';
+	var ar = str.split(';');
+	var sum = 0;
+	//console.log(ar);
+	for( var i=0;i<ar.length;i++ ){
+		if(ar[i]!=''){//去掉最后一个
+		   var arr = ar[i].split(':');//[1]或者[0]
+		   console.log(arr);
+		}
+	}
+	for( var i=0;i<ar.length;i++ ){
+	   if(ar[i]!=''){//去掉最后一个
+		   sum += parseInt(ar[i].split(':')[1]);
+		}
+	}
+	console.log(sum);
+	var evarage = sum/ar.length;
+
+	console.log(evarage);
+	
+</script>
+</body>
+</html>

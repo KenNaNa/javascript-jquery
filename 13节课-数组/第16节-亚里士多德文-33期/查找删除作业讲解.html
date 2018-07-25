@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>查找删除作业讲解-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+				width:510px;
+				height:230px;
+				border:1px solid #ddd;
+				margin:50px auto;
+				padding:20px;
+			}
+			#con{
+				margin-top:50px;
+				background:#eee;
+			}
+			#con span{
+				color:red;
+				font-weight:bold;
+				font-size:20px;
+			}
+		 </style>
+	 </head>
+<body>
+<div id="box">
+	<div>
+		<input type="text" id='txt1'/>
+		<input type="text" id='txt2'/>
+		<input type="button" value='查找' id='btn1'/>
+		<input type="button" value='替换' id='btn2'/>
+		<input type="button" value="刷新" id="btn3"/>
+	</div>
+	<div id='con'>
+		[行程特色]张家界国家森林公园与一脉相连的索溪峪、天子山两大自然保护区组成武陵源， 是张家界的核心景区。张家界，奇峰三千，秀水八百，张家界的山大多是拔地而起山， 山上峰峻石奇，或玲珑秀丽，或峥嵘可怖，或平展...
+	</div>
+</div>
+<script>
+    var oTxt1 = document.getElementById('txt1');
+    var oTxt2 = document.getElementById('txt2');
+	var oBtn1 = document.getElementById('btn1');
+	var oBtn2 = document.getElementById('btn2');
+	var oBtn3 = document.getElementById('btn3');
+	var oCon = document.getElementById('con');
+    var str = oCon.innerHTML;
+	oBtn1.onclick = function(){
+	   var oTxt1Value = oTxt1.value;
+	   if(oTxt1.value == ''){alert('输入为空')}
+	   else{
+		   var arrTxt1 =  str.split(oTxt1Value);
+		   //console.log(arrTxt1);
+		   var strTxt1 = arrTxt1.join('<span>'+oTxt1Value+'</span>');
+		   oCon.innerHTML = strTxt1;
+	   }
+	};
+	oBtn2.onclick = function(){
+	   var oTxt1Value = oTxt1.value;
+	   var oTxt2Value = oTxt2.value;
+	   if(oTxt1Value==''||oTxt2Value==''){alert('输入为空')}
+	   else{
+		   var arrTxt1 = str.split(oTxt1Value);
+		   var strTxt = arrTxt1.join('<span>'+oTxt2Value+'</span>');
+		   oCon.innerHTML = strTxt;
+	   }
+	};
+	oBtn3.onclick = function(){
+	   oCon.innerHTML = str;
+	   oTxt1.value = '';
+	   oTxt2.value = '';
+	};
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// 字符.charCodeAt() 把字符转换成 对应的ascii码 
+
+			var str = '我爱你';
+			
+			//console.log( str.charCodeAt(2) );
+
+			//console.log( 2 > '10' );  // 
+			//console.log( '2' > '10' );  // 字符串在比较 时 比较第一位 2>1
+
+			//console.log( '程凯' > '米奇' );
+
+			//console.log( '程凯'.charCodeAt(),'米奇'.charCodeAt() );
+			
+			//  0~9 48~57  a~z 97~122  A~Z 65~90
+			//console.log( 'Z'.charCodeAt() );
+
+		</script>
+
+		<input type="" id='txt'/>
+		<input type="button" value='判断' id='btn'/>
+		<script type="text/javascript">
+			btn.onclick = function(){
+				var s = txt.value; // abc
+				if( num( s ) ){ // true  false
+					alert( '恭喜你输入的'+s+'全是数字，可以登录 ' );
+				}else{
+					alert( '您输入有误' );
+				}
+				console.log( txt.value );
+			}
+
+			function num( str ){
+				var n =0;
+				for( var i=0;i<str.length;i++ ){
+					n = str.charCodeAt(i);
+					if( n<48 || n>57 ){  // 不是 数字
+						return false;
+					}
+				}
+				return true; // 是数字
+			}
+
+		</script>
+
+		<script type="text/javascript">
+		/*	
+			// fromCharCode() 把ASCII码转换成 对就的 字符串
+			var str = '我爱你';
+			//console.log( str.charCodeAt(1) );
+			
+			var s = String.fromCharCode( str.charCodeAt(1)+1 )
+
+			//console.log( String.fromCharCode( str.charCodeAt(1)+1 ) );
+			var newS = s.charCodeAt();
+			console.log( String.fromCharCode( newS-1 ) );
+
+		*/
+			
+			var str = '我很中意你';
+			var newStr = '';
+			for( var i=0;i<str.length;i++ ){
+				newStr += String.fromCharCode( str.charCodeAt(i)+520 ) ;
+			}
+			document.body.innerHTML = newStr;
+		</script>
+	</body>
+</html>

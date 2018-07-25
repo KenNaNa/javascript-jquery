@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>字符串方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var str = 'I Love You';
+	console.log(str.length);//length属性
+	for( var i=0;i<str.length;i++ ){
+	  console.log(str[i]);//下标访问
+	}
+    str[0]='i';//这种写法是错的，数组只能读取，不能写操作
+	str.length = 9;//同样也是错的，长度只能读取，不能写操作
+	console.log(str.length);
+	console.log(str[0]);
+	//字符串反斜杠（\）为转义字符 \n换行 \t tab键 \r 回车
+</script>
+</body>
+</html>
