@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		
+		<input type="button" id='btn' value='按钮'/>
+		
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+
+			btn.onclick = function(){
+				console.log( this )
+			}.bind(document);
+			
+			// 函数传参 传的就是 6种常见的数据类型
+			//btn.onclick = change.bind(btn);
+			// bind() IE 678 不兼容
+
+			function change(){
+				this.style.background = 'blue';
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				json 是一种非常常见的数据格式 可以跨平台 window android ios 
+				json : Javascript Object notation
+				类型是对象类型
+				要么都用单引号，要么都用双引号，最好都用双引号
+				key:value
+			*/
+			
+			var json = {
+				"name":"月影",
+				"age":20,
+				"sex":"男",
+				"length":"长度",
+				fn:function(){
+					console.log(this);
+				},
+				arr:['北京烤鸭','武汉周黑鸭']
+			};
+
+			//console.log( json );
+			//console.log( json.name );
+			//console.log( json['name'] );
+			//console.log( json[name] ); // 不加引号是变量
+
+			//console.log( json.length );
+
+			//console.log( json.fn() );
+			
+			json[0] = '第一个';
+			json[1] = '第二个';
+			//console.log( json[0] );
+			//console.log(json.arr[0])
+			
+			for( var key in json ){
+				console.log( key,json[key] );  // key是json里的属性名称  json[key] json里属性的值
+				
+			}
+		</script>
+	</body>
+</html>

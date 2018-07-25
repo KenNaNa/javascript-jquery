@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<input type="button" id='btn' value='按钮'/>
+		
+
+		<script type="text/javascript">
+			var obj = null;
+			btn.onclick = function(){
+				///window.change();  // window让change执行 change里的this就指向windwo 谁让函数执行 函数里的this就指向谁
+				window.change();
+				
+				//change.call(this); // 函数调用call函数 那么 函数里的this就指向 call函数的第一个参数
+				//var This = this;
+				//change( This );
+				
+				//obj = this;
+				//change();
+			}
+
+			function change( ){
+				//obj.style.background = 'red';
+				this.style.background = 'red';
+			}
+
+			(function(){
+				console.log(this);
+				this.body.style.background = 'green';
+			}.bind(document))();
+		</script>
+	</body>
+</html>

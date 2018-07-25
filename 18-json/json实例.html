@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script type="text/javascript" src="json2.js"></script>
+ <script> 
+//直接声明json数据结构 
+var myJSONObject = {"bindings": [ 
+{"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"}, {"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"}, {"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"} ] }; 
+var normalstring="[{persons:[{name:"jordan",sex:"m",age:"40"}, 
+{name:"bryant",sex:"m",age:"28"}, {name:"McGrady",sex:"m",age:"27"} ]}]"; var jsontext="[{"persons":[{"name":"jordan","sex":"m","age":"40"}, 
+{"name":"bryant","sex":"m","age":"28"}, {"name":"McGrady","sex":"m","age":"27"} ]}]";
+//声明字符串,可对比一下json文本与我们正常文本的区别
+ //调用eval函数转换为json对象， 
+var myE = eval(normalstring); document.writeln(myE+"<br><br>"); //将json对象转换为字符串 var text = JSON.stringify(myE); 
+//对比转换后的json文本与声明的文本区别 
+document.writeln("转换后的json文本："+text+"<br><br>声明的json格式文本"+jsontext+"<br><br>声明的普通格式文本"+normalstring+"<br><br>"); 
+//当安全比较重要的时候使用JSON解析就好一些。JSON解析只会识别JSON文本并且它更安全,下面调用json的parse函数对文本数据转换生成json数据结构 
+var myData = JSON.parse(jsontext); document.writeln(myData+"<br><br>"); //下面是对json对象的增删查改操作 //声明json对象 
+var jsonObj2={persons:[{name:"jordan",sex:"m",age:"40"}, 
+{name:"bryant",sex:"m",age:"28"}, {name:"McGrady",sex:"m",age:"27"} ]}; 
+
+
+
+
+        require.async(['wkcommon:widget/ui/lib/sio/sio.js'], function(sio) { var url = 'https://cpro.baidustatic.com/cpro/ui/c.js'; sio.callByBrowser( url, function () { BAIDU_CLB_fillSlotAsync('u2845605','cpro_u2845605'); } ); });    
+
+
+
+
+
+
+
+var persons=jsonObj2.persons; var str=""; 
+var person={name:"yaoMing",sex:"m",age:"26"}; //以下为json对象的操作，去掉注释可以查看操作结果 //jsonObj2.persons.push(person);//数组最后加一条记录 //jsonObj2.persons.pop();//删除最后一项 //jsonObj2.persons.shift();//删除第一项 
+jsonObj2.persons.unshift(person);//数组最前面加一条记录 只要适合Javascript的方法都是可以用在JSON对象的数组中的！所以还有另外的方法splice( )进行crud操作！ //删除 //jsonObj2.persons.splice(0,2);//开始位置,删除个数 //替换不删除 
+var self={name:"tom",sex:"m",age:"24″}; var brother={name:"Mike",sex:"m",age:"29"}; 
+jsonObj2.persons.splice(1,0,self,brother,self);//开始位置,删除个数,插入对象 //替换并删除 
+//jsonObj2.persons.splice(0,1,self,brother);//开始位置,删除个数,插入对象 for(var i=0;i<persons.length;i++){ var cur_person=persons[i]; str+=cur_person.name+”„sex is “+cur_person.sex+” and age is “+cur_person.age+”<br><br>”; } document.writeln(str); //转换为json文本 
+var myjsonobj =  JSON.stringify(jsonObj2); document.writeln(myjsonobj); </script>
+</body>
+</html>

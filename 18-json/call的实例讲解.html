@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>call的实例讲解-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<input type="button" id="btn" value="按钮" /><br/>
+<script>
+    var oBtn = document.getElementById('btn');
+	var obj = null;
+	/*第一种方法 this
+	oBtn.onclick = function(){
+	    this.style.background = 'red';
+	};*/
+	/*第二种方法 传参
+	oBtn.onclick = function(){
+	   change(this)
+	};
+	function change(This){
+	   This.style.background = 'red';
+	}*/
+	/*第三种方法 作用域
+	oBtn.onclick = function(){
+	   obj = this;//作用域的问题
+	   change(obj);
+	};
+	function change(obj){
+	   obj.style.background = 'red';  
+	}*/
+	//总的来说呢就是谁让函数执行this就指向谁
+	oBtn.onclick = function(){
+	   change.call(document.body);//函数调用call函数 那么 函数里的this就指向 call函数的第一个参数
+	   ///window.change();  // window让change执行 change里的this就指向windwo 谁让函数执行 函数里的this就指向谁
+	   console.log(this);//this指向oBtn这个对象
+	};
+	function change(){
+	   this.style.background = 'red';
+	}
+
+	//即时执行函数
+	(function(){
+	   console.log(this);
+	   var i = 0
+	   for( var key in this ){
+	      document.write(i + ': ' + key + '<br>');
+		  i++;
+	   }
+	}.bind(document))();//将this绑定给默认window
+</script>
+</body>
+</html>

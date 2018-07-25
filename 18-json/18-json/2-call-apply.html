@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			function fn( x,y,z ){
+				console.log( this,'x+y='+(x+y),z );
+			}
+
+			//window.fn(); // this -> window
+
+			// fn函数调用call函数 那么 fn函数里的this就指向 call函数的第一个参数，fn函数的第一个形参 接收的是 call函数的第2个实参，fn函数的第二个形参 接收的是 call函数的第3个实参
+			
+			//fn.call(document,1,2);
+            //fn.call();函数调用
+			//fn.apply( window,[5,10,'北京烤鸭'] );
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>json数据交换格式2-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var data = [
+				{
+					"name" : "海阔天空",
+					"singer" : "Beyond",
+					"star" : "images/singer/1.jpg",
+					"album" : "海阔天空",
+					"src" : "music/1.mp3",
+				},
+				{
+					"name" : "半壶纱",
+					"singer" : "刘珂矣",
+					"star" : "images/singer/5.jpg",
+					"album" : "半壶纱",
+					"src" : "music/5.mp3",
+				},
+				{
+					"name" : "Are Not Alone",
+					"singer" : "Michael",
+					"star" : "images/singer/Michael.jpg",
+					"album" : "Are Not Alone",
+				}
+			];
+
+			for( var i=0;i<data.length;i++ ){
+				for( var key in data[i] ){
+					document.write( key+'<br>' );
+					document.write( data[i][key]+'<br>' );
+				}
+			}
+</script>
+</body>
+</html>

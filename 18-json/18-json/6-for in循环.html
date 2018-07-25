@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		/*
+			var str = '';
+			for( var key in window ){
+				str += '属性：'+key+'：'+window[key]+'<br>';
+			}
+			document.body.innerHTML = str;
+		
+			var str = '';
+			var num = 0;
+			for( var key in document ){
+				str += num+'：'+key+'：'+document[key]+'<br>';
+				num++;
+			}
+			document.body.innerHTML = str;
+		
+
+			var json = {
+				"url":["img/1.jpg","img/2.jpg","img/3.jpg"],
+				
+			}
+			
+			for( var key in json ){
+				//console.log( key,json[key] );
+				for( var i=0;i<json[key].length;i++ ){
+					//console.log( json[key][i] );
+					document.body.innerHTML += '<img src="'+json[key][i]+'">';
+				}
+			}
+
+			var arr = ['小狗','小猫咪','小奶猫'];
+			
+			// for in 循环 数组  
+			for( var key in arr ){
+				//console.log( key ); // key下标 0 1 2 
+				console.log( arr[key] );
+			}
+*/			
+			
+			var data = [
+				{
+					"name" : "海阔天空",
+					"singer" : "Beyond",
+					"star" : "images/singer/1.jpg",
+					"album" : "海阔天空",
+					"src" : "music/1.mp3",
+				},
+				{
+					"name" : "半壶纱",
+					"singer" : "刘珂矣",
+					"star" : "images/singer/5.jpg",
+					"album" : "半壶纱",
+					"src" : "music/5.mp3",
+				},
+				{
+					"name" : "Are Not Alone",
+					"singer" : "Michael",
+					"star" : "images/singer/Michael.jpg",
+					"album" : "Are Not Alone",
+				}
+			];
+
+			for( var i=0;i<data.length;i++ ){
+				for( var key in data[i] ){
+					document.write( key+'<br>' );
+					document.write( data[i][key]+'<br>' );
+				}
+			}
+		</script>
+	</body>
+</html>
