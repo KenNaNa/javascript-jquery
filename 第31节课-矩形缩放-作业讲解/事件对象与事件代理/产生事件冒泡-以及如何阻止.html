@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>产生事件冒泡-以及如何阻止-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:30px;
+				line-height:30px;
+                text-align:center;
+				background:red;
+			 }
+			 ul{
+			    width:100px;
+				display:none;
+			 }
+			 ul li{
+			    width:100px;
+				height:30px;
+				margin-top:2px;
+				background:red;
+				color:#fff;
+				line-height:30px;
+				text-align:center;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    菜单
+	<ul id="ul">
+		<li>1111</li>
+		<li>2222</li>
+		<li>3333</li>
+	</ul>
+</div>
+<script>
+//产生事件冒泡 document的事件冒泡
+   var oBox = document.getElementById('box');
+   var oUl = document.getElementById('ul');
+   oBox.onclick = function(e){
+	   e = e||window.event;
+	   e.cancelBubble = true;//取消事件冒泡 不让事件一级一级往上冒泡（触发）
+       oUl.style.display = 'block';
+   }
+   document.onclick = function(){
+       oUl.style.display = 'none';
+   }
+</script>
+</body>
+</html>

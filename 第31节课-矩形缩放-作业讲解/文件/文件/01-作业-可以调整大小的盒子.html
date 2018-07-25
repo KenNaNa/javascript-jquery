@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html onselectstart="return false">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: absolute;
+                top: 300px;
+                left: 300px;
+                width: 100px;
+                height: 100px;
+                background: pink;
+                user-select: none;
+            }
+            #box .resize{
+                position: absolute;
+                width: 20px;
+                height: 20px;
+            }
+            #box .e{
+                right: 0;
+                top: 0;
+                height: 100%;
+                background: #000;
+                cursor: e-resize;
+            }
+            #box .w{
+                left: 0;
+                top: 0;
+                height: 100%;
+                background: #000;
+                cursor: w-resize;
+            }
+            #box .s{
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                background: #000;
+                cursor: s-resize;
+            }
+            #box .n{
+                right: 0;
+                top: 0;
+                width: 100%;
+                background: #000;
+                cursor: n-resize;
+            }
+            #box .w-n{
+                left: 0;
+                top: 0;
+                background: #f60;
+                cursor: nw-resize;
+            }
+            #box .e-n{
+                right: 0;
+                top: 0;
+                background: #f60;
+                cursor: ne-resize;
+            }
+            #box .e-s{
+                right: 0;
+                bottom: 0;
+                background: #f60;
+                cursor: se-resize;
+            }
+            #box .w-s{
+                left: 0;
+                bottom: 0;
+                background: #f60;
+                cursor: sw-resize;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+
+            <div class="e resize"></div>
+            <div class="w resize"></div>
+            <div class="s resize"></div>
+            <div class="n resize"></div>
+            <div class="w-n resize"></div>
+            <div class="e-n resize"></div>
+            <div class="e-s resize"></div>
+            <div class="w-s resize"></div>
+
+        </div>
+        <script>
+
+            var oBox = document.getElementById("box"),
+                oSize = oBox.querySelectorAll(".resize");
+
+            //var minW = 40,minH = 40;
+
+            for (var i = 0; i < 8; i++) {
+                (function (i) {
+                    oSize[i].onmousedown = function (e) {
+                        e = e || window.event;
+
+                        //初始量：
+                        var sX = e.clientX;//鼠标X坐标
+                        var sY = e.clientY;//鼠标Y坐标
+                        var sW = oBox.clientWidth;//获取纯宽度，本来应该用获取样式对象的方式，但是此处box没有padding
+                        var sH = oBox.clientHeight;//获取纯高度，……
+                        var sL = oBox.offsetLeft;
+                        var sT = oBox.offsetTop;
+
+
+                        document.onmousemove = function (e) {
+                            e = e || window.event;
+
+                            //变化量
+                            var x_ = e.clientX - sX,
+                                y_ = e.clientY - sY,
+                                width = sW,
+                                height = sH,
+                                left = sL,
+                                top = sT;
+
+                           /* //所有有东的
+                            if ( i === 0 || i === 5 || i === 6 ){
+                                width += x_;
+                            }
+                            //所有有西的
+                            if ( i === 1 || i === 4 || i === 7 ){
+                                width -= x_;
+                                left += x_;
+                            }
+                            //所有有南的
+                            if ( i === 2 || i === 6 || i === 7 ){
+                                height += y_;
+                            }
+                            //所有有北的
+                            if ( i === 3 || i === 4 || i === 5 ){
+                                height -= y_;
+                                top += y_;
+                            }*/
+                            switch ( i ){
+								 case 0:
+									 width += x_;
+									 break;
+								 case 1:
+									 width -= x_;
+									 left += x_;
+									 break;
+								 case 2:
+									 height += y_;
+									 break;
+								 case 3:
+									 height -= y_;
+									 top += y_;
+									 break;
+								 case 4:
+									 height -= y_;
+									 top += y_;
+									 width -= x_;
+									 left += x_;
+									 break;
+								 case 5:
+									 height -= y_;
+									 top += y_;
+									 width += x_;
+									 break;
+								 case 6:
+									 width += x_;
+									 height += y_;
+									 break;
+								 case 7:
+									 width -= x_;
+									 left += x_;
+									 height += y_;
+									 break;
+							 }
+                            //确定宽高的范围
+                            width = Math.max(width , 40);//限定width的最小值
+                            height = Math.max(height , 40);//限定height的最小值
+                            left = Math.min(left , sL+sW-40);//限定left的最大值
+                            top = Math.min(top , sT+sH-40);//限定top的最大值
+
+                            //改变样式
+                            oBox.style.width = width + 'px';
+                            oBox.style.height = height + 'px';
+                            oBox.style.left = left + 'px';
+                            oBox.style.top = top + 'px';
+                        };
+                    };
+                    document.onmouseup = function () {
+                        this.onmousemove = null;
+                    }
+                })(i);
+
+            }
+
+            
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

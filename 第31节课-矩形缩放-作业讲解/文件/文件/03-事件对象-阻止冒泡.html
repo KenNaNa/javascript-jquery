@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box {
+                position: relative;
+                width: 100px;
+                height: 30px;
+                background: #f60;
+                cursor: pointer;
+                color: #fff;
+                font-size: 14px;
+                line-height: 30px;
+                text-align: center;
+                font-weight: bold;
+            }
+            #box ul{
+                display: none;
+                position: absolute;
+                top: 30px;
+            }
+            #box ul li{
+                width: 100px;
+                height: 30px;
+                font-size: 12px;
+                color: #fff;
+                background: pink;
+                font-weight: bold;
+                line-height: 30px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            菜单
+            <ul>
+                <li>阿飞</li>
+                <li>无虑</li>
+                <li>风屿</li>
+            </ul>
+        </div>
+        <script>
+            /*
+
+            阻止：
+                e.cancelBubble = true;  //默认值false 不取消冒泡
+
+             */
+            var oBox = document.getElementById("box"),
+                oUl = oBox.children[0];
+
+            oBox.onclick = function (e) {
+                e = e||window.event;
+                e.cancelBubble = true;
+                oUl.style.display = "block";
+            };
+
+            document.onclick = function () {
+                oUl.style.display = "none";
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

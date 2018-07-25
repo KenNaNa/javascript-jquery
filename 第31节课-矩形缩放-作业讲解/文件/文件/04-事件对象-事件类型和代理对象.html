@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 200px;
+                height: 200px;
+                background: pink;
+            }
+            #box ul li{
+                width: 100px;
+                height: 30px;
+                font-size: 12px;
+                color: #fff;
+                background: #f60;
+                margin-top: 5px;
+                font-weight: bold;
+                line-height: 30px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+
+            <ul>
+                <li>1111</li>
+                <li>2222</li>
+                <li>3333</li>
+                <li>4444</li>
+            </ul>
+
+        </div>
+        <script>
+
+            /*
+            事件代理 / 事件委托
+
+                e.target
+                    事件源（事件最初是从哪个子元素触发的）
+            */
+
+            var oBox = document.getElementById("box");
+            var aLi = oBox.children[0].children;
+
+            oBox.onclick = function (e) {
+                e = e || window.event;
+                click.call(e.target);
+            };
+
+
+
+            /*for (var i = 0,length=aLi.length; i < length; i++) {
+                aLi[i].onclick = click;
+            }*/
+
+            function click() {
+                if (this.nodeName === "LI"){
+                    alert( this.innerHTML );
+                }
+            }
+
+
+
+
+
+            /*
+
+                e.type   string事件的类型/名字
+
+             */
+
+            /*var oBox = document.getElementById("box");
+
+            oBox.onclick = click;
+            oBox.onmouseenter = mouseenter;
+            oBox.onmouseleave = leave;
+
+            function click(e) {
+                e = e||window.event;
+                console.log( "单击！" );
+                console.log( e.type );
+            }
+            function mouseenter(e) {
+                e = e||window.event;
+                console.log( "移入！" );
+                console.log( e.type );
+            }
+            function leave(e) {
+                e = e||window.event;
+                console.log( "移出！" );
+                console.log( e.type );
+            }*/
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

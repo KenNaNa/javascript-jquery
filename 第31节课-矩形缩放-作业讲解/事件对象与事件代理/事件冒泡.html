@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>事件冒泡-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			    width:100px;
+				height:100px;
+				background:pink;
+			 }
+			 .box p{
+			    color:#fff;
+			 }
+		 </style>
+	 </head>
+<body>
+<div class='box'>
+    <p>你好啊</p>
+</div>
+<script>
+    var oBox = document.querySelector('.box');
+	var oP = document.querySelector('p');
+	oBox.onclick = function(e){
+	   alert(e.type);
+	   alert('oBox');
+	}
+	oP.onlick = function(e){
+	   alert(e.type);
+	   alert('p');
+	}
+	/*
+	   当点击oP时的事件 
+	   oBox的事件也会触发
+	   这是因为oP在oBox里面
+	   而产生了事件冒泡
+	*/
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>引用类型-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   function displayInfo(args) {
+var output = "";
+if (typeof args.name == "string"){
+output += "Name: " + args.name + "\n";
+}
+if (typeof args.age == "number") {
+output += "Age: " + args.age + "\n";
+}
+alert(output);
+}
+displayInfo({
+name: "Nicholas",
+age: 29
+});
+displayInfo({
+name: "Greg"
+});
+</script>
+</body>
+</html>

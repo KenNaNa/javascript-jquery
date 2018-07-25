@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    　　var name = "The Window";   
+　　var object = {   
+　　　　name : "My Object",   
+　　　　getNameFunc : function(){   
+　　　　　　return function(){   
+　　　　　　　　return this.name;  
+                console.log(this)
+　　　　　};   
+　　　　}   
+};   
+console.log(object.getNameFunc()());  //The Window
+</script>
+</body>
+</html>

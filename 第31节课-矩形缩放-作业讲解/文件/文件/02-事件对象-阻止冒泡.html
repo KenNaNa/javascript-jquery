@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 200px;
+                height: 200px;
+                background: pink;
+            }
+            #box p{
+                background: #f60;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p>我是阿飞！</p>
+        </div>
+        <script>
+            /*
+
+            .clientX
+            .clientY
+                //到可视区
+
+            .pageX
+            .pageY
+                //到文档（不支持 IE8-）
+
+             */
+
+            /*
+            冒泡
+             */
+            var oBox = document.getElementById("box"),
+                oP = oBox.children[0];
+
+            oBox.onclick = function () {
+                alert( "点击了box！" );
+            };
+            oP.onclick = function(){
+                alert( "点击了P！" );
+            };
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

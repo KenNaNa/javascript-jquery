@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {margin: 0;padding: 0;}
+		#text {
+			position: absolute;
+			width: 200px;
+			height: 200px;
+			margin: 50px;
+			background-color: #fafafa;
+			border: 3px solid #b1d346;
+			box-shadow: 0 0 2px #000,0 0 1px #000 inset;
+			/*cursor: move;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="text"></div>
+	<script>
+
+		/* 移动盒子
+		   ========================================================================== */
+		text.onmousedown = move;
+		function move(e) {
+			e = e || window.event;
+			var sX = e.clientX,sY = e.clientY; //鼠标初始位置
+			/**
+			 * margin值会影响offset的值！！！
+			 */
+			var stop = this.offsetTop - 50;
+			var sleft = this.offsetLeft - 50;
+
+			document.onmousemove = function (e) {
+				e = e || window.event;
+
+				//鼠标实时位置
+				var cX = e.clientX,
+				cY = e.clientY;	
+
+				//鼠标的变化量	
+				var Y = cY - sY,
+				X = cX-sX;	
+
+				//盒子的当前位置 = 初始位置 + 变化量
+				var left = sleft + X;
+                			var top = stop + Y;	
+
+				text.style.left = left + 'px';
+				text.style.top = top + 'px';
+
+			}
+		}
+
+		text.onmouseup = function () {
+			document.onmousemove = null;
+		}
+
+		/* 拉伸盒子
+		   ========================================================================== */
+		text.onmousemove = function (e) {
+			e = e || window.event;
+			 //鼠标初始位置
+			var sX = e.clientX,sY = e.clientY;
+			//初始的top和left距离
+			var stop = this.offsetTop;
+			var sleft = this.offsetLeft;
+			var swidth = this.offsetWidth;
+			var sheight = this.offsetHeight;
+			//边框开始位置
+			var tborder = stop + 3; //上
+			var lborder = sleft + 3; //左
+			var rborder = swidth + sleft - 3; //右
+			var bborder = sheight + stop - 3; //下
+			//比较 鼠标位置 和 边框位置 以确定鼠标在不在可以拉伸盒子的区域。
+			var rX = sX - rborder;
+			var lX = lborder -sX;
+			var bY = sY - bborder;
+			var tY = tborder - sY;
+
+			if(bY > 0 && rX > 0) {//  右下角
+				this.style.cursor = "se-resize";
+				resize('se');
+			}else if(bY > 0 && lX > 0) {// 左下角
+				this.style.cursor = "sw-resize";
+				resize('sw');
+			}else if(tY > 0 && lX > 0) {// 左上角
+				this.style.cursor = "nw-resize";
+				resize('nw');
+			}else if(tY > 0 && rX > 0) {// 右上角
+				this.style.cursor = "ne-resize";
+				resize('ne');
+			}else if(rX > 0) {//右边框
+				this.style.cursor = "e-resize";
+				resize('rX');
+			}else if(lX > 0){//左边框
+				this.style.cursor = "e-resize";
+				resize('lX');
+			}else if(tY > 0 ){//上边框
+				this.style.cursor = "n-resize";
+				resize('tY');
+			}else if(bY > 0 ) {//下边框
+				this.style.cursor = "n-resize";
+				resize('bY');
+			}else{//在盒子内部时
+				this.style.cursor = "move";
+				this.onmousedown =  move;
+			}
+			/*****************
+			 * 盒子宽高变化函数
+			 */
+			function resize(direction) {
+				text.onmousedown = function () {
+					document.onmousemove = function (e) {
+						e = e || window.event;
+						//鼠标实时位置
+						var cX = e.clientX;
+						var cY = e.clientY;	
+						//*****************************//
+						switch(direction){
+							case 'rX':
+								var X = cX-sX;
+								var cwidth = swidth + X;
+								text.style.width = cwidth + 'px';
+							break;
+							case 'lX':
+								var X = sX - cX;	
+								var cwidth = swidth + X;
+								text.style.width = cwidth - 6 + 'px';
+								text.style.left = (sleft - X - 50) + 'px';
+							break;
+							case 'tY':
+								var Y = sY - cY;
+								var cheight = sheight + Y;	
+								text.style.height = cheight - 6 + 'px';
+								text.style.top = (stop - Y - 50) + 'px';
+							break;
+							case 'bY':
+								var Y = cY - sY;
+								var cheight = sheight + Y;	
+								text.style.height = cheight + 'px';
+							break;
+							case 'se':
+								var X = cX-sX;
+								var Y = cY - sY;
+								var cwidth = swidth + X;
+								var cheight = sheight + Y;	
+								text.style.width = cwidth + 'px';
+								text.style.height = cheight + 'px';
+							break;
+							case 'sw':
+								var X = sX - cX;
+								var Y = cY - sY;
+								var cwidth = swidth + X;
+								var cheight = sheight + Y;	
+								text.style.width = cwidth - 6 + 'px';
+								text.style.left = (sleft - X - 50) + 'px';
+								text.style.height = cheight + 'px';
+							break;
+							case 'nw':
+								var X = sX - cX;
+								var Y = sY - cY;
+								var cwidth = swidth + X;
+								var cheight = sheight + Y;	
+								text.style.width = cwidth - 6 + 'px';
+								text.style.left = (sleft - X - 50) + 'px';
+								text.style.height = cheight - 6 + 'px';
+								text.style.top = (stop - Y - 50) + 'px';
+							break;
+							case 'ne':
+								var X = cX - sX;
+								var Y = sY - cY;
+								var cwidth = swidth + X;
+								var cheight = sheight + Y;	
+								text.style.width = cwidth + 'px';
+								text.style.height = cheight - 6 + 'px';
+								text.style.top = (stop - Y - 50) + 'px';
+							break;
+						}
+					}
+				}
+			}
+			}
+			
+	</script>
+</body>
+</html>

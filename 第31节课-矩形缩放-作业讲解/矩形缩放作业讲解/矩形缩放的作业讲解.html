@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+ <head>
+	 <meta charset="UTF-8">
+	 <meta name="Generator" content="EditPlus®">
+	 <meta name="Author" content="">
+	 <meta name="Keywords" content="">
+	 <meta name="Description" content="">
+	 <title>李金文</title>
+	 <style type="text/css">
+		 *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+		li{ list-style-type: none;}
+		#box{
+			position: absolute;
+			top: 300px;
+			left: 300px;
+			width: 100px;
+			height: 100px;
+			background: pink;
+			user-select: none;
+		}
+		#box .resize{
+			position: absolute;
+			width: 20px;
+			height: 20px;
+		}
+		#box .e{
+			right: 0;
+			top: 0;
+			height: 100%;
+			background: #000;
+			cursor: e-resize;
+		}
+		#box .w{
+			left: 0;
+			top: 0;
+			height: 100%;
+			background: #000;
+			cursor: w-resize;
+		}
+		#box .s{
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			background: #000;
+			cursor: s-resize;
+		}
+		#box .n{
+			right: 0;
+			top: 0;
+			width: 100%;
+			background: #000;
+			cursor: n-resize;
+		}
+		#box .w-n{
+			left: 0;
+			top: 0;
+			background: #f60;
+			cursor: nw-resize;
+		}
+		#box .e-n{
+			right: 0;
+			top: 0;
+			background: #f60;
+			cursor: ne-resize;
+		}
+		#box .e-s{
+			right: 0;
+			bottom: 0;
+			background: #f60;
+			cursor: se-resize;
+		}
+		#box .w-s{
+			left: 0;
+			bottom: 0;
+			background: #f60;
+			cursor: sw-resize;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="e resize"></div>
+		<div class="w resize"></div>
+		<div class="s resize"></div>
+		<div class="n resize"></div>
+		<div class="w-n resize"></div>
+		<div class="e-n resize"></div>
+		<div class="e-s resize"></div>
+		<div class="w-s resize"></div>
+	</div>
+<script>
+    var oBox = document.getElementById('box');
+	var aSize = document.querySelectorAll('.resize');
+	for( var i=0;i<8;i++ ){//因为这个索引值I会用到所以我们可以用闭包解决这个问题
+	   (function(i){
+		   aSize[i].onmousedown = function(e){
+				e = e||window.event;
+				var sX = e.clientX,//初始的坐标
+					sY = e.clientY,//初始的坐标
+					sW = oBox.clientWidth,//获取box初始的宽度
+					sH = oBox.clientHeight,//获取box初始的高度
+					sL = oBox.offsetLeft,//初始left的值
+					sT = oBox.offsetTop;//初始的Top值
+				document.onmousemove = function(e){
+					e = e||window.event;
+					var nsX = e.clientX - sX,//当前的鼠标位置-初始的位置=变化量
+					    nsY = e.clientY - sY,//当前的鼠标位置-初始的位置=变化量
+						nW = sW ,//当前的宽度
+						nH = sH ,//当前的高度
+						nL = sL ,//当前的left值
+						nT = sT ;//当前的Top值
+						//console.log(e.clientY,e.clientX)
+					switch(i){
+					    case 0 ://东方向
+						    nW = nW + nsX;//当前的宽度
+						    break;
+						case 1 ://西方向
+						    nW = nW - nsX;//当前的宽度
+							nL = nL + nsX;//当前的left值
+							break;
+						case 2 ://南方向
+						    nH = nH + nsY;//当前的高度
+							break;
+						case 3 ://北方向
+						    nH = nH - nsY;
+							nT = nT + nsY;//当前的top值
+							break;
+						case 4 ://西北方向
+						    nW -= nsX;//当前的宽度
+							nL += nsX;//当前的left值
+							nH -= nsY;
+							nT += nsY;//当前的top值
+						case 5 ://东北方向   
+						    nW = nW + nsX;
+							nH = nH - nsY;
+							nT = nT + nsY;
+							break;
+						case 6 ://东南方向
+						    nW = nW + nsX;
+							nH = nH + nsY;
+							break;
+						case 7 ://西南方向
+						    nW = nW - nsX;//当前的宽度
+							nL = nL + nsX;//当前的left值
+					        nH = nH + nsY;//当前的高度
+							break;
+					}
+					nW = Math.max(nW,40);//与40比较 比40大就还是nW 比40小 就是40
+					nH = Math.max(nH,40);//与40比较 比40大就还是nH 比40小 就是40
+					nL = Math.min(nL , sL+sW-40);//限定left的最大值
+					nT = Math.min(nT , sH+sT-40);
+					//console.log(nL,nT);
+					oBox.style.width = nW + 'px';
+					oBox.style.height = nH + 'px';
+					oBox.style.left = nL + 'px';
+					oBox.style.top = nT + 'px';
+				};
+		   };
+		   document.onmouseup = function(){
+				document.onmousemove = null;
+		   };
+	   })(i)
+	}
+	/* //所有有东的
+	if ( i === 0 || i === 5 || i === 6 ){
+		width += x_;
+	}
+	//所有有西的
+	if ( i === 1 || i === 4 || i === 7 ){
+		width -= x_;
+		left += x_;
+	}
+	//所有有南的
+	if ( i === 2 || i === 6 || i === 7 ){
+		height += y_;
+	}
+	//所有有北的
+	if ( i === 3 || i === 4 || i === 5 ){
+		height -= y_;
+		top += y_;
+}*/
+</script>
+</body>
+</html>

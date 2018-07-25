@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Bingge">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: relative;
+            left:400px;
+            top:200px;
+            cursor: move;
+        }
+        #box .top,#box .bottom{
+            height: 10px;
+            position: absolute;
+            width: 100%;
+            /*background-color: #3a8efe;*/
+            left: 0;
+        }
+        #box .left,#box .right{
+            height: 100%;
+            position: absolute;
+            width: 10px;
+            /*background-color:#ff6600;*/
+        }
+        #box .top{
+            top:0;
+            cursor: n-resize;
+        }
+        #box .bottom{
+            bottom:0;
+            cursor: s-resize;
+        }
+        #box .left{
+            left:0;
+            cursor: w-resize;
+        }
+        #box .right{
+            right:0;
+            cursor: e-resize;
+        }
+        #box .lt,#box .rt,#box .lb,#box .rb{
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            /*background-color: #000;*/
+        }
+        #box .lt{
+            left: 0;
+            top:0;
+            cursor: nw-resize;
+        }
+        #box .rt{
+            right: 0;
+            top:0;
+            cursor: ne-resize;
+        }
+        #box .lb{
+            left: 0;
+            bottom:0;
+            cursor: sw-resize;
+        }
+        #box .rb{
+            right: 0;
+            bottom:0;
+            cursor: se-resize;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <span class="top"></span>
+    <span class="bottom"></span>
+    <span class="left"></span>
+    <span class="right"></span>
+    <span class="lt"></span>
+    <span class="rt"></span>
+    <span class="lb"></span>
+    <span class="rb"></span>
+</div>
+<script>
+    var box = document.getElementById("box");
+    var n = box.querySelector("span.top"),
+        s = box.querySelector("span.bottom"),
+        w = box.querySelector("span.left"),
+        oe = box.querySelector("span.right"),
+        nw = box.querySelector("span.lt"),
+        ne = box.querySelector("span.rt"),
+        sw = box.querySelector("span.lb"),
+        se = box.querySelector("span.rb");
+
+    //向上拉
+    n.onmousedown = function (event) {
+        m(n);
+    };
+    //向下拉
+    s.onmousedown = function () {
+        m(s);
+    };
+    //向右拉
+    oe.onmousedown = function () {
+        m(oe);
+    };
+    //向左拉
+    w.onmousedown = function () {
+        m(w);
+    };
+    //左上拉
+    nw.onmousedown = function (event) {
+        m(nw);
+    };
+    //左下拉
+    sw.onmousedown = function (event) {
+        m(sw);
+    };
+    //右上拉
+    ne.onmousedown = function (event) {
+        m(ne);
+    };
+    //右下拉
+    se.onmousedown = function (event) {
+        m(se);
+    };
+    function m(type,event) {
+        e = event || window.event;
+        var sx = e.clientX;
+        var sy = e.clientY;
+        var width = box.offsetWidth;
+        var height = box.offsetHeight;
+        var top = box.offsetTop;
+        var left = box.offsetLeft;
+
+        document.onmousemove = function (event) {
+            e = event || window.event;
+            var ex = e.clientX;
+            var ey = e.clientY;
+            var X = ex - sx;
+            var Y = ey - sy;
+            if(type == s){
+                box.style.height = height + Y + 'px';
+            }
+            if(type == n){
+                box.style.top = top + Y + 'px';
+                box.style.height = height - Y + 'px';
+            }
+            if(type == oe){
+                box.style.width = width + X + 'px';
+            }
+            if(type == w){
+                box.style.left = left + X + 'px';
+                box.style.width = width - X + 'px';
+            }
+            if(type == nw){
+                box.style.top = top + Y + 'px';
+                box.style.height = height - Y + 'px';
+                box.style.left = left + X + 'px';
+                box.style.width = width - X + 'px';
+            }
+            if(type == sw){
+                box.style.height = height + Y + 'px';
+                box.style.left = left + X + 'px';
+                box.style.width = width - X + 'px';
+            }
+            if(type == ne){
+                box.style.top = top + Y + 'px';
+                box.style.height = height - Y + 'px';
+                box.style.width = width + X + 'px';
+            }
+            if(type == se){
+                box.style.height = height + Y + 'px';
+                box.style.width = width + X + 'px';
+            }
+        };
+    }
+
+    //鼠标抬起取消
+    document.onmouseup = function () {
+        document.onmousemove = null;
+    };
+    //移动
+    /*var move = function move() {
+        box.onmousedown = function (event) {
+            e = event || window.event;
+            var sx = e.clientX;
+            var sy = e.clientY;
+            var left = box.offsetLeft;
+            var top = box.offsetTop;
+            document.onmousemove = function (event) {
+                e = event || window.event;
+                var ex = e.clientX;
+                var ey = e.clientY;
+                var X = ex - sx;
+                var Y = ey - sy;
+                box.style.left = (left + X)+'px';
+                box.style.top = (top + Y)+'px';
+            }
+        }
+        box.onmouseup = function () {
+            document.onmousemove = null;
+        }
+    }*/
+
+</script>
+</body>
+</html>
