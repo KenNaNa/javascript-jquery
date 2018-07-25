@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+   var oBox = document.getElementById('box')
+  /*3. insertAdjacentHTML()方法
+插入标记的最后一个新增方式是 insertAdjacentHTML()方法。这个方法最早也是在 IE中出现的，
+它接收两个参数：插入位置和要插入的 HTML 文本。第一个参数必须是下列值之一：
+ "beforebegin"，在当前元素之前插入一个紧邻的同辈元素；
+ "afterbegin"，在当前元素之下插入一个新的子元素或在第一个子元素之前再插入新的子元素；
+ "beforeend"，在当前元素之下插入一个新的子元素或在最后一个子元素之后再插入新的子元素；
+ "afterend"，在当前元素之后插入一个紧邻的同辈元素。*/
+//支持 insertAdjacentHTML()方法的浏览器有 IE、 Firefox 8+、 Safari、 Opera 和 Chrome。
+oBox.insertAdjacentHTML("beforebegin", "<p class='beforebegin'>Hello world!</p>");
+//作为第一个子元素插入
+oBox.insertAdjacentHTML("afterbegin", "<p class='afterbegin'>Hello world!</p>");
+//作为最后一个子元素插入
+oBox.insertAdjacentHTML("beforeend", "<p class='beforeend'>Hello world!</p>");
+//作为后一个同辈元素插入
+oBox.insertAdjacentHTML("afterend", "<p class='afterend'>Hello world!</p>");
+</script>
+</body>
+</html>

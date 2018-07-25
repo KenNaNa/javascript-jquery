@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>DOM基础-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+111
+<p>I Love You</p>
+222
+<!--sss-->
+</div>
+<script>
+/*
+	DOM:
+	 Document Object Model 文档对象模型
+
+	 规则，为了让js能够操作HTML页面而定的规则
+
+	JavaScript - DOM - HTML
+	 */
+
+	var oBox = document.getElementById("box");
+
+	/**
+	 * 找儿子
+	 *  .children  (集合的形式) 类数组
+	 *
+	 *   找所有节点类型的儿子：
+	 *      .childNodes    主流浏览器  类数组
+	 *
+	 *
+	 *
+	 * 找爸爸
+	 *  .parentNode   (单个对象)
+	 *
+	 *
+	 */
+	 console.log(oBox.children)///HTMLCollection(1)
+	 console.log(oBox.childNodes)//(5) [text, p, text, comment, text]
+	 console.log(oBox.children.length);//1
+	 console.log(oBox.childNodes.length);//5 有length属性
+	 console.log(oBox.childNodes[0]);//下标
+	 console.log(oBox.childNodes[0].nodeType);//节点类型上 3
+	 console.log(oBox.childNodes[0].nodeName);//节点的名字 #text
+	 console.log(oBox.childNodes[0].nodeValue);//节点的内容 111
+	 //console.log( oBox.children );
+	//console.log( oBox.getElementsByTagName("*") );//找出所有后代
+	//console.log( oBox.parentNode );
+
+	//console.log( oBox.childNodes );//文本 元素 注释
+	//console.log( oBox.childNodes[0].nodeType );
+	//console.log( oBox.childNodes[0].nodeName );
+	//console.log( oBox.childNodes[1].nodeName );//A
+	//console.log( oBox.nodeName );//DIV
+	//console.log( oBox.childNodes[0].nodeValue );
+
+	//console.log( oBox.childNodes[5].nodeValue );
+	//oBox.innerHTML += oBox.childNodes[5].nodeValue;
+
+</script>
+</body>
+</html>

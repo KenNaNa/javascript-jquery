@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>Node类型-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+   var oBox = document.getElementById('box')
+   if( oBox.nodeType==1 ){//浏览器都兼容
+      console.log('这是一个元素对象');
+	  //首先检查节点类型，看它是不是一个元素。如果是，则取得并保存 nodeName 的值。
+      //对于元素节点， nodeName 中保存的始终都是元素的标签名，而 nodeValue 的值则始终为 null。
+   }
+   //每个节点都有一个 nodeType 属性，用于表明节点的类型
+   console.log(Node.ELEMENT_NODE);//1
+   console.log( Node.ATTRIBUTE_NODE);//2
+   console.log(Node.TEXT_NODE);//3
+   console.log( Node.CDATA_SECTION_NODE);//4
+   console.log(Node.ENTITY_REFERENCE_NODE);//5
+   console.log(Node.ENTITY_NODE);//6
+   console.log(Node.PROCESSING_INSTRUCTION_NODE);//7
+   console.log(Node.COMMENT_NODE);//8
+   console.log(Node.DOCUMENT_NODE);//9
+   console.log(Node.DOCUMENT_TYPE_NODE);//10
+   console.log(Node.DOCUMENT_FRAGMENT_NODE);//11
+   if( oBox.nodeType==Node.ELEMENT_NODE )alert(true);//IE不兼容
+</script>
+</body>
+</html>

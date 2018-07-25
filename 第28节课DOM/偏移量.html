@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>偏移量-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+/*   1. 偏移量
+首先要介绍的属性涉及偏移量（offset dimension），包括元素在屏幕上占用的所有可见的空间。元素
+的可见大小由其高度、宽度决定，包括所有内边距、滚动条和边框大小（注意，不包括外边距）。通过
+下列 4 个属性可以取得元素的偏移量。
+ offsetHeight：元素在垂直方向上占用的空间大小，以像素计。包括元素的高度、（可见的）
+水平滚动条的高度、上边框高度和下边框高度。
+ offsetWidth：元素在水平方向上占用的空间大小，以像素计。包括元素的宽度、（可见的）垂
+直滚动条的宽度、左边框宽度和右边框宽度。
+ offsetLeft：元素的左外边框至包含元素的左内边框之间的像素距离。
+ offsetTop：元素的上外边框至包含元素的上内边框之间的像素距离。
+其中， offsetLeft 和 offsetTop 属性与包含元素有关，包含元素的引用保存在 offsetParent
+属性中。 offsetParent 属性不一定与 parentNode 的值相等。例如， <td>元素的 offsetParent 是
+作为其祖先元素的<table>元素，因为<table>是在 DOM 层次中距<td>最近的一个具有大小的元素。
+图 12-1 形象地展示了上面几个属性表示的不同大小。
+*/
+//要想知道某个元素在页面上的偏移量，将这个元素的 offsetLeft 和 offsetTop 与其 offsetParent
+//的相同属性相加，如此循环直至根元素，就可以得到一个基本准确的值。
+function getElementLeft(element){
+   var actualLeft = element.offsetLeft;
+   var current = element.offsetParent;
+   while (current !== null){
+       actualLeft += current.offsetLeft;
+       current = current.offsetParent;
+    }
+   return actualLeft;
+}
+function getElementTop(element){
+   var actualTop = element.offsetTop;
+   var current = element.offsetParent;
+   while (current !== null){
+       actualTop += current. offsetTop;
+       current = current.offsetParent;
+  }
+   return actualTop;
+}
+</script>
+</body>
+</html>

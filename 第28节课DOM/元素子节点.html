@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>元素子节点-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<ul id="myList">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+<script>
+    var oUl = document.getElementById('myList');
+    for( var i=0,len=oUl.childNodes.length;i<len;i++ ){
+	   if(oUl.childNodes[i].nodeType==1){//判断节点是不是元素节点
+	     oUl.childNodes[i].onclick = function(){
+		    //alert(this.nodeName);
+			alert(this.innerHTML)
+		 }
+	   }
+	}
+</script>
+</body>
+</html>

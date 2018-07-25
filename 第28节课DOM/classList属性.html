@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>classList属性-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div class="bd user disabled">...</div>
+<script>
+    div = document.querySelector('div')
+   /*//删除"user"类
+   //首先，取得类名字符串并拆分成数组
+   var classNames = div.className.split(/s+/);
+   console.log(classNames)
+   //找到要删的类名
+   	var pos = -1,
+   	i,
+   	len;
+   	for (i=0, len=classNames.length; i < len; i++){
+   		if (classNames[i] == "user"){
+   		   pos = i;
+   		   break;
+   		}
+   	}
+   	//删除类名
+    classNames.splice(i,1);
+   	//把剩下的类名拼成字符串并重新设置
+    className = classNames.join(" ");
+   	console.log(className);
+	*/
+	/*removeClass(div,'user');
+	function removeClass(obj,cName){
+   //首先，取得类名字符串并拆分成数组
+   var classNames = obj.className.split(/\s+/);
+   var pos,//存储要删除类名的位置
+       len = classNames.length,
+	   i;
+   for( i=0;i<len;i++ ){
+       if( classNames[i]==cName ){
+	       pos = i;
+		   break;
+	   }
+   }
+   classNames.splice(i,1);
+   obj.className = classNames.join(' ');
+}*/
+/*
+    DOMTokenList 有一个表示自己包含多少元素的 length 属性，而要取得每个元素可以使用 item()方
+   法，也可以使用方括号语法。此外，这个新类型还定义如下方法。
+ add(value)：将给定的字符串值添加到列表中。如果值已经存在，就不添加了。
+ contains(value)：表示列表中是否存在给定的值，如果存在则返回 true，否则返回       false。
+ remove(value)：从列表中删除给定的字符串。
+ toggle(value)：如果列表中已经存在给定的值，删除它；如果列表中没有给定的值，添     加它。
+*/
+div.classList.remove('user');
+//div.claasList.contains&&(div.claasList.contains('bd'));//true
+div.classList.toggle('m');
+div.classList.add('m');
+//支持 classList 属性的浏览器有 Firefox 3.6+和 Chrome。
+</script>
+</body>
+</html>

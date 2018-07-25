@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>焦点管理-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<button value="">焦点管理</button>
+<script>
+/*
+  首先就是 document.activeElement 属性，这个
+属性始终会引用 DOM 中当前获得了焦点的元素。元素获得焦点的方式有页面加载、用户输入（通常是
+通过按 Tab 键）和在代码中调用 focus()方法。
+*/
+   var oBtn = document.getElementsByTagName('button')[0];
+   oBtn.focus();
+   alert(document.activeElement===oBtn);//true
+   alert(document.hasFocus());//true
+   //alert(oBtn.hasFocus());报错了
+   //实现了这两个属性的浏览器的包括 IE 4+、 Firefox 3+、 Safari 4+、 Chrome 和 Opera 8+。
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>ELEment类型-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:100px;
+				background:pink;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box" class="b" title="c" name="c"></div>
+<script>
+    var oBox = document.getElementById('box');
+	console.log(oBox.nodeType);//1
+	console.log(oBox.nodeName);//DIV
+	console.log(oBox.nodeValue);//null
+	console.log(oBox.tagName);//DIV
+	//通过属性获取属性attributes
+	/*
+	   getNamedItem(name)：返回 nodeName 属性等于 name 的节点；
+       removeNamedItem(name)：从列表中移除 nodeName 属性等于 name 的节点；
+       setNamedItem(node)：向列表中添加节点，以节点的 nodeName 属性为索引；
+       item(pos)：返回位于数字 pos 位置处的节点。
+         attributes 属性中包含一系列节点，每个节点的 nodeName 就是特性的名称， 而节点的 nodeValue
+         就是特性的值
+	*/
+	var name = oBox.attributes.getNamedItem('name').nodeValue;//c
+	var title = oBox.attributes.getNamedItem('title').nodeValue;//c
+	var cla = oBox.attributes.getNamedItem('class').nodeValue;//b
+	console.log(name,title,cla);
+	//简化版
+	var id = oBox.attributes['id'].nodeValue;//box
+	console.log(id)
+	oBox.attributes.removeNamedItem('id').nodeValue;
+    //var id = oBox.attributes['id'].nodeValue;//报错了 因为被删除了
+	//console.log(id)
+	console.log(oBox.attributes[0]);//class='b'
+    console.log(outputAttributes(oBox));
+function outputAttributes(element){
+   var attrName,
+	   attrValue,
+	   attrArr = new Array(),
+	   length = element.attributes.length;
+   for( var i=0;i<length;i++ ){
+       if(element.attributes[i].specified){
+	       attrName = element.attributes[i].nodeName;//属性名称
+		   attrValue = element.attributes[i].nodeValue;//属性节点的内容
+           attrArr.push(attrName+"='"+attrValue+"'");
+	   }
+   }
+   return attrArr.join(' ');
+
+}
+</script>
+</body>
+</html>

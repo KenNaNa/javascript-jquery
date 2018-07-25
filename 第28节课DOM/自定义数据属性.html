@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>自定义数据属性-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="myDiv"></div>
+<script>
+/*添加了自定义属性之后，可以通过元素的 dataset 属性来访问自定义属性的值。 dataset 属性的
+值是 DOMStringMap 的一个实例，也就是一个名值对儿的映射。在这个映射中，每个 data-name 形式
+的属性都会有一个对应的属性，只不过属性名没有 data-前缀*/
+   //本例中使用的方法仅用于演示
+var div = document.getElementById("myDiv");
+//取得自定义属性的值
+var appId = div.dataset.appId;
+var myName = div.dataset.myname;
+//设置值
+div.dataset.appId = 23456;
+div.dataset.myname = "Michael";
+//有没有"myname"值呢？
+if (div.dataset.myname){alert("Hello, " + div.dataset.myname);
+}
+//在编写本书时，支持自定义数据属性的浏览器有 Firefox 6+和 Chrome。
+</script>
+</body>
+</html>

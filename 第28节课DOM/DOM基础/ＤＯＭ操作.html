@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>ＤＯＭ操作-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    111
+    <a href=""></a>
+    <p></p>
+    222
+    <!--<b>ii</b>-->
+</div>
+<div class="box"></div>
+<script>
+   var oBox = document.getElementById("box");
+
+    /*
+    第一个儿子：
+        firstChild / firstElementChild      IE678 / 主流
+
+    最后一个儿子：
+        lastChild / lastElementChild       IE678 / 主流
+
+
+     兄弟节点：
+        下一个兄弟
+        nextSibling / nextElementSibling
+
+        上一个兄弟
+        prevSibling / prevElementSibling
+
+     */
+	 console.log(oBox.firstChild);//文本节点   111 在谷歌浏览器 主流浏览器 Ie
+	 console.log(oBox.firstElementChild);// 第一个标签a 主流浏览器 在ie undefined
+	 console.log(oBox.nextSibling);//#text 在谷歌浏览器 主流浏览器
+	 console.log(oBox.NextElementSibling);//undefined 主流浏览器 在ie undefined
+	 console.log(oBox.previousSibling);//#text 主流浏览器  zai IE null
+	 console.log(oBox.prevSibling);//undefined 主流浏览器 在ie undefined
+	 console.log(oBox.previousElementSibling);//null主流浏览器;在ie undefined
+	 console.log(oBox.prevElementSibling);//undefined 主流浏览器 在ie undefined
+     function nextSibling( obj) {
+        return obj.nextElementSibling===undefined?obj.nextSibling:obj.nextElementSibling
+    }
+</script>
+</body>
+</html>

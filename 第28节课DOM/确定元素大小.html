@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>确定元素大小-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*IE、 Firefox 3+、 Safari 4+、 Opera 9.5 及 Chrome 为每个元素都提供了一个 getBoundingClientRect()方
+法。这个方法返回会一个矩形对象，包含 4 个属性： left、 top、 right 和 bottom。这些属性给出了元素在页面中相对于视口的位置。但是，浏览器的实现稍有不同。 IE8 及更早版本认为文档的左上角坐
+标是(2, 2)，而其他浏览器包括 IE9 则将传统的(0,0)作为起点坐标。因此，就需要在一开始检查一下位于
+(0,0)处的元素的位置，在 IE8 及更早版本中，会返回(2,2)，而在其他浏览器中会返回(0,0)。来看下面的
+函数：*/
+function getBoundingClientRect(element){
+    if (typeof arguments.callee.offset != "number"){
+        var scrollTop = document.documentElement.scrollTop;
+        var temp = document.createElement("div");
+        temp.style.cssText = "position:absolute;left:0;top:0;";
+        document.body.appendChild(temp);
+        arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
+        document.body.removeChild(temp);
+        temp = null;
+    }
+    var rect = element.getBoundingClientRect();
+    var offset = arguments.callee.offset;
+    return {
+        left: rect.left + offset,
+        right: rect.right + offset,
+        top: rect.top + offset,
+        bottom: rect.bottom + offset
+    };
+}
+</script>
+</body>
+</html>

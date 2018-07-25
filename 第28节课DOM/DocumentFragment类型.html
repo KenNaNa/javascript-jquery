@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>DocumentFragment类型-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .c{
+			    width:100px;
+				height:30px;
+				background:pink;
+				margin-bottom:5px;
+				text-align:center;
+				line-height:30px;
+			 }
+		 </style>
+	 </head>
+<body>
+<ul></ul>
+<script>
+    var oUl = document.querySelector('ul');
+    var fragment = document.createDocumentFragment();
+	var str = '';
+	for( var i=0;i<10;i++ ){
+	    var Li = document.createElement('li');
+		Li.innerHTML = i;
+		Li.className = 'c';
+		Li.style.color = 'red'
+		fragment.appendChild(Li);
+	}
+	oUl.appendChild(fragment);
+	/*
+	        为<table>元素添加的属性和方法如下。
+		 caption：保存着对<caption>元素（如果有）的指针。
+		 tBodies：是一个<tbody>元素的 HTMLCollection。
+		 tFoot：保存着对<tfoot>元素（如果有）的指针。
+		 tHead：保存着对<thead>元素（如果有）的指针。
+		 rows：是一个表格中所有行的 HTMLCollection。
+		 createTHead()：创建<thead>元素，将其放到表格中，返回引用。
+		 createTFoot()：创建<tfoot>元素，将其放到表格中，返回引用。
+		 createCaption()：创建<caption>元素，将其放到表格中，返回引用。
+		 deleteTHead()：删除<thead>元素。
+		 deleteTFoot()：删除<tfoot>元素。
+		 deleteCaption()：删除<caption>元素。
+		 deleteRow(pos)：删除指定位置的行。
+		 insertRow(pos)：向 rows 集合中的指定位置插入一行。
+		为<tbody>元素添加的属性和方法如下。
+		 rows：保存着<tbody>元素中行的 HTMLCollection。
+		 deleteRow(pos)：删除指定位置的行。
+		 insertRow(pos)：向 rows 集合中的指定位置插入一行，返回对新插入行的引用。
+		为<tr>元素添加的属性和方法如下。
+	*/
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>scrollIntoView()方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<form><input type="button" value="提交" id="btn" /></form>
+<script>
+   //让元素可见
+document.forms[0].scrollIntoView();
+var oBtn = document.getElementById('btn')
+oBtn.focus();
+</script>
+当页面发生变化时，<br/>一般会用这个方法来吸引用户的注意力。<br/>实际上，<br/>为某个元素设置焦点也会导<br/>
+致浏览器滚动并显示出获得焦点的元素。<br/>
+支持 scrollIntoView()方法的浏览器有 IE、 Firefox、 Safari 和 Opera。
+</body>
+</html>

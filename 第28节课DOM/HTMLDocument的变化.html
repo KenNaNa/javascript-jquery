@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>HTMLDocument的变化-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*IE4 最早为 document 对象引入了 readyState 属性
+   支持 readyState 属性的浏览器有 IE4+、 Firefox 3.6+、 Safari、 Chrome 和 Opera 9+。
+   1.loading
+   2.complete*/
+   window.onload = function(){
+	   if( document.readyState=='complete' ){
+		   alert('加载完成')
+	   }
+   }
+   //IE 为此给 document 添加了一个名为 compatMode 的属性这个属性就是为了告诉开发人员浏览器采用了哪种渲染模式
+   /*
+   //后来，陆续实现这个属性的浏览器有 Firefox、 Safari 3.1+、 Opera 和 Chrome。最终， HTML5 也把
+这个属性纳入标准，
+    在标准模式下， document.compatMode 的
+值等于"CSS1Compat"，而在混杂模式下， document.compatMode 的值等于"BackCompat"。  
+   */
+   if (document.compatMode == "CSS1Compat"){
+		   alert("Standards mode");//
+		} else {
+		   alert("Quirks mode");
+		}
+
+
+//head属性如果可用，就使用 document.head，否则仍然使用 getElementsByTagName()方法。
+//实现 document.head 属性的浏览器包括 Chrome 和 Safari 5。
+var head = document.head || document.getElementsByTagName("head")[0];
+alert(head)
+</script>
+</body>
+</html>

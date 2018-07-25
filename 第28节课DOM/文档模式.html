@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>文档模式-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+ IE5：以混杂模式渲染页面（IE5 的默认模式就是混杂模式）。 IE8 及更高版本中的新功能都无法<br/>
+使用。
+ IE7：以 IE7 标准模式渲染页面。 IE8 及更高版本中的新功能都无法使用。<br/>
+ IE8：以 IE8 标准模式渲染页面。 IE8 中的新功能都可以使用，因此可以使用 <br/>Selectors API、更多
+CSS2 级选择符和某些 CSS3 功能，还有一些 HTML5 的功能。不过 IE9 中的新功能无法使用。<br/>
+ IE9：以 IE9 标准模式渲染页面。 IE9 中的新功能都可以使用，比如 ECMAScript 5、完整的 CSS3<br/>
+以及更多 HTML5 功能。这个文档模式是最高级的模式<br/>
+要理解 IE8 及更高版本的工作原理，必须理解文档模式。<br/>
+要强制浏览器以某种模式渲染页面，可以使用 HTTP 头部信息 X-UA-Compatible，或通过等价的<br/>
+<meta>标签来设置：
+<meta http-equiv="X-UA-Compatible" content="IE=IEVersion">
+注意，这里 IE 的版本（IEVersion）有以下一些不同的值，而且这些值并不一定与上述 4 种文档<br/>
+模式对应。
+ Edge：始终以最新的文档模式来渲染页面。忽略文档类型声明。对于 IE8，始终保持以 IE8 标<br/>
+准模式渲染页面。对于 IE9，则以 IE9 标准模式渲染页面。<br/>
+ EmulateIE9：如果有文档类型声明，则以 IE9 标准模式渲染页面，否则将文档模式设置为 IE5。<br/>
+ EmulateIE8：如果有文档类型声明，则以 IE8 标准模式渲染页面，否则将文档模式设置为 IE5。<br/>
+ EmulateIE7：如果有文档类型声明，则以 IE7 标准模式渲染页面，否则将文档模式设置为 IE5。<br/>
+ 9：强制以 IE9 标准模式渲染页面，忽略文档类型声明。<br/>
+ 8：强制以 IE8 标准模式渲染页面，忽略文档类型声明。<br/>
+ 7：强制以 IE7 标准模式渲染页面，忽略文档类型声明。<br/>
+ 5：强制将文档模式设置为 IE5，忽略文档类型声明。<br/>
+比如，要想让文档模式像在 IE7 中一样，可以使用下面这行代码：<br/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+如果不打算考虑文档类型声明，而直接使用 IE7 标准模式，那么可以使用下面这行代码：<br/>
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+没有规定说必须在页面中设置 X-UA-Compatible。默认情况下，浏览器会通过文档类型声明来确<br/>
+定是使用最佳的可用文档模式，还是使用混杂模式。<br/>
+通过 document.documentMode 属性可以知道给定页面使用的是什么文档模式。这个属性是 IE8<br/>
+中新增的，它会返回使用的文档模式的版本号（在 IE9 中，可能返回的版本号为 5、 7、 8、 9）：<br/>
+var mode = document.documentMode;<br/>
+知道页面采用的是什么文档模式，有助于理解页面的行为方式。无论在什么文档模式下，都可以访<br/>
+问这个属性。
+</body>
+</html>
