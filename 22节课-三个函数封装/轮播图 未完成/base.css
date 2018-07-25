@@ -1,0 +1,33 @@
+﻿@charset 'UTF-8';
+
+body, h1, h2, h3, h4, h5, h6, p, dd, ul, ol, dl, div, input {
+	margin: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+ul,ol,dl {
+	padding:0;
+	list-style:none;
+}
+img{border:none;border:none;vertical-align:middle;}
+a{text-decoration:none;color:#000;outline:none;}
+body{font:12px/1.5 'Microsoft Yahei',sans-serif;}
+input {
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+}
+/*************************************************/
+/**************清除默认样式*******************/
+/*************************************************/
+/******* float *******/
+.clearfix:after{
+	content: '';
+	display: block;
+	height: 0;
+	clear: both;
+	visibility:hidden;
+}

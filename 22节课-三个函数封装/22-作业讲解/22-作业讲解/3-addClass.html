@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>	
+		<div id='box' class='b'>我是第一个div</div>
+
+		<script type="text/javascript">
+			//var aDiv = document.getElementById('box');
+			//removeClass( aDiv,'a b abc' );
+			
+			addClass(getClass('b')[0],'on active');
+			removeClass( getClass('b')[0],'active' );
+
+			function removeClass( ele,cName ){
+				var arr = ele.className.split(/\s+/);
+				var arr1 = cName.split(/\s+/);
+				for( var i=0;i<arr1.length;i++ ){
+					for( var j=0;j<arr.length;j++ ){
+						if( arr1[i] == arr[j] ){
+							arr.splice(j,1);
+						}
+					}
+				}
+				ele.className = arr.join(' ');
+			}
+
+
+			function addClass( ele,cName ){
+				var arr1 = ele.className.split(/\s+/);
+				var arr2 = cName.split(/\s+/);
+				var arr3 = arr1.concat(arr2);
+				
+				for( var i=0;i<arr3.length;i++ ){
+					for(var j=i+1;j<arr3.length;j++){
+						if( arr3[i] == arr3[j] ){
+							arr3.splice(j,1);
+							j--;
+						}
+					}
+				}
+				ele.className = arr3.join(' ')
+			}
+
+			function getClass( obj ){
+				if( document.getElementsByClassName ){
+					return document.getElementsByClassName(obj);
+				}else{ // 去解决ie 678的不兼容问题
+					var all = document.getElementsByTagName('*');
+					var arr = [];
+					for( var i=0;i<all.length;i++ ){
+						var className = all[i].className;
+						var arrClass = className.split(' ');
+						for( var j=0;j<className.length;j++ ){
+							if( arrClass[j] == obj ){
+								arr.push( all[i] );
+							}
+						}
+					}
+					return arr;
+				}
+			}
+		</script>
+	</body>
+</html>

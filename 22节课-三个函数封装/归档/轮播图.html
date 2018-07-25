@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js图片切换</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;border: 0}
+    li{list-style: none}
+    #box{
+        position: relative;
+        width: 600px;
+        height: 400px;
+        margin: 50px auto;
+        border: 1px solid #ddd;
+        overflow: hidden;
+    }
+    #box ul{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    #box ul li{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: left 0.3s;
+        /*
+        这里存在一个奇怪BUG，  不设置这个动画最后一张图片不显示了
+        当两次点击时间间隔比这里设置的时间小就会出现位图片移偏差;
+        */
+        */
+    }
+    #box ul li img{
+        width: 100%;
+        height: 100%;
+    }
+    #box ul li span{
+        position: absolute;
+        top:0;
+        text-align: center;
+        color: #fff;
+        display: block;
+        width: 100%;
+        padding: 5px 0;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    #box .pagination {
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: #fff;
+        padding:5px;
+        /*background-color: rgba(0,0,0,0.6);*/
+        text-align: center;
+    }
+    #box .pagination span{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        cursor:pointer;
+    }
+    #box .pagination span:hover,#box .pagination span.cur{
+        background-color:#FF5A5A;
+    }
+    .btnLeft,.btnRight{
+        position:absolute;
+        width: 40px;
+        height:40px;
+        font-family: Tahoma;
+        font-size: 18px;
+        text-align: center;
+        line-height: 40px;
+        color: #fff;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        top:50%;
+        transform: translateY(-50%);
+    }
+    .btnLeft:hover,.btnRight:hover{
+        background-color: rgba(250, 133, 102, 0.6);
+    }
+    .btnRight{
+        right:0
+    }
+</style>
+<body>
+    <div id="box">
+        <ul class="imgList">
+            <li><span>第1张</span>
+                <img src="img/game1.jpg" alt="">
+            </li>
+            <li><span>第2张</span>
+                <img src="img/game2.jpg" alt="">
+            </li>
+            <li><span>第3张</span>
+                <img src="img/game3.jpg" alt="">
+            </li>
+            <li><span>第4张</span>
+                <img src="img/game4.jpg" alt="">
+            </li>
+            <li><span>第5张</span>
+                <img src="img/game5.jpg" alt="">
+            </li>
+            <li><span>第6张</span>
+                <img src="img/game6.jpg" alt="">
+            </li>
+        </ul>
+        <div class="pagination">
+
+        </div>
+            <div class="btnLeft"> &lt; </div>
+            <div class="btnRight"> &gt; </div>
+        </div>
+    </div>
+    <script>
+        var oBox =document.getElementById("box"),
+            aLi = oBox.querySelectorAll(".imgList li"),
+            aPage = oBox.querySelector(".pagination"),
+            prev = oBox.querySelector(".btnLeft"),
+            next = oBox.querySelector(".btnRight");
+
+        var aPageStr = "";
+        for(var i = 0; i<aLi.length;i++){
+            aPageStr+="<span></span>"
+        }
+        aPage.innerHTML = aPageStr;
+        var aSpan = oBox.querySelectorAll(".pagination span"),
+                 s = 0;
+        aSpan[s].className = "cur"
+        for(var i = 0; i<aSpan.length;i++){
+            aSpan[i].index=i;
+            aSpan[i].onclick=function () {
+                console.log(this.index);
+            }
+
+
+        }
+
+        setLeft()
+        // 绝对定位，设置所有图片的left值，让图片一排显示
+        function setLeft() {
+            for(var i = 0; i<aLi.length;i++){
+                //第i张图片的left值就是它的宽度乘以它所在的下标
+                aLi[i].style.left = (aLi[i].offsetWidth*i)+"px";
+            }
+        }
+        // 点击左边按钮 事件，所有图片向右边移动一个自己的宽度offsetWidth
+        prev.onclick = function () {
+            for( var i = 0;i<aLi.length; i++){
+                aLi[i].style.left=(aLi[i].offsetLeft+aLi[i].offsetWidth)+"px";
+
+                if(aLi[i].offsetLeft==0){
+                    aSpan[i].className = "";
+                    s=(i+aLi.length-1)%aLi.length
+                    console.log(s);
+                    aSpan[s].className = "cur"
+                }
+            }
+            // 判断最后一张图片left小于0的时候
+            if(aLi[0].offsetLeft>=0){
+                //重新定义所以图片的left值
+                for(var i = 0; i<aLi.length;i++){
+                    //第i张图片的left值就是它的宽度乘以它所在的下标
+                    aLi[i].style.left = (aLi[i].offsetWidth*i - aLi[i].offsetWidth*(aLi.length-1))+"px";
+
+                }
+            }
+        }
+        // 点击右边按钮 事件，所有图片向左边移动一个自己的宽度offsetWidth
+        next.onclick = function () {
+            var s =0;
+            for( var i = 0;i<aLi.length; i++){
+                aLi[i].style.left=(aLi[i].offsetLeft-aLi[i].offsetWidth)+"px";
+
+                if(aLi[i].offsetLeft==0){
+                    aSpan[i].className = ""
+                    s = (i+1)%aLi.length;
+                    aSpan[s].className = "cur"
+                }
+
+
+            }
+
+            // 判断最后一张图片left小于0的时候
+            if(aLi[aLi.length-1].offsetLeft<=0){
+                //重新定义所以图片的left值
+                setLeft()
+            }
+        }
+
+        autoPlay()
+        // 自动播放 定时器
+        function autoPlay() {
+            play = setInterval(function () {
+                next.onclick();
+//            prev.onclick();
+            },3000)
+
+        }
+
+        prev.onmouseenter = function () {
+            clearInterval(play)
+        }
+
+        prev.onmouseleave = function () {
+            autoPlay()
+        }
+
+        next.onmouseenter = function () {
+            clearInterval(play)
+        }
+
+        next.onmouseleave = function () {
+            autoPlay()
+        }
+
+
+    </script>
+</body>
+</html>

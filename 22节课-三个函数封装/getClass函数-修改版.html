@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>getClass函数-修改版-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div class='box'>我是第一个盒子</div>
+<div class='a'>我是第二个盒子</div>
+<div class='box on k'>我是第三个盒子</div>
+<script>
+   var oBox = getClass('box on')[0];
+   console.log(oBox);
+   oBox.style.background = 'red';
+   function getClass(obj){
+     if(document.getElementsByClassName){//H5提供的函数不兼容IE678
+	    return document.getElementsByClassName(obj);//返回获取后的对象
+	 }else{
+	    var all = document.getElementsByTagName('*');//获取所有的标签
+		var arr = [];
+		for( var i=0;i<all.length;i++ ){
+		    var ObjClass = obj.split(' ');//切割
+			var ClassName = all[i].className.split(' ');
+			for( var j=0;j<ClassName.length;j++ ){
+			    for( var k=0;k<ObjClass.length;k++ ){
+				   if(ObjClass[k]==ClassName[j]){
+				      arr.push(all[i]);
+				   }
+				}
+			}
+		}
+		return arr;
+	 }
+   }
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			*{
+				margin:0;
+			}
+			#box{
+				width:738px;
+				height:430px;
+				margin:50px auto;
+				box-shadow:0 0 5px #000;
+				position:relative;
+				overflow:hidden;
+			}
+			#pic{
+				height:100%;
+			}
+			#pic img{
+				position:absolute;
+				left:0;
+				top:0;
+				display:none;
+			}
+			#tab{
+				position:absolute;
+				bottom:10px;
+				width:100%;
+				text-align:center;
+				line-height:0;
+			}
+			#tab a{
+				width:12px;
+				height:12px;
+				display:inline-block;
+				background:#ccc;
+				border-radius:50%;
+			}
+			#tab a.active{
+				background:purple;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='box'>
+			<div id='pic'>
+				<img src="images/1.jpg" alt="" />
+				<img src="images/2.jpg" alt="" />
+				<img src="images/3.jpg" alt="" />
+				<img src="images/4.jpg" alt="" />
+				<img src="images/5.jpg" alt="" />
+			</div>
+			<div id='tab'>
+				<a class='active' href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var aImg = pic.getElementsByTagName('img');
+			var aA = tab.getElementsByTagName('a');
+			var n = 0;
+			aImg[n].style.display = 'block';
+			for( var i=0;i<aA.length;i++ ){
+				aA[i].a = i;
+				aA[i].onclick = function(){
+					if( this.a != n ){
+						for( var i=0;i<aA.length;i++ ){
+							aA[i].className = '';
+						};
+						this.className = 'active';
+						
+						var left = 0;
+						var last = n;
+						var timer1 = setInterval(function(){
+							left -=10;
+							if( left <= -738){
+								left = -738;
+								clearInterval(timer1);
+							}
+							aImg[last].style.left = left + 'px';
+						},13);
+
+						n = this.a;
+						aImg[n].style.display = 'block';
+
+						var left2 = 738;
+						aImg[n].style.left = left2 + 'px';
+						
+						var timer2 = setInterval(function(){
+							left2 -=10;
+							if( left2<=0 ){
+								left2=0;
+								clearInterval(timer2);
+							}
+							aImg[n].style.left = left2 + 'px';
+						},13);
+					}
+					
+				}
+			}
+		</script>
+	</body>
+</html>

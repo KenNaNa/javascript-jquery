@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="Author" content="下辈子">
+		<link rel="stylesheet" type="text/css" href="base.css" />
+		<title>Document</title>
+		<style>
+			.wrap {
+				position: relative;
+				z-index: 2;
+				margin: 50px;
+				width: 792px;
+				height: 445.5px;
+				box-shadow: 0 0  0 2px #000;
+				transform: scale(.5);
+				overflow: hidden;
+			}
+			
+			span#pre,
+			span#next {
+				display: block;
+				position: absolute;
+				top: calc(50% - 30px);
+				z-index: 2;
+				width: 35px;
+				height: 60px;
+				border: 1px solid #fff;
+			}
+			
+			span#pre {
+				left: 0;
+			}
+			
+			span#next {
+				right: 0;
+			}
+			
+			ul.banner {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			
+			ul.banner li {
+				float: left;
+				/*width: calc(0.25*100%);*/
+				height: 100%;
+			}
+			
+			ul.banner li img {
+				width: 100%;
+			}
+			
+			.wrap p {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				background-color: rgba(0, 0, 0, .3);
+				text-align: center;
+			}
+			
+			.wrap p span.switch {
+				display: inline-block;
+				margin: 0 5px;
+				width: 50px;
+				height: 50px;
+				border: 1px solid #fff;
+				vertical-align: bottom;
+			}
+			
+			.wrap p span.show {
+				background-color: slateblue;
+				border: 1px solid #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<span id="pre"></span>
+			<span id="next"></span>
+			<ul class="banner"></ul>
+			<p></p>
+		</div>
+		<script type="text/javascript">
+			var owrap = document.getElementsByClassName('wrap')[0];
+			var oul = owrap.getElementsByClassName('banner')[0];
+			var op = owrap.getElementsByTagName('p')[0];
+			var ospan = op.getElementsByTagName('span');
+			
+			oul.src = ['images/window1.jpg', 'images/window2.jpg', 'images/window3.jpg', 'images/window4.jpg'];
+			oul.imgLength = oul.src.length;
+			oul.html = '';
+			op.html = '';
+			oul.index = 0;
+
+			//根据img个数生成，对应个数的Li和span
+			oul.html += '<li style=" width:' + 1 / (oul.imgLength + 2) * 100 + '%;"><img src="' + oul.src[oul.imgLength-1] + '"></li>';
+			for(var i = 0; i < oul.imgLength; i++) {
+				//生成图片
+					oul.html += '<li style=" width:' + 1 / (oul.imgLength + 2) * 100 + '%;"><img src="' + oul.src[i] + '"></li>';
+				//生成span
+				if(i === 0) { //第一个span有默认样式
+					op.html = '<span class="show switch"></span>';
+				} else {
+					op.html += '<span class="switch"></span>';
+				}
+			}
+			oul.html += '<li style=" width:' + 1 / (oul.imgLength + 2) * 100 + '%;"><img src="' + oul.src[0] + '"></li>';
+			
+			//根据img个数，设定 ul 宽度，并把生成的Li和span放入ul里面
+			op.innerHTML += op.html;
+			oul.style.width = oul.clientWidth * (oul.imgLength + 2) + 'px';
+			oul.innerHTML += oul.html;
+
+			//设定ul初始位置 -792px
+			oul.style.marginLeft = -1*owrap.offsetWidth + 'px';
+			//设定运动终点
+			var target = parseInt(oul.style.marginLeft) - owrap.offsetWidth;
+			
+			//  ================== 
+			//  = 运动函数 = 
+			//  ================== 
+			function move(){
+				oul.timer = requestAnimationFrame(function() {
+					
+					//开始位置
+					var start = parseInt(oul.style.marginLeft);
+					//动态速度
+					var speed = (target - start)*.05 > 0 ? Math.ceil((target - start)*.05) : Math.floor((target - start)*.05);
+					
+					//从当前位置 运动 到终点
+					oul.style.marginLeft = start + speed + 'px';
+					
+					if( start != target){
+						move();
+					}else{
+						cancelAnimationFrame(oul.timer);
+						autoplay();
+					}
+					
+					//轮播到最后一张的时候
+					if(Math.abs(parseInt(oul.style.marginLeft))=== owrap.offsetWidth*4){//判断轮播完成
+						cancelAnimationFrame(oul.timer);
+						oul.style.marginLeft =  '0px';//回到初始位置
+						target = parseInt(oul.style.marginLeft) - owrap.offsetWidth;//设定新终点
+						autoplay();//调用运动函数
+					}
+//					console.log(oul.style.marginLeft+' '+speed)
+				})
+			}
+			
+			//  =================== 
+			//  = 无缝轮播 = 
+			//  =================== 
+			function autoplay() {
+				oul.autotimer =setTimeout(function() {
+					//设定新终点
+					target = parseInt(oul.style.marginLeft) - owrap.offsetWidth;
+					//调用运动函数
+					move();
+					
+					//根据target 设置索引值
+					oul.index = Math.abs(target)/owrap.offsetWidth - 1;
+					//span样式
+					for (var i = 0; i < ospan.length; i++) {
+						ospan[i].className = 'switch';
+					}
+					ospan[oul.index].className = 'switch show';
+				},2000)
+			}
+			autoplay();
+			
+			//  ============
+			//  = 手动交互 分页器= 
+			//  ============
+			
+			for (var i = 0; i < ospan.length; i++) {
+				ospan[i].index = i;
+				ospan[i].onmouseenter = function() {
+					
+						cancelAnimationFrame(oul.timer);
+						clearTimeout(oul.autotimer)
+						
+						//设定新终点
+						target = -1*owrap.offsetWidth*(this.index+1);
+						move();
+						
+						//span样式
+						for (var i = 0; i < ospan.length; i++) {
+							ospan[i].className = 'switch';
+						}
+						this.className = 'show switch';
+						oul.index = this.index; 
+					}
+			}
+			
+			//  ================
+			//  =手动交互 左右点击按钮 = 
+			//  ================
+			
+			next.onclick = function() {
+				
+				cancelAnimationFrame(oul.timer);
+				clearTimeout(oul.autotimer)
+				
+				
+				//设定新终点
+				if(oul.index === 3){
+						cancelAnimationFrame(oul.timer);
+						oul.style.marginLeft =  '0px';//设定 开始 运动的位置
+						target = parseInt(oul.style.marginLeft) - owrap.offsetWidth;//设定新终点
+						oul.index = 0; 
+						move();
+					}else{
+						target = -1*owrap.offsetWidth*(oul.index+2);
+						oul.index += 1
+						move();
+					}
+					
+					//span样式
+					for (var i = 0; i < ospan.length; i++) {
+						ospan[i].className = 'switch';
+					}
+					ospan[oul.index].className = 'show switch';
+			}
+			pre.onclick = function() {
+				
+				cancelAnimationFrame(oul.timer);
+				clearTimeout(oul.autotimer)
+				
+				//设定新终点
+				if(oul.index === 0){
+						cancelAnimationFrame(oul.timer);
+						oul.style.marginLeft = -1*owrap.offsetWidth*5 + 'px';//设定 开始 运动的位置
+						target =  -1* owrap.offsetWidth*4;//设定新终点
+						oul.index = 3; 
+						move();
+					}else{
+						target = -1*owrap.offsetWidth*(oul.index);
+						oul.index -= 1
+						move();
+					}
+					
+					//span样式
+					for (var i = 0; i < ospan.length; i++) {
+						ospan[i].className = 'switch';
+					}
+					ospan[oul.index].className = 'show switch';
+			}
+			
+			
+//			document.onclick = function(){
+//				clearTimeout(oul.autotimer)
+//				cancelAnimationFrame(oul.timer);
+//			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>addClass函数-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id='box' class='on active a b'>我是第一个div</div>
+<script>
+   var oBox = document.getElementById('box');
+   addClass(oBox,'on a b aitive');
+   function addClass(elem,classN){
+     var arr1 = elem.className.split(' ');//对传参进来的类名进行切割 
+	 var arr2 = classN.split(' ');//对要添加的类名进行切割
+	 var arr3 = arr1.concat(arr2);//连接数组
+     console.log(arr3);
+	 for( var i=0;i<arr3.length;i++ ){
+	    for( var j=0;j<arr3.length-i-1;j++ ){
+		   if(arr3[i]==arr3[j]){
+		      arr3.splice(j,1)
+			  arr3.length--;
+		   }
+		}
+	 }
+   }
+</script>
+</body>
+</html>
