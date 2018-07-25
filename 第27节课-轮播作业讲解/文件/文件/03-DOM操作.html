@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+
+    </style>
+</head>
+<body>
+<div id="box">
+    111
+    <a href=""></a>
+    <p></p>
+    222
+    <!--<b>ii</b>-->
+</div>
+<script>
+
+    var oBox = document.getElementById("box");
+
+    /*
+    第一个儿子：
+        firstChild / firstElementChild      IE678 / 主流
+
+    最后一个儿子：
+        lastChild / lastElementChild       IE678 / 主流
+
+
+     兄弟节点：
+        下一个兄弟
+        nextSibling / nextElementSibling
+
+        上一个兄弟
+        prevSibling / prevElementSibling
+
+     */
+
+    //oBox.children[0]
+
+    var oA = oBox.children[0];
+    //oA.nextElementSibling.innerHTML = "ppppp";
+    //oA.nextSibling.nodeValue = "ppppp";
+    var oP = nextSibling(oA);
+
+    oP.innerHTML = "444";
+
+    function nextSibling( obj) {
+        return obj.nextElementSibling===undefined?obj.nextSibling:obj.nextElementSibling
+    }
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
