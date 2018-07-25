@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>提取方法时丢失this-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var counter = {
+	    count:0,
+		inc:function(){
+		   alert(this.count++);
+		}
+	}
+	/*//缺陷 提取方法时丢失this
+	var fn = counter.inc;//counter is not defined
+	fn();//此时的this是指向window的*/
+
+	//遇到问题怎么办
+	//幸好有bind()
+	var fn = counter.inc.bind(counter);//bind改变this的指向 让this指向counter这个对象
+	fn();//0
+	alert(counter.count);//1
+</script>
+</body>
+</html>

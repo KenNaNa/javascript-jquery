@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+                对象和对象间的继承关系
+             */
+
+            var a = {
+                x : 10,
+                y : 15,
+                z : 20,
+                j : [1,2,3]
+            };
+
+            var c = {
+                k : 10,
+                P : 5,
+                t : 6
+            };
+            var d = {
+                kh : 10,
+                Pp : 5,
+                tp : 6
+            };
+            //b继承a与c
+           // var b =Extend(a);
+            var z=new Extend(a,c,d);
+            function Extend(){
+                var objArr=[];
+                for(var i=0;i<arguments.length;i++)objArr[i]=ExtendChild(arguments[i]);
+                
+                for(var j=0;j<objArr.length;j++){
+                    for(var key in objArr[j]){
+                        this[key]=objArr[j][key];
+                    }
+                }
+                 function ExtendChild(obj) {
+                    var t=Array.isArray(obj)?[]:{};
+                        for (var key in obj)t[key]=/object/i.test(typeof obj[key])?ExtendChild(obj[key]):obj[key];
+                        return t;
+                     }
+              
+            }
+           
+
+           console.log(z);
+
+            /*function Extend(obj) {
+                    var t=Array.isArray(obj)?[]:{};
+                    for (var key in obj)t[key]=/object/i.test(typeof obj[key])?Extend(obj[key]):obj[key];
+                return t;
+            }
+
+            function p(i){
+                var o=i?[]:{};
+                this=1;
+            }
+            var pppp=new p();
+             console.log(pppp);*/
+           
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

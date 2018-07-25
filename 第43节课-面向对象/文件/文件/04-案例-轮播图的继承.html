@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+            #wrap{
+                position: relative;
+                width: 780px;
+                height: 330px;
+                margin: 50px auto;
+            }
+            .pic ul li{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .pic ul li img{
+                display: block;
+            }
+            .pic ul li.active{
+                display: block;
+            }
+            .tab{
+                position: absolute;
+                width: 100px;
+                height: 16px;
+                left: 50%;
+                bottom: 15px;
+                background: rgba(255,255,255,.5);
+                transform: translate(-50% ,0 );
+                border-radius: 10px;
+            }
+            .tab li {
+                float: left;
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+                background: #fff;
+                margin: 3px 5px;
+                cursor: pointer;
+            }
+            .tab li.active{
+                background: #f60;
+            }
+
+            #banner{
+                position: relative;
+                width: 310px;
+                height: 180px;
+                margin: 100px auto;
+            }
+            #banner .tab{
+                width: 120px;
+            }
+            #banner .btn div{
+                position: absolute;
+                top: 50%;
+                width: 30px;
+                height: 30px;
+                margin-top: -15px;
+                background: rgba(0,0,0,.7);
+                color: #fff;
+                font-weight: bold;
+                line-height: 30px;
+                text-align: center;
+                font-size: 14px;
+                cursor: pointer;
+            }
+            #banner .btn div.left{
+                left: 0;
+            }
+            #banner .btn div.right{
+                right: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!--模块1-->
+        <div id="wrap">
+            <div class="pic">
+                <ul>
+                    <li><img src="img/1.jpg" alt=""></li>
+                    <li><img src="img/2.jpg" alt=""></li>
+                    <li><img src="img/3.jpg" alt=""></li>
+                    <li><img src="img/4.jpg" alt=""></li>
+                    <li><img src="img/5.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="tab">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--模块2-->
+        <div id="banner">
+            <div class="pic">
+                <ul>
+                    <li><img src="img/01.jpg" alt=""></li>
+                    <li><img src="img/02.jpg" alt=""></li>
+                    <li><img src="img/03.jpg" alt=""></li>
+                    <li><img src="img/04.jpg" alt=""></li>
+                    <li><img src="img/05.jpg" alt=""></li>
+                    <li><img src="img/06.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="tab">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <div class="left"> < </div>
+                <div class="right"> > </div>
+            </div>
+        </div>
+        <script>
+
+            //基础父类
+            function Banner( pLi , tLi  ) {
+                this.pLi = pLi;
+                this.tLi = tLi;
+                this.length = pLi.length;
+                this.lastIndex = 0;
+                this.init();
+                this.tab();
+            }
+            Banner.prototype = {
+                //初始化样式
+                init : function () {
+                    this.pLi[0].className = "active";
+                    this.tLi[0].className = "active";
+                },
+                //tab添加事件
+                tab : function () {
+                    var This = this;
+                    for (var i = 0; i < this.length; i++) {
+                        this.tLi[i].index = i;
+                        this.tLi[i].onclick = function () {
+                            var j = this.index;
+                            This.change(function () {
+                                this.lastIndex = j;
+                            });
+                        };
+                    }
+                },
+                //切换函数
+                change : function (fn) {
+                    this.pLi[this.lastIndex].className = "";
+                    this.tLi[this.lastIndex].className = "";
+                    fn.call(this);
+                    this.pLi[this.lastIndex].className = "active";
+                    this.tLi[this.lastIndex].className = "active";
+                }
+            };
+
+            //子类继承
+            function BChild( pLi , tLi , bLi){
+                Banner.call(this , pLi , tLi);//继承构造函数
+                this.bLi = bLi;
+                this.btn();
+            }
+            function F() {}
+            F.prototype = Banner.prototype;
+            BChild.prototype = new F();//继承原型
+            BChild.prototype.btn = function () {
+                var This = this;
+                for (var i = 0; i < 2; i++) {
+                    this.bLi[i].index = i;
+                    this.bLi[i].onclick = function () {
+                        var index = this.index;
+                        This.change(function () {
+                            if (index){
+                                this.lastIndex ++;
+                                this.lastIndex %= this.length;
+                            }else{
+                                this.lastIndex --;
+                                if ( this.lastIndex<0 )this.lastIndex = this.length-1;
+                            }
+                        });
+                    }
+                }
+            };
+
+            //实例化运用
+            (function () {
+                var oWrap = document.getElementById("wrap"),
+                    oPicLi = oWrap.querySelectorAll(".pic ul li"),
+                    oTabLi = oWrap.querySelectorAll(".tab ul li");
+                new Banner(oPicLi , oTabLi);
+            })();
+            (function(){
+                var oBanner = document.getElementById("banner"),
+                    oPicLi = oBanner.querySelectorAll(".pic ul li"),
+                    oTabLi = oBanner.querySelectorAll(".tab ul li"),
+                    oBtnLi = oBanner.querySelectorAll(".btn div");
+                new BChild(oPicLi , oTabLi , oBtnLi);
+            })();
+
+
+
+            
+            /*(function () {
+                var oWrap = document.getElementById("wrap"),
+                    oPicLi = oWrap.querySelectorAll(".pic ul li"),
+                    oTabLi = oWrap.querySelectorAll(".tab ul li"),
+                    length = oPicLi.length,
+                    lastIndex = 0;
+
+                //初始样式
+                oPicLi[0].className = "active";
+                oTabLi[0].className = 'active';
+
+                //tab切换
+                for (var i = 0; i < length; i++) {
+                    oTabLi[i].index = i;
+                    oTabLi[i].onclick = function () {
+                        change.call(this,function () {
+                            lastIndex = this.index;
+                        });
+                    };
+                }
+                function change(fn) {
+                    oPicLi[lastIndex].className = "";
+                    oTabLi[lastIndex].className = "";
+                    fn.call(this);
+                    oPicLi[lastIndex].className = "active";
+                    oTabLi[lastIndex].className = "active";
+                }
+            })();*/
+            
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

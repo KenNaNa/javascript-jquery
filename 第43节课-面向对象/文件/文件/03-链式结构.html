@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            function GF() {
+                this.legs = arguments[0];
+                this.bf = arguments[1];
+            }
+            GF.prototype.showLegs = function () {
+                alert( "我腿长"+this.legs );
+                return this;
+            };
+            GF.prototype.showBf = function () {
+                alert( "我男朋友是"+this.bf );
+                return this;
+            };
+
+            var g = new GF("1.5m" , "Kevin");
+
+            g.showLegs().showBf().showLegs();
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

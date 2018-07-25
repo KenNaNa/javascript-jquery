@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            var arr = [];
+            arr.push()
+            arr.shift();
+            */
+
+            /*var flyGF = {}; // new Object();
+            flyGF.sex = "女";
+            flyGF.breast = "big";
+            flyGF.legs = "long";
+            flyGF.bf = "阿飞";
+            flyGF.show = function () {
+                alert( "我是" + this.bf + "的女朋友！"  );
+            };
+            flyGF.showAttr = function () {
+                alert( "胸"+this.breast+','+"腿"+this.legs  );
+            };
+
+            var YaGF = {};
+            YaGF.sex = "女";
+            YaGF.breast = "small";
+            YaGF.legs = "long";
+            YaGF.bf = "鸭子";
+            YaGF.show = function () {
+                alert( "我是" + this.bf + "的女朋友！"  );
+            };
+            YaGF.showAttr = function () {
+                alert( "胸"+this.breast+','+"腿"+this.legs  );
+            };
+
+            var fuHGF = {};
+            fuHGF.sex = "女";
+            fuHGF.breast = "normal";
+            fuHGF.legs = "normal";
+            fuHGF.bf = "浮华";
+            fuHGF.show = function () {
+                alert( "我是" + this.bf + "的女朋友！"  );
+            };
+            fuHGF.showAttr = function () {
+                alert( "胸"+this.breast+','+"腿"+this.legs  );
+            };*/
+
+            //fuHGF.showAttr();
+
+            function createGF(breast , legs , bf ){
+                var obj = {};
+
+                obj.sex = "女";
+                obj.breast = breast;
+                obj.legs = legs;
+                obj.bf = bf;
+                obj.show = function () {
+                    alert( "我是" + this.bf + "的女朋友！"  );
+                };
+                obj.showAttr = function () {
+                    alert( "胸"+this.breast+','+"腿"+this.legs  );
+                };
+
+                return obj;
+            }
+
+
+            var flyGF = createGF("big" , "long" , "阿飞");
+            var yaGF = createGF("small" , "long" , "鸭子");
+            var fuGF = createGF("normal" , "normal" , "浮华");
+
+            fuGF.show();
+            fuGF.showAttr();
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

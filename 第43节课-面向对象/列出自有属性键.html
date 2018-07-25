@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>列出自有属性键-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   //想列出所有的自有属性键 可以使用循环for in 
+   //也可以自写函数
+   //自己实现一个函数 遍历所有属性键（不仅是可以枚举）
+   var obj = {
+       value:'lijinwen',
+	   name:'lijinwen'
+   }
+   /*function getAllPropertyNames(obj){
+      var result = [];
+	  while(obj){
+	     result.push(Object.getOwnPropertyNames(obj));
+		 obj = Object.getPrototypeOf(obj);
+	  }
+	  return result;
+   }
+   //console.log(getAllPropertyNames(obj));//[Array(2), Array(12)]*/
+   /*function getAllPropertyNames(obj){
+       var result = [];
+	   while(obj){
+	      Array.prototype.push.apply(result,Object.getOwnPropertyNames(obj));
+		  obj = Object.getPrototypeOf(obj);
+	   }
+	   return result;
+   }
+   console.log(getAllPropertyNames(obj));//Array(14)*/
+   function getAllPropertyNames(obj){
+       var result = [];
+	   while(obj){
+	      [].push.apply(result,Object.getOwnPropertyNames(obj));
+		  obj = Object.getPrototypeOf(obj);
+	   }
+	   return result;
+   }
+   console.log(getAllPropertyNames(obj));// ["value", "name", "__defineGetter__", "__defineSetter__", "hasOwnProperty", "__lookupGetter__", "__lookupSetter__", "propertyIsEnumerable", "toString", "valueOf", "__proto__", "constructor", "toLocaleString", "isPrototypeOf"]0: "value"1: "name"2: "__defineGetter__"3: "__defineSetter__"4: "hasOwnProperty"5: "__lookupGetter__"6: "__lookupSetter__"7: "propertyIsEnumerable"8: "toString"9: "valueOf"10: "__proto__"11: "constructor"12: "toLocaleString"13: "isPrototypeOf"length: 14__proto__: Array(0)
+
+
+   //实例
+   var proto = Object.defineProperties({},{
+       protoEnumTrue:{value:'1',enumberable:true},
+	   protoEnumFalse:{value:'2',enumberable:false}
+   });
+   var obj = Object.create(proto,{
+       objEnumTrue:{value:'10',enumberable:true},
+	   objEnumFalse:{value:'20',enumberable:false}
+   });
+
+   alert(Object.getPrototypeOf({})===Object.prototype);//true
+</script>
+</body>
+</html>

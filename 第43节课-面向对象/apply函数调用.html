@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>apply函数调用-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   var Jane = {
+       name:'Jane',
+	   describe:function(){
+	      alert(this.name);
+	   },
+	   sayHello:function(a){
+	      console.log(this.name + " says hello to " + a);
+	   }
+   }
+   //下面三条语句是等价的
+   Jane.sayHello('李金文');//函数调用的时候 this指向调用者作用环境
+   Jane.sayHello.apply(Jane,['李金文']);//Jane says hello to 李金文
+   var fn = Jane.sayHello;//Jane says hello to 李金文
+   fn.apply(Jane,['李金文']);
+
+   /*
+      Jane.sayHello('李金文');
+	  Jane.sayHello.call(Jane,'李金文 ');
+	  var fn = Jane.sayHello;
+	  fn.call(Jane,'李金文');
+   */
+</script>
+</body>
+</html>

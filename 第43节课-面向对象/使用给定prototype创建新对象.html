@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>使用给定prototype创建新对象-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+      调用方法 Object.create(proto,propDescObj?)
+	  创建原型为proto对象 可以选择通过描述符添加属性
+
+   */
+   var PersonProto = {
+       describe:function(){
+	     return 'person named' + this.name;
+	   }
+   };
+   var jane = Object.create(PersonProto,{
+       name:{value:'Jane',writable:true}
+   });
+   alert(jane.describe());//person namedJane;
+
+   //获取对象的原型
+   alert(Object.getPrototypeOf(jane) ===PersonProto);//true
+
+   //检测一个对象是不是另一个对象的原型
+   var A = {};
+   var B = Object.create(A);
+   var C = Object.create(B);
+   alert(A.isPrototypeOf(C));//true;
+   alert(C.isPrototypeOf(A));//false
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+                对象和对象间的继承关系
+             */
+
+            var a = {
+                x : 10,
+                y : 15,
+                z : 20,
+                j : [1,2,3]
+            };
+
+            var c = {
+                k : 10,
+                P : 5,
+                t : 6
+            };
+
+            //b继承a与c
+            var b = new Extend(a,c);
+
+            function Extend() {
+                for (var i = 0,length=arguments.length; i < length; i++) {
+                    var obj = arguments[i];
+                    for (var key in obj)this[key]=/object/i.test(typeof obj[key])?new Extend(obj[key]):obj[key];
+                }
+            }
+
+            console.log( b );
+            /*
+
+            function extend(obj) {
+                var t = Array.isArray(obj)?[]:{};
+
+                for (i in obj) {
+                    if ( /object/i.test( typeof obj[i] ) ){
+                        t[i] = extend(obj[i]);
+                    }else{
+                        t[i] = obj[i];
+                    }
+                }
+
+                return t;
+            }
+
+             */
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>js对象特点-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+     js中没有类 只有对象
+	 可以用delete删除对象的属性
+   */
+   //用构造函数创建对象
+   function Dog(){
+      this.name = 'dog';
+	  this.bark = function(){
+	    alert('wangwang');
+	  };
+   }
+   var huzi = new Dog();
+   huzi.bark();
+   //所谓封装就是 封闭一部分 外界无法访问
+   //开放一部分 通过开放部分 间接访问封闭部分
+
+   //私有属性
+   //用闭包来完成js面向对象之私有属性和封装
+   //让外界无法访问bf
+   //用闭包来实现
+
+  /* function Girl(name,bf){
+      this.name = name;
+	  this.love = bf;
+   }
+   var girl = new Girl('林黛玉','贾宝玉');
+   alert(girl.name+'喜欢'+girl.love);*/
+
+
+
+   function Girl(name,bf){//首字母要大写
+      var secret = bf;
+	  this.name = name;
+	  this.showlove = function(){
+	     //我们通过showlove做接口 来读取私有属性bf
+		 return secret;
+	  }
+
+	  this.moveLove = function(){
+	     return secret = '薛蟠';
+	  }
+   }
+   var g = new Girl('林黛玉','贾宝玉');
+   alert(g.name+'喜欢'+g.showlove());//林黛玉喜欢undefined 无法访问到secret
+   alert(g.name+'喜欢'+g.moveLove());
+</script>
+</body>
+</html>

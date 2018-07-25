@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+
+    /*
+
+        问题：
+            * 没法传参
+            * 本应该私有的属性变为了公共属性，如果该属性是引用型，一旦发生改变就会有很大的问题
+
+     */
+
+    //父类
+    function GF(){
+        this.breast = arguments[0];
+        this.legs = arguments[1];
+        this.bf = arguments[2];
+        this.arr = [1,2,3];
+    }
+    GF.prototype = {
+        constructor : GF,
+        sex : "女",
+        show : function () {
+            alert( "我是"+ this.bf +"的女朋友" );
+        }
+    };
+
+
+    //子类
+    function GFchild() {
+        this.height = arguments[0];
+    }
+    GFchild.prototype = new GF("big" , "long" , "阿飞");
+    GFchild.prototype.constructor = GFchild;
+    GFchild.prototype.showH = function () {
+        alert( "我身高"+this.height+"cm" );
+    };
+
+    //子类的实例化
+    var dlrb = new GFchild("170");
+    var yangmi = new GFchild("168");
+
+
+    dlrb.showH.x = 10;
+    console.log( yangmi.showH.x );
+
+    /*dlrb.arr.push(4);
+
+    console.log(yangmi.arr);*/
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

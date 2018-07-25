@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+             /*
+                * new 后面跟的函数，我们称之为：构造函数 / 类
+                * new 构造函数()   // 构造函数的实例化
+                * 构造函数第一个字母要大写
+             */
+
+            function CreateGF(breast , legs , bf ){
+
+                this.breast = breast;
+                this.legs = legs;
+                this.bf = bf;
+
+                this.sex = "女";
+                this.show = function () {
+                    alert( "我是" + this.bf + "的女朋友！"  );
+                };
+                this.showAttr = function () {
+                    alert( "胸"+this.breast+','+"腿"+this.legs  );
+                };
+            }
+
+            var flyGF = new CreateGF("big" , "long" , "阿飞");
+            var yaGF = new CreateGF("small" , "long" , "鸭子");
+            var fuGF = new CreateGF("normal" , "normal" , "浮华");
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

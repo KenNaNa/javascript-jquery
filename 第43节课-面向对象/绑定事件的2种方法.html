@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>绑定事件的2种方法-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<a href='#' onclick = 't()'>李金文</a>
+<script>
+   function t(){
+     alert('我被点击了');
+   }
+
+   /*
+      在这个过程中 a绑定了onclick事件
+
+	  分析
+	  1 DOM对象的句柄
+	  2 句柄上绑定函数
+	  3 事件发生的一瞬间 关于事件的各种信息 如时间 坐标 事件类型
+	  因此这个对象 称为事件对象
+   */
+
+   /*
+     第一种绑定事件的方法
+	 即把事件写在HTML标签里头
+
+	 第二种绑定时间的方法
+	 即用事件的属性来绑定事件
+	 可以用this访问当前对象
+   */
+
+   window.onload = function(){
+      alert('加载了');
+   }
+</script>
+</body>
+</html>

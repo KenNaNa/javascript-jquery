@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>delete的返回值-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var obj = {};
+	//自定义一个属性
+	Object.defineProperty(obj,'canBeDeleted',{
+	    value:123,
+		configurable:true
+	});
+	Object.defineProperty(obj,'cannotBeDeleted',{
+	    name:'lijinwen',
+		confiigureable:false
+	})
+	console.log(delete obj.cannotBeDeleted);//false
+	console.log(delete obj.canBeDeleted);//true
+</script>
+</body>
+</html>

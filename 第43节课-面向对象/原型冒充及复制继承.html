@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>原型冒充及复制继承-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   function Cat(leg,tail){
+      this.leg = leg;
+	  this.tail = tail;
+	  this.climb = function(){
+	     alert('我会爬树');
+	  }
+   }
+
+   function Tiger(leg,tail,color){
+	  //把要继承的类的语句 拿来执行一遍
+	  this.parent = Cat;//把父类构造函数引入到parent属性上
+	  this.parent.apply(this,arguments);
+	  delete this.parent;
+      this.color = color;
+   }
+
+   var tiger = new Tiger();
+   console.log(tiger);
+   tiger.climb();//为什么有climb这个方法呢
+   /*
+      那么这个是什么过程呢
+	  在用Tiger造对象时 用Tiger的语句影响一个空对象
+	  在此过程 Tiger影响空对象前 先由Cat函数实施影响
+	  因此 最后出来的对象 是由Cat和Tiger共同作用的对象
+   */
+   
+
+   
+</script>
+</body>
+</html>

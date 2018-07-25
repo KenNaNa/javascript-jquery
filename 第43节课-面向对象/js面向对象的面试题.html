@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>js面向对象的面试题-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    function Dog(){
+	   this.bark = function(){
+	      alert('汪汪叫');
+	   }
+	}
+	function peter(){
+	   this.fire = function(){
+	      alert('我是战斗');
+	   }
+	}
+	//原型继承
+	peter.prototype = new Dog();
+	var huzi = new peter();
+	console.log(huzi);
+
+	function zangao(){
+	   this.eat = function(){
+		    alert('我会吃');
+	   }
+	}
+	zangao.prototype = new Dog();
+	zangao.prototype.bark = function(){
+	  alert('我会呜呜叫');
+	} 
+
+	var za = new zangao();
+	za.bark();
+</script>
+</body>
+</html>

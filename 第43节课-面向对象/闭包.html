@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>闭包-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+      1 大部分语言中 t1被调用执行 则申请内存
+	    并把其局部变量 push进入栈
+		t1执行完毕后 内部的局部变量 随着函数的退出而销毁
+		因此这个age=20的局部变量 依靠已经消失了
+
+
+	  2 在js语言中 t1被调用执行 又生成了t2 而从作用域来说呢
+	    t2能访问到age = 20  于是 age = 20 并没有消失
+		反而与返回的t2函数形成一个环境包 这个包属于t2函数
+		所以叫闭包
+   */
+   function t1(){
+     var age = 20;
+	 function t2(){
+	    alert(age);
+	 }
+	 return t2;
+   }
+   var temp = t1();
+   var age = 99;
+   temp();
+</script>
+</body>
+</html>

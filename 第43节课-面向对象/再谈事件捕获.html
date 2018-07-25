@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>再谈事件捕获-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<input type="button" value="点击" id='btn' />
+<script>
+    var oBtn = document.getElementById('btn');
+	oBtn.onclick = function(e){
+	   console.log(e.type);
+	   console.log(e);
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>this-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   //函数的4种调用方法
+   //1 普通函数调用
+   alert( window.xx );//undefined
+   function t(){
+       this.xx = 333;//this指向window
+	   //准确的说如果this为null 则指向window
+	   //EM5标准中 如果this为null 则被解释为undefined
+   }
+   t();
+   alert( window.xx );//333
+
+   //2 作为对象方法的调用
+   //this 指向方法的调用者 即 该对象
+   var obj = {
+       x : 999,
+	   y:100,
+	   show:function(){
+	     alert(this.x);//999
+	   }
+   };
+   obj.show();
+
+   var dog = {
+      x:'wangwang'
+   };
+   dog.show= obj.show;//对象引用
+   dog.show();//wangwang
+
+
+   //3 作为构造函数调用中
+   //js中没有类 使用构造函数来完成
+   function Dog(name,age){
+      this.name = name;
+	  this.age = age;
+	  this.bark = function(){
+	     alert(this.name);
+	  };
+   }
+
+   var dog = new Dog('lio',20);
+   dog.bark();//lio this指向dog这个实例对象
+   /*
+     new Dog 发生以下步骤
+	 1 系统创建空对象{} 把空对象constructor属性Dog对象
+	 2 把函数的this指向该空对象
+	 3 执行函数
+	 4 返回该对象
+   */
+ //在构造函数中 return 值是没有意义的 因为最后是返回 一个个对象
+   function Pig(){
+      this.name = '99';
+	  return 'abc';//函数返回的值 会被忽略掉
+   }
+   var pig = new Pig();
+   console.log(pig);//Pig()对象
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>多态继承-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+     多态不是一个神奇的效果
+	 二是静态语言的相对动态语言 类型不灵活的一种体现
+	 
+   */
+
+   function Dog(){
+
+	  this.leg = 4;
+      this.bark = null;
+   }
+
+   function Hashiqi(){
+      this.bark = function(){
+	     alert('我会呜呜叫');
+	  }
+   }
+   function Jingba(){
+       this.bark = function(){
+	     alert('我会汪汪叫');
+	   }
+   }
+
+   var h = new Hashiqi();
+   var j = new Jingba();
+   Hashiqi.prototype = Jingba.prototype = new Dog();
+
+   function test(dog){
+      dog.bark();
+   }
+   test(h);
+   test(j);
+
+   /*
+     js是动态语言 谈不用上多态
+   */
+</script>
+</body>
+</html>

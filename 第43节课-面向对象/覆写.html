@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>覆写-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var obj = {
+	    describe:function(){
+		   return this;
+		}
+	}
+	//覆写就是指 重新给对象里面的属性 改值
+	obj.describe = function(){
+	    return '被覆写了';
+	}
+	console.log(obj.describe());
+
+    //通过原型在对象间共享数据
+	var jane = {
+	    name:'Jane',
+		describe:function(){
+		    return this.name;
+		}
+	}
+	var li = {
+	    name:'lio',
+		describe:function(){
+		   return this.name;
+		}
+	}
+	//两个对象都是描述人 虽然它们的名字属性不同 但是两个对象可以共享describe方法
+	//我们可以创建一个名为PersonProto的公共原型 并设置它为describe方法
+
+
+	var PersonProto = {
+	    describe:function(){
+		   return this.name;
+		}
+	};
+	var jane = {
+	    prototype:PersonProto,
+		name:'Jane'
+	};
+    var lio = {
+	    prototype:PersonProto,
+		name:'lio'
+	};
+
+	console.log(lio.describe());
+</script>
+</body>
+</html>

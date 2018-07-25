@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+            多态：
+                根据参数的不一样，而做不同的处理
+             */
+
+            function Fn( n ) {
+                if ( isNaN(n) ){
+                    return 10;
+                }else if( n<10 ){
+                    return 10+n;
+                }else if ( n >= 10 ){
+                    return 20+n;
+                }
+            }
+
+            alert( Fn(20) );
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

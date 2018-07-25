@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+
+                原型prototype：
+                    * 构造函数才有prototype
+                    * 一般用来存放实例化对象的 公共 属性/方法
+
+                实例化对象的私有属性，放在构造函数里面
+                实例化对象的公共属性，放在构造函数原型里面
+
+
+             */
+
+            function CreateGF(breast , legs , bf ){
+                this.breast = breast;
+                this.legs = legs;
+                this.bf = bf;
+            }
+            CreateGF.prototype.sex = "女";
+            CreateGF.prototype.show = function () {
+                alert( "我是" + this.bf + "的女朋友！"  );
+            };
+            CreateGF.prototype.showAttr = function () {
+                alert( "胸"+this.breast+','+"腿"+this.legs  );
+            };
+
+            var flyGF = new CreateGF("big" , "long" , "阿飞");
+            var yaGF = new CreateGF("small" , "long" , "鸭子");
+            var fuGF = new CreateGF("normal" , "normal" , "浮华");
+
+            alert( flyGF.show === yaGF.show );
+
+            /*fuGF.show();
+            fuGF.showAttr();*/
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

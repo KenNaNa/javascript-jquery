@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>bind方法的应用-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    function fn(){
+	   console.log('this:'+this);
+	   console.log('arguments:'+Array.prototype.slice.call(arguments));
+	}
+	var bind  = fn.bind('abc',1,2,3,4,5);
+	console.log(bind);//函数块
+	bind();//this:abc arguments:1,2,3,4,5
+</script>
+</body>
+</html>

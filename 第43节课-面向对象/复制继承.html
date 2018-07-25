@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+     复制继承
+	 就是把父对象所有属性 直接复制到自己身上
+   */
+   function Cat(leg,tail){
+      this.leg = leg;
+	  this.tail = tail;
+	  this.climb = function(){
+	     alert('我会爬树');
+	  }
+   }
+
+   function Tiger(color){
+      this.color = color;
+	  this.extend = function(parent){
+	     for( var key in parent ){
+		    this[key]=parent[key];//这就是复制继承
+		 }
+	  }
+   }
+
+   var hu = new Tiger('red');
+   
+   var cat = new Cat(4,1);
+   console.log(hu)
+   console.log(hu.extend(cat));
+   /*leg tail climb red*/
+   hu.extend(cat);
+   hu.climb();
+   console.log(hu);
+</script>
+</body>
+</html>

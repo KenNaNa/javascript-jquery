@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+                继承：
+                    在父类的基础上，变化一些东西
+
+                    * 儿子继承爸爸
+                    * 儿子拥有爸爸的所有东西
+                    * 儿子可以扩展新东西，且不能影响爸爸
+             */
+
+            //父类
+            function GF(){
+                this.breast = arguments[0];
+                this.legs = arguments[1];
+                this.bf = arguments[2];
+            }
+            GF.prototype = {
+                constructor : GF,
+                sex : "女",
+                show : function () {
+                    alert( "我是"+ this.bf +"的女朋友" );
+                }
+            };
+
+
+
+            //子类
+            function GFchild() {
+                this.height = arguments[0];
+            }
+            GFchild.prototype = new GF("big" , "long" , "阿飞");
+            GFchild.prototype.constructor = GFchild;
+            GFchild.prototype.showH = function () {
+                alert( "我身高"+this.height+"cm" );
+            };
+
+            //子类的实例化
+            var dlrb = new GFchild("170");
+            //console.log( goudan );
+            //alert( goudan.bf );
+            //goudan.show();
+            //dlrb.showH();
+
+
+
+            //父类的实例化
+            var yaGF = new GF("big" , "long" , "阿飞");
+            var luGF = new GF("normal" , "long" , "阿飞");
+
+            //yaGF.showH();
+            //console.log( yaGF );
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

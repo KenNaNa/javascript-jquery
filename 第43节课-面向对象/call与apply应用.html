@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>call与apply应用-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+      .call(this,arg1,arg,..)
+	  .apply(this,[arg1,arg2,...])
+   */
+   function t(num){
+      alert('我的真实年龄为' + this.age);
+	  alert('但是我一般告诉别人 '+(this.age+num));
+   }
+   t();//此时的this指向的是window所以弹出的是 undefined NaN
+   var human = {age:20,name:'lio'};
+   human.show = t;//this指向human 但是human多了一个show属性
+   human.show(-10);//20 10
+
+
+   //我们不把t赋值为human的属性 也能把this指向wangwu
+   var wangwu = {
+      name:'wangwu',
+	  age:38
+   };
+   t.call(wangwu,5)
+   /*
+      fn.call(对象,参数列表)
+	  首先是fn函数的this指向对象
+	  然后运行fn中的参数列表
+   */
+   name = 'this is window name';
+   alert(window.name);//'this is window name';
+   var obj = {
+       name:'php',
+	   t:function(){
+	     alert(this.name);
+	   }
+   }
+   obj.t();//php
+   var dog = {
+       name:'huzi',
+   }
+   dog.t = obj.t;
+   dog.t();//huzi
+
+
+   var tmp = dog.t;
+   tmp();//'this is window name';
+   
+
+   (dog.t = obj.t)()//'this is window name';立即执行函数
+   /*
+     (dog.t = obj.t)()是一个表达式 返回的是值 t
+	 强调值得返回 说明不是通过引用来调用的 而是立即执行函数本身
+	 效果等同于(function(){})()
+	 null 又被解释为window 
+   */
+
+   dog.t.call(obj);//php
+</script>
+</body>
+</html>

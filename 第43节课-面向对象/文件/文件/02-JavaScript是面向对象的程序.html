@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+
+                包装对象：
+                    所有基础数据类型，在进行 . 操作的时候，都会找它的包装对象来代替完成;
+                    包装对象在执行完 . 操作之后会马上消失，也就说每个 . 操作找的包装对象是不一样的
+
+             */
+
+            /*var num = 10;
+            alert( num.toString(2) );
+
+
+            var str = "阿飞123";
+            str.x = 10;
+            alert( str.x );
+            String.prototype.x = 10;
+
+            alert( str.x );
+
+            console.log( new String("阿飞123") );
+
+            new String("阿飞123")
+            new String("阿飞123")*/
+
+            /*var a = new String("阿飞123");
+            a.x = 10;*/
+
+            //console.log(  str.match(/\d+/g)   );
+
+            /*var s = new String("456");
+
+            alert( typeof s );*/
+
+            //console.log( String.prototype );
+            //console.log( new Number(10) );
+
+            Number.prototype.add = function (n) {
+                return this + n;
+            };
+            Number.prototype.reduce = function (n) {
+                return this - n;
+            };
+
+            var a = (10).add(20).reduce(4).add(2);
+
+            alert( a );
+
+
+
+            //var num = 10;
+            //alert( num.toString(2) );
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

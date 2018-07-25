@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>找到定义属性的对象-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   /*
+     下面的函数遍历对象obj的原型链 该函数返回键位protoKey的自有属性的
+	 第一个对象 如果没有就返回null
+   */
+   function getDefiningObject(obj,protoKey){
+      obj = Object(obj);//将obj转换为Object
+	  while(obj&&!{}.hasOwnProperty.call(obj,protoKey)){
+	     obj = Object.getPrototypeOf(obj);//获取原型
+	  }
+	  return obj;
+   }
+
+   //特殊属性 _proto_
+   var obj = {};
+   console.log(obj.__proto__)
+   alert(obj.__proto__===Object.prototype);//true
+
+   obj.__proto__=Array.prototype;
+   alert(Object.getPrototypeOf(obj)===Array.prototype);//true
+
+   //检测引擎是否支持特殊属性__proto__
+   alert(Object.getPrototypeOf({__proto__:null})===null);//true
+
+   //设置属性 会创建一个自有属性 即使已存在继承了该key的属性
+   var proto = {foo:'a'};
+   var obj = Object.create(proto);
+   //obj从proto继承了foo属性
+   alert(obj.foo);//a
+   //判断obj是否有自有属性 foo属性
+   alert(obj.hasOwnProperty('foo'));//false
+
+   //设置期望值
+   obj.foo = 'b';
+   alert(obj.foo);
+   //我们已经创建了一个自由属性不会影响原型的foo属性
+   alert(obj.hasOwnProperty('foo'));//true
+   alert(proto.foo);//a
+
+   //删除继承属性 你只能删除自有属性
+   var proto = {
+       foo:'a'
+   };
+   var obj = Object.create(proto);
+   //删除obj的继承属性foo 不起作用
+   alert(delete obj.foo);//true
+   alert(obj.foo);//a 依然存在
+   
+
+   //在原型链的任何位置改变属性
+   //如果你想改变继承属性 首先要找到拥有这个属性的对象 就是找到定义该属性的对象
+   alert(delete getDefiningObject(obj,'foo').foo);//true
+   alert(obj.foo);//undefined
+</script>
+</body>
+</html>

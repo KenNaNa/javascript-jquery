@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>js原型链继承-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   function Tiger(){
+      this.name = '虎';
+	  this.bark = function(){
+	     alert('我是百兽之王');
+	  }
+   }
+   var tiger = new Tiger();
+   console.log(Tiger.prototype);//这是个空对象 显示为Tiger
+   console.log(Tiger.prototype.constructor);/*ƒ Tiger(){
+      this.name = '虎';
+	  this.bark = function(){
+	     alert('我是百兽之王');
+	  }
+   }*/
+   //因为原型的constructor指向Tiger 所以显示Tiger
+   console.log(Tiger.prototype.__proto__);//ƒ Object()
+   console.log(Tiger.prototype.__proto__.__proto__);//null
+   //console.log(Tiger.prototype.__proto__.__proto__.__proto__);//Uncaught TypeError: Cannot read property '__proto__' of null这报错表示已经到尽头了null就是最终的原型了
+
+   console.log(Object.prototype);
+
+
+   //给所有对象添加一个唱歌方法
+   Object.prototype.sing = function(){
+     alert('我会唱歌');
+   }
+
+   function Pig(){
+     alert('每天吃30千克的失误');
+   }
+
+   var pig = new Pig();
+   pig.sing();//也能唱歌了
+   console.log(Object.prototype);
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>curring</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        .content{
+            width: 574px;
+            margin: 0 auto;
+        }
+        h3{
+            margin: 50px 0 30px;
+            text-align: center;
+        }
+        p{
+            padding: 20px 15px;
+            background: palegreen;
+            font: 16px "Microsoft YaHei";
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 26px;
+            color: #1f2a5f;
+            border-radius: 10px;
+        }
+        pre{
+            margin-top: 20px;
+            border-radius: 10px;
+            padding-top: 20px;
+            width: 574px;
+            background: #272822;
+            font-family:"Microsoft YaHei" ,sans-serif;
+            font-size: 14px;
+            color: white;
+        }
+        span{
+            color: red;
+        }
+        b{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <h3>柯里化面试题ES6简化版</h3>
+    <p>题目：函数add可以实现连续的加法运算，函数add语法如下:<br>
+        add(num1)(num2)(num3)....<br>
+        使用举例如下：<br>
+        add(10)(10)=20<br>
+        add(10)(50)(80) = 80<br>
+        add(10)(20)(50)(100) = 180<br>
+    </p>
+
+    <pre class="pre">
+        /*首先来看一下*/
+        function abc() {
+            return abc
+        }
+        abc()()()()()...
+        /*无论执行多少次都返回他本身*/
+    </pre>
+    <pre>
+        /*那么可以这样*/
+        var sum = 0;
+        function abc() {
+            arguments[0] && (sum += arguments[0])
+        /*判断中间传入值才计算，否则NaN*/
+            return abc
+        }
+        abc(1)(2)(3)()(4)
+        console.log(sum)//10
+    </pre>
+    <pre id="pre">
+        /*可以利用闭包的特点，ES6里Array.from这个原生方法把类似数组的元素转化为数组*/
+        function add() {
+            let args = Array.from(arguments),num = 0;
+                function currying() {
+                    args = args.concat(Array.from(arguments));
+                    return currying
+                }
+            currying.toString = function () {
+                console.log(1)
+                args.forEach(function (item) {
+                    num +=item
+                });
+                return num
+            };
+            return currying
+        }
+        console.log(add(10));//20
+        console.log(add(10)(20)(50));//160
+        /*在currying.toString里console了2次1，发现输出值是2倍，所以num值会使2倍，
+        那么可以定义个一个开关，让其只执行一currying.toString内的累加操作*/
+    </pre>
+    <pre>
+        /*完整版*/
+        function add() {
+            let args = Array.from(arguments),num = 0,on=true;
+                function currying() {
+                    args = args.concat(Array.from(arguments));
+                    return currying
+                }
+            currying.toString = function () {
+                on && args.forEach(function (item) {
+                    num +=item
+                });
+                on = !on;
+                return num
+            };
+            return currying
+        }
+        console.log(add(10));/*10*/
+        console.log(add(10)(20)(50));/*80*/
+        console.log(add(10,20,30)(50,40)(70)(80,80));/*380*/
+    </pre>
+    <pre class="pre">
+        /*千万别这做！！！*/
+        function a(){
+            a.toString = function(){
+                console.log(this)
+            }
+            return a
+        }
+        console.log(a)
+    </pre>
+
+
+</div>
+</body>
+<script>
+/*
+   function add() {
+       let args = Array.from(arguments),num = 0,on=true;
+       function currying() {
+           args = args.concat(Array.from(arguments));
+           return currying
+       }
+       currying.toString = function () {
+           on && args.forEach(function (item) {
+               num +=item
+           });
+           on = !on;
+           return num
+       };
+       return currying
+   }
+   console.log(add(10));//10
+   console.log(add(10)(20)(50));//80
+   console.log(add(10,20,30)(50,40)(70)(80,80));//380*/
+
+replaceWord_({"target":"pre","word":/(\/\*)\.*([\s\S][^*/]*)(\*\/)/g,"label":"span","className":"abc"});
+//replaceWord_({"target":"pre","word":"f","label":"span","className":"abc"});
+
+function replaceWord_(json) {
+    let pre,id = /^\#/g,classN = /^\./g,jW,
+        wordArr = [],id_ = id.test(json.target),cl = classN.test(json.target),
+        label = new RegExp('^\<'+json.word+'\>.*(\<\/'+json.word+'\>)$','g'),
+        type = typeof json.word;
+     jW = ( type ==="string" && json.new === undefined)?json.word:json.new;
+    (json.className ===undefined)&&(json.className = "");
+    (cl)&&( pre = document.getElementsByClassName(json.target.replace(".","")));
+    (id_)&&( pre =document.getElementById(json.target.replace("#","")));
+    (!id_ && !cl) && (pre = document.getElementsByTagName(json.target));
+    (!pre.length) && (pre = toArr(pre));
+    (type === "object")&&(
+        /*传入的word为正则表达式的处理*/
+    Array.prototype.forEach.call(pre,function (item) {
+        let w_ = item.innerHTML,word = w_.match(json.word);
+        /*word返回的是一个数组*/
+        word && ((function () {
+            wordArr.push(word);
+            wordArr.forEach(function (item) {
+                item.forEach(function (v,i,arr) {
+                    if(!label.test(v)){
+                        /*如果已经添加过标签则不进行操作*/
+                        let c_ = json.new===undefined?v:json.new;
+                        arr[i] = '<'+json.label + ' class="'+json.className+'">'+c_+'</'+json.label+'>';
+                        w_ = w_.replace(v,arr[i]);
+                        /*给原字符串中的要替换的内容增加标签*/
+                        return arr[i];
+                    }
+                });
+            });
+            item.innerHTML = w_
+        })());
+        /*不为null的时候去执行替换匹配字符操作*/
+    }));
+    (type === "string")&&(Array.prototype.forEach.call(pre,function (item) {
+        let word = item.innerHTML,reg = new RegExp(json.word,'g'),
+            v ='<'+json.label + ' class="'+json.className+'">'+jW+'</'+json.label+'>' ;
+        word = word.replace(reg,v);
+        item.innerHTML = word
+    }));
+    function toArr(obj) {
+        let arr=[];
+        arr.push(obj);
+        return arr
+    }
+    /*将byId获取的元素强行变成数组*/
+}
+  /*replaceWord_ 接受1个JSON参数
+  * 1@target 要替换标记的的元素,必填
+  * 2@word 要替换内容的文字，可以是正则表达式,必填
+  * 3@label 要换成什么标签，必须是能闭合的,必填
+  * 4@label 的className,可选
+  * 5@new 可选参数,把2参数改成新的文字只能是string类型*/
+
+</script>
+</html>

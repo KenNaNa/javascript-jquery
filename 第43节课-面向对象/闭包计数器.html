@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>闭包计数器-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    //闭包计数器
+	//多个人开发js程序 需要设置一个全局的计数器
+	//多个人的函数共同用一个计数器
+	//计数一直增长
+	/*
+	   解决办法是
+	    1设立一个全局 window.cnt = 0; ++window.cnt; 但是会污染全局变量 有可能被修改
+		2用闭包维护一个别人污染不到的变量 就是用闭包
+	*/
+
+	function counter(){//当函数执行完毕后 谁也碰不到cnt这个变量  但是cnter()形成自己的一个闭包
+		//
+	  var cnt = 0;//这个cnt相当于counter内部的全局变量 cnter函数是可以访问到的
+	  var cnter = function (){
+	    return ++cnt;
+	  }
+	  return cnter;
+	}
+	var inc = counter();
+
+	alert(inc());//1
+
+	alert(inc());//2
+
+	alert(inc());//3
+
+
+	//简化版
+	var con = (function(){
+	    var i = 0;
+		return function(){return ++i;}
+	})()
+
+	alert(con());
+	alert(con());
+	alert(con());
+
+
+	//第三版
+	/*
+	  在工作中 如何避免全局变量的污染呢
+	  1 统一放在一个全局变量中 如jquery->$
+	  2 每人用自己的命名空间
+	*/
+    $ = {};
+	$.cnt = (function(){
+	    var i = 0;
+		return function(){return ++i;}
+	})() 
+	alert($.cnt());
+	alert($.cnt());
+	alert($.cnt());
+
+
+	//个人命名命名空间 其实就是把函数 变量 都放在一个对象里
+	var Y18 = {};
+	Y18.cnt = (function(){
+	    var i = 0;
+		return function(){return ++i;}
+	})() ;
+	alert(Y18.cnt());
+	alert(Y18.cnt());
+	alert(Y18.cnt());
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>方法中的函数会掩盖this-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+	  如果一个方法包含一个普通函数 而你想要在后者的内部访问前者
+	  方法的this却被普通函数的this掩盖了 
+	*/
+    var obj = {
+	    name:'Jane',
+		friends:['李金文','李金文'],
+		loop:function(){
+		    'use strict';
+			this.friends.forEach(function(friend){//1
+			    console.log(this.name+' knows '+friend);//2 此处的this已被内部函数的this掩盖了
+			});
+		}
+	};
+	//obj.loop();//Uncaught TypeError: Cannot read property 'name' of undefined
+
+  /*  //方法1 that=this
+	obj.loop = function(){
+	    'use strict';
+		var that = this;
+		this.friends.forEach(function(friend){//1
+			    console.log(that.name+' knows '+friend);//2 此处的this已被内部函数的this掩盖了
+		});
+	}
+	obj.loop();//方法中的函数会掩盖this.html:40 Jane knows 李金文
+	*/
+
+  /*  //方法2 bind()
+
+	obj.loop = function(){
+	    'use strict';
+		this.friends.forEach(function(friend){//1
+			    console.log(this.name+' knows '+friend);//2 此处的this已被内部函数的this掩盖了
+		}.bind(this));
+	}
+    obj.loop();//Jane knows 李金文
+	*/
+
+	//方法3 forEach的thisValue
+	obj.loop = function(){
+		    'use strict';
+			this.friends.forEach(function(friend){//1
+			    console.log(this.name+' knows '+friend);//2 此处的this已被内部函数的this掩盖了
+            },this);
+	}
+	obj.loop();//Jane knows 李金文
+</script>
+</body>
+</html>

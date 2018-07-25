@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>原型链-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var proto = {
+	    describe:function(){
+		  return 'name'+this.name;
+		}
+	};
+	console.log(proto)
+	var obj = {
+	    prototype:proto,
+		name:'obj'
+	};
+	console.log(obj.prototype.describe());
+</script>
+</body>
+</html>

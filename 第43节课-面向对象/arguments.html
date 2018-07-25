@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>arguments-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+//argument 是一个类似数组的对象 收集了所有的实参
+/*(function(a,b,c){
+   console.log(arguments);// ["hello", "world", "", "lijinwen", callee: ƒ, Symbol(Symbol.iterator): ƒ]
+   console.log(arguments[0]);//hello
+   console.log(arguments.length);//4
+})('hello','world','','lijinwen')*/
+
+/*(function(a,b,c){
+   //在此函函数内 无法用a b c 类取得‘lijinwen’ 因为没有与之对应的形参
+   console.log(arguments[3]);//lijinwen
+})('hello','world','','lijinwen')*/
+
+/*(function(a,b,c){
+   arguments[0] = 'china';
+   console.log(arguments[0]);//china
+   console.log(a);//china
+   //arguments与形参一一对应的
+})('hello','world','','lijinwen')*/
+
+/*(function(a,b,c){
+   console.log(arguments.callee)//ƒ (a,b,c){ console.log(arguments.callee)}
+   //arguments.callee代表着当前运行的函数
+})('hello','world','','lijinwen')*/
+
+//写一个递归函数
+/*function t(n){
+   if(n<=1){
+     return 1
+   }
+   else{
+     return n+t(n-1);
+   }
+}
+console.log(t(100));//5050*/
+
+console.log((function(n){
+   if(n<=1){
+      return 1
+   }else{
+      return n+arguments.callee(n-1);
+   }
+})(100)
+);//5050
+</script>
+</body>
+</html>

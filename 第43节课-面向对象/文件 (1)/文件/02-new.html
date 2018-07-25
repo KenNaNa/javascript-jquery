@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+            new 关键字的作用
+                1. 后面跟 函数()
+                2. 通过new执行的函数：
+                   ① 在函数内部最开始的时候，会默认生成一个对象;
+                   ② 函数内部的this指向这个对象;
+                   ③ 函数最终默认返回这个对象。
+
+
+             new Image()
+             new Date()
+             new RegExp()
+             new XMLHttpRequest();
+             */
+
+
+            /*
+            function goudan(){
+                this.name = "狗蛋";
+            }
+            var obj = new goudan();
+            alert( obj.name );
+            */
+
+
+
+
+            function createGF(breast , legs , bf ){
+                //var obj = {};
+
+                this.sex = "女";
+                this.breast = breast;
+                this.legs = legs;
+                this.bf = bf;
+                this.show = function () {
+                    alert( "我是" + this.bf + "的女朋友！"  );
+                };
+                this.showAttr = function () {
+                    alert( "胸"+this.breast+','+"腿"+this.legs  );
+                };
+
+                //return obj;
+            }
+
+            var flyGF = new createGF("big" , "long" , "阿飞");
+            var yaGF = new createGF("small" , "long" , "鸭子");
+            var fuGF = new createGF("normal" , "normal" , "浮华");
+
+            fuGF.show();
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

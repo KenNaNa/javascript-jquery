@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>点运算符-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var Jane = {
+	    name:'Jane',
+		describe:function(){
+		    alert(this.name);
+		}
+	};
+	//获取属性
+	Jane.name;//Jane
+	Jane.describe;//function
+    //获取一个不存在的属性会返回undefined
+	console.log(Jane.sex);//undefined
+	//调用方法
+	Jane.describe();//name
+	//设置属性
+	Jane.show = function(){
+	    return this.name;
+	}
+	//修改属性值
+	Jane.name = '李金文';
+	alert(Jane.name);
+	//删除属性
+	delete Jane.name;
+	alert(Jane.name);//undefined
+</script>
+</body>
+</html>

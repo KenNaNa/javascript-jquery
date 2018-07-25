@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>js原型链继承-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+   function Tiger(){
+      this.name = '虎';
+	  this.bark = function(){
+	     alert('我是百兽之王');
+	  }
+   }
+   var tiger = new Tiger();
+
+   /*
+     创建一个猫对象
+   */
+   function Cat(){
+	  this.climb = function(){
+	     alert('我会爬树');
+	  }
+   }
+
+   var cat = new Cat();
+
+   cat.climb();
+   tiger.bark();
+
+   //照猫画虎 要让老虎会爬树
+   //开始继承
+   Tiger.prototype = new Cat();
+   console.log(Tiger.prototype);//Cat {climb: ƒ}
+   //Tiger是一个对象
+   var hnhu = new Tiger();
+   console.log(hnhu.__proto__);//Cat {climb: ƒ}
+   //hnhu是一个实例化对象 所以要找其原型 要用属性__proto__
+   hnhu.climb();//老虎会爬树了
+
+   /*
+     在这个过程发生了什么
+	 1 构造空对象 hnhu
+	 2 hnhu.bark = function(){}
+	 3 hnhu.__proto__ == Tiger.prototype;
+	 也就是说 js中每个对象 都有一个__proto__属性指向原型对象
+	 原型对象也是对象
+
+	 原型的原型的原型。。。。最后是null
+   */
+</script>
+</body>
+</html>

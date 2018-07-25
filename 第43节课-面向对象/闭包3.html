@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>闭包3-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<ul>
+	<li>男</li>
+	<li>女</li>
+	<li>老</li>
+	<li>少</li>
+</ul>
+<script>
+    var aLi = document.getElementsByTagName('li');
+	for( var i=0,length=aLi.length;i<length;i++ ){
+	    i%2===0?(aLi[i].style.background='#ccc'):(aLi[i].style.background='pink');
+	}
+
+	for( i=0;i<aLi.length;i++ ){
+	 (function (){
+	   var index = i;
+	   aLi[i].onclick = function(){
+	      alert(index);
+	   } 
+	 })()
+	}
+</script>
+</body>
+</html>

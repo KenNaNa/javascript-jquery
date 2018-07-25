@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+             /*
+                原型链：
+                     每个对象，都有一个 __proto__ 属性，指向该对象对应的构造函数原型；
+                     而构造函数的原型又是一个对象，也有对应的构造函数，它的__proto__也会指向它构造函数的原型；
+                     最终直到 Object.prototype 为止
+
+                     对象在找某个属性的时候，
+                     会先从私有属性开始找，
+                     找不到的话，往__proto__里面去找，
+                     再找不到依次往上，直到Object.prototype 为止，
+                     还找不到的话，才会弹出undefined；
+             */
+
+             function CreateGF(breast , legs , bf ){
+                 this.breast = breast;
+                 this.legs = legs;
+                 this.bf = bf;
+             }
+             CreateGF.prototype.sex = "女";
+             CreateGF.prototype.show = function () {
+                 alert( "我是" + this.bf + "的女朋友！"  );
+             };
+             CreateGF.prototype.showAttr = function () {
+                 alert( "胸"+this.breast+','+"腿"+this.legs  );
+             };
+
+             //Object.prototype.sex = "女";
+
+             var flyGF = new CreateGF("big" , "long" , "阿飞");
+             var yaGF = new CreateGF("small" , "long" , "鸭子");
+             var fuGF = new CreateGF("normal" , "normal" , "浮华");
+
+             //console.log( yaGF.__proto__ === CreateGF.prototype );
+             //console.log( CreateGF.prototype ); //Object.prototype
+             //console.log( yaGF );
+             /*console.log( flyGF );
+             alert( flyGF.sex );*/
+
+             //var json = {}; // new Object();
+             //alert( json.sex )
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
