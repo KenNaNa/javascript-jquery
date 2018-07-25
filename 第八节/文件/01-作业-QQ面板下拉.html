@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 200px;
+                margin: 50px auto;
+            }
+            #box ul{
+                overflow: hidden;
+                height: 31px;
+            }
+            #box ul.show{
+                height: auto;
+            }
+            #box ul li{
+                width: 200px;
+                height: 25px;
+                line-height: 25px;
+                background: #eee;
+                border-bottom: 1px solid #aaa;
+                font-size: 12px;
+                text-indent: 20px;
+                cursor: pointer;
+            }
+            #box ul li.title{
+                background: pink;
+                height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                text-indent: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li class="title">同事</li>
+                <li class="other">心艾</li>
+                <li class="other">哎哟</li>
+                <li class="other">婷婷</li>
+                <li class="other">桃子</li>
+            </ul>
+            <ul>
+                <li class="title">好友</li>
+                <li class="other">韩语小姐姐</li>
+                <li class="other">日语小姐姐</li>
+                <li class="other">英语小姐姐</li>
+            </ul>
+            <ul>
+                <li class="title">同学</li>
+                <li class="other">狗蛋01</li>
+                <li class="other">狗蛋02</li>
+                <li class="other">狗蛋03</li>
+            </ul>
+        </div>
+        <script>
+
+            var oBox = document.getElementById("box"),
+                aUl = oBox.getElementsByTagName("ul"),
+                aTitle = oBox.querySelectorAll(".title"),
+                aOther = oBox.querySelectorAll(".other"),
+                ulLength = aUl.length,
+                otherLength = aOther.length,
+                xx = 0;
+
+            //ul的点击伸缩
+            for (var i = 0; i < ulLength; i++) {
+                //自定义属性
+                aTitle[i].goudan = i;//存序号
+                aTitle[i].ifShow = false;//存展开状态
+
+                aTitle[i].onclick = function () {
+                    if ( this.ifShow ){
+                        aUl[this.goudan].className = "";
+                        this.ifShow = false;
+                    }else{
+                        aUl[this.goudan].className = "show";
+                        this.ifShow = true;
+                    }
+                };
+            }
+
+            //其他li的点击变色
+            for (i = 0; i < otherLength; i++) {
+                aOther[i].index = i;
+                aOther[i].onclick = function () {
+                    aOther[xx].style.background = "#eee";
+                    xx = this.index;
+                    this.style.background = "#40cd99";
+
+                    /*for (var j = 0; j < otherLength; j++) {
+                        aOther[j].style.background = "#eee";
+                    }
+                    this.style.background = "#40cd99";*/
+
+                }
+            }
+
+
+
+            /*//自定义属性
+             aTitle[i].goudan = i;
+             aTitle[i].onclick = function () {
+             var oUl = aUl[this.goudan];
+             oUl.className = oUl.className?"":"show";
+             };*/
+
+            /*
+             if ( oUl.className ){
+             oUl.className = "";
+             }else{
+             oUl.className = "show";
+             }*/
+            /*
+             第一种做法：（针对于当前案例合适，但是实际过程中不好用）
+                判断对应的ul有没有名字，从而做出不同的操作
+             第二种做法：（实际开发中，这种比较合适）
+                添加自定义属性，用来判断是否展开
+             */
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

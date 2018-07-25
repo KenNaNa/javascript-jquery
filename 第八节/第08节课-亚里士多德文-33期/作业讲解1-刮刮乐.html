@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作业讲解1-刮刮乐-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			     width:500px;
+				 height:500px;
+				 margin:0 auto;
+				 background:url('images/1.jpg');
+				 position:relative;
+				
+			 }
+			 #cover{
+			    position:absolute;
+				top:0;
+				left:0;
+			    width:500px;
+				height:500px;
+			 }
+		 </style>
+	 </head>
+<body>
+<!--内容层-->
+<div id="box">
+   <div id="cover"></div>
+</div>
+<!--遮罩层-->
+
+<script>
+   var width = 500,
+       height = 500,
+	   length = 50*50,
+	   str = '';
+	   oBox = document.getElementById('box');
+	   oCover = document.getElementById('cover');
+	   aSpan = oCover.getElementsByTagName('span');
+	for(var i = 0;i<length;i++){
+	   str +='<span style="float:left;width:10px;height:10px;background:#ccc;"></span>'
+	}
+    oCover.innerHTML = str;
+	for(var i = 0;i<length;i++){
+	  aSpan[i].onmouseenter = function(){
+	    this.style.background = '#fff';
+	  }
+	}
+</script>
+</body>
+</html>

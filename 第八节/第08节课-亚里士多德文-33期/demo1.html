@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>demo1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:300px;
+				height:300px;
+				background:#ccc;
+				margin:100px auto;
+			 }
+			 #box div{
+			    width:100px;
+				height:100px;
+				text-align:center;
+				line-height:100px;
+				cursor:pointer;
+				color:#fff;
+				float:left;
+			 }
+			 #box div.yellow{
+			    background:yellow;
+			 }
+			 #box div.orange{
+			    background:orange;
+			 }
+			 #box div.pink{
+			    background:pink;
+			 }
+			 #box div.red{
+			    background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <div class="yellow">第一章</div>
+	<div class="orange">第二章</div>
+	<div class="pink">第三章</div>
+	<div class="red">第四章</div>
+	<div class="yellow">第五章</div>
+	<div class="orange">第六章</div>
+	<div class="pink">第七章</div>
+	<div class="red">第八章</div>
+	<div class="yellow">第九章</div>
+</div>
+<script>
+   var oBox = document.getElementById('box');
+   var aDiv = oBox.querySelectorAll('div');
+   var oldColor = '';//定义一个储存原先的颜色的变量
+   for(var i = 0;i <aDiv.length;i++){
+	   aDiv[i].onmouseover = function(){
+		  oldColor = this.style.background;//储存原先的原色
+          this.style.background = '#33c';
+	   };
+	   aDiv[i].onmouseout = function(){
+	      this.style.background = oldColor;//当鼠标移除时，还原原来的颜色
+	   }
+
+   }
+</script>
+</body>
+</html>

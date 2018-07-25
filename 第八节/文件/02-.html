@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <p>1111</p>
+        <p>22222</p>
+        <p>33333</p>
+        <p>4444</p>
+        <p>5555</p>
+        <script>
+
+            var aP = document.getElementsByTagName("p");
+            var arr = [];
+
+            for (var i = 0,length=aP.length; i < length; i++) {
+
+                aP[i].index = i;
+                //var index = i;
+                //arr[i] = i;
+                aP[i].onclick = function () {
+                    alert( this.index );
+                }
+
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

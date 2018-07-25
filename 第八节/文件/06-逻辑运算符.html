@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+                &&  与 / 并且
+                ||  或 / 或者
+                !   非 / 取反
+             */
+
+
+            /*
+             两边都是布尔值的时候：
+                && 两边都为真，结果才为真，其他都是假
+                || 两边都为假，结果才为假，其他都是真
+                ！ 取反，真变假，假变真
+             */
+            //var x = true && false; //false
+            //var x = 3>2 || 3>8; //true
+            //var x = !(3>5); //!false   ===>   true
+            //alert( x );
+
+            /*
+            两边不一定是布尔值的时候：
+                && 遇到假就停，但是不会进行类型转换
+                || 遇到真就停，但是不会进行类型转换
+                !  隐式类型转换，将后面的数据先转换为布尔值再取反
+             */
+
+            //var x = 5 && null && 10;
+            //var x = 1 && false && 3;
+            //var a;
+            //var x = 0 || NaN || null || a;
+            //alert( x );
+
+            var x = !3;
+            alert( x );
+
+            /*
+             ++ -- 先括号 取反 算术运算  判断  &&  || 赋值
+             */
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <p class="afei"></p>
+        <p class="afei"></p>
+        <p class="afei"></p>
+        <p class="afei"></p>
+        <script>
+
+            /*//静态获取
+            var oBox = document.getElementById("box");
+            oBox.id = "goudan";
+            oBox.title = "我是div";*/
+
+            //动态获取
+            /*var aP = document.getElementsByClassName("afei");
+            alert( aP.length );
+            aP[0].className = "goudan";
+            alert( aP.length );*/
+
+            /*var aP = document.querySelectorAll(".afei");
+            alert( aP.length );
+            aP[0].className = "goudan";
+            alert( aP.length );*/
+
+            var aP = document.getElementsByClassName("afei");
+            var obj = aP[0];
+            aP[0].className = "goudan";
+            obj.innerHTML = "阿飞！";
+
+            /*
+
+            静态的：
+                document.getElementById()
+                .querySelector()
+                .querySelectorAll()
+
+            动态的：
+                .getElementsByClassName
+                ……
+
+             */
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
