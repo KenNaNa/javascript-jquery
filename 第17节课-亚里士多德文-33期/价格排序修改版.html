@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>价格排序-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+				 text-decoration:none;
+				 font-style:normal;
+			 }
+			 .fl{float:left;}
+			 #header{
+			    position:relative;
+			    width:1000px;
+				height:35px;
+				background:#f60;
+				margin:10px auto;
+			 }
+			 #header ul.list{
+			    width:400px;
+				height:100%;
+			 }
+			 #header ul.list li{
+			    width:100px;
+				height:100%;
+				text-align:center;
+				line-height:35px;
+				font-size:14px;
+				cursor:pointer;
+				color:#fff;
+				transition:background 0.8s ease;
+			 }
+			 #header ul.list li:hover{
+			   background:#000;
+			 }
+			 #header ul.list li ul{
+			   position:absolute;
+			   top:0px;
+			   left:300px;
+			   z-index:1;
+			 }
+			 #header ul.list li ul{
+			   display:none;
+			 }
+             #header ul.list li ul li{
+			   color:#fff;
+			   background:#f60;
+			 }
+			 #header ul.list li:hover ul{
+			   display:block;
+			 }
+			 #header ul.list li ul li:hover{
+			   background:#000;
+			 }
+			 #header ul li span{
+			   display:block;
+			   width:100px;
+			   height:35px;
+			 }
+			 #box:after{
+			    display:block;
+				content:"";
+				clear:both;
+			 }
+			 #box{
+			    width:966px;
+				padding:20px;
+				margin:0 auto;
+			 }
+			 #box ul li{
+			    position:relative;
+			    width:280px;
+				height:313px;
+				padding:10px;
+				border:1px solid #ddd;
+				float:left;
+                margin-right:30px;
+				margin-bottom:20px;
+				cursor:pointer;
+			 }
+			 #box ul li:nth-child(3),
+			 #box ul li:nth-child(6),
+			 #box ul li:nth-child(9){
+			   margin-right:0;
+			 }
+			 #box ul li div{
+			   width:280px;
+			   height:280px;
+			 }
+			 #box ul li div img{
+			   width:280px;
+			   height:280px;
+			 }
+			 #box ul li p{
+			   height:30px;
+			   line-height:30px;
+			   margin-top:10px;
+			 }
+			 #box ul li i{
+			   position:absolute;
+			   right:0px;
+			   bottom:0px;
+			   display:block;
+			   text-align:center;
+			   width:50px;
+			   height:50px;
+			   line-height:50px;
+			   background:url('images/price.png') no-repeat;
+			   color:#ff6;
+			   font-weight:bold;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="header">
+    <ul class="list">
+	   <li class="fl">流行</li>
+	   <li class="fl">热销</li>
+	   <li class="fl">上新</li>
+	   <li class="fl">
+	     <span>价格</span>
+	     <ul>
+		    <li>价格从低到高</li>
+		    <li>价格从高到低</li>
+		 </ul>
+	   </li>
+	</ul>
+</div>
+<div id="box">
+    <ul>
+	  <!-- <li id='230'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥230
+		  </i>
+	   </li>
+	   <li  id='330'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥330
+		  </i>
+	   </li>
+	   <li id='130'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥130
+		  </i>
+	   </li>
+	   <li id='300'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥300
+		  </i>
+	   </li>
+	   <li id='630'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥630
+		  </i>
+	   </li>
+	   <li id='380'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥380
+		  </i>
+	   </li>
+	   <li  id='530'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥530
+		  </i>
+	   </li>
+	   <li id='730'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥730
+		  </i>
+	   </li>
+	   <li id='100'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥100
+		  </i>
+	   </li>
+	   <li id='430'>
+	      <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥430
+		  </i>
+	   </li>
+	   <li  id='830'>
+	     <div>
+		    <img src="images/xh_img1.jpg">
+		  </div>
+		  <p>
+		    粉色浪漫系列玫瑰
+		  </p>
+		  <i>
+		     ￥830
+		  </i>
+	   </li>-->
+	</ul>
+</div>
+<script>
+    var aHLi = document.querySelectorAll('#header .list li ul li');
+	var oHSpan = document.querySelector('#header .list li span');
+	var oHUl = document.querySelector('#header .list li ul')
+	var oHLi = document.querySelectorAll('#header .list li')[3];
+	var oBUl = document.querySelector('#box ul');
+	var arr = [
+   '230-粉色浪漫系列玫瑰-images/xh_img1.jpg',
+   '330-红色浪漫系列玫瑰-images/xh_img2.jpg',
+   '130-粉色浪漫玫瑰-images/xh_img3.jpg',
+   '300-粉色系列玫瑰-images/xh_img4.jpg',
+   '630-粉色浪漫系列玫瑰-images/xh_img5.jpg',
+   '380-粉色系列玫瑰-images/xh_img6.jpg',
+   '530-粉色浪漫系列玫瑰-images/xh_img7.jpg',
+   '730-粉色浪漫玫瑰-images/xh_img8.jpg',
+   '100-粉色浪漫系列玫瑰-images/xh_img9.png',
+   '430-粉色系列玫瑰-images/xh_img10.png',
+   '830-粉色浪漫玫瑰-images/xh_img11.jpg'];
+
+   var str = '';
+   for( var i=0;i<arr.length;i++ ){
+      var a = arr[i].split('-');
+	  str += '<li id="'+a[0]+'"><div><img src="'+a[2]+'"></div><p>'+a[1]+'</p><i>￥'+a[0]+'</i></li>';
+   }
+   oBUl.innerHTML = str;
+   aHLi[0].onclick = function(){//从高到低排序
+	  var Flag = true;
+	  var This = this;
+	  change(Flag,This);
+   };
+   aHLi[1].onclick = function(){//从低到高排序
+	  var Flag = false;
+	  var This = this;
+	  change(Flag,This);
+   };
+   function change(flag,This){
+      var str = '';
+      oHSpan.innerHTML = This.innerHTML;
+      for( var i=0;i<arr.length;i++ ){
+      if(flag){
+	     var a = arr.sort(); 
+	  }else{
+		 var a = arr.sort().reverse();
+	  }
+	  var b = a[i].split('-');
+	  console.log(b);
+	  str += '<li id="'+b[0]+'"><div><img src="'+b[2]+'"></div><p>'+b[1]+'</p><i>￥'+b[0]+'</i></li>';
+     }
+     oBUl.innerHTML = str;
+   }
+   //可以用二维数组
+</script>
+</body>
+</html>

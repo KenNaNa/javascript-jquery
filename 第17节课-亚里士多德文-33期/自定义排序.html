@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>自定义排序-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 li{
+			    list-style:none;
+			 }
+		 </style>
+	 </head>
+<body>
+<input type="button" id="btn1" value="从高到低" />
+<input type="button" id="btn2" value="从低到高" />
+<ul></ul>
+<script>
+    var oUl = document.querySelector('ul');
+	var aBtn = document.querySelectorAll('input');
+	
+    var arr = [
+	    [500,'images/xh_img1.jpg','粉色系列玫瑰'],
+		[100,'images/xh_img2.jpg','粉色浪漫玫瑰'],
+		[300,'images/xh_img3.jpg','粉色系列玫瑰'],
+		[700,'images/xh_img4.jpg','粉色浪漫玫瑰'],
+		[130,'images/xh_img5.jpg','粉色系列玫瑰'],
+		[215,'images/xh_img6.jpg','粉色浪漫玫瑰'],
+		[97,'images/xh_img7.jpg','粉色系列玫瑰'],
+		[99.5,'images/xh_img8.jpg','粉色浪漫玫瑰']
+	];
+	for( var i=0;i<aBtn.length;i++ ){
+	    aBtn[i].index = i;
+		aBtn[i].onclick = function(){
+		   shopSort(this.index);
+		}
+	}
+    //console.log(arr.length);//8
+    function shopSort(index){
+		var tempNum = null;
+		var tempImg = null;
+		var tempTxt = null;
+		
+		if(index){
+			var flag = true;
+			a(flag,tempNum,tempImg,tempTxt);
+			/*for( var i=0;i<arr.length-1;i++ ){
+			   for( var j=0;j<arr.length-1-i;j++ ){
+				 if(arr[j][0]<arr[j+1][0]){
+					 tempNum = arr[j][0];
+					 tempImg = arr[j][1];
+					 tempTxt = arr[j][2];
+					 arr[j][0] = arr[j+1][0];
+					 arr[j][1] = arr[j+1][1];
+					 arr[j][2] = arr[j+1][2];
+					 arr[j+1][0] = tempNum;
+					 arr[j+1][1] = tempImg;
+					 arr[j+1][2] = tempTxt;
+				 }
+			   }
+			}
+			oUl.innerHTML = '';
+			for( var i=0;i<arr.length;i++ ){
+				oUl.innerHTML += '<li><img src="'+arr[i][1]+'"><p>'+arr[i][2]+'</p><div class="txt">￥<span>'+arr[i][0]+'</span></div></li>';
+			}*/
+		}else{
+			var flag = false;
+			a(flag,tempNum,tempImg,tempTxt);
+		    /*for( var i=0;i<arr.length-1;i++ ){
+			   for( var j=0;j<arr.length-1-i;j++ ){
+				 if(arr[j][0]>arr[j+1][0]){
+					 tempNum = arr[j][0];
+					 tempImg = arr[j][1];
+					 tempTxt = arr[j][2];
+					 arr[j][0] = arr[j+1][0];
+					 arr[j][1] = arr[j+1][1];
+					 arr[j][2] = arr[j+1][2];
+					 arr[j+1][0] = tempNum;
+					 arr[j+1][1] = tempImg;
+					 arr[j+1][2] = tempTxt;
+				 }
+			   }
+			}
+			oUl.innerHTML = '';
+			for( var i=0;i<arr.length;i++ ){
+				oUl.innerHTML += '<li><img src="'+arr[i][1]+'"><p>'+arr[i][2]+'</p><div class="txt">￥<span>'+arr[i][0]+'</span></div></li>';
+			}*/
+		}
+	}
+	function a(flag,tempNum,tempImg,tempTxt){
+	    if(flag){
+		   for( var i=0;i<arr.length-1;i++ ){
+			   for( var j=0;j<arr.length-1-i;j++ ){
+				 if(arr[j][0]<arr[j+1][0]){
+					 tempNum = arr[j][0];
+					 tempImg = arr[j][1];
+					 tempTxt = arr[j][2];
+					 arr[j][0] = arr[j+1][0];
+					 arr[j][1] = arr[j+1][1];
+					 arr[j][2] = arr[j+1][2];
+					 arr[j+1][0] = tempNum;
+					 arr[j+1][1] = tempImg;
+					 arr[j+1][2] = tempTxt;
+				 }
+			   }
+			}
+			oUl.innerHTML = '';
+			for( var i=0;i<arr.length;i++ ){
+				oUl.innerHTML += '<li><img src="'+arr[i][1]+'"><p>'+arr[i][2]+'</p><div class="txt">￥<span>'+arr[i][0]+'</span></div></li>';
+			}
+		}else{
+		    for( var i=0;i<arr.length-1;i++ ){
+			   for( var j=0;j<arr.length-1-i;j++ ){
+				 if(arr[j][0]>arr[j+1][0]){
+					 tempNum = arr[j][0];
+					 tempImg = arr[j][1];
+					 tempTxt = arr[j][2];
+					 arr[j][0] = arr[j+1][0];
+					 arr[j][1] = arr[j+1][1];
+					 arr[j][2] = arr[j+1][2];
+					 arr[j+1][0] = tempNum;
+					 arr[j+1][1] = tempImg;
+					 arr[j+1][2] = tempTxt;
+				 }
+			   }
+			}
+			oUl.innerHTML = '';
+			for( var i=0;i<arr.length;i++ ){
+				oUl.innerHTML += '<li><img src="'+arr[i][1]+'"><p>'+arr[i][2]+'</p><div class="txt">￥<span>'+arr[i][0]+'</span></div></li>';
+			}
+		}
+	}
+</script>
+</body>
+</html>

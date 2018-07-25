@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+			 }
+			 #box:after{
+			    display:block;
+				content:"";
+				clear:both;
+			 }
+			 #box{
+			    width:966px;
+				padding:20px;
+				margin:0 auto;
+			 }
+			 #box li{
+			    position:relative;
+			    width:280px;
+				height:313px;
+				padding:10px;
+				border:1px solid #ddd;
+				float:left;
+                margin-right:30px;
+				margin-bottom:20px;
+				cursor:pointer;
+			 }
+			 #box li:nth-child(3),
+			 #box li:nth-child(6),
+			 #box li:nth-child(9){
+			   margin-right:0;
+			 }
+			 #box li div{
+			   width:280px;
+			   height:280px;
+			 }
+			 #box li div img{
+			   width:280px;
+			   height:280px;
+			 }
+			 #box li p{
+			   height:30px;
+			   line-height:30px;
+			   margin-top:10px;
+			 }
+			 #box li i{
+			   position:absolute;
+			   right:0px;
+			   bottom:0px;
+			   display:block;
+			   text-align:center;
+			   width:50px;
+			   height:50px;
+			   line-height:50px;
+			   background:url('images/price.png') no-repeat;
+			 }
+		 </style>
+	 </head>
+<body>
+<ul id="box">
+    
+</ul>
+<script>
+
+   var arr = [
+   '230-粉色浪漫系列玫瑰-images/xh_img1.jpg',
+   '330-粉色浪漫系列玫瑰-images/xh_img2.jpg',
+   '130-粉色浪漫系列玫瑰-images/xh_img3.jpg',
+   '300-粉色浪漫系列玫瑰-images/xh_img4.jpg',
+   '630-粉色浪漫系列玫瑰-images/xh_img5.jpg',
+   '380-粉色浪漫系列玫瑰-images/xh_img6.jpg',
+   '530-粉色浪漫系列玫瑰-images/xh_img7.jpg',
+   '730-粉色浪漫系列玫瑰-images/xh_img8.jpg',
+   '100-粉色浪漫系列玫瑰-images/xh_img9.png',
+   '430-粉色浪漫系列玫瑰-images/xh_img10.png',
+   '830-粉色浪漫系列玫瑰-images/xh_img11.jpg'];
+   //var str = arr[8].split('-');
+   //console.log(str);
+   var oUl = document.getElementById('box');
+   var str = '';
+   var b = [];
+   for( var i=0;i<arr.length;i++ ){
+	  b = parseInt(arr[i]);
+	  //console.log(b);
+      var a = arr[i].split('-');
+	  //console.log(a[2]);
+	  str += '<li id="'+b+'"><div><img src="'+a[2]+'"></div><p>'+a[1]+'</p><i>'+a[0]+'</i></li>';
+	  //var b = arr.sort();
+	  //console.log(b);
+   }
+   oUl.innerHTML = str;
+</script>
+</body>
+</html>

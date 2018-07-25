@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>商品价格排序-李金文</title>
+		 <style type="text/css">
+		     *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+			li{ list-style:none;}
+			#box{
+				width: 1000px;
+				margin:50px auto;
+			}
+			#box .title{
+				position: relative;
+				z-index:2;
+				width: 100%;
+				height: 40px;
+				background: #f8f8f8;
+				border: 1px solid #ddd;
+			}
+			#box .title ul li{
+				float: left;
+				position: relative;
+				width: 75px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				font-size: 12px;
+				cursor: pointer;
+			}
+			#box .title ul li span.red{
+				color: red;
+			}
+			#box .title ul li .hide{
+				display: none;
+				position: absolute;
+				top: -1px;
+				left: -10px;
+				width: 100px;
+				height: 80px;
+				background: #fff;
+				border: 1px solid #ddd;
+			}
+			#box .title ul li .hide a{
+				display: block;
+				width: 100%;
+				height: 40px;
+			}
+			#box .content ul{
+				overflow: hidden;
+			}
+			#box .content ul li{
+				position: relative;
+				float: left;
+				width: 200px;
+				height: 230px;
+				padding: 10px;
+				margin: 10px 14px;
+				border: 1px solid #ddd;
+			}
+			#box .content ul li img{
+				width: 200px;
+				height: 200px;
+			}
+			#box .content ul li p{
+				overflow: hidden;
+				font-size: 12px;
+				line-height: 20px;
+				margin-top: 5px;
+			}
+			#box .content ul li div.txt{
+				position: absolute;
+				bottom: 0;
+				right: 0px;
+				width: 50px;
+				height: 50px;
+				background: url("images/price.png");
+				color: #ffe218;
+				font-weight: bold;
+				line-height: 50px;
+				text-align: center;
+				font-size: 14px;
+			}
+
+		</style>
+</head>
+<body>
+		<div id="box">
+			<div class="title">
+				<ul>
+					<li>综合排序</li>
+					<li>人气</li>
+					<li>销量</li>
+					<li id="price">
+						<span>价格</span>
+						<div class="hide">
+							<a>价格从高到低</a>
+							<a>价格从低到高</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<ul>
+					<li>
+						<img src="images/xh_img1.jpg" alt="">
+						<p>粉色浪漫系列玫瑰</p>
+						<div class="txt">￥<span>500</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img2.jpg" alt="">
+						<p>深红色经典玫瑰</p>
+						<div class="txt">￥<span>100</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img3.jpg" alt="">
+						<p>清淡优雅百年百合</p>
+						<div class="txt">￥<span>300</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img4.jpg" alt="">
+						<p>紫色冷艳系列</p>
+						<div class="txt">￥<span>700</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img5.jpg" alt="">
+						<p>经典红色我的最爱</p>
+						<div class="txt">￥<span>130</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img6.jpg" alt="">
+						<p>甜美七分袖荷叶边条纹设</p>
+						<div class="txt">￥<span>215</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img7.jpg" alt="">
+						<p>甜美七分袖荷叶边条纹设</p>
+						<div class="txt">￥<span>97</span></div>
+					</li>
+					<li>
+						<img src="images/xh_img8.jpg" alt="">
+						<p>甜美七分袖荷叶边条纹设</p>
+						<div class="txt">￥<span>99.5</span></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+<script>
+    var oPrice = document.getElementById('price');
+	var oSpan = oPrice.querySelector('span');
+	var oHide = oPrice.querySelector('div');
+	var aHideA = oPrice.querySelectorAll('div a');
+    
+
+	var oContent = document.querySelector('.content');
+	var oUl = oContent.querySelector('.content ul');
+	var aContentLi = oUl.querySelectorAll('.content ul li');
+	//console.log(aLi);
+    oPrice.onmouseenter = function(){//鼠标移入价格时发生的事件
+	    oHide.style.display = 'block';
+	}
+	oPrice.onmouseleave = function(){
+	    oHide.style.display = 'none';
+	};
+
+	//
+	for( var i=0;i<aHideA.length;i++ ){
+	   aHideA[i].index = i;
+	   aHideA[i].onclick = function(){
+		  oHide.style.display = 'none';
+	      oSpan.innerHTML = this.innerHTML;
+		  oSpan.style.color = 'red';
+		  shopSort(this.index);
+	   };
+	}
+
+	var arr = [];
+	for( var i=0;i<aContentLi.length;i++ ){
+	    arr[i] = [];//创建8个数组[[],[],[],[],[],[],[],[]]
+		arr[i][0] = aContentLi[i].querySelector('li img').src;
+		arr[i][1] = aContentLi[i].querySelector('li p').innerHTML;
+		arr[i][2] = aContentLi[i].querySelector('li div.txt span').innerHTML*1;//转化为数字
+		//console.log(arr[i][2]);
+	}
+   
+	//商品价格排序
+	function shopSort(index){
+	    arr.sort(function(n1,n2){
+		   // return (n1[2]-n2[2]);//从小到大
+		   // return (n2[2]-n1[2]);//从大到小
+		   return index?(n1[2]-n2[2]):(n2[2]-n1[2]);
+		});
+		oUl.innerHTML = '';
+		for( var i=0;i<arr.length;i++ ){
+			oUl.innerHTML += '<li><img src="'+arr[i][0]+'"><p>'+arr[i][1]+'</p><div class="txt">￥<span>'+arr[i][2]+'</span></div></li>';
+		}
+	}
+	
+</script>
+</body>
+</html>
