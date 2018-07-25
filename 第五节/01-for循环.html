@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+
+            for (  ①；②；④ ){
+                ③
+            }
+            1-2-3-4-2-3-4-2-3-4-2……-3-4-2    当2为假的时候，循环结束
+            */
+
+            /*for (var i = 0; i <= 10; i++) {
+                console.log( i );
+                alert( i );
+            }*/
+
+            /*for (var i = 0; i < 101; i++) {
+
+                document.write( i + "<br>" );
+
+            }*/
+
+          /*  for (var i = 100;i>0;i--) {
+                console.log(i);
+            }*/
+
+            /*var i = 0;
+            for (;i <= 10;) {
+                console.log( i );
+                i++;
+            }*/
+            /*var i=0,
+                len=arr.length;
+
+            for(; i<len; i++){
+
+            }*/
+
+            var arr = ["阿飞","阿飞","阿飞","阿飞","阿飞","狗蛋","阿飞","阿飞","阿飞","阿飞","阿飞"];
+
+            for (var i = 0; i < 10; i++) {
+
+                if ( arr[i] === "狗蛋" ){
+                    //break; //跳出当前循环，for里面还没执行的代码不执行
+                    continue; //跳过当次循环，for里面还没执行的代码不执行
+                }
+
+                console.log( i );
+            }
+            //
+
+
+
+
+
+            //上节课单边切换解决方案
+            /*if ( xx === length-1 && !flag )
+             {
+             alert("已经到最后一张了！！");
+             }else{
+             aImg[xx].className = "";
+             xx++;
+             if ( flag ){
+             xx = 0;
+             }
+
+             aImg[xx].className = "on";
+             aInfo[0].innerHTML = xx+1;
+             aInfo[1].innerHTML = arr[xx];
+             }*/
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

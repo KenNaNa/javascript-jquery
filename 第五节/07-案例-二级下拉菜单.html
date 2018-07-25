@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 200px;
+                border: 1px dashed #bbb;
+                margin: 50px;
+            }
+            #box ul{
+                overflow: hidden;
+                width: 100%;
+                height: 31px;
+            }
+            #box ul.show{
+                height: auto;
+            }
+            #box ul li{
+                width: 100%;
+                height: 25px;
+                background: #fff;
+                color: #000;
+                text-indent: 10px;
+                line-height: 25px;
+                font-size: 12px;
+                font-weight: bold;
+                border-bottom: 1px solid #eee;
+                cursor: default;
+            }
+            #box ul li:hover{
+                background: #c2edeb;
+            }
+            #box ul li.title{
+                height: 30px;
+                text-indent: 5px;
+                line-height: 30px;
+                font-size: 14px;
+                color: #fff;
+                background: pink;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul class="show">
+                <li class="title">同事</li>
+                <li>踏浪老师</li>
+                <li>千寻老师</li>
+                <li>追梦老师</li>
+                <li>木马老师</li>
+                <li>海牙老师</li>
+            </ul>
+            <ul>
+                <li class="title">好友</li>
+                <li>小莉</li>
+                <li>玛利亚</li>
+                <li>桃子</li>
+            </ul>
+            <ul>
+                <li class="title">VIP学员</li>
+                <li>泡泡公主</li>
+                <li>狗蛋</li>
+                <li>W小雪同学</li>
+            </ul>
+        </div>
+        <script>
+
+            var oBox = document.getElementById("box"),
+                aTitle = oBox.querySelectorAll(".title"),
+                aUl = oBox.getElementsByTagName("ul"),
+                length = aTitle.length,//3
+                index = 0;
+
+            for (var i = 0; i < length; i++) {
+
+                //自定义属性
+
+                aTitle[i].goudan = i;
+
+                aTitle[i].onclick = function () {
+                    //前一个ul去掉名字
+                    aUl[index].className = "";
+
+                    //index变成当前序号
+                    index = this.goudan;
+
+                    //当前ul添加名字
+                    aUl[index].className = "show";
+                };
+
+            }
+
+           /* aTitle[0].goudan = 0;
+            aTitle[0].onclick = function () {
+                aUl[index].className = "";
+                index = this.goudan;
+                aUl[index].className = "show";
+            };
+
+            aTitle[1].goudan = 1;
+            aTitle[1].onclick = function () {
+                aUl[index].className = "";
+                index = this.goudan;
+                aUl[index].className = "show";
+            };
+
+            aTitle[2].goudan = 2;
+            aTitle[2].onclick = function () {
+                aUl[index].className = "";
+                index = this.goudan;
+                aUl[index].className = "show";
+            };*/
+
+
+            /*for (var i = 0; i < 3; i++) {
+                aTitle[i].goudan = i;
+                aTitle[i].onclick = function () {
+                    alert( i );
+                };
+            }
+
+            aTitle[0].goudan = 0;
+            aTitle[0].onclick = function () {
+                alert( i );
+            };
+
+            aTitle[1].goudan = 1;
+            aTitle[1].onclick = function () {
+                alert( i );
+            };
+
+            aTitle[2].goudan = 2;
+            aTitle[2].onclick = function () {
+                alert( i );
+            };
+
+            i = 3;*/
+
+
+
+            /*aTitle[0].onclick = function () {
+
+            };
+            aTitle[1].onclick = function () {
+
+            };
+            aTitle[2].onclick = function () {
+
+            }*/
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

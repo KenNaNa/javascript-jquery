@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var oBox = document.getElementById("box");
+
+            var length = 30;
+
+            /*for (var i = 0; i < length; i++) {
+
+                //添加 空格
+                for (var k = 0; k < i; k++) {
+                    oBox.innerHTML += "&nbsp;";
+                }
+
+                //添加 *
+                for (var j = 0; j < 2*(length-1-i)+1; j++) {
+                    oBox.innerHTML += "*";
+                }
+
+                //添加换行
+                oBox.innerHTML += "<br>";
+
+            }*/
+
+            for (var i = 0; i < length; i++) {
+
+                //添加 空格
+                for (var k = 0; k < length-1-i; k++) {
+                    oBox.innerHTML += "&nbsp;";
+                }
+
+                //添加 *
+                for (var j = 0; j < 2*i+1; j++) {
+                    oBox.innerHTML += "*";
+                }
+
+                //添加换行
+                oBox.innerHTML += "<br>";
+
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

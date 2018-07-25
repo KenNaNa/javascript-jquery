@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: relative;
+                margin: 50px auto;
+                border: 1px dashed pink;
+            }
+            #box div{
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                color: #fff;
+                font-size: 14px;
+                font-weight: bold;
+                background: #32dfce;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var oBox = document.getElementById("box"),
+                length = 20,
+                mid = length/2;
+            oBox.style.width = (length/2+1)*50 + 'px';
+            oBox.style.height = length*50 + 'px';
+            for (var i = 0; i < length; i++) {
+                var left = i<mid?i*50:(length-1-i)*50,
+                    Top = i*50;
+                oBox.innerHTML += "<div style='left: "+left+"px;top: "+Top+"px;'>"+(i+1)+"</div>";
+            }
+            /*if ( i < mid ){
+             left = i*50;
+             }else{
+             left = (length-1-i)*50;
+             }*/
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
