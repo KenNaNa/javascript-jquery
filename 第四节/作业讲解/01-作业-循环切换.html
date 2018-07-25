@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 418px;
+                margin: 50px auto;
+            }
+            #box .title{
+                overflow: hidden;
+            }
+            #box .title p {
+                float: left;
+                width: 75px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: #fff;
+                background: #000;
+                margin-right: 5px;
+                cursor: pointer;
+            }
+            #box .title p.goudan{
+                background: #f60;
+            }
+            #box .wrap{
+                position: relative;
+                width: 418px;
+                height: 194px;
+                margin-top: 20px;
+            }
+            #box .wrap .pic{
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            #box .wrap .pic img{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #box .wrap .pic img.on{
+                display: block;
+            }
+            #box .info p{
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 20px;
+                line-height: 20px;
+                font-size: 12px;
+                text-align: center;
+                color: #fff;
+                background: rgb(0,0,0);
+                background: rgba(0,0,0,.7);
+            }
+            #box .info p.infoTop{
+                top: -20px;
+            }
+            #box .info .infoBot{
+                bottom: -20px;
+            }
+            #box .btn div{
+                position: absolute;
+                top: 50%;
+                margin-top: -15px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                background: rgb(0,0,0);
+                background: rgba(0,0,0,.7);
+                color: #fff;
+                text-align: center;
+                cursor: pointer;
+            }
+            #box .btn div.left{
+                left: 0;
+            }
+            #box .btn div.right{
+                right: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div class="title">
+                <p class="goudan">循环切换</p>
+                <p>单边切换</p>
+            </div>
+            <div class="wrap">
+                <div class="pic">
+                    <img class="on" src="img/p1.png" alt="">
+                    <img src="img/p2.png" alt="">
+                    <img src="img/p3.png" alt="">
+                    <img src="img/p4.png" alt="">
+                    <img src="img/p5.png" alt="">
+                    <img src="img/p6.png" alt="">
+                </div>
+                <div class="info">
+                    <p class="infoTop"><span>1</span>/6</p>
+                    <p class="infoBot">第<span>一</span>张</p>
+                </div>
+                <div class="btn">
+                    <div class="left"> &lt; </div>
+                    <div class="right"> &gt; </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            var aTitle = document.querySelectorAll("#box .title p"),//获取两个切换按钮
+                oWrap = document.querySelector("#box .wrap"),
+                aBtn = oWrap.querySelectorAll(".btn div"),//两个按钮
+                aInfo = oWrap.querySelectorAll(".info p span"),//两个信息条
+                aImg = oWrap.querySelectorAll(".pic img"),//6个图片
+                xx = 0,//用来表示当前显示的是哪个图片
+                length = aImg.length,
+                flag = true, //我们通过flag的真假，来判断当前处于 循环切换（true） 还是 单边切换（false）
+                arr = ["一" , "二" , "三" , "四" , "五" , "六"];
+
+            aTitle[0].onclick = function () {
+                this.className = "goudan"; //给自己加名字，以显示颜色
+                aTitle[1].className = ""; //去掉另外一个的名字，以清楚颜色
+                flag = true;
+            };
+            aTitle[1].onclick = function () {
+                this.className = "goudan";
+                aTitle[0].className = "";
+                flag = false;
+            };
+
+            //右按钮被点击的时候
+            aBtn[1].onclick = function () {
+
+                //先处理前一个
+                aImg[xx].className = ""; //去掉图片的类名
+
+                xx++;//xx = xx + 1;
+
+                //当序号遇到临界值得时候，就会执行这个if
+                if ( xx > length-1 ){
+
+                    //判断当前是处于哪种切换状态
+                    if ( flag ){
+                        xx = 0;//回到初始0
+                    }else{
+                        alert("已经是最后以一个了！！");
+                        xx = length-1;
+                    }
+
+                }
+
+                //再处理当前应该显示的
+                aImg[xx].className = "on";//给当前应该显示的添加类名
+                aInfo[0].innerHTML = xx+1;//处理上面的信息条
+                aInfo[1].innerHTML = arr[xx];//处理下面的信息条*/
+            };
+
+            //左按钮的点击事件
+            aBtn[0].onclick = function () {
+                //先处理前一个
+                aImg[xx].className = ""; //去掉图片的类名
+
+                xx--;//xx = xx - 1;
+
+                //当序号遇到临界值得时候，就会执行这个if
+                if ( xx < 0 ){
+
+                    //判断当前是处于哪种切换状态
+                    if ( flag ){
+                        xx = length - 1;//回到最后
+                    }else{
+                        alert("已经是第一个了！！");
+                        xx = 0;
+                    }
+
+                }
+
+                //再处理当前应该显示的
+                aImg[xx].className = "on";//给当前应该显示的添加类名
+
+                aInfo[0].innerHTML = xx+1;//处理上面的信息条
+                aInfo[1].innerHTML = arr[xx];//处理下面的信息条
+            };
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

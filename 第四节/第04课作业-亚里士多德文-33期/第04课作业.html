@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>第04课作业-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 text-decoration:none;
+				 list-style:none;
+				 color:#000;
+			 }
+			 
+			 p{
+			    width:400px;
+				margin:0 auto;
+			}
+			 p a{
+			    display:inline-block;
+				width:100px;
+				height:40px;
+				background:#f06000;
+				text-align:center;
+				line-height:40px;
+				color:#fff;
+				cursor:pointer;
+			}
+			 .imgBox #topTip,#bottomTip{
+			    width:400px;
+				height:30px;
+				background:#606030;
+				text-align:center;
+				line-height:30px;
+				color:#fff;
+			}
+			 .imgBox{
+			    width:400px;
+				margin:0 auto;
+				position:relative;
+			}
+			 .imgBox #images{
+			    width:400px;
+				height:250px;
+				margin-top:1px;
+			}
+			 .imgBox span{
+			    display:inline-block;
+				width:80px;
+				height:30px;
+				text-align:center;
+				line-height:30px;
+				background:rgba(0,0,0,0.2);
+				color:#fff;
+				position:absolute;
+				cursor:pointer;
+			}
+			 .imgBox span#prev{
+			    left:0px;
+				top:140px;
+			}
+			 .imgBox span#next{
+			    right:0px;
+				top:140px;
+			}
+			 .imgBox span:active{
+			    background:rgba(0,0,0,0.5);
+			}
+		 </style>
+	 </head>
+<body>
+<div class="box">
+<p>
+<a href="#" id="xhqh" style="background:#000">循环切换</a>
+<a href="#" id="dbqh">单边切换</a>
+</p>
+<div class="imgBox">
+  <div id="topTip">1/6</div>
+  <div id="images">
+     <img src="images/1.png">
+  </div>
+  <div id="bottomTip">第一张图片</div>
+  <span id="prev">上一张</span>
+  <span id="next">下一张</span>
+</div>
+<div>
+<script type="text/javascript">
+    var oXhqh = document.getElementById('xhqh');
+	var oDbqh = document.getElementById('dbqh');
+	var oNext = document.getElementById('next');
+	var oPrev = document.getElementById('prev');
+	var aImag = document.getElementsByTagName('img')[0];
+	var oTopTip = document.getElementById("topTip");
+	var oBottomTip =document.getElementById('bottomTip');
+	//console.log(aImag);
+	//console.log(oTopTip);
+	//console.log(oBottomTip);
+	var index = 1;
+	var str = ['一','二','三','四','五','六'];
+
+    //点击切换按钮
+	oXhqh.onclick = function(){
+	   this.style.background = '#f06000';
+       oDbqh.style.background = '#000';
+	   if(oDbqh.style.background = '#000'){
+	     xhqh();
+	   }
+	};
+	oDbqh.onclick = function(){
+	   this.style.background = '#f06000';
+       oXhqh.style.background = '#000';
+	   if(oXhqh.style.background = '#000'){//判断单边切换按钮
+	     dbqh();  
+	   }
+	 };
+	 function dbqh(){
+	 //点击下一张按钮
+	   oNext.onclick = function(){
+	    if(index==6){
+		   //index==1;
+		   alert('这已经是最后一张图片了,不能再点击了');
+		}else{
+		  index++;
+	      aImag.src = 'images/'+index+'.png';
+          oTopTip.innerHTML = index+'/6';
+		  oBottomTip.innerHTML = '第'+str[index-1]+'张图片'
+	    };
+	   //console.log(index);
+	  };
+	   //点击上一张按钮
+	  oPrev.onclick = function(){
+	   if(index==1){
+		  //index=6;
+		  alert('这已经是第一张图片了,不能再点击了');
+	   }else{
+	      index--;
+		  aImag.src = 'images/'+index+'.png';
+		  oTopTip.innerHTML = index+'/6';
+		  oBottomTip.innerHTML = '第'+str[index-1]+'张图片'
+	   }
+	  };
+	 };
+    function xhqh(){
+	 //点击下一张按钮
+	   oNext.onclick = function(){
+	    if(index==6){
+		   index=1;
+		   aImag.src = 'images/'+index+'.png';
+           oTopTip.innerHTML = index+'/6';
+		   oBottomTip.innerHTML = '第'+str[index-1]+'张图片';
+		   //alert('这已经是最后一张图片了,不能再点击了');
+		}else{
+		  index++;
+	      aImag.src = 'images/'+index+'.png';
+          oTopTip.innerHTML = index+'/6';
+		  oBottomTip.innerHTML = '第'+str[index-1]+'张图片';
+	    };
+	   //console.log(index);
+	  };
+	   //点击上一张按钮
+	  oPrev.onclick = function(){
+	   if(index==1){
+		  index=6;
+		  aImag.src = 'images/'+index+'.png';
+          oTopTip.innerHTML = index+'/6';
+		  oBottomTip.innerHTML = '第'+str[index-1]+'张图片';
+		  //alert('这已经是第一张图片了,不能再点击了');
+	   }else{
+	      index--;
+		  aImag.src = 'images/'+index+'.png';
+		  oTopTip.innerHTML = index+'/6';
+		  oBottomTip.innerHTML = '第'+str[index-1]+'张图片';
+	   }
+	  };
+	 };
+</script>
+</body>
+</html>

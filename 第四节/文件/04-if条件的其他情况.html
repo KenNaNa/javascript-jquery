@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="潭州教育-阿飞老师">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+
+            当if的条件 运算完后不是布尔值的时候，会被强制性的转换为布尔值
+
+            ***哪些值，在转换为布尔值的时候为false
+            *   0               (number)
+            *   false           (boolean)
+            *   ""              (string)
+            *   null            (object/null)
+            *   undefined       (undefined)
+            *   NaN             (number)
+
+            在if里面，能用布尔值做条件判断的时候，不要用其他的来代替，因为强制数据类型的转换需要耗费时间
+
+            在两个值比较的时候，能用三等判断的时候，就用三等判断
+             */
+            var x = 10;
+
+            if ( -1 ){
+                alert("真！！！!!");
+            }else{
+                alert("假！！！！！");
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
