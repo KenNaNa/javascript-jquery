@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>阻止事件冒泡的产生-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+                 width: 100px;
+                 height: 100px;
+                 background: pink;
+             }
+            #box p {
+                background: #f60;
+            }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+	<p>www</p>
+</div>
+<script>
+    var oBox = document.getElementById('box');
+	var oP = oBox.querySelector('p');
+    oBox.onclick = function(){
+		
+	    alert('DIV');
+	}
+	oP.onclick = function(e){
+		//e = e||window.event;
+		//e.cancelBubble = true;//阻止事件冒泡
+		//e.stopPropagation();
+		stopBubble(e)
+	    alert('P');
+	}
+	function stopBubble(e){
+		   if(e&&e.stopPropagation){
+			  return e.stopPropagation();
+		   }else{
+			  return window.event.cancelBubble = true;
+		   }
+		   return false;
+		}
+</script>
+</body>
+</html>

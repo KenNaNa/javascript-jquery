@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>赋值与应用-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+
+	基本数据类型：
+		number
+		string
+		boolean
+		undefind
+		null
+
+	引用数据类型：
+		function
+		object
+
+     */
+	 /*var a = 10;
+	 var b = 10;
+	 alert(a===b);//true 原因是基本数据类型比较时 只比较他的值是否相等*/
+
+	 /*var a = 10;
+	   var b = a;
+	 alert(a===b);//true*/
+
+	 /*var a = 10;
+	 var b = a;
+	 b = 11;
+	 alert(a===b);//false 原因是b重新被赋值了*/
+
+	 /*var A = function(){alert(1)};
+	 var B = function(){alert(1)};
+	 alert(A===B);//false 原因是function属于引用类型的 不仅仅比较的是值得问题 还比较地址指针 这两个函数存储于不同的地方*/
+
+	 /*var A = function(){alert(1)};
+	 var B = A;
+	 alert(A===B);//true;因为这两个函数指向同一个地址指针*/
+
+	 /*var a = [1,2,3];
+	 var b = [1,2,3];
+	 alert(a===b);//false属于引用类型的 不仅仅比较的是值得问题 还比较地址指针 这两个函数存储于不同的地方*/
+
+	 /*var a = [1,2,3];
+	 var b = a;
+	 alert(a===b);//true 因为这两个函数指向同一个地址指针*/
+
+	 /*var a = [1,2,3];
+	 var b = a;//因为这两个函数指向同一个地址指针
+	 b.push(4);//b添加了一个元素 相当于a也添加了一个元素
+	 alert(a===b);//true
+	 alert(a);//[1,2,3,4]
+	 alert(b);//[1,2,3,4]*/
+
+	 var obj1 = new Object();
+	 var obj2 = new Object();
+	 alert(obj1===obj2);//false
+
+	 var obj3 = new Object();
+	 var obj4 = obj3;
+	 alert(obj3===obj4);//true
+</script>
+</body>
+</html>

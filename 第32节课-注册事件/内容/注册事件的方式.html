@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>注册事件的方式-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:100px;
+				background:pink;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+    /*
+		事件绑定：
+
+			【兼容IE9+ 及 主流浏览器】
+			.addEventListener( 事件名 ， 事件函数 ， 是否捕获 )
+				参数1：必须　string
+				参数2：必须 function
+				参数3：可缺省 boolean 默认false
+
+			【兼容IE】
+			.attachEvent( 事件名 ， 事件函数 );
+				参数1：必须 string
+				参数2：必须 function
+	*/
+	/*oBox.onclick = function(){
+	    alert('1');
+	}
+	oBox.onclick = function(){
+	    alert('2');
+	}*/
+	//结果你会发现弹出的只有2 1却不见了 原因是第一个事件被第二个事件覆盖了
+	//所以为了解决种情况
+	var oBox = document.getElementById('box');
+	/*oBox.addEventListener('click',function(e){//这种情况下视为了兼容谷歌火狐等主流浏览器
+		alert(1);
+		alert(this===e.target);//true
+	},false);
+	oBox.addEventListener('click',function(e){
+		alert(2);
+		alert(e.target);//oBox
+	},false);*/
+
+	//兼容所有IE
+	/*oBox.attachEvent('onclick',function(){
+	   alert(10);
+	})
+	oBox.attachEvent('onclick',function(){
+	   alert(1);
+	})*/
+	//兼容火狐 谷歌 IE的写法
+	function addEvent(obj,eName,eFn){
+	   if(document.addEventListener){//判断如果不存在 则为自定义属性undefined 如果存在则为null 因为还没有赋值
+		   return obj.addEventListener(eName,eFn,false);
+	   }else{
+	       return obj.attachEvent('on'+eName,eFn);
+	   }
+	}
+	addEvent(oBox,'click',function(){
+	    alert(1);
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>自定义滚动条-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }#c_box{
+			    position:relative;
+			    width:340px;
+				height:444px;
+				margin:50px;
+				background:#ccc;
+				overflow:hidden;
+			 }
+			 #d_box{
+			    position:absolute;
+				width:17px;
+				height:444px;
+				top:0px;
+				right:0px;
+				background:url('images/bg.png')
+			 }
+			 #drag{
+			   position:absolute;
+			   right:1px;
+			   top:12px;
+			   width:15px;
+			   height:30px;
+			   background:#000;
+			 }
+			 i{
+			    position:absolute;
+				display:block;
+				width:17px;
+				height:12px;
+			 }
+			 i img{
+			   display:block;
+			   width:100%;
+			   height:100%;
+			 }
+			 i.top{
+			   top:0;
+			 }
+			 i.bot{
+			   bottom:0px;
+			 }
+			 #t_box{
+			   position:absolute;
+			 }
+			 i.bot:hover,i.top:hover{
+			   background:#333;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="c_box">
+    <div id="t_box">据新华社电中航工业、国机集团等8家央企6日在京签约，在重要项目、科技转化等相关领域开展重组合作整合，这将成为央企间产业联合协作的新典范，也将开启央企间产业重组合作整合的新阶段。
+相关合作内容包括：中航工业和国机集团共同发展八万吨模锻压机项目；中航工业将房地产业务全部划转保利集团，中核建设和中国一重在高温气冷堆主设备制造领域合作，兵器工业、兵器装备、中国国新对北方公司进行股权重组。
+国务院国资委主任肖亚庆在6日参加中央企业产业合作座谈会上表示，下一步，国资委政策将加码推动央企产业重组步伐，通过业务整合、资产重组、股权合作、资产置换、无偿划转、协议转让、战略联盟、联合开发等多途径，加快央企间产业重组合作整合。
+肖亚庆同时清晰地勾勒出国企改革兼并重组“路线图”：通过产业重组，在突破关键技术、掌握核心资源，打造知名品牌等方面，实现产业重组合作“一加一大于二”的效果。肖亚庆同时透露，目前部分央企在牵头技术创新战略联盟、设立创新投资基金、构建创新孵化平台等方面，取得了重大突破。据统计，央企牵头国家及地方技术创新联盟141个，50多家中央企业共发起和参与基金179只，构建面向社会的创新孵化平台57个，创业创新平台27个。
+“此次集中签约，意味着央企重组的重心开始向资本、项目、产业板块等内部要素转移。”中国企业研究院首席研究员李锦说，未来，央企间产业重组合作整合将被更快地推进，央企内部的各种要素将被再次优化。
+   据新华社电中航工业、国机集团等8家央企6日在京签约，在重要项目、科技转化等相关领域开展重组合作整合，这将成为央企间产业联合协作的新典范，也将开启央企间产业重组合作整合的新阶段。
+相关合作内容包括：中航工业和国机集团共同发展八万吨模锻压机项目；中航工业将房地产业务全部划转保利集团，中核建设和中国一重在高温气冷堆主设备制造领域合作，兵器工业、兵器装备、中国国新对北方公司进行股权重组。
+国务院国资委主任肖亚庆在6日参加中央企业产业合作座谈会上表示，下一步，国资委政策将加码推动央企产业重组步伐，通过业务整合、资产重组、股权合作、资产置换、无偿划转、协议转让、战略联盟、联合开发等多途径，加快央企间产业重组合作整合。
+肖亚庆同时清晰地勾勒出国企改革兼并重组“路线图”：通过产业重组，在突破关键技术、掌握核心资源，打造知名品牌等方面，实现产业重组合作“一加一大于二”的效果。肖亚庆同时透露，目前部分央企在牵头技术创新战略联盟、设立创新投资基金、构建创新孵化平台等方面，取得了重大突破。据统计，央企牵头国家及地方技术创新联盟141个，50多家中央企业共发起和参与基金179只，构建面向社会的创新孵化平台57个，创业创新平台27个。
+“此次集中签约，意味着央企重组的重心开始向资本、项目、产业板块等内部要素转移。”中国企业研究院首席研究员李锦说，未来，央企间产业重组合作整合将被更快地推进，央企内部的各种要素将被再次优化。
+</div>
+   <div id="d_box">
+       <i class="top"><img src="images/scroll.png"/></i>
+       <p id="drag"></p>
+	   <i class="bot"><img src="images/scroll1.png"/></i>
+   </div>
+</div>
+<script>
+   var oDrag = document.getElementById('drag');
+   var oDBox = document.getElementById('d_box');
+   var oTBox = document.getElementById('t_box');
+   var oCBox = document.getElementById('c_box');
+   var aI = document.querySelectorAll('i');
+   document.onselectstart = function(){return false;}
+   oDrag.onmousedown = function(e){
+	   e = e||window.event;
+	   stopDefault(e); 
+	   var sY = e.clientY;
+	   var disY = sY - oDrag.offsetTop;
+	   //console.log(sW)
+	   document.onmousemove = function(e){ 
+		  e = e||window.event;
+	      stopDefault(e);
+		  var nY = e.clientY;
+		  var T = nY - disY;
+		  var v = oDBox.offsetHeight-12*2-oDrag.offsetHeight+10;
+		  if( T>=v ){T = v;}//这一步必须放在这里 不能放在后面
+		  if( T<=0 ){T = 0;}
+		  var scale = T/v;//增加的T与总高度的比例值
+		  document.title = scale;
+		  T = Math.max(T,12);//限制T的范围
+		  oDrag.style.top = T + 'px';
+		  oTBox.style.top = -(oTBox.offsetHeight-oCBox.offsetHeight)*scale + 'px';
+		  
+	   }
+	   document.onmouseup = function(){
+	      document.onmousemove = null;
+		  document.onmouseup = null;
+	   }
+	   return false;//阻止默认事件
+   }
+   /*************************************************************************************/
+   var t = oDrag.offsetTop,//获取原先的Top值
+       v = oDBox.offsetHeight-12*2-oDrag.offsetHeight+10,
+       scale,
+       x = oTBox.offsetHeight-oCBox.offsetHeight;
+   for( var i=0;i<aI.length;i++ ){
+	  (function(i){
+	      aI[i].onclick = function(){
+			switch(i){
+			  case 0 :
+				 if( t==12  ){
+					 t = 12;
+				  }else{
+					  t-=20;
+					  t = Math.max(t,12);
+					  scale = t/v;
+					  oDrag.style.top = t + 'px';
+					  oTBox.style.top = -x*scale + 'px';
+				  }
+		         if( t<=0 ){t = 0;}
+			     break;
+			  case 1 :
+				 if( t!=v ){
+					 t+=20;
+					 t = Math.min(t,v);//限制t的范围
+					 scale = t/v;
+					 oDrag.style.top = t + 'px';
+					 oTBox.style.top = -x*scale + 'px';
+				  }else{
+				     t = v;//当到达最下面是等于v
+				  }
+		         if( t>=v ){ t = v;}//判断t是否大于总高度
+			     break;
+			}
+		  }
+	  })(i)
+   }
+   /****************************************************************************************/
+   if( document.onmousewheel===null ){//表明这个浏览器不是火狐 如果是火狐的话应该是undefined因为火狐不支持onmousewheel事件 兼容IE 谷歌
+	   oCBox.onmousewheel = function(e){
+	     e = e||window.event;
+		 stopDefault(e);
+		 if( e.wheelDelta<0 ){//为正值时 往上拉   ， 为负值时 往下拉
+			 if(t<=0 ){t = 0;}
+			 if(t>=v){t = v;}
+			 t-=20;
+			 t = Math.max(t,12);
+		 }else{
+			 if(t<=0 ){t = 0;}
+			 if(t<=v){t = v;}
+			 t+=20;
+			 t = Math.min(t,v);//限制t的范围
+		 }
+		 scale = t/v;
+	     oDrag.style.top = t + 'px';
+		 oTBox.style.top = -x*scale + 'px';
+	   }
+   }else{//兼容火狐浏览器
+       oCBox.addEventListener('DOMMouseScroll',function(e){
+	     e = e||window.event;
+		 stopDefault(e);
+		 if( e.detail>0 ){
+		     if(t<=0 ){t = 0;}
+			 if(t>=v){t = v;}
+			 t-=20;
+			 t = Math.max(t,12);
+		 }else{
+		     if(t<=0 ){t = 0;}
+			 if(t<=v){t = v;}
+			 t+=20;
+			 t = Math.min(t,v);//限制t的范围
+		 }
+		 scale = t/v;
+	     oDrag.style.top = t + 'px';
+		 oTBox.style.top = -x*scale + 'px';
+	   },false)
+   }
+   /*****************************************************************************************/
+   function stopDefault(e){//封装一个阻止默认事件函数
+	   if(e.preventDefault){
+	      e.preventDefault();//兼容谷歌 火狐
+	   }else{
+	      e.returnValue = false;//兼容ＩＥ
+	   }
+   }
+</script>
+</body>
+</html>

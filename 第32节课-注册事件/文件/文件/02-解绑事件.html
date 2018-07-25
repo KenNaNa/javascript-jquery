@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        #box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+
+    /*
+        .removeEventListener( 事件名 ，事件函数 ，是否捕获 );
+    */
+
+    var oBox = document.getElementById("box");
+
+
+    oBox.addEventListener("click" , Fn1 , false);
+    oBox.addEventListener("click" , Fn2 , false);
+
+    oBox.removeEventListener("click" , Fn1 , true);
+
+
+    /*oBox.attachEvent("onclick" , Fn1);
+    oBox.attachEvent("onclick" , Fn2);
+
+    oBox.detachEvent( "onclick" , Fn2 );
+
+    */
+    function Fn1() {
+        alert( 456789 );
+    }
+    function Fn2() {
+        alert( 123456 );
+    }
+
+    function removeEvent(obj , eName , eFn , bool) {
+        if ( document.addEventListener ){
+            obj.removeEventListener( eName , eFn , !!bool);
+        }else{
+            obj.detachEvent("on"+eName , eFn);
+        }
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

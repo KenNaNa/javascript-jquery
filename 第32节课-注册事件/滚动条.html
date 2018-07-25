@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: none;
+            -moz-user-select:none;
+            list-style: none;
+        }
+        .box{
+            overflow: hidden;
+            width: 800px;
+            height: 520px;
+            margin: 50px auto;
+            position: relative;
+        }
+        .content{
+            width: 780px;
+            position: absolute;
+            background-color: #ffe9cf;
+            top:0;left: 0;
+        }
+        .scroll_out{
+            width: 20px;
+            height: 540px;
+            top: 0;
+            left: 780px;
+            position: absolute;
+            background-color: #d1d6dd;
+            opacity: 0;
+        }
+        .scroll_box{
+            width: 20px;
+            height: 480px;
+            position: absolute;
+            top: 20px;
+            left: 0;
+
+        }
+        .scroll{
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background-color: #8b9878;
+            cursor: pointer;
+        }
+        ul{
+            padding: 20px 0;
+        }
+        h3{
+            text-align: center;
+            font: 22px "Microsoft YaHei";
+            padding: 10px 0;
+            color: #4a4097;
+        }
+        p{
+            text-indent: 32px;
+            font: 16px "Microsoft YaHei";
+            padding: 10px 35px;
+            color: #42120c;
+            line-height: 22px;
+        }
+        .up-down{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+        }
+        .up{
+           top:0;left: 0;
+        }
+        .up:before{
+            content: "";
+            width: 0;
+            height: 5px;
+            border: 5px solid transparent;
+            border-bottom: 6px solid #353535;
+            position: absolute;
+            top: -2px;
+            left: 5px;
+        }
+        .down{
+            top: 500px;
+            left: 0;
+        }
+        .down:before{
+            content: "";
+            width: 0;
+            height: 5px;
+            border: 5px solid transparent;
+            border-top: 6px solid #353535;
+            position: absolute;
+            top: 7px;
+            left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="content">
+                <ul>
+                    <li>
+                        <h3>逼，真的不行了！</h3>
+                        <p>女朋友学美术的，学校安排去看超现实主义画展，回来后问她有什么感想。她说：“和纵欲过度的感觉一样。”<br>
+                        　　我问：“为什么？”<br>
+                        　　她说：“就是感觉逼真的不行了。”</p>
+                    </li>
+                    <li>
+                        <h3>来，让你靠一下！</h3>
+                        <p>五一公司旅游。坐车时旁边的女同事犯困了，头一磕一磕的。<br>
+                        　　一男同事拍拍肩膀说：“来，让你靠一下。”<br>
+                        　　女同事说：“我才不把头靠在你老婆搁腿的地方。”</p>
+                    </li>
+                    <li>
+                        <h3>胸越大穿的越少</h3>
+                        <p>一女同学在讲台上，骄傲的说：“我是平胸我自豪，我为国家省布料。”<br>
+                            　　说完，大家鼓掌。<br>
+                            　　只有角落的一个人，淡淡的道：“坑爹啊？这年头，谁都知道明明是胸越大，穿的越少。”</p>
+                    </li>
+                    <li>
+                        <h3>
+                            太看不起人了
+                        </h3>
+                        <p>
+                            网上认识了一个妹子，今天见面。<br>
+                            　　开着我的宾利带她到高档餐厅吃饭。<br>
+                            　　吃饭时她老是用脚在桌子下面蹭我大腿。cao，这妹子太不讲究卫生了吧，你是把脚汗在我阿玛尼的裤子上擦吗？<br>
+                            　　过一会她又用手沾咖啡在桌子上写：KFC！<br>
+                            　　这咖啡还能喝吗？另外，我这么有钱，你暗示我去吃肯德基？太看不起人了！果断拍屁股走人！
+                        </p>
+                    </li>
+                    <li>
+                        <h3>你就给我吹吧！</h3>
+                        <p>
+                            　老婆在手机上看上了一款兰蔻小黑瓶眼霜。<br>
+                            　我一看价格600多，乖乖那么一小瓶这么贵，不同意买<br>
+                            　老婆就开始讲产品多么多么好啦，大品牌啦，去眼袋了，哪个国际大咖同款啦……<br>
+                            　　我说：你就给我吹吧！<br>
+                            　　老婆立马蹲了下来……<br>
+                            　　最后我被吹的天花乱坠，缴械投降……立马付钱！
+                        </p>
+                    </li>
+                    <li>
+                        <h3>心更黑怎么了</h3>
+                        <p>
+                            本人长得有点黑，某天一个女同事对我说：“你越来越黑了。”<br>
+                            　　我顺口说：“哪里黑？更黑的地方你还没见过！”<br>
+                            　　女同事说：“流氓！”<br>
+                            　　我只是想说我的心更黑怎么了？
+                        </p>
+                    </li>
+                    <li>
+                        <h3>
+                            一定能早日还这个女孩一个公道
+                        </h3>
+                        <p>
+                            大家好，我是一名律师，最近有个女孩找到我寻求帮助。这个女孩叫做波多野结衣，
+                            她在表述中提到：起初在公司就总被男同事欺负，而她的善良却让她一直在忍耐，疑犯却得寸进尺，
+                            后来在公交车、洗手间甚至是在家都会被强迫做不可描述的事。听完她的生活遭遇，我深表同情........
+                            我带她去打官司，却因为证据不足最后失败告终。
+                        </p>
+                        <p>
+                            听说她被强迫时有人在录像并放在网上流传，如果谁有她被强迫的证据请交给我（最好是无码的）
+                            没有的大家也都行动起来一起在网上搜寻并留言给我。我相信在大家的共同努力下，一定能早日还这个女孩一个公道。
+                            希望我的真诚能换来您的佳音，谢谢！
+                        </p>
+                    </li>
+                    <li>
+                        <h3>你开车送我进去吧！</h3>
+                        <p>
+                            加班到很晚，开车送美女同事回家，在一个老旧的小区门口我把车停住：“就送你到这儿吧，我不进去了。”<br>
+                            　　美女同事说：“你开车送我进去吧，还能上去坐坐。”<br>
+                            　　我果断地拒绝了，望着她远去的背影，我满怀忧桑滴想：“当初要是好好练科目二，现在也不用担心车倒不出来了！”
+                        </p>
+                    </li>
+                    <li>
+                        <h3>
+                            现在的女孩子分两种
+                        </h3>
+                        <p>
+                            现在的女孩子分两种：<br>
+                            　　一种是你给她根蜡烛，她觉得还差一个蛋糕，另一种是她觉得还差一根皮鞭。
+                        </p>
+                    </li>
+                    <li>
+                        <h3>我试过在床上</h3>
+                        <p>
+                            我试过在床上，试过在椅子上，试过在沙发上，试过在马桶上，也试过在厨房里阳台上，甚至试过在走廊里、楼道里……但是又能怎样？<br>
+                        　　根本连不上隔壁的wifi，我要不要去问问密码……
+                        </p>
+                    </li>
+                    <li>
+                        <h3>穷跟你走路一瘸一拐的有关系吗</h3>
+                        <p>
+                            闺蜜前段交了个男朋友，整天腻歪在一起。<br>
+                            　　今天一起逛街，看见她走路腿一瘸一拐的。<br>
+                            　　问她怎么了？她扭扭捏捏的，过了一会才回答：“还不是因为男票。”<br>
+                            　　我不解：“他怎么了？”<br>
+                            　　闺蜜故作神秘的该：“一个字，穷。”<br>
+                            　　我继续追问：“他穷跟你走路一瘸一拐的有关系吗？”
+                        </p>
+                    </li>
+                    <li>
+                        <h3>那你把链接发给我吧</h3>
+                        <p>
+                            刚跟男友谈恋爱的时候，男友十分地不解风情，出去旅游的时候还要开两间房。<br>
+                            　　晚上我到他房间问他，我新买了一套内衣很好看，你要看看么？<br>
+                            　　他笑了笑，温柔地点了点头，“那你把链接发给我吧。”
+                        </p>
+                    </li>
+                    <li>
+                        <h3>
+                            你的内裤
+                        </h3>
+                    <p>
+                        前两天去逛商场，买了条内裤，买完后就顺道去理了个发，理完后就直接往家走。<br>
+                        　　这时候理发店的老板娘追了出来，在后边大喊：“帅哥，你的内裤！”<br>
+                        　　结果街上的所有人都用你懂的眼光看着她。
+                    </p>
+                    </li>
+                    <li>
+                        <h3>
+                            你这种专门艳遇人妻的别人怎么称呼你
+                        </h3>
+                        <p>
+                            一天开玩笑跟老王说：“王哥，段子里挂车牌开车的被称作老司机。你这种专门艳遇人妻的别人怎么称呼你？”<br>
+                            　　老王嘿嘿一笑意味深长的对我说：“我这种应该属于…代驾！”
+                        </p>
+                    </li>
+                    <li>
+                        <h3>
+                            我到底哪里不好？
+                        </h3>
+                        <p>
+                            “为什么分手？我到底哪里不好？”<br>
+                            　　“你到不了底。”
+                        </p>
+                    </li>
+                    <li>
+                        <h3>老王你也被绿了哇</h3>
+                        <p>
+                            老王跟女邻居偷情，风云之后，女邻居满足的说：“王哥，你好厉害啊。”<br>
+                            　　老王：“那当然了”
+                            　　女邻居：“昨天你老婆给我说我还不信，现在我信了”<br>
+                            　　老王：“她咋说的？”<br>
+                            　　女邻居：“她说你是咱们小区最厉害的男人。”<br>
+                            　　老王：……
+                        </p>
+                    </li>
+                    <li>
+                        <h3>
+                            让你做女人试试
+                        </h3>
+                        <p>
+                            　青年找大师开导说：“做个男人太难了，我活的很憋屈，对生活失去信心了。”<br>
+                            　　大师听完脱下了裤子。<br>
+                            　　青年若有所思的说：“大师是让我做人要像它一样能屈能伸？”<br>
+                            　　大师说：“口吧，让你做女人试试。”
+                        </p>
+                    </li>
+                    <li>
+                        <h3>
+                            今晚你是干不完的
+                        </h3>
+                        <p>
+                            单位新来一个小姑娘，挺勤快。<br>
+                            　　刚来业务还不熟，常加班。单位领导是个中年男人，长相略猥琐。<br>
+                            　　有次已经挺晚了，办公室就剩他俩。<br>
+                            　　领导关心了一下：“要不先这样吧，今晚你是干不完的，呵呵”<br>
+                            　　小姑娘惊恐的回过头，脸都吓白了：“面……面试的时候没说要给干部玩呀。”<br>
+                        </p>
+                    </li>
+                    <li>
+                        <h3>
+                            陪女友去做胃镜
+                        </h3>
+                        <p>
+                            今天陪女友去做胃镜，管子才入口十五公分女友就恶心想吐，我好担心，这婚后日子可咋过啊！
+                        </p>
+                    </li>
+                    <li>
+                        <h3>我觉得你要绿了</h3>
+                        <p>
+                            　晚上，老婆在洗澡，老公拿着我的手机喊道：“老婆，你微信有一个叫好姐妹的跟你说话。”<br>
+                            　　老婆淡定的说道：“帮我回复一下，洗澡呢！”<br>
+                            　　然后老公又喊道：“她说她想过来一起洗。”<br>
+                            　　老婆：“你跟她说我老公在家，不方便，明天我老公出差再过来吧。”<br>
+                            　　老公感慨道：“真有意思，我在家，你俩一起洗澡有啥不方便？还怕我偷看不成？？？
+                        </p>
+                    </li>
+                </ul>
+        </div>
+        <div class="scroll_out">
+            <div class="up-down up"></div><div class="up-down down"></div>
+            <div class="scroll_box" >
+                <div class="scroll">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    (function(){
+        var box = /*document.getElementsByClassName("box")[0]||*/getClassName(document,"box")[0],
+            content = /*document.getElementsByClassName("content")[0]||*/getClassName(document,"content")[0],
+            scr_ = /*document.getElementsByClassName("scroll_box")[0]||*/getClassName(document,"scroll_box")[0],
+            scroll = /*document.getElementsByClassName("scroll")[0]||*/getClassName(document,"scroll")[0],
+            sc_out =/* document.getElementsByClassName("scroll_out")[0]||*/getClassName(document,"scroll_out")[0],
+            sh_ = scr_.offsetHeight,
+            ch = content.offsetHeight,
+            on_off = true,
+            str = "all 0.3s",
+            mouse_top = 0,
+            sh;
+        (function getHeight(){
+            scroll.style.height = box.offsetHeight*sh_/ch+"px";
+            sh = scroll.offsetHeight;
+        })();
+        /*自动计算scroll的高度*/
+        box.onmouseenter = function(){
+            sc_out.style.opacity = 1;
+            sc_out.style.transition = str;
+            this.style.transition = str
+        };
+        box.onmouseleave = function(){
+            if(on_off){
+                sc_out.style.opacity = 0;
+                sc_out.style.transition = str;
+                this.style.transition = str
+            }/*判断是否鼠标移到外面去还在滚动*/
+        };
+        document.onselectstart = function(e){
+            return false
+        };
+        scroll.onmousedown = function(e){
+            e = e||window.event;
+            var scy = e.clientY,top = scroll.offsetTop;
+            document.onmousemove = function(e){
+                on_off = false;
+                e = e||window.event;
+                var cy = e.clientY - scy + top;
+                (cy < 0) && (cy = 0);
+                (cy > sh_- sh) && (cy = sh_- sh);
+                mouse_top = cy;
+                scroll.style.top = cy + "px";
+                move(cy);
+            };
+            document.onmouseup = function () {
+               document.onmousemove = null;
+                on_off = true
+            };
+        };
+        addEvent(box,"mousewheel",function(){
+            function mouse(e){
+                e=e||window.event||arguments.callee.caller.arguments[0];/*ff下需要callee*/
+                var attr = true;
+                attr = (e.wheelDelta<0?attr:!attr)||( e.detail>0?attr:!attr);
+                if(attr){
+                    mouse_top +=10;
+                    (mouse_top>scr_.offsetHeight-scroll.offsetHeight)&&(mouse_top = scr_.offsetHeight-scroll.offsetHeight);
+                }else {
+                    mouse_top -=10;
+                    (mouse_top<0)&&(mouse_top=0);
+                }
+                scroll.style.top = mouse_top+"px";
+                move(mouse_top);
+            }
+            return mouse()
+        });
+        /*第1种写法*/
+        /*addEvent(box,"mousewheel",mouse);
+        function mouse(e){
+            e=e||window.event;
+            var attr = true;
+            attr = (e.wheelDelta<0?attr:!attr)||( e.detail>0?attr:!attr);
+            if(attr){
+                mouse_top +=10;
+                (mouse_top>scr_.offsetHeight-scroll.offsetHeight)&&(mouse_top = scr_.offsetHeight-scroll.offsetHeight);
+            }else {
+                mouse_top -=10;
+                (mouse_top<0)&&(mouse_top=0);
+            }
+            scroll.style.top = mouse_top+"px";
+            move(mouse_top);
+        }*/
+        /*第2种写法*/
+        function addEvent(obj,eName,fn){
+            if((typeof document.onmousewheel)!="object" && eName ==="mousewheel"){
+                eName = "DOMMouseScroll";
+            } /*document.onmousewheel谷歌下为object值为null，ff下为undefined*/
+            function fn_(e){
+                e = e||window.event;
+                if(fn.call(this,e)===false){
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            document.addEventListener? obj.addEventListener(eName,fn_,false): obj.attachEvent("on"+eName,fn_)
+        }
+        function move(m){
+            content.style.top = -m*(content.offsetHeight-box.offsetHeight)/(scr_.offsetHeight-sh)+"px"
+        }/*自动计算内容区的滚动高度*/
+        function getClassName(oParent,className){
+            var all = oParent.getElementsByTagName("*"),
+                i= 0,length,v= 0,result = [];
+            var re = new RegExp('\\b' + className + '\\b', 'i');
+            //匹配单词边界
+            for(length=all.length;i<length;i++ ){
+                if(re.test(all[i].className)){
+                    result[v] = all[i];
+                    v ++;
+                    //模拟push
+                }
+            }
+            return result ;
+        }
+    })()
+</script>
+</html>

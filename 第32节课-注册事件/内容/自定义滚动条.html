@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<style>
+    *{margin:0; padding:0; list-style:none;}
+    body{
+        height:2000px;
+    }
+    .box1{
+        width: 320px;
+        height: 400px;
+        background: #ccc;
+        overflow: hidden;
+        overflow-y: scroll;
+        margin: 20px 0 0 100px;
+    }
+    .con1{
+        font-size: 18px;
+    }
+    #out{
+        width: 320px;
+        height: 400px;
+        background: url(bg1.png) 0 0 repeat-x;
+        position: absolute;
+        left: 500px;
+        top: 20px;
+        overflow: hidden;
+    }
+    #con{
+        width: 280px;
+        padding: 5px;
+        font-size: 18px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+    #box{
+        width: 30px;
+        height: 400px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    #drag{
+        width: 30px;
+        height: 53px;
+        background: url(icon2.png) 0 0 no-repeat;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+</style>
+</head>
+<body>
+<div class="box1">
+    <p class="con1">据新华社电中航工业、国机集团等8家央企6日在京签约，在重要项目、科技转化等相关领域开展重组合作整合，这将成为央企间产业联合协作的新典范，也将开启央企间产业重组合作整合的新阶段。
+相关合作内容包括：中航工业和国机集团共同发展八万吨模锻压机项目；中航工业将房地产业务全部划转保利集团，中核建设和中国一重在高温气冷堆主设备制造领域合作，兵器工业、兵器装备、中国国新对北方公司进行股权重组。
+国务院国资委主任肖亚庆在6日参加中央企业产业合作座谈会上表示，下一步，国资委政策将加码推动央企产业重组步伐，通过业务整合、资产重组、股权合作、资产置换、无偿划转、协议转让、战略联盟、联合开发等多途径，加快央企间产业重组合作整合。
+肖亚庆同时清晰地勾勒出国企改革兼并重组“路线图”：通过产业重组，在突破关键技术、掌握核心资源，打造知名品牌等方面，实现产业重组合作“一加一大于二”的效果。肖亚庆同时透露，目前部分央企在牵头技术创新战略联盟、设立创新投资基金、构建创新孵化平台等方面，取得了重大突破。据统计，央企牵头国家及地方技术创新联盟141个，50多家中央企业共发起和参与基金179只，构建面向社会的创新孵化平台57个，创业创新平台27个。
+“此次集中签约，意味着央企重组的重心开始向资本、项目、产业板块等内部要素转移。”中国企业研究院首席研究员李锦说，未来，央企间产业重组合作整合将被更快地推进，央企内部的各种要素将被再次优化。</p>
+</div>
+
+<div id="out">
+    <div id="con">据新华社电中航工业、国机集团等8家央企6日在京签约，在重要项目、科技转化等相关领域开展重组合作整合，这将成为央企间产业联合协作的新典范，也将开启央企间产业重组合作整合的新阶段。
+相关合作内容包括：中航工业和国机集团共同发展八万吨模锻压机项目；中航工业将房地产业务全部划转保利集团，中核建设和中国一重在高温气冷堆主设备制造领域合作，兵器工业、兵器装备、中国国新对北方公司进行股权重组。
+国务院国资委主任肖亚庆在6日参加中央企业产业合作座谈会上表示，下一步，国资委政策将加码推动央企产业重组步伐，通过业务整合、资产重组、股权合作、资产置换、无偿划转、协议转让、战略联盟、联合开发等多途径，加快央企间产业重组合作整合。
+肖亚庆同时清晰地勾勒出国企改革兼并重组“路线图”：通过产业重组，在突破关键技术、掌握核心资源，打造知名品牌等方面，实现产业重组合作“一加一大于二”的效果。肖亚庆同时透露，目前部分央企在牵头技术创新战略联盟、设立创新投资基金、构建创新孵化平台等方面，取得了重大突破。据统计，央企牵头国家及地方技术创新联盟141个，50多家中央企业共发起和参与基金179只，构建面向社会的创新孵化平台57个，创业创新平台27个。
+“此次集中签约，意味着央企重组的重心开始向资本、项目、产业板块等内部要素转移。”中国企业研究院首席研究员李锦说，未来，央企间产业重组合作整合将被更快地推进，央企内部的各种要素将被再次优化。</div>
+    <div id="box">
+        <p id="drag"></p>
+    </div>
+</div>
+<script>
+    var out=document.getElementById('out');
+    var con=document.getElementById('con');
+    var box=document.getElementById('box');
+    var drag=document.getElementById('drag');
+    drag.onmousedown=function (ev){
+        var e=ev||window.event;
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else{
+            e.returnValue=false;
+        };
+        var d_bkt=e.clientY-drag.offsetTop;
+        document.onmousemove=function (ev){
+            var e=ev||window.event;
+            var top=e.clientY-d_bkt;
+            if (top<=0) {
+                top=0;
+            };
+            if (top>=box.clientHeight-drag.clientHeight) {
+                top=box.clientHeight-drag.clientHeight;
+            };
+            var scale=top/(box.clientHeight-drag.clientHeight);
+            var cony=scale*(con.clientHeight-out.clientHeight);
+            drag.style.top=top+'px';
+            con.style.top=-cony+'px';
+            console.log(top);
+        }
+        document.onmouseup=function (){
+            document.onmousemove=null;
+        }
+    }
+    var str=window.navigator.userAgent.toLowerCase();
+    if (str.indexOf('firefox')!=-1) {//火狐浏览器
+        out.addEventListener('DOMMouseScroll',function (e){
+            e.preventDefault();//阻止窗口默认的滚动事件
+        if (e.detail<0) {
+            var t=con.offsetTop+20;
+            if (t>=0) {
+                t=0;
+            };
+            if (t<=-(con.clientHeight-out.clientHeight)) {
+                t=-(con.clientHeight-out.clientHeight);
+            };
+            var scale=t/(con.clientHeight-out.clientHeight);
+            var top=scale*(box.clientHeight-drag.clientHeight);
+            con.style.top=t+'px';
+            drag.style.top=-top+'px';
+        };
+        if (e.detail>0) {
+            var t=con.offsetTop-20;
+            if (t>=0) {
+                t=0;
+            };
+            if (t<=-(con.clientHeight-out.clientHeight)) {
+                t=-(con.clientHeight-out.clientHeight);
+            };
+            var scale=t/(con.clientHeight-out.clientHeight);
+            var top=scale*(box.clientHeight-drag.clientHeight);
+            con.style.top=t+'px';
+            drag.style.top=-top+'px';
+        };
+        },false);
+    } else{//非火狐浏览器
+        out.onmousewheel=function (ev){
+            var e=ev||window.event;
+            if (e.preventDefault) {
+                e.preventDefault();
+            } else{
+                e.returnValue=false;
+            };
+            if (e.wheelDelta>0) {
+            var t=con.offsetTop+20;
+            if (t>=0) {
+                t=0;
+            };
+            if (t<=-(con.clientHeight-out.clientHeight)) {
+                t=-(con.clientHeight-out.clientHeight);
+            };
+            var scale=t/(con.clientHeight-out.clientHeight);
+            var top=scale*(box.clientHeight-drag.clientHeight);
+            con.style.top=t+'px';
+            drag.style.top=-top+'px';
+        };
+        if (e.wheelDelta<0) {
+            var t=con.offsetTop-20;
+            if (t>=0) {
+                t=0;
+            };
+            if (t<=-(con.clientHeight-out.clientHeight)) {
+                t=-(con.clientHeight-out.clientHeight);
+            };
+            var scale=t/(con.clientHeight-out.clientHeight);
+            var top=scale*(box.clientHeight-drag.clientHeight);
+            con.style.top=t+'px';
+            drag.style.top=-top+'px';
+        };
+        }
+    };
+</script>
+</body>
+</html>

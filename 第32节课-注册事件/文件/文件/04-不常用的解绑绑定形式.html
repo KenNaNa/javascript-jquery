@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 100px;
+                height: 100px;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            var oBox = document.getElementById("box");
+
+            addEvent( oBox , "click" , function () {
+                alert( 1 );
+            } );
+            addEvent( oBox , "click" , function () {
+                alert( 2 );
+            } );
+
+            removeEvent( oBox , "click" , function () {
+                alert( 2 );
+            } );
+
+            function addEvent( obj , eName , eFn ){
+                //先存起来
+                obj["fly_"+eName]?obj["fly_"+eName].push(eFn):obj["fly_"+eName]=[eFn];
+
+                if ( document.addEventListener ){
+                    obj.addEventListener(eName , eFn , false);
+                }else{
+                    obj.attachEvent("on"+eName , eFn);
+                }
+            }
+
+            function removeEvent(obj , eName , eFn) {
+                //遍历看一下存起来的里面有没有这个，有就用这个
+                for (var i = 0; i < obj["fly_"+eName].length; i++) {
+                    if ( eFn.toString() === obj["fly_"+eName][i].toString() ){
+                        eFn = obj["fly_"+eName][i];
+                        obj["fly_"+eName].splice(i,1);
+                        break;
+                    }
+                }
+                if ( document.addEventListener ){
+                    obj.removeEventListener( eName , eFn , false);
+                }else{
+                    obj.detachEvent("on"+eName , eFn);
+                }
+            }
+
+
+
+
+            /*var A = function () {
+                alert( 1 );
+            };
+
+            var B = function () {
+                alert( 1 );
+            };
+
+            alert( A.toString() === B.toString() );*/
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

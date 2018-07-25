@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        #box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+
+    /*
+
+        基本数据类型：
+            number
+            string
+            boolean
+            undefind
+            null
+
+        引用数据类型：
+            function
+            object
+
+     */
+
+    //var a = 10;
+    //var b = 10;
+
+    //alert( a===b ); //基础数据类型在做比较的时候，只会比较值等还是不等
+
+
+    //var a = [1,2,3];
+    //var b = [1,2,3];
+
+    //alert( a===b ); //引用数据类型在做比较的时候，不是值，是引用的地址
+
+    //var a = 10;
+    //var b = a; //基础数据类型赋值的时候，就是单纯的讲值交给另外的变量
+
+    /*var a = [1,7,4];
+    var b = a; //引用类型的赋值，并不存在值的赋予，其实是将b的指针也只想a的指针
+    b.push(5); //b自身的变化就相当于a的变化
+    console.log( b ); // 1 7 4 5
+    console.log( a ); // 1 7 4 5*/
+
+    var a = [1,2,3];
+    var b = a;
+    b = [4,5,6,7];
+
+    console.log( b );
+    console.log( a );
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

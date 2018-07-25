@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box">dddddddd</div>
+        <script>
+
+            /*
+
+             阻止默认事件：
+                在事件触发的源头，执行：
+                e.preventDefault();
+                return false;
+             */
+
+            /*document.oncontextmenu = function (e) {
+                e = e || window.event;
+                e.preventDefault();
+                console.log( 1 );
+            };*/
+
+            var oBox = document.getElementById("box");
+            /*document.onselectstart = function(){
+                return false;
+            };*/
+            document.onselectstart = function(e){
+                e.preventDefault();
+            };
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

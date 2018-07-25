@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+
+        </style>
+    </head>
+    <body style="height: 2000px">
+        <div id="box"></div>
+        <script>
+
+            for (var i = 0; i < 200; i++) {
+                document.write("" + i + i + i + i + i + i + i + "<br>");
+            }
+
+
+
+            /*document.addEventListener("mousewheel" , function (e) {
+                console.log(e.wheelDelta);
+                //往身边拉 是负值
+                //往前面推 是正值
+            } , false);
+
+            //兼容火狐
+            document.addEventListener("DOMMouseScroll" , function () {
+                console.log( e.detail );
+             //往身边拉 是正值
+             //往前面推 是负值
+            } , false);*/
+
+            //console.log( document.onmousewheel );
+
+            mousewheel( document , function (e,d) {
+                if ( d < 0 ){
+                    console.log( "正在往身边拉！" );
+                }else{
+                    console.log( "正在往外面推！" );
+                }
+                return false;
+            } );
+
+            function mousewheel(obj , Fn) {
+                function eFn(e) {
+                    e = e||window.event;
+                    if ( Fn.call(this,e,e.wheelDelta/120||-e.detail/3) === false )
+                        e.preventDefault();
+                }
+                var eName = document.onmousewheel===null?"mousewheel":"DOMMouseScroll";
+                document.addEventListener?obj.addEventListener(eName,eFn,false):obj.attachEvent("onmousewheel",eFn);
+				console.log(this)
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 100px;
+                height: 100px;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+                事件绑定：
+
+                    【兼容IE9+ 及 主流浏览器】
+                    .addEventListener( 事件名 ， 事件函数 ， 是否捕获 )
+                        参数1：必须　string
+                        参数2：必须 function
+                        参数3：可缺省 boolean 默认false
+
+                    【兼容IE】
+                    .attachEvent( 事件名 ， 事件函数 );
+                        参数1：必须 string
+                        参数2：必须 function
+            */
+
+            var oBox = document.getElementById("box");
+
+            /*
+            oBox.onclick = function () {
+                alert( "狗蛋！" );
+            };
+
+            oBox.onclick = function () {
+                alert("阿飞");
+            };
+            */
+
+            /*oBox.addEventListener( "click" , function () {
+                alert("狗蛋！");
+            });
+            oBox.addEventListener( "click" , function () {
+                alert("二狗！");
+            });*/
+
+            /*oBox.attachEvent( 'onclick' , function(){
+                alert( "testIE" );
+            } );
+            oBox.attachEvent( 'onclick' , function(){
+                alert( "666" );
+            } );*/
+
+            /*addEvent( oBox , "mouseenter" , function () {
+                console.log( 123 );
+            } );
+            addEvent( oBox , "mouseenter" , function () {
+                console.log( 456 );
+            } );*/
+            addEvent( oBox , "click" , function () {
+                alert( 'click123' );
+            } );
+            addEvent( oBox , "click" , function () {
+                alert( 'click456' );
+            } );
+
+            function addEvent( obj , eName , eFn ) {
+                if ( document.addEventListener ){
+                    obj.addEventListener(eName , eFn , false);
+                }else{
+                    obj.attachEvent( "on"+eName , eFn );
+                }
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             #box{
+                 width: 100px;
+                 height: 100px;
+                 background: pink;
+             }
+            #box p {
+                background: #f60;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <p>www</p>
+        </div>
+        <script>
+
+            /*
+                阻止默认事件
+             */
+            var oBox = document.getElementById("box");
+            var oP = oBox.children[0];
+
+            /*oP.addEventListener("click" , function (e) {
+                e = e || window.event;
+                e.cancelBubble = true;
+                e.stopPropagation();
+                alert( "p" );
+            });
+            oBox.addEventListener("click" , function () {
+                alert( "DIV" );
+            });*/
+
+            oP.onclick = function (e) {
+				stopBubble(e)
+                alert("P");
+            };
+            oBox.onclick = function () {
+                alert("DIV");
+            }
+		function stopBubble(e){
+		   if(e&&e.stopPropagation){
+			  return e.stopPropagation();
+		   }else{
+			  return window.event.cancelBubble = true;
+		   }
+		   return false;
+		}
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+布尔值
+值                转换成的布尔值
+undefined               false
+null                    false
+布尔值                  与输入相同不用转化
+数字                    0 NaN会被 转化false 其他数字转化为true
+字符串                  ''转化为false 其他字符串为true
+对象                    总是true
+
+
+手动转化为布尔值
+Boolean(value)
+value?true:false
+!!value
+
+建议使用Boolean();
+
+真假值                          
+假值  undefined null false 0 NaN
+真值  包括所有对象 甚至是空对象 空数组 以及new Boolean(false)都是真值
+因为undefined null为假 你可以用if(x){}检测x是否有值
+
+
+二元运算符  与&& 或||
+1 只保留
+总是返回其中的一个运算数 且不会改变他的值
+'abc'||123 输出'abc'
+false||123 输出123
+2 短路                                                          
+
+逻辑与&&
+如果第一个运算数能被转化为false 则返回这个值 否则返回第二个值
+true&&false 返回false
+false&&'abc' 返回false
+''&&'abc' 返回''
+'abc'&&'def'返回def  判断第一个为真时 返回第二个值
+
+逻辑与||
+如果第一个运算数能被转化为true 则返回这个值 否则返回第二个值
+true||false 返回true
+true||'abs' 返回true
+'abs'||true 返回'abs'
+''||'def'  返回'def'
+
+
+模式 提供一个默认值
+theValue || defaultValue
+参数默认值 函数saveText()的参数Text可选的并且当被忽略时应该是一个空字符串
+function saveText(text){
+   text = text || '';
+}
+
+
+检测undefinef null
+以下语句用于保证x既不是undefined也不是null
+if(x!=null){}
+if(x!==undefined&&x!==null)
+
+undefined 表示没有值 访问未初始化的变量 缺失的参数 以及缺失的属性则会返回这个空值
+null没有对象
+
+undefined出现的场景
+1 未初始化的变量 var a;
+2 缺失的参数是undefined function(x){return x}
+3 如果访问一个不存在的属性 会返回undefined
+var obj = {};
+4 如果函数中没有显示的返回任何值 函数会隐式的返回undefined
+
+null出现的场景
+1 null 是原型链最顶端的元素
+Object.getPrototypeOf(Object.prototype) >>null
+
+
+检测 undefined null
+通过严格检查
+if(x===null)
+if(x===undefined)
+
+检测undefined与null
+if(x!==undefined&&x!==null)
+if(x===undefined||x===null)
+

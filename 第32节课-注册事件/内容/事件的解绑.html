@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>事件的解绑-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:100px;
+				background:pink;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+   /*
+        .removeEventListener( 事件名 ，事件函数 ，是否捕获 );
+    */
+   var oBox = document.getElementById('box');
+   /*oBox.addEventListener('click',function(){
+       alert(1);
+   },false)
+   oBox.removeEventListener('click',function(){//你会发现解绑不了
+	   //为什么呢 这两个函数虽然看起来是一样的 但是实际上是有本质区别的 问题是他们
+	   //存储地方不一样了 所以我们一般会把函数单独写成有名函数 再调用
+       alert(1)
+   },false)*/
+   /*oBox.addEventListener('click',fn,false);//但是只兼容主流浏览器
+   oBox.removeEventListener('click',fn,false);//你看这次就不会解除不了了
+   function fn(){
+       alert(1);
+   }*/
+   /*oBox.attachEvent('onclick',fn);//但是只兼容所有的IE
+   oBox.detachEvent('onclick',fn);//在IE也可以解除了
+   function fn(){
+       alert(1);
+   }*/
+   //oBox.addEventListener('click',fn,false);
+   oBox.attachEvent('onclick',fn);
+   //兼容所有浏览器的写法
+   function removeEvent(obj,eName,eFn){
+       if(document.removeEventListener){
+	      return obj.removeEventListener(eName,eFn,false);
+	   }else{
+	      return obj.detachEvent('on'+eName,eFn);
+	   }
+   }
+   removeEvent(oBox,'click',fn);
+   function fn(){
+       alert(1);
+   }
+</script>
+</body>
+</html>

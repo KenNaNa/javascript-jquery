@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>滚轮事件-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    for (var i = 0; i < 200; i++) {
+        document.write("" + i + i + i + i + i + i + i + "<br>");
+    }
+	/*document.addEventListener('mousewheel',function(e){//兼容谷歌 IE
+	    console.log(e.wheelDelta);//为正值时 往上拉   ， 为负值时 往下拉
+	},false);*/
+
+	/*document.addEventListener('DOMMouseScroll',function(e){
+	   console.log(e.detail);//往上拉时 为负值   ， 往下拉 为正值
+	})*/
+	//console.log(document.onmousewheel);//null因为onmousewheel在谷歌的document存在只是还没赋值
+	//所以输出null 如果输出undefined的话指的是浏览器的document不存在
+	//console.log(document.DOMMouseScroll);//undefined 在火狐 在谷歌
+	//var eName = document.onmousewheel===null?'mousewheel':'DOMMouseScroll';
+	//console.log(eName);//mousewheel
+    function mousewheel(obj , Fn) {
+		function eFn(e) {
+			e = e||window.event;
+			if ( Fn.call(this,e,e.wheelDelta/120||-e.detail/3) === false )
+				e.preventDefault();
+		}
+		var eName = document.onmousewheel===null?"mousewheel":"DOMMouseScroll";
+		document.addEventListener?obj.addEventListener(eName,eFn,false):obj.attachEvent("onmousewheel",eFn);
+		console.log(this)
+	} 
+	mousewheel( document , function (e,d) {
+		if ( d < 0 ){
+			console.log( "正在往身边拉！" );
+		}else{
+			console.log( "正在往外面推！" );
+		}
+		return false;
+	} );
+</script> 
+</body>
+</html>
