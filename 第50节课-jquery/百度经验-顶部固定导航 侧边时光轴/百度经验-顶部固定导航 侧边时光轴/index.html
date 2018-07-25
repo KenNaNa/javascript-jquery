@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #main{
+                width: 1100px;
+                margin: 0 auto;
+            }
+            #step{
+                width: 680px;
+            }
+            #step h3{
+                font-size: 24px;
+                font-weight: normal;
+                line-height: 40px;
+                border-bottom: 1px solid #bbb;
+            }
+            #step ol{
+                margin-top: 35px;
+            }
+            #step ol li{
+                position: relative;
+                padding-left: 30px;
+                padding-bottom: 50px;
+                margin-left: 20px;
+                border-left: 1px dashed #bbb;
+            }
+            #step ol li p{
+                line-height: 25px;
+                margin-bottom: 20px;
+            }
+            #step ol li span{
+                position: absolute;
+                top: 0;
+                left: -16px;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: #5bc648;
+                line-height: 32px;
+                text-align: center;
+                color: #fff;
+            }
+            #footer{
+                width: 100%;
+                height: 1000px;
+                background: pink;
+            }
+            #fixed{
+                display: none;
+                position: fixed;
+                z-index:999;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 40px;
+                background: url("img/top.png") center top;
+            }
+            #step .side{
+                display: none;
+                overflow: hidden;
+                position: fixed;
+                top: 40px;
+                width: 32px;
+                height: 0;
+                margin-left: 5px;
+                background: #fff;
+            }
+            #step .side li{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                line-height: 32px;
+                text-align: center;
+                color: #fff;
+                background: #d0d0d0;
+                cursor: pointer;
+            }
+            #step .side li.on,#step .side li:hover{
+                background: #5bc648;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="fixed"></div>
+        <div id="main">
+            <div id="header">
+                <img src="img/header.png">
+            </div>
+            <div id="step">
+                <h3>方法/步骤</h3>
+                <ol>
+                    <li>
+                        <p>试用后油法，将面团揉成团，面包机30分钟即可！牛奶要用凉的，因为面包机揉面温度较高！</p>
+                        <img src="img/1.jpg">
+                        <span>1</span>
+                    </li>
+                    <li>
+                        <p>揉好的面团，用手抻开可以抻成薄一些的膜，有一定的扩展性！</p>
+                        <img src="img/2.jpg">
+                        <span>2</span>
+                    </li>
+                    <li>
+                        <p>然后揉成团，放入面包机中就行第一次发酵，发酵约1小时，是原面团的2倍大！用手按下去无回缩就证明发酵好了！</p>
+                        <img src="img/3.jpg">
+                        <span>3</span>
+                    </li>
+                    <li>
+                        <p>发酵好的面团排气揉光滑，称重</p>
+                        <img src="img/4.jpg">
+                        <span>4</span>
+                    </li>
+                    <li>
+                        <p>将面团平均分成5份，揉成光滑的面团！盖上保鲜膜醒发15分钟</p>
+                        <img src="img/5.jpg">
+                        <span>5</span>
+                    </li>
+                    <li>
+                        <p>然后揉成你想放的模具中，没有就用纸拖，或可以不用也行。</p>
+                        <img src="img/6.jpg">
+                        <span>6</span>
+                    </li>
+                    <li>
+                        <p>将烤箱中放一碗热水保持湿度，把面包生坯放入烤箱就行二次发酵，烤箱温度不易超过30度，发酵40分钟！</p>
+                        <img src="img/7.jpg">
+                        <span>7</span>
+                    </li>
+                    <li>
+                        <p>然后烤箱预热180度，上下火加热中下层烤20左右即可！</p>
+                        <img src="img/8.jpg">
+                        <span>8</span>
+                    </li>
+                    <li>
+                        <p>软软的很好吃！</p>
+                        <img src="img/9.jpg">
+                        <span>9</span>
+                    </li>
+                </ol>
+                <ul class="side">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+            </div>
+
+            <div id="footer">
+                我懒得写地下的东西了……
+            </div>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+
+            window.onload = function () {
+                (function(){
+
+
+                    var $fixed = $("#fixed"),
+                        fixedH = $fixed.height(),
+                        $step = $("#step"),
+                        $oLi = $step.find("ol li"),
+                        $side = $step.find(".side"),
+                        $sideLi = $side.find("li"),
+                        sTopArr = [],
+                        length = $oLi.length,
+                        index = 0,
+                        sLiH = $sideLi.height(),
+                        minT,
+                        maxT = $step.offset().top + $step.height() - fixedH - length*sLiH;
+
+                    //获取所有步骤对应的offset高度
+                    $oLi.each(function (i) {
+                        sTopArr[i] = $(this).offset().top;
+                    });
+
+                    //滚动显示吸顶条
+                    minT = sTopArr[0] - fixedH;
+                    $(window).scroll(function () {
+                        var scrollTop = $(document).scrollTop();
+
+                        //判断显示吸顶盒
+                        $fixed[scrollTop>=200?"show":"hide"]();
+
+                        //判断显示时光轴
+                        if ( scrollTop<minT ){
+                            $side.hide();
+                        }else if( scrollTop<maxT ){
+                            $side.css("top",fixedH);
+                            $side.show();
+                            //挨个检测得到最近值
+                            for (var i = 0; i < length; i++) {
+                                if ( scrollTop >= sTopArr[i]-fixedH-sLiH*i ){
+                                    index = i;
+                                }else{
+                                    break;
+                                }
+                            }
+                            $side.height((index+1)*sLiH);
+                            $sideLi.eq(index).addClass("on").siblings().removeClass("on");
+                        }else{
+                            //var top_ = scrollTop - maxT; //超过了多少距离
+                            var x = Math.ceil((scrollTop - maxT)/sLiH); //应该隐藏多少个
+                            $side.css("top",fixedH - x*sLiH);
+                        }
+                    });
+
+                    //$sideLi点击事件
+                    $sideLi.click(function () {
+                        $("body,html").stop().animate({
+                            scrollTop : sTopArr[$(this).index()] - fixedH
+                        });
+                    });
+
+
+                })();
+            };
+
+
+
+
+            /*
+            if ( $(document).scrollTop() >= 200 ){
+                $fixed.show();
+            }else{
+                $fixed.hide();
+            }
+             */
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

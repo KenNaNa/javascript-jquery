@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>01-百度经验-顶部导航-侧边时光轴-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #main{
+                width: 1100px;
+                margin: 0 auto;
+            }
+            #step{
+                width: 680px;
+            }
+            #step h3{
+                font-size: 24px;
+                font-weight: normal;
+                line-height: 40px;
+                border-bottom: 1px solid #bbb;
+            }
+            #step ol{
+                margin-top: 35px;
+            }
+            #step ol li{
+                position: relative;
+                padding-left: 30px;
+                padding-bottom: 50px;
+                margin-left: 20px;
+                border-left: 1px dashed #bbb;
+            }
+            #step ol li p{
+                line-height: 25px;
+                margin-bottom: 20px;
+            }
+            #step ol li span{
+                position: absolute;
+                top: 0;
+                left: -16px;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: #5bc648;
+                line-height: 32px;
+                text-align: center;
+                color: #fff;
+            }
+            #footer{
+                width: 100%;
+                height: 1000px;
+                background: pink;
+            }
+            #fixed{
+                display: none;
+                position: fixed;
+                z-index:999;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 40px;
+                background: url("img/top.png") center top;
+            }
+            #step .side{
+                display: none;
+                overflow: hidden;
+                position: fixed;
+                top: 40px;
+                width: 32px;
+                height: 0;/*一开始给0*/
+                margin-left: 5px;
+                background: #fff;
+            }
+            #step .side li{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                line-height: 32px;
+                text-align: center;
+                color: #fff;
+                background: #d0d0d0;
+                cursor: pointer;
+            }
+            #step .side li.on,#step .side li:hover{
+                background: #5bc648;
+            }
+        </style>
+		<script src="jquery-1.12.4.min.js"></script>
+    </head>
+    <body>
+        <div id="fixed"></div>
+        <div id="main">
+            <div id="header">
+                <img src="img/header.png">
+            </div>
+            <div id="step">
+                <h3>方法/步骤</h3>
+                <ol>
+                    <li>
+                        <p>试用后油法，将面团揉成团，面包机30分钟即可！牛奶要用凉的，因为面包机揉面温度较高！</p>
+                        <img src="img/1.jpg">
+                        <span>1</span>
+                    </li>
+                    <li>
+                        <p>揉好的面团，用手抻开可以抻成薄一些的膜，有一定的扩展性！</p>
+                        <img src="img/2.jpg">
+                        <span>2</span>
+                    </li>
+                    <li>
+                        <p>然后揉成团，放入面包机中就行第一次发酵，发酵约1小时，是原面团的2倍大！用手按下去无回缩就证明发酵好了！</p>
+                        <img src="img/3.jpg">
+                        <span>3</span>
+                    </li>
+                    <li>
+                        <p>发酵好的面团排气揉光滑，称重</p>
+                        <img src="img/4.jpg">
+                        <span>4</span>
+                    </li>
+                    <li>
+                        <p>将面团平均分成5份，揉成光滑的面团！盖上保鲜膜醒发15分钟</p>
+                        <img src="img/5.jpg">
+                        <span>5</span>
+                    </li>
+                    <li>
+                        <p>然后揉成你想放的模具中，没有就用纸拖，或可以不用也行。</p>
+                        <img src="img/6.jpg">
+                        <span>6</span>
+                    </li>
+                    <li>
+                        <p>将烤箱中放一碗热水保持湿度，把面包生坯放入烤箱就行二次发酵，烤箱温度不易超过30度，发酵40分钟！</p>
+                        <img src="img/7.jpg">
+                        <span>7</span>
+                    </li>
+                    <li>
+                        <p>然后烤箱预热180度，上下火加热中下层烤20左右即可！</p>
+                        <img src="img/8.jpg">
+                        <span>8</span>
+                    </li>
+                    <li>
+                        <p>软软的很好吃！</p>
+                        <img src="img/9.jpg">
+                        <span>9</span>
+                    </li>
+                </ol>
+                <ul class="side">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+            </div>
+
+            <div id="footer">
+                我懒得写地下的东西了……
+            </div>
+        </div>
+<script type="text/javascript">
+    $(function(){
+	    (function(){
+			//获取元素
+			var $fixed = $('#fixed');
+			var $step =  $('#step');
+			var $stepLi = $step.find('ol li');
+			var $side = $('#main').find('ul');
+			var $sideLi = $side.find('li');
+			var $sideLiH = $sideLi.height();
+			var $len = $stepLi.length;
+			var topArr = [];//用来存储到文档顶部top值
+			var $fixedH = $fixed.height();
+			var minTop;
+			var maxTop = $step.offset().top+$step.height()-$fixedH-$len*$sideLiH;
+			var index = 0;
+
+            
+            //先存储各个li的top值jquery用到循环就用$.each()
+            $stepLi.each(function(i){
+			    topArr[i] = $(this).offset().top;
+			});
+			minTop = topArr[0] - $fixedH;
+			//顶部搜索框的出现
+			$(window).scroll(function(){
+			   var scrollTop = $(document).scrollTop();//获取滚动高度
+			   //scrollTop>200?$fixed.show():$fixed.hide();
+			   
+			   $fixed[scrollTop>200?'show':'hide']();
+			   /*
+			   监测窗口滚动条的滚动高度超出多少时
+			   让$fixed元素显示
+			   否则就隐藏
+			   */
+			   if( scrollTop<minTop ){
+			      $side.hide();
+			   }else if( scrollTop<maxTop ){
+				  $side.css("top",$fixedH);
+				  $side.show();
+			      for( var i=0;i<$len;i++ ){
+				     if( scrollTop>=topArr[i]- $fixedH - $sideLiH*i ){
+					     index = i;
+					 }else{
+					     break;
+					 }
+				  }
+				  //var d_top = scrollTop - maxTop;//超出的距离
+				  //var y = Math.ceil( d_top/$sideLiH );//换算成几个
+				  
+				  $side.height((index+1)*$sideLiH);//从1开始
+				  
+                  $sideLi.eq(index).addClass('on').siblings().removeClass('on');
+			   }else{
+			       var d_top = scrollTop - maxTop;//超出的距离
+				   var y = Math.ceil( d_top/$sideLiH );//换算成几个
+				   $side.css( 'top',$fixedH-y*$sideLiH );//隐藏几个
+			   }
+			});
+
+			//点击跳转
+			$sideLi.mouseover(function(){
+			     var index = $(this).index();
+                 $('body,html').stop().animate({
+				    scrollTop:topArr[index]-$fixedH
+				 },300);
+			
+			}).mouseout(function(){
+				var oldTime = null;
+				clearTimeout(oldTime);
+				oldTime = setTimeout(function(){
+				   $('body,html').stop().animate({
+				     scrollTop:0
+					 },300);
+				},1000)
+			     
+			})
+			
+		  
+		})()
+	
+	});
+</script>
+</body>
+</html>
