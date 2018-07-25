@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        border: none;
+        list-style: none;
+        font-size: 0;
+    }
+    .warp{
+        margin: 0;
+        width: 100%;
+        height: 308px;
+        background: url("img/wrap_bg.jpg") no-repeat;
+        background-position: -280px 0px;
+    }
+    .box{
+        width: 100%;
+        background: url("img/body_bg.jpg") no-repeat;
+        background-position: -280px 0px;
+    }
+    .layabox{
+        margin: 0 auto;
+        width: 1224px;
+        overflow: hidden;
+    }
+    .layout{
+        width: 1224px;
+        height: 500px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+    }
+    .banner{
+        position: absolute;
+        width: auto;
+    }
+    .banner:after{
+        content: "";
+        clear: both;
+        display: block;
+    }
+    .img_box{
+        float: left;
+        width: 1224px;
+        height: 500px;
+        background: url("img/banner_00.jpg") no-repeat;
+        background-size: 1224px 500px;
+    }
+    .banner_0{
+        background-image: url("img/banner_00.jpg");
+    }
+    .banner_1{
+        background-image: url("img/banner_01.jpg");
+    }
+    .banner_2{
+        background-image: url("img/banner_02.jpg");
+    }
+    .banner_3{
+        background-image: url("img/banner_03.jpg");
+    }
+    .banner_4{
+        background-image: url("img/banner_04.jpg");
+    }
+    .banner_5{
+        background-image: url("img/banner_05.jpg");
+    }
+    .layabox-img{
+        margin-top: -40px;
+        display: block;
+        width: 1224px;
+        position: relative;
+        z-index: 5;
+        margin-bottom: 150px;
+    }
+    .layabox-img ul:after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    .layabox-img li{
+        float: left;
+        position: relative;
+    }
+    .check_a{
+        display: inline-block;
+        width: 204px;
+        height: 168px;
+        background: url("img/sbanner_00.png") no-repeat;
+        background-position:-102px 0;
+    }
+    .a_1{
+        background-image: url("img/sbanner_01.png");
+    }
+    .a_2{
+        background-image: url("img/sbanner_02.png");
+    }
+    .a_3{
+        background-image: url("img/sbanner_03.png");
+    }
+    .a_4{
+        background-image: url("img/sbanner_04.png");
+    }
+    .a_5{
+        background-image: url("img/sbanner_05.png");
+    }
+    .mark_{
+        position: absolute;
+        width: 100%;
+        height: 6px;
+        top: 162px;
+    }
+    .dir{
+        height: 6px;
+        width: 0;
+    }
+    .m0_{
+        background: rgba(168, 134, 46,0.5);
+    }
+    .d0_{
+        background: rgb(168, 134, 46);
+    }
+    .m1_{
+        background: rgba(179, 14, 132,0.5);
+    }
+    .d1_{
+        background: rgb(179, 14, 132);
+    }
+    .m2_{
+        background: rgba(21, 152, 5,0.5);
+    }
+    .d2_{
+        background: rgb(21, 152, 5);
+    }
+    .m3_{
+        background: rgba(168, 5, 3,0.5);
+    }
+    .d3_{
+        background: rgb(168, 5, 3);
+    }
+    .m4_{
+        background: rgba(88, 87, 85,0.5);
+    }
+    .d4_{
+        background: rgb(88, 87, 85);
+    }
+    .m5_{
+        background:rgba(8, 57, 168,0.5);
+    }
+    .d5_{
+        background: rgb(8, 57, 168);
+    }
+</style>
+</head>
+<body>
+    <div>
+        <div class="warp">
+        </div>
+        <div class="box">
+            <div class="layabox">
+                <div class="layout">
+                    <div class="banner">
+                        <div class="img_box banner_0">
+                        </div>
+                        <div class="img_box banner_1">
+                        </div>
+                        <div class="img_box banner_2">
+                        </div>
+                        <div class="img_box banner_3">
+                        </div>
+                        <div class="img_box banner_4">
+                        </div>
+                        <div class="img_box banner_5">
+                        </div>
+                    </div>
+                </div>
+                <div class="layabox-img">
+                    <ul>
+                        <li>
+                            <a href="javascript:;" class="check_a a_0">
+                                <div class="mark_ m0_">
+                                    <div class="dir d0_">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="check_a a_1">
+                                <div class="mark_ m1_">
+                                    <div class="dir d1_">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="check_a a_2">
+                                <div class="mark_ m2_ ">
+                                    <div class="dir d2_">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="check_a a_3">
+                                <div class="mark_ m3_">
+                                    <div class="dir d3_">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="check_a a_4">
+                                <div class="mark_ m4_">
+                                    <div class="dir d4_">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="check_a a_5">
+                                <div class="mark_ m5_">
+                                    <div class="dir d5_">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+<script>
+    function getStyle(obj,attr){
+        return getComputedStyle(obj)?getComputedStyle(obj)[attr]:obj.currentStyle[attr];
+    }
+
+     (function (){
+         var aBanner_= document.getElementsByClassName("banner")[0],
+             oImg_box = document.getElementsByClassName("img_box"),
+             oDir = document.querySelectorAll(".dir"),
+             aA = document.getElementsByClassName("check_a"),
+             num_= 0,
+             _on = !0;/*状态码*/
+         aBanner_.style.width = Math.ceil(parseInt(getStyle(oImg_box[0],"width"))*(oImg_box.length))+"px";
+         /*计算盒子宽度*/
+         for(var i=0;i<aA.length;i++){
+             aA[i].index = i;
+             aA[i].onclick = function(){
+                 if(num_ == this.index){
+                    /*判断点击的若是当前正在运动的那个，则什么都不做*/
+                 }else {
+                 _on = !1;
+                 oDir[num_].style.width = "0";
+                 var iLeft = oImg_box[this.index].offsetLeft;
+                 var speed = Math.ceil((oImg_box[num_].offsetLeft -iLeft)/50);
+                 /*自动计算速度，离得越远越快*/
+                 move_(aBanner_,iLeft,speed,"left",move);
+                 num_ = this.index;}
+             }
+         }
+         function move(){
+             var timer = null;
+             clearInterval(timer);
+             var length = oDir.length,
+                 Max_W = oDir[num_].offsetParent.offsetWidth,
+                 dir_ = parseInt(getStyle(oDir[num_],"width"));
+             timer =setInterval(function(){
+                 if(!_on){
+                     clearInterval(timer);
+                     return;
+                    /*判断有鼠标点击则直接返回*/
+                 }
+                 dir_ += 1;
+                 oDir[num_%length].style.width = dir_+"px";
+                 if (dir_>=Max_W){
+                     dir_ = 0;
+                     oDir[num_%length].style.width = "0";
+                     clearInterval(timer);
+                     if(num_< length-1){
+                       return  banner_move();
+                     }else {
+                         move_(aBanner_,0,100,"left",move);
+                         num_ = 0;
+                     }
+                 }
+            },15)
+         }/*进度条运动函数*/
+         function banner_move(){
+             var timer = null;
+             clearInterval(timer);
+             var length = oDir.length,
+                 Max_left = oImg_box[num_+1].offsetLeft,
+                 left = oImg_box[length-1].offsetLeft,
+                 dir_= parseInt(getStyle(aBanner_,"left"));
+             timer = setInterval(function(){
+                 if(!_on){
+                    clearInterval(timer);
+                    return;
+                    /*判断有鼠标点击则直接返回*/
+                 }
+                 dir_ -= 20;
+                 aBanner_.style.left = dir_+"px";
+                 if(-dir_>=left){
+                     dir_= -left;
+                     aBanner_.style.left = dir_+"px";
+                     clearInterval(timer);
+                     num_++;
+                     return move();
+                 }else if(-dir_ >=Max_left && num_<length-1){
+                     dir_ = -Max_left;
+                     aBanner_.style.left = dir_+"px";
+                     num_ ++;
+                     clearInterval(timer);
+                     return move();
+                 }
+            },15)
+        }/*页面运动函数*/
+         return move();
+         function move_(obj,dir,speed,attr,callback){
+             var timer = null;
+             clearInterval(timer);
+             var dir_ =parseInt(getStyle(obj,attr));
+             timer = setInterval(function(){
+                 dir_ += speed;
+                 obj.style[attr] = dir_+"px";
+                 if((dir_>= -dir&&speed>0)||( dir_<-dir&&speed<0)){
+                    obj.style[attr]= -dir+"px";
+                    clearInterval(timer);
+                    _on = !0;
+                    callback&&callback();
+                 }
+            },15)
+        }/*公共运动函数*/
+    })();
+
+</script>
+</html>

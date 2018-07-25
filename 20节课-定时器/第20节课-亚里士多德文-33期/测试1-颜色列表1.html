@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>测试1-颜色列表1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			  div{
+			    width:100px;
+				height:35px;
+				text-align:center;
+				line-height:35px;
+				float:left;
+				color:#fff;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    function Color(){
+	      var color = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+		  var str = '';
+		  for( var i=0;i<6;i++ ){
+			 str += color[Math.floor(Math.random()*16)];
+		  }
+		  str = '#' + str;
+		  return str;
+	  }
+	  var colorArr = [];
+	  for( var i=0;i<100;i++ ){
+	     document.body.innerHTML += '<div></div>';
+		 colorArr[i] = Color();
+	  }
+	  var aDiv = document.querySelectorAll('div');
+	  var time = null;
+	  var num = 0;
+	  time = setInterval(function(){
+		 aDiv[num].style.background = colorArr[num];
+		 aDiv[num].innerHTML = colorArr[num];
+		 num++;
+		 if(num==100){
+		    clearInterval(time);
+		 }
+	  },1000);
+</script>
+</body>
+</html>

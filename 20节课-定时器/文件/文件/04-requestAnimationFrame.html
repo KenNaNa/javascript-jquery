@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+
+            #box{
+                position: absolute;
+                width: 10px;
+                height: 100px;
+                background: pink;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+
+            /*
+
+            requestAnimationFrame
+                IE 6 7 8 9不兼容
+
+             */
+
+            //requestAnimationFrame的兼容
+            window.requestAnimationFrame = window.requestAnimationFrame||function(a){return setTimeout(a,1000/60)};
+            window.cancelAnimationFrame = window.cancelAnimationFrame||clearTimeout;
+
+            /*window.requestAnimationFrame =
+                window.requestAnimationFrame ||
+                function (fn) {
+                    return setTimeout(fn , 1000/60);
+                };
+
+            window.cancelAnimationFrame =
+                window.cancelAnimationFrame ||
+                clearTimeout;  */
+
+
+            /*var timer = requestAnimationFrame(goudan);
+            cancelAnimationFrame(timer);*/
+
+
+
+
+
+            var start = 10;
+            var end = 500;
+            var oBox = document.getElementById("box");
+            var timer;
+
+            document.onclick = function () {
+                cancelAnimationFrame( timer );
+            };
+
+            move();
+            function move(){
+                start += 5;
+                if ( start >= end ){
+                    start = end;
+                }else{
+                    timer = requestAnimationFrame(move);
+                }
+                oBox.style.width = start + 'px';
+            }
+
+            /*move();
+
+            function move(){
+                start += 2;
+                if ( start >= end ){
+                    start = end;
+                }else{
+                    setTimeout(move,13);
+                }
+                oBox.style.width = start + 'px';
+            }*/
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

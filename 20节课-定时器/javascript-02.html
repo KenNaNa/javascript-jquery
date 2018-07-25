@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+	#box,#new{
+		width: 230px;
+		height: 50px;
+		color: white;
+		font-size:24px;
+		cursor: pointer;
+		line-height: 50px;
+		margin: 50px auto;
+		background: green;
+		text-align: center;
+		font-family: SimSun;
+		border-radius: 10px;
+	}
+	#bor{
+		display:none;
+		width: 200px;
+		height: 50px;
+		color: #9D1A1A;
+		line-height: 50px;
+		background: yellow;
+		text-align: center;
+		border-radius: 10px;
+	}
+</style>
+</head>
+<body>
+    <div id="box"></div>    
+    <div id="new"></div>
+    
+    <script type="text/javascript">
+    	
+    	var oBox = document.getElementById('box');
+    	var oMini = document.getElementById('new');
+
+    	//鼠标滑入box时:
+    	oBox.onmouseover = function(){
+    		this.innerHTML = "<i style='font-style:normal;color:#F8D00E;'>‘box’鼠标滑入了！</i>"
+    		oMini.innerHTML = "<i style='font-style:normal;color:#EA0EB2;font-weight:bold;'>‘new’鼠标滑入！</i>"
+    	}
+    	//鼠标滑入new时:
+    	oMini.onmouseover = function(){
+    		this.innerHTML = "<i style='font-style:normal;color:#EA0EB2;font-weight:bold;'>‘new’鼠标触摸！</i>"
+    		oBox.innerHTML = "<i style='font-style:normal;color:#F8D00E;'>‘box’鼠标触摸了！</i>"
+    	}
+    	//鼠标移出OBox时
+    	oBox.onmouseout = function(){
+    		this.innerHTML = "<i style='font-style:normal;color:#F8D00E;'>‘box’鼠标移出了！</i>"
+    	}
+    	//鼠标移出时oMini
+    	oMini.onmouseout = function(){
+    		this.innerHTML = "<i style='font-style:normal;color:#F8D00E;'>‘mini’鼠标移出！</i>"
+    	}
+    	//鼠标点击oBox时
+    	oBox.onclick = function(){
+    		alert("你点我干嘛！");
+    	}
+    	//鼠标点击oMini时
+    	oMini.onclick =function(){
+    		this.innerHTML = "<p id='bor'>你点我干啥</p>";
+    		document.querySelector('#bor').style.display = 'block';
+    	}
+    </script>
+</body>
+</html>

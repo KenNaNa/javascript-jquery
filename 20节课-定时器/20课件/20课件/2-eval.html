@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// eval函数 解析任何的字符串当成js代码运行 但字符串要符合js语法规范,但不太安全
+			
+			var s = 'console.log(1)';  
+			setInterval(function(){
+				eval(s);
+			},13);
+
+			
+		</script>
+	</body>
+</html>

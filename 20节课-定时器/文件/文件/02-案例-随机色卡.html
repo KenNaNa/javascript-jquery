@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            span{
+                display: block;
+                float: left;
+                width: 80px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+                十进制：   0 1 2 3 4 5 6 7 8 9   10
+
+                八进制：  0 1 2 3 4 5 6 7  10 11 12 13 14 15 16 17  20
+
+                二进制：  0 1 10  11  100
+
+                十六进制：  0 1 2 3 4 5 6 7 8 9 a b c d e f  10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f 20 21
+            */
+
+            //var a = 20; //十进制20
+
+            //var b = a.toString(16); //讲a转换为16进制的字符串
+
+            //alert( b );
+            //一个颜色色值，是由6个16进制的字符组成的
+
+
+            var oBox = document.getElementById("box");
+
+            setInterval(function () {
+                var a = randomColor();
+                oBox.innerHTML += "<span style='background: "+ a +";'>"+ a +"</span>";
+            },200);
+
+
+            function randomColor() {
+                var c = "#";
+                for (var i = 0; i < 6; i++) {
+                    c += parseInt(Math.random()*16).toString(16); //【0,16）- 0 12345678910112131415
+                }
+                return c;
+            }
+
+            /*
+            //比较屌的位运算得到随机颜色的方式
+            goudan();
+            function goudan() {
+                var x = (~~Math.floor(Math.random()*(1<<24))).toString(16);
+                console.log( x );
+            }*/
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

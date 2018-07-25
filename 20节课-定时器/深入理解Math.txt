@@ -1,0 +1,50 @@
+Math.E 欧拉常数
+Math.LN2 2的自然对数
+Math.LN10 10 的自然对数
+Math.LOG2E 以2 为底的e的对数
+Math.LOG10E 以10为底的e的对数
+Math.PI圆周率
+Math.SQRT1_2 1/2的平方根
+Math.SQRT2 2 的平方根
+
+数值函数
+Math.abs(x)
+返回x的绝对值
+
+Math.ceil(x)
+返回x的最小整数
+
+Math.exp(x)
+返回e的x次幂
+
+Math.floor(x)
+返回x的最大整数
+
+Math.log(x)
+返回x的自然对数
+
+Math.pow(x,y)
+返回x^y
+
+Math.round(x)
+四舍五入
+
+Math.sqrt(x)
+返回根号x
+
+三角函数
+从角度转化为弧度
+function roRadians(degrees){
+   return degrees/180*Math.PI;
+}
+
+function toDegrees(radians){
+   return radians / Math.PI*180;
+}
+
+Math.acos() /asin()/atan()/cos()/sin()/tan()
+
+其他函数
+Math.min()返回参数中最小的数字
+Math.max()
+Math.random()

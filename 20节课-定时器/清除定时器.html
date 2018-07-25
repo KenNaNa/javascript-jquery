@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>清除定时器-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id='box'></div>
+		<script type="text/javascript">
+			var oBox = document.getElementById('box');
+			var time;
+			var num = 0;
+			var timer = null; // 一个页面上 可能有很多很多的定时器 那么要清除定时器，就需要很多的变量去存储这些定时器，那就’浪费所谓性能‘了 ，那我们可以把定时器 保存在一个已有的属性上面
+
+			oBox.time = setTimeout(function(){
+				window.location.href = 'http://www.baidu.com';
+			},6000);
+
+			oBox.timer = setInterval(function(){
+				num++;
+				console.log(num);
+				if( num == 3 ){
+					clearTimeout(oBox.time);  // 清除延迟定时器
+					clearInterval(oBox.timer); // 清除重复定时器
+				}
+			},100);
+			
+
+			
+			
+			
+
+		</script>
+</body>
+</html>

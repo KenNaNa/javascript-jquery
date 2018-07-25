@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+div{ overflow:hidden;}
+</style>
+<script type="text/javascript">
+/* 珠峰培训  2011年12月9日课堂示例
+以下画点，画线，画圆的方法，都不是用HTML5的canvas，而是用的纯js
+用到了一些数学的三角函数方法
+ 
+以下代码是课堂随机写出，没有做更多优化
+*/
+ 
+function point(x,y){//画点
+var oDiv=document.createElement('div');
+oDiv.style.position='absolute';
+oDiv.style.height='2px';
+oDiv.style.width='2px';
+oDiv.style.backgroundColor='red';
+oDiv.style.left=x+'px';
+oDiv.style.top=y+'px';
+//document.body.appendChild(oDiv);
+return oDiv;//注意：返回的值是一个dom节点，但并未追加到文档中
+}
+function drawLine(x1,y1,x2,y2){//画一条直线的方法
+var x=x2-x1;//宽
+var y=y2-y1;//高
+var frag=document.createDocumentFragment();
+if(Math.abs(y)>Math.abs(x)){//那个边更长，用那边来做画点的依据（就是下面那个循环），如果不这样，当是一条垂直线或水平线的时候，会画不出来
+if(y>0)//正着画线是这样的
+for(var i=0;i<y;i++){
+var width=x/y*i  //x/y是直角两个边长的比，根据这个比例，求出新坐标的位置
+{
+frag.appendChild(point(width+x1,i+y1));
+}
+}
+if(y<0){//有时候是倒着画线的
+for(var i=0;i>y;i--){
+var width=x/y*i
+{
+frag.appendChild(
+point(width+x1,i+y1));
+}
+}
+}
+}//end if
+else {
+if(x>0)//正着画线是这样的
+for(var i=0;i<x;i++){
+var height=y/x*i
+{
+frag.appendChild(point(i+x1,height+y1));
+}
+}
+if(x<0){//有时候是倒着画线的
+for(var i=0;i>x;i--){
+var height=y/x*i
+{
+frag.appendChild(
+point(i+x1,height+y1));
+}
+}
+}//end if
+}
+//document.body.appendChild(frag);
+document.getElementById('div1').appendChild(frag);
+//var oDiv=document.createElement('div')
+//oDiv.appendChild(frag);
+//document.body.appendChild(oDiv);
+}
+function drawCircle(){//画个圆
+var r=200;
+var x1=300;
+var y1=300;
+var frag=document.createDocumentFragment();
+for(var degree=0;degree<360;degree+=2){
+var x2=r*Math.sin(degree*Math.PI/180);
+var y2=r*Math.cos(degree*Math.PI/180);
+frag.appendChild(point(x1+x2,y1+y2));
+}
+document.body.appendChild(frag);
+}
+function dragCircle(x1,y1,x2,y2){//拖出一个圆来
+var r=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));//求出半径的长 直角三角形中 斜边的平方=两个直边的平方之和
+var frag=document.createDocumentFragment();
+for(var degree=0;degree<360;degree+=2){//每隔2度画一个点
+var x2=r*Math.sin(degree*Math.PI/180);
+var y2=r*Math.cos(degree*Math.PI/180);
+frag.appendChild(point(x1+x2,y1+y2));
+}
+document.getElementById('div1').appendChild(frag);
+}
+window.onload=function(){
+ drawCircle()
+drawLine(500,30,0,30);
+drawLine(300,20,300,500);
+drawLine(50,20,700,500);
+var x1=0;
+var y1=0;
+//以下是处理拖拽 拖拽的时候，出现一条直线和一个圆
+//注意：由于这些操作都是由DOM来完成的，所以性能开销比较大，尤其是在IE里，明显的会卡一些。
+function down(e){
+var e=e||window.event;
+x1=e.clientX;
+y1=e.clientY;
+document.onmousemove=move;
+document.onmouseup=up;
+}
+function move(e){
+document.getElementById('div1').innerHTML='';
+var e=e||window.event;
+var x2=e.clientX;
+var y2=e.clientY;
+drawLine(x1,y1,x2,y2);//用这个方法就可以在浏览器上拖出一条直线来
+dragCircle(x1,y1,x2,y2);//用这个方法就可以在浏览器上拖出一个圆来
+}
+function up(){
+document.onmousemove=null;
+document.onmouseup=null;
+}
+document.onmousedown=down;
+}
+</script>
+</head>
+ 
+<body>
+<div id="div1">在浏览器上拖动鼠标试试</div>
+</body>
+</html>

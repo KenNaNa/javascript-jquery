@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>自动的烟花绽放效果-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{
+			    background:black;
+				overflow:hidden;
+			 }
+			 div{
+			    position:absolute;
+				bottom:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    var timer = null;
+	var dw = document.documentElement.clientWidth;//获取可视区的宽度
+	var dh = document.documentElement.clientHeight;//获取可视区的高度
+	var speed = 10;
+	var oDiv = document.createElement('div');//创建div
+	function Color(){
+	  var x = 0xffffff;
+	  x = parseInt(Math.random()*(parseInt(x.toString(10))));
+      //alert(x);
+	  x = x.toString(16);
+	  //alert(x);
+	  x = '#' + x;
+	  return x;
+	}
+	oDiv.style.width = '4px';
+	oDiv.style.height = '4px';
+	oDiv.style.borderRadius = '50%';
+	oDiv.style.backgroundColor = 'red';
+	oDiv.style.top = dh + 'px';
+	//alert(dh);
+	document.body.appendChild(oDiv);
+	//alert(l);
+	timer = setInterval(function(){
+	   var l = Math.random()*dw*0.9 + 100;
+	   var t = Math.random()*dh*0.9 + 100;
+	   oDiv.style.left = l + 'px';
+	   oDiv.style.top = t - speed + 'px';
+	    
+		 var aDiv = []//储存生成的div 
+         for(var i=0;i < 200;i++){//创建100个小div
+			  var iDiv = document.createElement('div');
+			  iDiv.style.width = '3px';
+			  iDiv.style.height = '3px';
+			  iDiv.style.borderRadius = '50%';
+			  iDiv.style.backgroundColor = Color();
+			  iDiv.style.left = l + 'px';
+			  iDiv.style.top = t + 'px';
+			  //iDiv.speedX = Math.random()*40-20//横向数字即可向左边也可以向右边飘
+			  //iDiv.speedY = Math.random()*40-20//纵向数字
+			  document.body.appendChild(iDiv);//添加到body里面
+			  iDiv.speedX = Math.random()*40-20;
+			  iDiv.speedY = Math.random()*40-20;
+			  aDiv.push(iDiv);//添加到数组中
+				 
+		 }
+		  var newTimer = null;
+			  newTimer = setInterval(function(){
+			     for(var i=0; i<aDiv.length;i++){
+				    aDiv[i].style.left = aDiv[i].offsetLeft + aDiv[i].speedX + 'px';//给每一个div添加横向速度
+					aDiv[i].style.top = aDiv[i].offsetTop + aDiv[i].speedY + 'px';//给每一个div添加横向速度
+                    aDiv[i].speedY++;//让每个div下降
+					if(aDiv[i].offsetTop>dh*0.9){
+				      //document.body.removeChild(oDiv);
+			          document.body.removeChild(aDiv[i]);
+					}
+			        
+				 }
+			  },10);
+			  oDiv.style.opacity = '0';
+			  document.body.removeChild(aDiv[i]);
+			  if(oDiv.offsetTop <= 10){
+		        oDiv.style.top = dh + 'px';
+			    document.body.removeChild(oDiv);
+		      }
+			  
+		//document.body.removeChild(oDiv);	  
+	},4000);
+</script>
+</body>
+</html>

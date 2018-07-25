@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>定时器1实例讲解-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+//setInterval(执行函数,时间)不停的一直在执行
+//setTimeout(执行函数,时间)只执行一次
+/*setInterval(function(){//每隔30ms执行一次
+   console.log('李金文');
+},30)*/
+/*setTimeout(function(){//只执行一次函数
+   console.log('李金文');
+},30)*/
+/*setInterval(function(){
+   Console();
+},30)
+function Console(){
+   console.log('李金文');
+}*/
+/*setTimeout(function(){
+   Console();
+},30)
+function Console(){
+   console.log('李金文');
+}*/
+
+setTimeout(Console,30);
+setTimeout('Console()',30);//会被解析成js代码 去执行
+function Console(){
+   console.log('李金文');
+}
+</script>
+</body>
+</html>

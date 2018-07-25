@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>画一个点-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="div1"></div>
+<script>
+    function point(x,y){
+	   var oDiv = document.createElement('div');
+	   oDiv.style.width = '2px';
+	   oDiv.style.height = '2px';
+	   oDiv.style.background = 'red';
+	   oDiv.style.position = 'absolute';
+	   oDiv.style.left = x + 'px';
+	   oDiv.style.top = y + 'px';
+	  // document.body.appendChild(oDiv);
+	  return oDiv;
+	}
+	document.onclick = function(e){
+	   var oEvent = e||event;
+	   var l = oEvent.clientX;
+	   var t = oEvent.clientY;
+	   point(l,t);
+	}
+
+</script>
+</body>
+</html>

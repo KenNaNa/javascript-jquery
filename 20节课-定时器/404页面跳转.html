@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>404页面跳转-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:400px;
+				height:200px;
+				margin:0 auto;
+				background:#CCC;
+				text-align:center;
+			 }
+			 #box p{
+			    padding:75px;
+			 }
+			 #box p span{
+			    color:red;
+				font-size:20px;
+				font-weight:bold;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <p>
+	   404，此页面找不到，页面将在
+	   <span id='timer'>5s</span>后跳转百度首页
+	</p>
+</div>
+<script>
+     var time = null;
+	 var num = 5;
+	 var oTimer = document.querySelector('div p span')
+     time = setInterval(function(){
+	    num--;
+        oTimer.innerHTML = num + 's';
+		if(num==1){
+		  clearInterval(time);
+		  window.location.href = 'http://www.baidu.com';
+		}
+	 },1000)
+</script>
+</body>
+</html>

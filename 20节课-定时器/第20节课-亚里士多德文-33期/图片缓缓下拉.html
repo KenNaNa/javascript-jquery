@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>图片缓缓下拉-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:1224px;
+				margin:0 auto;
+				height:0px;
+				overflow:hidden;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   <img src="images/banner_00.jpg" />
+</div>
+<script>
+   var oBox = document.getElementById('box');
+   var startH = 0;
+   var endH = 450;
+   var time = null;
+   //开一个定时器
+   time = setInterval(function(){
+       startH += 3;
+	   if(startH>=endH){
+		 startH = endH;//强制为endH为了避免startH超过endH
+	     clearInterval(time);
+	   }
+	   oBox.style.height = startH + 'px';
+   },13)
+</script>
+</body>
+</html>

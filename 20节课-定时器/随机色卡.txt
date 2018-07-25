@@ -1,0 +1,6 @@
+随机色卡的创建 可以用createElement();
+appendChild()
+
+也可以先用for循环生成好多div
+然后先生成颜色数组
+在开定时器

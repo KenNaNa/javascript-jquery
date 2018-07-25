@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>圆周运动-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box,#wrap{
+			    position:relative;
+			    width:300px;
+				height:300px;
+				margin:0 auto;
+				background:#000;
+			 }
+			 #box span{
+			   position:absolute;
+			   left:145px;
+			   top:0px;
+			   display:block;
+			   width:10px;
+			   height:10px;
+			   background:pink;
+			   border-radius:50%;
+			 }
+			 #wrap{
+			   top:-300px;
+			   background:transparent;
+			   color:#fff;
+			   text-align:center;
+			   line-height:300px;
+			 }
+			 #wrap i{
+			   position:absolute;
+			   display:block;
+			   width:1px;
+			   height:1px;
+			   background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <span></span>
+</div>
+<div id="wrap"></div>
+<script>
+    var startDeg = 90;//在Y轴的正方向上
+	var r = 145;//圆的半径要减去小球自身的宽度的一半
+	var oWrap = document.getElementById('wrap');
+	var time = null;
+	var oSpan = document.querySelector('span');
+	time = setInterval(function(){
+		   
+		   startDeg++;
+		   var rad = (startDeg/180)*Math.PI//将角度转换成弧度
+		   var left = r + r*Math.sin(rad);//算出left值
+		   var top = r - r*Math.cos(rad);//算出top值
+		   oSpan.style.left = left + 'px';
+		   oSpan.style.top = top + 'px';
+		   if(startDeg<=450){
+		     oWrap.innerHTML += "<i style='left:"+(left+4)+"px;top: "+(top+4)+"px'></i>"
+		   }else{
+		     clearInterval(time);
+			 oWrap.innerHTML += '李金文'
+		   }
+		},30);
+		//return time;//返回定时器用于清除
+		console.log(document.all)
+</script>
+</body>
+</html>

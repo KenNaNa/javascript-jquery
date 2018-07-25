@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>圆周运动</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #canvas {
+      width: 600px;
+      height: 600px;
+      border: 1px solid #000;
+      margin: 100px auto;
+      position: relative;
+    }
+
+    .circle {
+      position: absolute;
+      display: block;
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background-color: #ff8080;
+    }
+
+    .path {
+      position: absolute;
+      display: block;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background-color: #ff8080;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="canvas">
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+    <span class="circle"></span>
+  </div>
+
+  <script>
+    var canvas = document.getElementById('canvas') // 获取运动区域
+    var circle = document.querySelectorAll('.circle') // 获取所有小球节点
+    var canvasW = canvas.offsetWidth // 运动区域宽度
+    var canvasH = canvas.offsetWidth // 运动区域高度
+    for (var i = 0; i < circle.length; i++) { 
+      circle[i].motionRadii = randomNum(20, 100) //  随机运动半径，半径大小在20~100间
+      circle[i].radii = circle[i].offsetWidth / 2 // 小球半径
+      circle[i].flag = Math.floor(randomNum(1, 4)) // 随机运动模式1~4
+      /**
+        * 四种模式
+        * 1. 顺时针向下
+        * 2. 逆时针向上
+        * 3. 逆时针向下
+        * 4. 顺时针向上
+        **/
+      randomPosition(circle[i]) // 随机初始位置
+    }
+
+    function randomPosition(obj) {
+      var rangeMin = obj.motionRadii // 最小运动x,y坐标
+      var rangeXmax = canvasW - 2*obj.motionRadii - obj.radii // 最大运动x坐标
+      var rangeYmax = canvasH - 2*obj.motionRadii - obj.radii // 最大运动y坐标
+      obj.x = randomNum(rangeMin, rangeXmax) // 随机初始x
+      obj.y = randomNum(rangeMin, rangeYmax) // 随机初始y
+
+      obj.style.left = obj.x + 'px' // 设置位置
+      obj.style.top = obj.y + 'px'
+      circlarMotion(obj) // 调用运动函数
+    }
+
+
+
+    function circlarMotion(obj) {
+      obj.timer = null // 初始化计时器
+      obj.degree = 0 // 运动角度值
+      obj.timer = setInterval(function () {
+        var x, y
+        obj.degree++; // 角度增加
+        if (obj.degree === 360) { // 运动一周后停止
+          clearInterval(obj.timer) 
+        }
+        
+        // 模式判断
+        x = obj.flag <= 2 ?
+          obj.x + obj.motionRadii * Math.sin(obj.degree * Math.PI / 180) : obj.x - obj.motionRadii * Math.sin(obj.degree * Math.PI / 180)
+        y = obj.flag % 2 === 0 ?
+          obj.y + obj.motionRadii * Math.cos(obj.degree * Math.PI / 180) :
+          obj.y - obj.motionRadii * Math.cos(obj.degree * Math.PI / 180)
+
+        // 设置位置
+        obj.style.left = x + 'px'
+        obj.style.top = y + 'px'
+
+        // 画路径
+        var path = document.createElement('span')
+        path.className = 'path'
+        // 让小球中心始终在路径线上
+        path.style.left = x + obj.radii + 'px'
+        path.style.top = y + obj.radii + 'px'
+        canvas.appendChild(path)
+      }, 13)
+    }
+
+    // 随机数字
+    function randomNum(min,max) {
+      return Math.random() * (max - min + 1) + min
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>蓝鼎导航栏-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+				 text-decoration:none;
+				 color:#fff;
+			 }
+			 .drawer_toggler{background:#00838f;height:34px;}
+			 .box{
+			     position:absolute;
+				 top:0;
+				 left:-300px;
+			     width:300px;
+				 height:100%;
+				 background:rgb(80,80,80);
+				 transition:all 0.8s ease;
+			 }
+			 .box ul{
+			     margin-top:50px;
+				 width:100%;
+			 }
+			 .box ul li{
+			     width:100%;
+				 height:50px;
+				 transition:all 0.8s ease;
+			 }
+			 .box ul li a{
+			     width:100%;
+				 height:50px;
+				 margin-left:25px;
+				 display:block;
+				 line-height:50px;
+				 font-size:14px;
+				 font-family:"宋体";
+				 font-weight:bold;
+			 }
+			 .box ul li:hover{
+			    background:rgba(0,0,0,0.4);
+			 }
+		 </style>
+	 </head>
+<body>
+<div class="drawer_toggler" style="box-shadow: none; padding: 6px; border-radius: 0px; cursor: pointer;"><svg viewBox="0 0 24 24" style="display: inline-block; color: rgb(255, 255, 255); fill: rgb(255, 255, 255); height: 24px; width: 24px; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; position: relative; top: 6px; left: 15px; -webkit-user-select: none;"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg><span style="color: rgb(255, 255, 255); text-transform: capitalize; font-size: 20px; letter-spacing: 0.1px; font-weight: 500; padding-left: 30px;padding:30px;">Lantern</span></div>
+<div class="box">
+   <div style="box-shadow: none; padding: 6px; border-radius: 0px; cursor: pointer;"><svg viewBox="0 0 24 24" style="display: inline-block; color: rgb(255, 255, 255); fill: rgb(255, 255, 255); height: 24px; width: 24px; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; position: relative; top: 6px; left: 15px; -webkit-user-select: none;"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg><span style="color: rgb(255, 255, 255); text-transform: capitalize; font-size: 20px; letter-spacing: 0.1px; font-weight: 500; padding-left: 30px;padding:30px;">Lantern</span></div>
+   <ul>
+     <li><a href="javascript:void(0);">授权设备使用专业版</a></li>
+	 <li><a href="javascript:void(0);">邀请好友</a></li>
+	 <li><a href="javascript:void(0);">获取移动版本</a></li>
+	 <li><a href="javascript:void(0);">语言</a></li>
+	 <li><a href="javascript:void(0);">分享</a></li>
+	 <li><a href="javascript:void(0);">设置</a></li>
+	 <li><a href="javascript:void(0);">报告问题</a></li>
+	 <li><a href="javascript:void(0);">关于</a></li>
+   </ul>
+</div>
+<script>
+    var oDrawerToggler = document.querySelector('.drawer_toggler');
+	var oBox = document.querySelector('.box');
+	var oDiv = document.querySelector('.box div');
+	//console.log(oDiv);
+	//console.log(oBox);
+	
+	oDrawerToggler.addEventListener('click',function(){
+	   oBox.style.left = '0px';
+	},false);
+	oDiv.addEventListener('click',function(){
+	   oBox.style.left = '-300px';
+	},false);
+</script>
+</body>
+</html>

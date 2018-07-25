@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box,#wrap{
+                position: relative;
+                width: 300px;
+                height: 300px;
+                background: #474747;
+                margin: 50px auto;
+            }
+            #box span{
+                position: absolute;
+                top: 0;
+                left: 150px;
+                width: 10px;
+                height: 10px;
+                background: pink;
+                border-radius: 100%;
+            }
+            #wrap{
+                top : -350px;
+                background: transparent;
+            }
+            #wrap i{
+                position: absolute;
+                width: 2px;
+                height: 2px;
+                background: #f60;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <span></span>
+        </div>
+        <div id="wrap">
+
+        </div>
+        <script>
+
+            var deg = 90,//代表度数
+                r = 145,
+                oWrap = document.getElementById("wrap"),
+                oBox = document.getElementById("box"),
+                oSpan = oBox.getElementsByTagName("span")[0];
+
+            setInterval(function () {
+
+                deg += 2; //角度递减
+                var rad = (deg/180)*Math.PI; //角度对应的弧度
+
+                var x = Math.cos( rad ) * r,
+                    y = Math.sin( rad ) * r;
+
+                var left = r + x,
+                    top = r - y;
+
+                oSpan.style.left = left + 'px';
+                oSpan.style.top = top + 'px';
+
+                if ( deg <= 290 ){
+                    oWrap.innerHTML += "<i style='left:"+(left+4)+"px;top: "+(top+4)+"px'></i>"
+                }
+
+
+            },13);
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

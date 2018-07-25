@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#container{
+			width:800px;
+			margin:50px auto;
+			padding-bottom:50px;
+			padding-top:50px;
+			background:#a4df45;
+			text-align: center;
+		}
+		#container input[type ^="text"]{
+			width:100px;
+			height:20px;
+			text-indent:10px;
+		}
+		#container input[type ^="button"]{
+			padding:2px 20px;
+			border:1px solid #222;
+			border-radius: 5px
+		}
+		#container p{
+			padding-top:20px;
+			line-height:30px;
+			color:#456ed4;
+			font-size:14px;
+		}
+		#container p span{
+			color:#ff0080;
+			font-size:20px;
+			letter-spacing: 3px;
+			font-weight:bold;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<input type="text" name="text" placeholder="关键字" id="key">
+		<input type="text" name="text" placeholder="替换为" id="replace">
+		<input type="button" value="查找" id="find">
+		<input type="button" value="替换" id="replaceBtn">
+		<p id="p">
+			让我掉下眼泪的不止昨夜的酒<br/>
+			让我依依不舍的不止你的温柔<br/>
+			余路还要走多久你拽着我的手<br/>
+			让我感到为难的是挣扎的理由<br/>
+			分别总是在九月回忆是思念的愁<br/>
+			深秋嫩绿的垂柳亲吻着我的额头<br/>
+			在那阴雨的小城里我从未忘记你<br/>
+			成都带不走的只有你<br/>
+			和我在成都的街头走一走<br/>
+			知道所有的灯都熄灭了也不停留<br/>
+		    你会挽着我的衣袖我会把手揣进裤兜<br/>
+		    走到玉林路的尽头坐在小酒馆的门口<br/>
+		</p>
+	</div>
+	<script>
+		(function(doc){
+			var otxt = doc.getElementById('key'),
+				otxt1 = doc.getElementById('replace'),
+				obtn = doc.getElementById('find'),
+				obtn1 = doc.getElementById('replaceBtn'),
+				oP = doc.getElementById('p'),
+				Txt = oP.innerHTML;
+			obtn.onclick = 	function (){
+				var val = otxt.value;
+				if (val) {
+					if (Txt.indexOf(val) >= 0) {
+						var arr = Txt.split(val);
+						var text = arr.join('<span>'+ val +'</span>')
+						oP.innerHTML = text;
+					}else{
+						alert('没有你查找的关键字')
+					}
+				
+				}else{
+					alert('请输入需要查找的关键字');
+					oP.innerHTML = Txt;
+				}
+			}
+			obtn1.onclick = function(){
+				var val = otxt.value,
+					val1 = otxt1.value;
+				if (val && val1) {
+					if (Txt.indexOf(val) >= 0) {
+						var arr = Txt.split(val);
+						var text = arr.join('<span>'+ val1 +'</span>')
+						oP.innerHTML = text;
+					}else{
+						alert('没有你查找的关键字')
+					}
+				}else{
+					if (val == '') {
+						alert('请输入需要查找的关键字');
+						oP.innerHTML = Txt;
+					}else{
+						alert('请输入需要替换的关键字');
+					}
+					
+					
+				}
+			}
+
+		})(document)
+		
+	</script>
+</body>
+</html>

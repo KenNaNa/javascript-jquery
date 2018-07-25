@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>随机圆圈-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box,#wrap{
+			    position:relative;
+			    width:400px;
+				height:400px;
+				background:#000;
+				margin:0 auto;
+			 }
+			 #box span{
+			    position:absolute;
+				display:block;
+				width:10px;
+				height:10px;
+				border-radius:50%;
+				background:pink;
+			 }
+			 #wrap{
+			   top:-400px;
+			   background:transparent;
+			 }
+			 #wrap i{
+			    position:absolute;
+				display:block;
+			    width:1px;
+				height:1px;
+				background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   <span></span>
+</div>
+<div id="wrap"></div>
+<script>
+   var oBox = document.getElementById('box');
+   var oSpan = oBox.querySelector('span');
+   var oWrap = document.getElementById('wrap');
+   var startDeg = 0;
+	oSpan.moveR = randomNum(20,400);//随机半径
+	 
+   //oSpan.moveR = randomNum(20,400);//随机半径
+   var time = null;
+   time = setInterval(function(){
+      //oSpan.moveR = randomNum(20,400);//随机半径
+	  startDeg +=1;
+	  var x = oSpan.moveR + oSpan.moveR*Math.sin(toRadians(startDeg));
+	  var y = oSpan.moveR - oSpan.moveR*Math.cos(toRadians(startDeg));
+	  oSpan.style.left = x + 'px';
+	  oSpan.style.top = y + 'px';
+	  oWrap.innerHTML += "<i style='left:"+(x+4)+"px;top: "+(y+4)+"px'></i>"
+	  if(startDeg==360){
+	     clearInterval(time);
+	  }
+   },30)
+   //产生随机数
+   function randomNum(min,max){
+     return Math.floor(Math.random()*(max-min+1)+min);
+   }
+   //角度交换成弧度
+   function toRadians(degrees){
+     return degrees/180*Math.PI;
+   }
+   //console.log(randomNum(1,10));
+
+</script>
+</body>
+</html>

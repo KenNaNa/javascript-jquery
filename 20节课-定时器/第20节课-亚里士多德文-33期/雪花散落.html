@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>雪花散落-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{
+			    background:#000;
+				overflow:hidden;
+				padding:3px;
+			 }
+			 span{
+			    position:absolute;
+			    display:block;
+				width:10px;
+				height:10px;
+				text-align:center;
+				line-height:10px;
+				color:#fff;
+				font-size:20px;
+				font-weight:bold;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+        var star = '*';
+    	var xEnd = document.documentElement.clientWidth;//获取可视区的宽度;
+    	var yEnd = document.documentElement.clientHeight;//获取可视区的高度;
+		var str = '';
+		 var time = null;
+		 time = setInterval(function(){
+		       var aSpan = [];
+			   for( var i=0;i<10;i++ ){
+				 var oSpan = document.createElement('span');
+				 var l = Math.floor(Math.random()*xEnd);
+				 oSpan.style.left = l + 'px';
+				 oSpan.style.top = 0;
+				 oSpan.Yspeed = Math.random()*60-30;
+				 oSpan.XSpeed = Math.random()*60-30;
+				 oSpan.innerHTML = star;
+				 document.body.appendChild(oSpan);
+				 aSpan.push(oSpan);
+			   }
+			   var newTime = null;
+			   newTime = setInterval(function(){
+				  for( var i=0;i<aSpan.length;i++ ){
+					 aSpan[i].style.left = aSpan[i].offsetLeft + aSpan[i].Xspeed　+ 'px';
+					 aSpan[i].style.top = aSpan[i].offsetTop + aSpan[i].Yspeed + 'px';
+					 aSpan[i].Yspeed++;
+					 if(aSpan[i].offsetTop>document.documentElement.clientHeight){
+						document.body.removeChild(aSpan[i]);
+					 }
+				  }
+			 
+		   },100)
+		 },1000)
+		   
+		   
+
+</script>
+</body>
+</html>

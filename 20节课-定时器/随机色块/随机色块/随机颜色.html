@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>随机色块</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    span {
+      display: block;
+      width: 90px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 18px;
+      color: #fff;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <script>
+    
+    var box = document.getElementById('box')
+    var hex = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f']
+
+    function randomColor(){
+      var color = []
+      for(var i = 0; i < 6; i++){
+        var num = Math.floor(Math.random()*16)
+        color.push(hex[num])
+      }
+      return '#'+ color.join('')
+    }
+
+    box.timer = setInterval(function(){
+      var quote = document.createElement('span')
+      var color = randomColor()
+      quote.innerText = color
+      quote.style.backgroundColor = color
+      box.appendChild(quote)
+    },100)
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>图片慢慢显示-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:1224px;
+				height:500px;
+				margin:0 auto;
+				opacity:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <img src="images/banner_00.jpg" alt="" />
+</div>
+<script>
+    var oBox = document.getElementById('box');
+	var time = null;
+	var startOpacity = 0;
+	var endOpacity = 100;
+	time = setInterval(function(){
+	   startOpacity += 2;
+	   if(startOpacity>=endOpacity){
+	      startOpacity = endOpacity;
+		  clearInterval(time);//清楚定时器不会阻止后面代码的执行，只有return能阻止函数的执行
+	   }
+	   oBox.style.opacity = ''+startOpacity/100;
+	},30)
+</script>
+</body>
+</html>

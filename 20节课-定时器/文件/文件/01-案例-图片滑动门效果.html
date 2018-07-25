@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                overflow: hidden;
+                width: 720px;
+                height: 0;/*height: 450px;*/
+                margin: 0 auto;
+            }
+            #box img{
+                display: block;
+                width: 720px;
+                height: 450px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <img src="1.jpg" alt="">
+        </div>
+        <script>
+
+            var start = 0,
+                end = 450,
+                timer;
+
+            var oBox = document.getElementById("box");
+
+            timer = setInterval(function () {
+                start += 7;
+
+                if ( start >= end ){
+                    start = end;
+                    clearInterval( timer );//清楚定时器不会阻止后面代码的执行，只有return能阻止函数的执行
+                }
+
+                oBox.style.height = start + 'px';
+            },13);
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>eval()函数-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    
+    setInterval(function(){
+	   // eval函数 解析任何的字符串当成js代码运行 但字符串要符合js语法规范,但不太安全
+	   var str = 'console.log("李金文")'
+	   eval(str)//能把字符串解析成js代码去执行
+	},1000)
+</script>
+</body>
+</html>
