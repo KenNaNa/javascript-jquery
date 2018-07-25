@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+
+        #box{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    var $box = $("#box");
+
+    $box.animate({
+        width : 300,
+        height : 300
+    },1000);
+
+    $box.queue("goudan",function () {
+        $(this).css("background" , "red");
+        $(this).dequeue();
+    });
+
+    $box.delay(200).queue(function () {
+        $(this).css("background" , "green");
+        $(this).dequeue();
+    });
+
+    $box.clearQueue("goudan");
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

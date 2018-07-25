@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>02-全屏滚动特效-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+
+            html,body{
+                height: 100%;
+            }
+            body{
+                width: 100%;
+                overflow: hidden;
+            }
+            a img{
+                display: block;
+            }
+
+            #content{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #content div.conChild{
+                width: 100%;
+                height: 100%;
+                background-position: center center;
+                background-attachment: fixed;
+            }
+            #content div.con1{
+                background-image: url("img/1.jpg");
+            }
+            #content div.con2{
+                background-image: url("img/2.jpg");
+            }
+            #content div.con3{
+                background-image: url("img/3.jpg");
+            }
+            #content div.con4{
+                background-image: url("img/4.jpg");
+            }
+
+            #header{
+                position: fixed;
+                top: 25px;
+                left: 0;
+                z-index: 2;
+                width: 100%;
+                height: 47px;
+            }
+            #logo{
+                float: left;
+                width: 226px;
+                height: 47px;
+                margin-left: 50px;
+            }
+            #nav{
+                position: relative;
+                float: right;
+                width: 408px;
+                height: 47px;
+                margin-right: 50px;
+            }
+            #nav ul{
+                position: absolute;
+                z-index: 2;
+            }
+            #nav ul li{
+                float: left;
+                margin-left: 55px;
+                line-height: 47px;
+                font-size: 14px;
+            }
+            #nav ul li a{
+                color: rgba(255,255,255,.7);
+                text-decoration: none;
+                transition: .2s;
+            }
+            #nav ul li a:hover{
+                color: rgba(255,255,255,1);
+            }
+            #nav .border{
+                position: absolute;
+                top: 9px;
+                left: 39px;
+                width: 58px;
+                height: 28px;
+                border: 1px solid #fff;
+                border-radius: 15px;
+            }
+            #slideNav{
+                position: fixed;
+                top: 50%;
+                left: 50px;
+                z-index: 2;
+                margin-top: -150px;
+                width: 100px;
+                height: 350px;
+                background: url("img/nav.png") no-repeat;
+                padding-top: 6px
+            }
+            #slideNav ul li{
+                float: right;
+                width: 100%;
+                height: 21px;
+                line-height: 21px;
+                font-size: 12px;
+                text-align: right;
+                color: rgba(255,255,255,.8);;
+                margin-bottom: 56px;
+                cursor: pointer;
+            }
+            #slideNav ul li.on{
+                background: url("img/nav_cho.png") no-repeat;
+            }
+
+        </style>
+		<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="jquery-mousewheel-3.1.13.min.js"></script>
+    </head>
+    <body>
+
+        <!--顶部导航-->
+        <div id="header">
+            <div id="logo">
+                <a href="javascript:void(0);"><img src="img/logo.png" alt=""></a>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="javascript:void(0);">首页</a></li>
+                    <li><a href="javascript:void(0);">常见问题</a></li>
+                    <li><a href="javascript:void(0);">论坛</a></li>
+                    <li><a href="javascript:void(0);">360首页&gt;&gt;</a></li>
+                </ul>
+                <div class="border"></div>
+            </div>
+        </div>
+
+        <!--侧边导航-->
+        <div id="slideNav">
+            <ul>
+                <li class="on">安全换机</li>
+                <li>无网对传</li>
+                <li>隐私粉碎</li>
+                <li>一键转移</li>
+            </ul>
+        </div>
+
+        <!--内容区-->
+        <div id="content">
+            <div class="con1 conChild"></div>
+            <div class="con2 conChild"></div>
+            <div class="con3 conChild"></div>
+            <div class="con4 conChild"></div>
+        </div>
+<script>
+  /*
+    jQuery Mousewheel Plugin是由Brandon Aaron开发的jQuery插件，用于添加跨浏览器的鼠标滚轮支持。mousewheel事件的处理函数有一点小小的变化，它除了第一个参数event 外，还接收到第二个参数delta。通过参数delta可以获取鼠标滚轮的方向和速度。如果delta的值是负的，那么滚轮就是向下滚动，正的就是向上。
+	https://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.js
+  */
+  $(function(){//DOM加载完成后再执行代码
+     //顶部导航栏特效
+	 (function(){
+	     var $nav = $('#nav');
+		 var $navLi = $nav.find('ul li');//不能再包含#nav了不然会报错
+		 var $border = $nav.find('.border');
+		 var sbW = $border.width();//.border初始宽度
+		 var sbL = $border.position().left;//.position()获取匹配元素相对父元素的偏移。
+		 var oW = $navLi.eq(0).outerWidth();//第一个li有内容支持的宽度
+		 var oL = $navLi.eq(0).position().left;//第一个li到定位父级的左边距离left值
+         var d_w = sbW - oW;//变化值
+		 var d_l = sbL - oL;
+		 $navLi.mouseenter(function(){//实时获取当前li的宽度值与left值
+			 var w = $(this).outerWidth() + d_w;
+		     var l = $(this).position().left + d_l;
+		     $border.stop().animate({
+			     width:w,
+				 left:l
+			 },500);
+		 }).mouseleave(function(){
+		     $border.stop().animate({//当鼠标移除时返回首页位置
+			     width:sbW,
+				 left:sbL
+			 })
+		 });
+	 })()
+
+	 (function(){
+	     //侧边导航栏特效
+         var $content = $('#content');
+		 var $slideNav = $('#slideNav');
+		 var $slideNavLi = $slideNav.children();
+		 var length = $content.children().length;
+		 var index = 0;
+		 var lastTime = 0;
+		 var WH = $(window).height();
+         $(window).resize(function () {//窗口大小改变时调整
+             winH = $(this).height();//重新获取窗口大小
+             $content.css("top" , -index*winH+'px');//重新赋值
+         });
+		 //鼠标滚轮事件
+		 $(document).mousewheel(function(e,d){
+		     if( new Date() - lastTime>500 ){
+			     if( d<0 ){//向下滚动表示正
+			         index++;
+				     index %= length;
+			     }else{//向上滚动表示负
+			         index--;
+				     (index<0)&&(index = length-1);
+			     }
+			     move();
+				 lastTime = new Date();
+			 }
+		 });
+		 //$slideNavLi点击事件
+
+		 $slideNavLi.click(function(){
+		     var x = $(this).index();//获取当前点击的index索引值
+			 //判断当点击的是不是当前这个按钮
+			 if( x!==index ){
+			     index = x;
+				 move(index);
+			 }
+		 });
+		 function move(index){
+			 $slideNavLi.eq(index).addClass('on').sinlings().removeClass('on');
+		     $content.stop().animate({
+			     top:-index*WH
+			 },500);
+		 }
+	 })()
+  });
+</script>
+</body>
+</html>

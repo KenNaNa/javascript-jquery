@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>03-变化颜色插件-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:100px;
+				height:100px;
+				background:rgb(0,0,0);
+				-webkit-transition:0.5s;
+				-moz-transition:0.5s;
+				-ms-transition:0.5s;
+				-o-transition:0.5s;
+				transition:0.5s;
+			 }
+		 </style>
+		 <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+		 <script type="text/javascript" src="jquery.2.1.2.color.min.js"></script>
+	 </head>
+<body>
+<div id='box'></div>
+<script type="text/javascript">
+   $(function(){
+      $('#box').animate({
+	      'backgroundColor':'red'
+	  },1000)
+   })
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .odd{
+			    background:#ccc;
+			 }
+			 .even{
+			    background:red;
+			 }
+			 div{
+			    position:relative;
+			    width:100px;
+				height:100px;
+				background:pink;
+				left:100px;
+			 }
+		 </style>
+		 <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+	 </head>
+<body>
+<div id='box'></div>
+<script>
+ var $box = $('#box');
+
+    $box.animate({
+	  left:'+=300'
+	},2000).animate({
+	  left:'-=50'
+	},1000);
+</script>
+</body>
+</html>
