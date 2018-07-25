@@ -1,0 +1,1038 @@
+IE浏览器和火狐浏览器兼容问题——CSS篇
+
+一、css＋div 样式 IE与FF兼容问题汇总 
+
+IE和火狐的css兼容性问题归总
+　　CSS对浏览器器的兼容性具有很高的价值，通常情况下IE和火狐浏览器存在很大的解析差异，这里介绍一下兼容要点。 
+1、DOCTYPE 影响 CSS 处理 
+2、FF: div 设置 margin-left, margin-right 为 auto 时已经居中, IE 不行 
+3、FF: body 设置 text-align 时, div 需要设置 margin: auto(主要是 margin-left,margin-right) 方可居中 
+4、FF: 设置 padding 后, div 会增加 height 和 width, 但 IE 不会, 故需要用 !important 多设一个 height 和 width 
+5、FF: 支持 !important, IE 则忽略, 可用 !important 为 FF 特别设置样式，值得注意的是，一定要将xxxx !important 这句放置在另一句之上 
+6、div 的垂直居中问题: vertical-align:middle; 将行距增加到和整个DIV一样高 line-height:200px; 然后插入文字，就垂直居中了。缺点是要控制内容不要换行 
+7、cursor: pointer 可以同时在 IE FF 中显示游标手指状， hand 仅 IE 可以 
+8、FF: 链接加边框和背景色，需设置 display: block, 同时设置 float: left 保证不换行。参照 menubar, 给 a 和 menubar 设置高度是为了避免底边显示错位, 若不设 height, 可以在 menubar 中插入一个空格。 
+9、在mozilla firefox和IE中的BOX模型解释不一致导致相差2px解决方法：div{margin:30px!important;margin:28px;}  注意这两个margin的顺序一定不能写反，据阿捷的说法!important这个属性IE不能识别，但别的浏览器可以识别。所以在IE下其实解释成这样：div{maring:30px;margin:28px}
+重复定义的话按照最后一个来执行，所以不可以只写margin:XXpx!important; 
+10、IE5 和IE6的BOX解释不一致  IE5下div{width:300px;margin:0 10px 0 10px;}
+div的宽度会被解释为300px-10px(右填充)-10px(左填充)最终div的宽度为280px，而在IE6和其他浏览器上宽度则是以 300px+10px(右填充)+10px(左填充)=320px来计算的。这时我们可以做如下修改div{width:300px! important;width /**/:340px;margin:0 10px 0 10px}
+关于这个/**/是什么我也不太明白，只知道IE5和firefox都支持但IE6不支持，如果有人理解的话，请告诉我一声，谢了!：) 
+11、ul标签在Mozilla中默认是有padding值的,而在IE中只有margin有值所以先定义ul{margin:0;padding:0;}
+  　　就能解决大部分问题
+　　注意事项：
+　　1、float的div一定要闭合。
+　　例如：(其中floatA、floatB的属性已经设置为float:left;)<#div id=\”floatA\” >
+　　<#div id=\”floatB\” >
+　　<#div id=\”NOTfloatC\” >
+　　这里的NOTfloatC并不希望继续平移，而是希望往下排。
+　　这段代码在IE中毫无问题，问题出在FF。原因是NOTfloatC并非float标签，必须将float标签闭合。
+　　在<#div class=\”floatB\”>
+　　<#div class=\”NOTfloatC\”>
+　　之间加上<#div class=\”clear\”>
+　　这个div一定要注意声明位置，一定要放在最恰当的地方，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。
+　　并且将clear这种样式定义为如下即可：.clear{clear:both;}
+　　此外，为了让高度能自动适应，要在wrapper里面加上overflow:hidden;
+　　当包含float的box的时候，高度自动适应在IE下无效，这时候应该触发IE的layout私有属性(万恶的IE啊!)用zoom:1;可以做到，这样就达到了兼容。
+　　例如某一个wrapper如下定义：.colwrapper{
+　　overflow:hidden;
+　　zoom:1;
+　　margin:5px auto;}
+　　2、margin加倍的问题。
+　　设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。
+　　解决方案是在这个div里面加上display:inline;
+　　例如：
+　　<#div id=\”imfloat\”>
+　　相应的css为
+　　#IamFloat{
+　　float:left;
+　　margin:5px;/*IE下理解为10px*/
+　　display:inline;/*IE下再理解为5px*/}
+　　3、关于容器的包涵关系
+　　很多时候，尤其是容器内有平行布局，例如两、三个float的div时，宽度很容易出现问题。在IE中，外层的宽度会被内层更宽的div挤破。一定要用Photoshop或者Firework量取像素级的精度。
+　　4、关于高度的问题
+　　如果是动态地添加内容，高度最好不要定义。浏览器可以自动伸缩，然而如果是静态的内容，高度最好定好。(似乎有时候不会自动往下撑开，不知道具体怎么回事)
+　　5、最狠的手段 - !important;
+　　如果实在没有办法解决一些细节问题,可以用这个方法.FF对于”!important”会自动优先解析,然而IE则会忽略.如下.tabd1{
+　　background:url(/res/images/up/tab1.gif) no-repeat 0px 0px !important; /*Style for FF*/
+　　background:url(/res/images/up/tab1.gif) no-repeat 1px 0px; /* Style for IE */}
+　　值得注意的是，一定要将xxxx !important 这句放置在另一句之上，上面已经提过;
+　　IE7.0出来了，对CSS的支持又有新问题。浏览器多了，网页兼容性更差了，疲于奔命的还是我们 ，为解决IE7.0的兼容问题，找来了下面这篇文章：
+　　现在我大部分都是用!important来hack，对于ie6和firefox测试可以正常显示，但是ie7对!important可以正确解释，会导致页面没按要求显示!搜索了一下，找到一个针对IE7不错的hack方式就是使用 “*+html”，现在用IE7浏览一下，应该没有问题了。
+　　现在写一个CSS可以这样：
+　　#example { color: #333; } /* Moz */
+　　* html #example { color: #666; } /* IE6 */
+　　*+html #example { color: #999; } /* IE7 */
+　　那么在firefox下字体颜色显示为#333，IE6下字体颜色显示为#666，IE7下字体颜色显示为#999，他们都互不干扰。
+　　 ---------------------------------------------------------------------------------------------------------------------------------
+　　先温习一下对于IE的box-model的破解
+　　IE box-model这个臭名昭著的bug存在于IE6/Win以前的每一只版本，这个虫子直到tantak发布了流传最为广泛的那个hack才开始被驯服
+　　IE5.X/win对box-model的解析是一样的，他们认为width包括了边框(border)和补白(padding)，幸运的是这个情况在IE6中有了好转
+　　但是IE6在向后兼容的同时也包容了以前的错误，IE6其实有两个核心，在旧的页面前他仍旧表现出对错误的宽容，只有在文档中严格地加上文档类型(DOCTYPE)声明，IE6才能够接受正确的box-model
+　　所以，tantak的hack必须和正确的DOCTYPE同时包含在文档中才能够正常工作
+　　Quote
+　　div.content {
+　　width:400px; //这个是错误的width，所有浏览器都读到了
+　　voice-family: "\"}\""; //IE5.X/win忽略了"\"}\""后的内容
+　　voice-family:inherit;
+　　width:300px; //包括IE6/win在内的部分浏览器读到这句，新的数值(300px)覆盖掉了旧的
+　　}
+　　html>body .content { //html>body是CSS2的写法
+　　width:300px; //支持CSS2该写法的浏览器有幸读到了这一句
+　　}
+　　现在回到主题，我们经常看到!important和(空格)/**/:组合在一起使用，这个写法有什么奥妙呢?
+　　看刚才那个写法，我这里可以提供另一种写法也能达到这样的效果
+　　Quote
+　　div.content {
+　　width:300px !important; //这个是正确的width，大部分支持!important标记的浏览器使用这里的数值
+　　width(空格)/**/:400px; //IE6/win不解析这句，所以IE6/win仍然认为width的值是300px;而IE5.X/win读到这句，新的数值(400px)覆盖掉了旧的，因为!important标记对他们不起作用
+　　}
+　　html>body .content { //html>body是CSS2的写法
+　　width:300px; //支持CSS2该写法的浏览器有幸读到了这一句
+　　}
+　　同样，这个方法仍必须依靠正确的文档类型声明才能够正常工作，原因在前面已经说过。
+　　文档类型声明就像一个开关，打开向后兼容的未来，而错误使用的话，就是一个Pandora box
+　　---------------------------------------------------------------------------------------------------------------
+　　ie7.0的面世，尚且不论他是否较之ie6.0进步， ie7和ie6 之间不兼容，毫无疑问又引入了新的痛处，至少在调试的过程中，又多了一道程序以及随之而来的大量不兼容。
+　　目前，使用ie7.0的用户尚且是少数，使用ie6.0的用户仍然占据很大的比重。然而，大量通过ie6 测试的网页，在ie7.0中都显示不正常。
+　　据ie7.0官方解说：
+　　ie7.0在IE6的基础上引入了strict模式，包含了许多有关于层叠样式表(CSS)解析与呈现的改进。这些改进意在提高Internet Explorer解释层叠样式表的一致性，以达到W3C的推荐的标准，同时为开发者提供一个可以依赖的功能集合。
+　　不管官方的语言是多么动听，也不管ie7.0是不是真的W3C了，浏览器之间太多个性化的东西，太多差异，让我们无可奈何。在ie7.0下设计出的网页，ie6下面显示的几乎是不堪入目。那么，我们在设计网页的时候，在解决好ie6.0与火狐的兼容问题的同时，我们是更多的服从符合W3C一些的 ie7.0，还是对96%的ie6.0妥协?这个问题其实有些多余，我们能做的，或许只有选择中庸，只有尽量调试到各个浏览器都显示正常吧。
+　　ie7.0与ie6.0的之间不兼容，目前就我知道的有如下几个方面，如有遗漏或者说错了的地方，欢迎在后面补充或者纠正。
+　　1. ie7,ie6 div+css出现宽度定义不同
+　　在宽度定义上出现宽度的解释不同,IE7宽度在IE6上要宽一些,,正是这个原因网页可能会出现溢出问题, 还好这个问题可以通过更改数值或者修改一下百分比解决.
+　　2. ie7.0修复了!important这个bug。
+　　先前由于ie6.0对!important识别存在bug, 在firefox和IE中的BOX模型解释不一致导致相差2px，大部分网页标准设计师通过这个bug来兼容ie6.0和firefox，即采用：div {margin:30px!important;margin:28px;}。但是ie7.0把这个bug给修复了,所以问题又出现了,怎么兼容 ie.7.0的同时又能兼容ie6.0和firefox?
+　　3. Box Model的改变
+　　在IE7中，为了适应CSS2.1 box model修改了溢出的行为。
+　　4. ie7.0中一些CSS filter将不再可用
+　　IE7中修改了许多潜在解析错误，这些可能会阻止filter在以前的IE版本中正常工作。如：*HTML filter，下划线filter和/**/注释filter等等。
+　　5. ie7.0对很多不规范的css不再支持，对js语法要求更严格规范。 
+
+
+
+overflow:hidden这个CSS样式是大家常用到的CSS样式，但是大多数人对这个样式的理解仅仅局限于隐藏溢出，而对于清除浮动这个含义不是很了解。
+一提到清除浮动，我们就会想到另外一个CSS样式：clear:both，我相信对于这个属性的理解大家都不成问题的。但是对于“浮动”这个词到底包含什么样的含义呢？我们下面来详细的阐述一下。
+
+
+
+
+
+
+
+这是一个常用的div写法，下面我们来书写样式。大家可以在DMX中自己做试验
+#wai{ width:500px;  background:#000; height:500px;}
+#nei { float:left; width:600px; height:600px; background:red;}
+可以看到，我给nei这个id加了一个浮动，我们常规的理解是，我们允许nei这个id的div的右边出现其他的内容，只要它的宽度不超过wai这个div和nei这个div的剩余值。
+如果div wai中还包含其他的div，我不允许它出现在nei的右侧，我们则用样式clear:both指定这个div，不允许它浮动在nei右侧。
+这些在ie6里面是正确的。但是在火狐或者其他浏览器里面，我们发现问题并非如此简单。我们发现，当nei这个div的宽度和高度都大于wai这个div的时候，wai并没有被内撑开而是依旧显示为我们指定的宽高。在我的例子中，都是500。
+这个时候我不理解了，我搜索了很多的资料，但是都没能理解这是为什么，直到看到别人在类似的情况下给wai这个div加了一个overflow:hidden这个属性解决了这个问题。
+我们直到overflow:hidden这个属性的作用是隐藏溢出，给wai加上这个属性后，我们的nei的宽高自动的被隐藏掉了。另外，我们再做一个试验，将wai这个div的高度值删除后，我们发现，wai的高度自动的被nei这个div的高度值给撑开了。
+说到这里，我们再来理解一下“浮动”这个词的含义。我们原先的理解是，在一个平面上的浮动，但是通过这个试验，我们发现，这不仅仅是一个平面上的浮动，而是一个立体的浮动！
+也就是说，当nei这个div加上浮动这个属性的时候，在显示器的侧面，它已经脱离了wai这个div，也就是说，此时的nei的宽高是多少，对于已经脱离了的wai来说，都是不起作用的。打个形象的比喻就是当JJ脱离BB的时候，JJ的大小对于BB是没有撑开的作用的（有点少儿不宜的感觉-_-|||）
+OK，当我们全面的理解了浮动这个词的含义的时候，我们就理解overflow:hidden这个属性中的解释，清除浮动是什么意思了。也就是说，当我们给wai这个div加上overflow:hidden这个属性的时候，其中的nei等等带浮动属性的div的在这个立体的浮动已经被清除了，就好比JJ又进入了BB内，JJ的大小自然又会影响到BB的大小。
+这就是overflow:hidden这个属性清除浮动的准确含义。
+当我们没有给wai这个div设置高度的时候，nei这个div的高度，就会撑开wai这个div，而在另一个方面，我们要注意到的是，当我们给wai这个div加上一个高度值，那么无论nei这个div的高度是多少，wai这个高度都是我们设定的值。而当nei的高度超过wai的高度的时候，超出的部分就会被隐藏。这就是隐藏溢出的含义！
+我相信，通过我的这些文字，大家对overflow:hidden这个属性有了全新的认识。希望大家和我一样，在div+css学习中能够不断的进步！ 
+
+
+
+1、DOCTYPE 影响 CSS 处理
+2、FF：div 设置 margin-left， margin-right 为 auto 时已经居中，IE 不行
+3、FF: body 设置 text-align 时， div 需要设置 margin: auto(主要是 margin-left，margin-right) 方可居中
+4、FF: 设置 padding 后， div 会增加 height 和 width， 但 IE 不会， 故需要用 !important 多设一个 height 和 width
+5、FF: 支持 !important， IE 则忽略， 可用 !important 为 FF 特别设置样式
+6、div 的垂直居中问题: vertical-align:middle; 将行距增加到和整个DIV一样高 line-height:200px; 然后插入文字，就垂直居中了。缺点是要控制内容不要换行
+7、cursor: pointer 可以同时在 IE FF 中显示游标手指状， hand 仅 IE 可以
+8、FF: 链接加边框和背景色，需设置 display: block， 同时设置 float: left 保证不换行。参照 menubar， 给 a 和 menubar 设置高度是为了避免底边显示错位， 若不设 height， 可以在 menubar 中插入一个空格。
+9、在mozilla firefox和IE中的BOX模型解释不一致导致相差2px解决方法：
+div{margin:30px!important;margin:28px;}
+注意这两个margin的顺序一定不能写反，据阿捷的说法!important这个属性IE不能识别，但别的浏览器可以识别。所以在IE下其实解释成这样：
+div{maring:30px;margin:28px}
+重复定义的话按照最后一个来执行，所以不可以只写margin:XXpx!important;
+10、IE5 和IE6的BOX解释不一致
+IE5下
+div{width:300px;margin:0 10px 0 10px;}
+div的宽度会被解释为300px-10px(右填充)-10px(左填充)最终div的宽度为280px，而在IE6和其他浏览器上宽度则是以300px+10px(右填充)+10px(左填充)=320px来计算的。这时我们可以做如下修改
+div{width:300px!important;width /**/:340px;margin:0 10px 0 10px}
+关于这个/**/是什么我也不太明白，只知道IE5和firefox都支持但IE6不支持。
+11、ul标签在Mozilla中默认是有padding值的，而在IE中只有margin有值所以先定义
+ul{margin:0;padding:0;}
+就能解决大部分问题
+注意事项：
+1、float的div一定要闭合。
+例如：(其中floatA、floatB的属性已经设置为float:left;)
+<#div id="floatA" >
+<#div id="floatB" >
+<#div id="NOTfloatC" >
+这里的NOTfloatC并不希望继续平移，而是希望往下排。
+这段代码在IE中毫无问题，问题出在FF。原因是NOTfloatC并非float标签，必须将float标签闭合。
+在
+<#div class="floatB">
+<#div class="NOTfloatC">
+之间加上
+<#div class="clear">
+这个div一定要注意声明位置，一定要放在最恰当的地方，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。
+并且将clear这种样式定义为为如下即可：
+.clear{
+clear:both;}
+此外，为了让高度能自动适应，要在wrapper里面加上overflow:hidden;
+当包含float的box的时候，高度自动适应在IE下无效，这时候应该触发IE的layout私有属性(万恶的IE啊！)用zoom:1;可以做到，这样就达到了兼容。
+例如某一个wrapper如下定义：
+
+
+ 
+ 
+ 以下为引用的内容：
+.colwrapper{
+overflow:hidden;
+zoom:1;
+margin:5px auto;} 
+以下前遇到过
+2、margin加倍的问题。
+设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。
+解决方案
+是在这个div里面加上display:inline;
+例如：
+<#div id="imfloat">
+相应的css为
+
+
+ 
+ 
+ 以下为引用的内容：
+#IamFloat{
+float:left;
+margin:5px;/*IE下理解为10px*/
+display:inline;/*IE下再理解为5px*/} 
+
+3、关于容器的包涵关系
+很多时候，尤其是容器内有平行布局，例如两、三个float的div时，宽度很容易出现问题。在IE中，外层的宽度会被内层更宽的div挤破。一定要用Photoshop或者Firework量取像素级的精度。
+4、关于高度的问题
+如果是动态地添加内容，高度最好不要定义。浏览器可以自动伸缩，然而如果是静态的内容，高度最好定好。（似乎有时候不会自动往下撑开，不知道具体怎么回事）
+5、最狠的手段 - !important;
+如果实在没有办法解决一些细节问题，可以用这个方法.FF对于"!important"会自动优先解析，然而IE则会忽略。如下
+
+
+ 
+ 
+ 以下为引用的内容：
+.tabd1{
+background:url(/res/images/up/tab1.gif) no-repeat 0px 0px !important; /*Style for FF*/
+background:url(/res/images/up/tab1.gif) no-repeat 1px 0px; /* Style for IE */} 
+
+值得注意的是，一定要将xxxx !important 这句放置在另一句之上，上面已经提过 undefined undefined
+
+
+irefox不支持hand，但ie支持pointer 
+解决方法: 统一使用pointer 
+
+5. padding 问题 
+padding 5px 4px 3px 1px FireFox无法解释简写, 
+必须改成 padding-top:5px; padding-right:4px; padding-bottom:3px; padding-left:1px; 
+
+6. 消除ul、ol等列表的缩进 
+消除ul、ol等列表的缩进样式应写成:list-style:none;margin:0px;padding:0px; 
+其中margin属性对IE有效，padding属性对FireFox有效 
+
+7. CSS透明 
+IE：filter:progidXImageTransform.Microsoft.Alpha(style=0,opacity=60)。 
+FF：opacity:0.6。 
+
+8. CSS圆角 
+IE：不支持圆角。 
+FF： -moz-border-radius:4px，或者 
+-moz-border-radius-topleft:4px; 
+-moz-border-radius-topright:4px; 
+-moz-border-radius-bottomleft:4px; 
+-moz-border-radius- bottomright:4px;。 
+
+9. CSS双线凹凸边框 
+IE：border:2px outset;。 
+FF： 
+-moz-border-top-colors: #d4d0c8 white; 
+-moz-border-left-colors: #d4d0c8 white; 
+-moz-border-right-colors:#404040 #808080; 
+-moz-border-bottom-colors:#404040 #808080; 
+
+10. 滤镜 
+IE中支持使用滤镜,而Firefox中不支持. 
+
+11. 禁止选取网页内容： 
+在IE中一般用js：obj.onselectstart=function(){return false;}; 
+而firefox用CSS:-moz-user-select:none;
+
+
+常见兼容问题：
+
+模板无忧--mb5u_COm
+WWW.MB5U_COM
+1、DOCTYPE 影响 CSS 处理
+MB5U@COM
+2、FF：div 设置 margin-left， margin-right 为 auto 时已经居中，IE 不行
+WWW.MB5U_COM
+3、FF: body 设置 text-align 时， div 需要设置 margin: auto(主要是 margin-left，margin-right) 方可居中 模板无忧--mb5u_COm
+4、FF: 设置 padding 后， div 会增加 height 和 width， 但 IE 不会， 故需要用 !important 多设一个 height 和 width
+WWW.MB5U_COM
+模板无忧--mb5u_COm
+5、FF: 支持 !important， IE 则忽略， 可用 !important 为 FF 非凡设置样式
+Mb5U.com-模板无忧
+6、div 的垂直居中问题: vertical-align:middle; 将行距增加到和整个DIV一样高 line-height:200px; 然后插入文字，就垂直居中了。缺点是要控制内容不要换行
+MB5U@COM
+7、cursor: pointer 可以同时在 IE FF 中显示游标手指状， hand 仅 IE 可以
+WWW.MB5U_COM
+8、FF: 链接加边框和背景色，需设置 display: block， 同时设置 float: left 保证不换行。参照 menubar， 给 a 和 menubar 设置高度是为了避免底边显示错位， 若不设 height， 可以在 menubar 中插入一个空格。
+www.MB5U__COM
+MB5U_COM
+9、在mozilla firefox和IE中的BOX模型解释不一致导致相差2px解决方法：
+MB5U@COM
+div{margin:30px!important;margin:28px;}
+模板无忧-Mb5u.com
+注重这两个margin的顺序一定不能写反，据阿捷的说法!important这个属性IE不能识别，但别的浏览器可以识别。所以在IE下其实解释成这样：
+模板无忧-MB5U.-COM
+MB5u.com__模板无忧
+div{maring:30px;margin:28px}
+WWW.MB5U_COM
+重复定义的话按照最后一个来执行，所以不可以只写margin:XXpx!important; wwW.MB5U_COM
+10、IE5 和IE6的BOX解释不一致 模板无忧-Mb5u.com
+IE5下
+MB5U_coM
+MB5u.com__模板无忧
+div{width:300px;margin:0 10px 0 10px;}
+WWW.MB5U_COM
+MB5u.com__模板无忧
+div的宽度会被解释为300px-10px(右填充)-10px(左填充)最终div的宽度为280px，而在IE6和其他浏览器上宽度则是以300px 10px(右填充) 10px(左填充)=320px来计算的。这时我们可以做如下修改 wwW.MB5U_COM
+div{width:300px!important;width /**/:340px;margin:0 10px 0 10px}
+MB5U@COM
+关于这个/**/是什么我也不太明白，只知道IE5和firefox都支持但IE6不支持。
+MB5u.com__模板无忧
+11、ul标签在Mozilla中默认是有padding值的，而在IE中只有margin有值所以先定义
+
+WWW.MB5U_COM
+模板无忧-Mb5u.com
+ul{margin:0;padding:0;}
+www.MB5U_COM
+就能解决大部分问题 WWW.MB5U_COM
+注重事项：
+
+MB5U____COM
+Mb5U.com-模板无忧
+1、float的div一定要闭合。
+MB5U____COM
+例如：(其中floatA、floatB的属性已经设置为float:left;)
+wwW.MB5U_COM
+<#div id="floatA" > 模板无忧-Mb5u.com
+<#div id="floatB" > 模板无忧--mb5u_COm
+<#div id="NOTfloatC" >
+
+Mb5U.com-模板无忧
+模板无忧-MB5u__com
+这里的NOTfloatC并不希望继续平移，而是希望往下排。
+
+模板无忧--mb5u_COm
+模板无忧--mb5u_COm
+这段代码在IE中毫无问题，问题出在FF。原因是NOTfloatC并非float标签，必须将float标签闭合。
+MB5U_COM
+在
+
+WWW.MB5U_COM
+Mb5U.com-模板无忧
+<#div class="floatB">
+MB5U____COM
+<#div class="NOTfloatC">
+MB5U_COM
+之间加上
+wWw.MB5U_COM
+<#div class="clear">
+
+mb5u---Com-模板无忧
+MB5U_coM
+这个div一定要注重声明位置，一定要放在最恰当的地方，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。
+wwW.MB5U_COM
+并且将clear这种样式定义为为如下即可：
+wwW.MB5U_COM
+.clear{
+模板无忧--mb5u_COm
+clear:both;} 模板无忧-MB5U.-COM
+此外，为了让高度能自动适应，要在wrapper里面加上overflow:hidden;
+模板无忧-Mb5u.com
+当包含float的box的时候，高度自动适应在IE下无效，这时候应该触发IE的layout私有属性(万恶的IE啊！)用zoom:1;可以做到，这样就达到了兼容。 WWW.MB5U_COM
+例如某一个wrapper如下定义：
+模板无忧-MB5U.-COM
+
+
+
+ 
+ 
+ 以下为引用的内容：
+.colwrapper{
+overflow:hidden;
+zoom:1;
+margin:5px auto;} 
+
+模板无忧-MB5U.-COM
+www.MB5U_COM
+2、margin加倍的问题。 MB5u.com__模板无忧
+设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。
+MB5U_coM
+解决方案
+Mb5U.com-模板无忧
+是在这个div里面加上display:inline; www.MB5U__COM
+例如：
+模板无忧-MB5U.-COM
+<#div id="imfloat">
+
+模板无忧-MB5u__com
+mb5u---Com-模板无忧
+相应的css为
+
+MB5U_coM
+模板无忧-MB5u__com
+
+
+
+ 
+ 
+ 以下为引用的内容：
+#IamFloat{
+float:left;
+margin:5px;/*IE下理解为10px*/
+display:inline;/*IE下再理解为5px*/} 
+
+mb5u---Com-模板无忧
+3、关于容器的包涵关系
+www.MB5U_COM
+MB5U____COM
+很多时候，尤其是容器内有平行布局，例如两、三个float的div时，宽度很轻易出现问题。在IE中，外层的宽度会被内层更宽的div挤破。一定要用Photoshop或者Firework量取像素级的精度。 Mb5U.com-模板无忧
+4、关于高度的问题
+
+模板无忧--mb5u_COm
+模板无忧-Mb5u.com
+假如是动态地添加内容，高度最好不要定义。浏览器可以自动伸缩，然而假如是静态的内容，高度最好定好。（似乎有时候不会自动往下撑开，不知道具体怎么回事）
+
+MB5U@COM
+模板无忧--mb5u_COm
+5、最狠的手段 - !important; MB5u.com__模板无忧
+假如实在没有办法解决一些细节问题，可以用这个方法.FF对于"!important"会自动优先解析，然而IE则会忽略。如下 www.MB5U_COM
+
+
+
+ 
+ 
+ 以下为引用的内容：
+.tabd1{
+background:url(/res/images/up/tab1.gif) no-repeat 0px 0px !important; /*Style for FF*/
+background:url(/res/images/up/tab1.gif) no-repeat 1px 0px; /* Style for IE */} 
+
+
+Mb5U.com-模板无忧
+WWW.MB5U_COM
+值得注重的是，一定要将xxxx !important 这句放置在另一句之上，上面已经提过 undefined undefined
+
+
+
+
+ 
+ 
+ CSS兼容IE与Firefox要点分析2006-10-15 14:43IE vs FF 
+CSS 兼容要点： 
+
+DOCTYPE 影响 CSS 处理 
+
+FF: div 设置 margin-left, margin-right 为 auto 时已经居中, IE 不行 
+
+FF: body 设置 text-align 时, div 需要设置 margin: auto(主要是 margin-left,margin-right) 方可居中 
+
+FF: 设置 padding 后, div 会增加 height 和 width, 但 IE 不会, 故需要用 !important 多设一个 height 和 width 
+
+FF: 支持 !important, IE 则忽略, 可用 !important 为 FF 特别设置样式 
+
+div 的垂直居中问题: vertical-align:middle; 将行距增加到和整个DIV一样高 line-height:200px; 然后插入文字，就垂直居中了。缺点是要控制内容不要换行 
+
+cursor: pointer 可以同时在 IE FF 中显示游标手指状， hand 仅 IE 可以 
+
+FF: 链接加边框和背景色，需设置 display: block, 同时设置 float: left 保证不换行。参照 menubar, 给 a 和 menubar 设置高度是为了避免底边显示错位, 若不设 height, 可以在 menubar 中插入一个空格 
+
+XHTML+CSS兼容性解决方案小集 
+使用XHTML＋CSS构架好处不少，但也确实存在一些问题，不论是因为使用不熟练还是思路不清晰，我就先把一些我遇到的问题写在下面，省的大家四处找^^ 
+
+1.在mozilla firefox和IE中的BOX模型解释不一致导致相差2px解决方法： 
+
+div{margin:30px!important;margin:28px;}注意这两个margin的顺序一定不能写反，据阿捷的说法!important这个属性IE不能识别，但别的浏览器可以识别。所以在IE下其实解释成这样： 
+
+div{maring:30px;margin:28px}重复定义的话按照最后一个来执行，所以不可以只写margin:XXpx!important; 
+
+2.IE5 和IE6的BOX解释不一致IE5下div{width:300px;margin:0 10px 0 10px;}div的宽度会被解释为300px-10px(右填充)-10px(左填充)最终div的宽度为280px，而在IE6和其他浏览器上宽度则 是以300px+10px(右填充)+10px(左填充)=320px来计算的。这时我们可以做如下修改 
+
+div{width:300px!important;width /**/:340px;margin:0 10px 0 10px}，关于这个/**/是什么我也不太明白，只知道IE5和firefox都支持但IE6不支持，如果有人理解的话，请告诉我一声，谢了！：） 
+
+3.ul标签在Mozilla中默认是有padding值的,而在IE中只有margin有值所以先定义 
+
+ul{margin:0;padding:0;}就能解决大部分问题 
+
+
+
+二、
+CSS对浏览器器的兼容性具有很高的价值，通常情况下IE和火狐浏览器存在很大的解析差异，今天和大家谈谈火狐浏览器和IE浏览器下CSS兼容的问题，并推荐两篇不错的文章给大家:网页设计师必备的火狐扩展 和 IE和火狐的css兼容性问题汇总，下面进入正题：
+
+1.DOCTYPE 影响 CSS 处理
+
+2.FF: div 设置 margin-left, margin-right 为 auto 时已经居中, IE 不行
+
+3.FF: body 设置 text-align 时, div 需要设置 margin: auto(主要是 margin-left,margin-right) 方可居中
+
+4.FF: 设置 padding 后, div 会增加 height 和 width, 但 IE 不会, 故需要用 !important 多设一个 height 和 width
+
+5.FF: 支持 !important, IE 则忽略, 可用 !important 为火狐特别设置样式
+
+6.div 的垂直居中问题: vertical-align:middle; 将行距增加到和整个DIV一样高 line-height:200px; 然后插入文字，就垂直居中了。缺点是要控制内容不要换行
+
+7.{cursor: pointer 可以同时在 IE、火狐中显示游标手指状， hand 仅 IE 可以}
+
+8.FF: 链接加边框和背景色，需设置 display: block, 同时设置 float: left 保证不换行。参照 menubar, 给 a 和 menubar 设置高度是为了避免底边显示错位, 若不设 height, 可以在 menubar 中插入一个空格。
+
+9.在mozilla firefox和IE中的BOX模型解释不一致导致相差2px解决方法： div{margin:30px!important;margin:28px;}注意这两个margin的顺序一定不能写反，据阿捷的说法! important这个属性IE不能识别，但别的浏览器可以识别。所以在IE下其实解释成这样： div{maring:30px;margin:28px}重复定义的话按照最后一个来执行，所以不可以只写margin:XXpx! important;
+
+11.ul标签在Mozilla中默认是有padding值的,而在IE中只有margin有值所以先定义 ul{margin:0;padding:0;}就能解决大部分问题
+
+注意事项：
+
+1、float的div一定要闭合。
+
+例如：(其中floatA、floatB的属性已经设置为float:left;) <#div id=”floatA” >
+
+<#div id=”floatB” >
+
+<#div id=”NOTfloatC” >这里的NOTfloatC并不希望继续平移，而是希望往下排。
+
+这段代码在IE中毫无问题，问题出在火狐浏览器。原因是NOTfloatC并非float标签，必须将float标签闭合。
+
+在 <#div class=”floatB”>
+
+<#div class=”NOTfloatC”>之间加上 <#div class=”clear”>这个div一定要注意声明位置，一定要放在最恰当的地方，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。
+
+并且将clear这种样式定义为为如下即可： .clear{
+
+clear:both;}此外，为了让高度能自动适应，要在wrapper里面加上overflow:hidden;
+
+当包含float的box的时候，高度自动适应在IE下无效，这时候应该触发IE的layout私有属性，用zoom:1;可以做到，这样就达到了兼容。
+
+例如某一个wrapper如下定义： .colwrapper{
+
+overflow:hidden;
+
+zoom:1;
+
+margin:5px auto;}
+
+2、margin加倍的问题
+
+设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。
+
+解决方案是在这个div里面加上display:inline;
+
+例如：
+
+<#div id=”imfloat”>
+
+相应的css为
+
+#IamFloat{
+
+float:left;
+
+margin:5px;/*IE下理解为10px*/
+
+display:inline;/*IE下再理解为5px*/}
+
+3、关于容器的包涵关系
+
+很多时候，尤其是容器内有平行布局，例如两、三个float的div时，宽度很容易出现问题。在IE中，外层的宽度会被内层更宽的div挤破。一定要用Photoshop或者Firework量取像素级的精度。
+
+4、关于高度的问题
+
+如果是动态地添加内容，高度最好不要定义。浏览器可以自动伸缩，然而如果是静态的内容，高度最好定好。(似乎有时候不会自动往下撑开，不知道具体怎么回事)
+
+5、最狠的手段 - !important;
+
+如果实在没有办法解决一些细节问题,可以用这个方法.FF对于”!important”会自动优先解析,然而IE则会忽略.如下 .tabd1{
+
+background:url(/res/images/up/tab1.gif) no-repeat 0px 0px !important; /*Style for FF*/
+
+background:url(/res/images/up/tab1.gif) no-repeat 1px 0px; /* Style for IE */}值得注意的是，一定要将xxxx !important 这句放置在另一句之上，上面已经提过
+
+IE7.0出来了，对CSS的支持又有新问题。浏览器多了，网页兼容性更差了，疲于奔命的还是我们 ，为解决IE7.0的兼容问题，找来了下面这篇文章：
+
+现在我大部分都是用!important来hack，对于ie6和火狐浏览器测试可以正常显示，但是ie7对!important可以正确解释，会导致页面没按要求显示!搜索了一下，找到一个针对IE7不错的hack方式就是使用“*+html”，现在用IE7浏览一下，应该没有问题了。
+
+现在写一个CSS可以这样：
+
+#example { color: #333; } /* Moz */
+
+* html #example { color: #666; } /* IE6 */
+
+*+html #example { color: #999; } /* IE7 */
+
+那么在火狐浏览器下字体颜色显示为#333，IE6下字体颜色显示为#666，IE7下字体颜色显示为#999
+
+
+
+
+
+
+
+IE浏览器和Firefox(火狐)浏览器兼容性——Javascript篇
+
+1. document.form.item 问题
+(1)现有问题：
+现有代码中存在许多 document.formName.item("itemName") 这样的语句，不能在Firefox(火狐)下运行
+(2)解决方法：
+改用 document.formName.elements["elementName"]
+(3)其它
+参见 2
+
+2. 集合类对象问题
+(1)现有问题：
+现有代码中许多集合类对象取用时使用 ()，IE 能接受，Firefox(火狐)不能。
+(2)解决方法：
+改用 [] 作为下标运算。如：document.forms("formName") 改为 document.forms["formName"]。
+又如：document.getElementsByName("inputName")(1) 改为 document.getElementsByName("inputName")[1]
+(3)其它
+
+3. window.event
+(1)现有问题：
+使用 window.event 无法在火狐浏览器上运行
+(2)解决方法：
+火狐 的 event 只能在事件发生的现场使用，此问题暂无法解决。可以这样变通：
+原 代码(可在IE中运行)： <br /><input type="button" name="someButton" value="提交" onclick="javascript:gotoSubmit()"/><br />...<br /><script language="javascript"><br />function gotoSubmit() {<br />...<br />alert(window.event); // use window.event<br />...<br />}<br /></script>
+
+新 代码(可在IE和火狐中运行)： <input type="button" name="someButton" value="提交" onclick="javascript:gotoSubmit(event)"/><br />...<br /><script language="javascript"><br />function gotoSubmit(evt) {<br />evt = evt ? evt : (window.event ? window.event : null);<br />...<br />alert(evt); // use evt<br />...<br />}<br /></script>
+此外，如果新代码中第一行不改，与老代码一样的话(即 gotoSubmit 调用没有给参数)，则仍然只能在IE中运行，但不会出错。所以，这种方案 tpl 部分仍与老代码兼容。
+
+4. HTML 对象的 id 作为对象名的问题
+(1)现有问题
+在 IE 中，HTML 对象的 ID 可以作为 document 的下属对象变量名直接使用。在火狐中不能。
+(2)解决方法
+用 getElementById("idName") 代替 idName 作为对象变量使用。
+
+5. 用idName字符串取得对象的问题
+(1)现有问题
+在IE中，利用 eval(idName) 可以取得 id 为 idName 的 HTML 对象，在火狐中不能。
+(2)解决方法
+用 getElementById(idName) 代替 eval(idName)。
+
+6. 变量名与某 HTML 对象 id 相同的问题
+(1)现有问题
+在 火狐 中，因为对象 id 不作为 HTML 对象的名称，所以可以使用与 HTML 对象 id 相同的变量名，IE中能。
+(2)解决方法
+在声明变量时，一律加上 var ，以避免歧义，这样在 IE 中亦可正常运行。
+此外，最好不要取与 HTML 对象 id 相同的变量名，以减少错误。
+(3)其它
+参见 问题4
+
+7. event.x 与 event.y 问题
+(1)现有问题
+在IE 中，event 对象有 x, y 属性，火狐中没有。
+(2)解决方法
+在火狐中，与event.x 等效的是 event.pageX。但event.pageX IE中没有。
+故采用 event.clientX 代替 event.x。在IE 中也有这个变量。
+event.clientX 与 event.pageX 有微妙的差别（当整个页面有滚动条的时候），不过大多数时候是等效的。
+
+如果要完全一样，可以稍麻烦些：
+mX = event.x ? event.x : event.pageX;
+然后用 mX 代替 event.x
+(3)其它
+event.layerX 在IE与火狐中都有，具体意义有无差别尚未试验。
+
+8. 关于frame
+(1)现有问题
+在 IE中 可以用window.testFrame取得该frame，火狐中不行
+(2)解决方法
+在frame的使用方面火狐和ie的最主要的区别是：
+如果在frame标签中书写了以下属性：
+<frame src="xx.htm" id="frameId" name="frameName" />
+那么ie可以通过id或者name访问这个frame对应的window对象
+而火狐只可以通过name来访问这个frame对应的window对象
+例如如果上述frame标签写在最上层的window里面的htm里面，那么可以这样访问
+ie： window.top.frameId或者window.top.frameName来访问这个window对象
+火狐： 只能这样window.top.frameName来访问这个window对象
+
+另外，在火狐和ie中都可以使用window.top.document.getElementById("frameId")来访问frame标签
+并且可以通过window.top.document.getElementById("testFrame").src = 'xx.htm'来切换frame的内容
+也都可以通过window.top.frameName.location = 'xx.htm'来切换frame的内容
+关于frame和window的描述可以参见bbs的‘window与frame’文章
+以及/test/js/test_frame/目录下面的测试
+----adun 2004.12.09修改
+
+9. 在火狐中，自己定义的属性必须getAttribute()取得
+
+10.在火狐中没有 parentElement parement.children 而用
+parentNode parentNode.childNodes
+childNodes的下标的含义在IE和火狐中不同，火狐使用DOM规范，childNodes中会插入空白文本节点。
+一般可以通过node.getElementsByTagName()来回避这个问题。
+当html中节点缺失时，IE和火狐对parentNode的解释不同，例如
+<form>
+<table>
+<input/>
+</table>
+</form>
+火狐中input.parentNode的值为form, 而IE中input.parentNode的值为空节点
+
+火狐中节点没有removeNode方法，必须使用如下方法 node.parentNode.removeChild(node)
+
+11.const 问题
+(1)现有问题:
+在 IE 中不能使用 const 关键字。如 const constVar = 32; 在IE中这是语法错误。
+(2)解决方法:
+不使用 const ，以 var 代替。
+
+12. body 对象
+火狐的body在body标签没有被浏览器完全读入之前就存在，而IE则必须在body完全被读入之后才存在
+
+13. url encoding
+在js中如果书写url就直接写&不要写&例如var url = 'xx.jsp?objectName=xx&objectEvent=xxx';
+frm.action = url那么很有可能url不会被正常显示以至于参数没有正确的传到服务器
+一般会服务器报错参数没有找到
+当然如果是在tpl中例外，因为tpl中符合xml规范，要求&书写为&
+一般火狐无法识别js中的&
+
+14. nodeName 和 tagName 问题
+(1)现有问题：
+在火狐中，所有节点均有 nodeName 值，但 textNode 没有 tagName 值。在 IE 中，nodeName 的使用好象
+有问题（具体情况没有测试，但我的IE已经死了好几次）。
+(2)解决方法：
+使用 tagName，但应检测其是否为空。
+
+15. 元素属性
+IE下 input.type属性为只读，但是火狐下可以修改
+
+16. document.getElementsByName() 和 document.all[name] 的问题
+(1)现有问题：
+在 IE 中，getElementsByName()、document.all[name] 均不能用来取得 div 元素（是否还有其它不能取的元素还不知道）。
+
+17.兼容firefox的 outerHTML，FF中没有outerHtml的方法。
+if (window.HTMLElement) {
+   HTMLElement.prototype.__defineSetter__("outerHTML",function(sHTML) {
+         var r=this.ownerDocument.createRange();
+         r.setStartBefore(this);
+         var df=r.createContextualFragment(sHTML);
+         this.parentNode.replaceChild(df,this);
+         return sHTML;
+     });
+
+     HTMLElement.prototype.__defineGetter__("outerHTML",function() {
+     var attr;
+         var attrs=this.attributes;
+         var str="<"+this.tagName.toLowerCase();
+         for (var i=0;i<attrs.length;i++) {
+             attr=attrs[i];
+             if(attr.specified)
+                 str+=" "+attr.name+'="'+attr.value+'"';
+         }
+         if(!this.canHaveChildren)
+             return str+">";
+         return str+">"+this.innerHTML+"</"+this.tagName.toLowerCase()+">";
+         });
+
+   HTMLElement.prototype.__defineGetter__("canHaveChildren",function() {
+     switch(this.tagName.toLowerCase()) {
+         case "area":
+         case "base":
+         case "basefont":
+         case "col":
+         case "frame":
+         case "hr":
+         case "img":
+         case "br":
+         case "input":
+         case "isindex":
+         case "link":
+         case "meta":
+         case "param":
+         return false;
+     }
+     return true;
+   });
+}
+
+
+18.自定义属性问题
+
+说明:IE下,可以使用获取常规属性的方法来获取自定义属性,也可以使用getAttribute()获取自定义属性;Firefox下,只能使用getAttribute()获取自定义属性.
+解决方法:统一通过getAttribute()获取自定义属性.
+
+
+19.eval("idName")问题
+
+说明:IE下,,可以使用eval("idName")或getElementById("idName")来取得id为idName的HTML对象;Firefox下只能使用getElementById("idName")来取得id为idName的HTML对象.
+解决方法:统一用getElementById("idName")来取得id为idName的HTML对象.
+
+20.变量名与某HTML对象ID相同的问题
+
+说明:IE下,HTML对象的ID可以作为document的下属对象变量名直接使用;Firefox下则不能.Firefox下,可以使用与HTML对象ID相同的变量名;IE下则不能。
+解决方法:使用document.getElementById("idName")代替document.idName.最好不要取HTML对象ID相同的变量名,以减少错误;在声明变量时,一律加上var,以避免歧义.
+
+21.const问题
+
+说明:Firefox下,可以使用const关键字或var关键字来定义常量;IE下,只能使用var关键字来定义常量.
+解决方法:统一使用var关键字来定义常量.
+
+22.input.type属性问题
+
+说明:IE下input.type属性为只读;但是Firefox下input.type属性为读写.
+
+23.window.event问题
+
+说明:window.event只能在IE下运行,而不能在Firefox下运行,这是因为Firefox的event只能在事件发生的现场使用.
+解决方法:
+IE:
+<input name="Button8_1" type="button" value="IE" onclick="javascript:gotoSubmit8_1()"/>
+...
+<script language="javascript">
+function gotoSubmit8_1() {
+...
+alert(window.event); //use window.event
+...
+}
+</script>
+IE&Firefox:
+<input name="Button8_2" type="button" value="IE" onclick="javascript:gotoSubmit8_2(event)"/>
+...
+<script language="javascript">
+function gotoSubmit8_2(evt) {
+...
+evt=evt?evt:(window.event?window.event:null);
+alert(evt); //use evt
+...
+}
+</script>
+
+24.event.x与event.y问题
+
+说明:IE下,even对象有x,y属性,但是没有pageX,pageY属性;Firefox下,even对象有pageX,pageY属性,但是没有x,y属性.
+解决方法:使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.
+
+
+25.event.srcElement问题
+
+说明:IE下,even对象有srcElement属性,但是没有target属性;Firefox下,even对象有target属性,但是没有srcElement属性.
+解决方法:使用obj(obj = event.srcElement ? event.srcElement : event.target;)来代替IE下的event.srcElement或者Firefox下的event.target.
+
+26.window.location.href问题
+
+说明:IE或者Firefox2.0.x下,可以使用window.location或window.location.href;Firefox1.5.x下,只能使用window.location.
+解决方法:使用window.location来代替window.location.href.
+
+27.模态和非模态窗口问题
+
+说明:IE下,可以通过showModalDialog和showModelessDialog打开模态和非模态窗口;Firefox下则不能.
+解决方法:直接使用window.open(pageURL,name,parameters)方式打开新窗口。
+
+如 果需要将子窗口中的参数传递回父窗口,可以在子窗口中使用window.opener来访问父窗口. 例如：var parWin = window.opener; parWin.document.getElementById("Aqing").value = "Aqing";
+
+28.frame问题
+
+以下面的frame为例：
+<frame src="xxx.html" id="frameId" name="frameName" />
+
+(1)访问frame对象:
+IE:使用window.frameId或者window.frameName来访问这个frame对象.
+Firefox:只能使用window.frameName来访问这个frame对象.
+另外，在IE和Firefox中都可以使用window.document.getElementById("frameId")来访问这个frame对象.
+
+(2)切换frame内容:
+在IE和Firefox中都可以使用window.document.getElementById("testFrame").src = "xxx.html"或window.frameName.location = "xxx.html"来切换frame的内容.
+
+如果需要将frame中的参数传回父窗口，可以在frme中使用parent来访问父窗口。例如：parent.document.form1.filename.value="Aqing";
+
+29.body问题
+
+Firefox的body在body标签没有被浏览器完全读入之前就存在；而IE的body则必须在body标签被浏览器完全读入之后才存在.
+
+例如：
+Firefox：
+<body >
+<script type="text/javascript">
+document.body.onclick = function(evt){
+evt = evt || window.event;
+alert(evt);
+}
+</script>
+</body>
+IE&Firefox：
+<body >
+</body>
+<script type="text/javascript">
+document.body.onclick = function(evt){
+evt = evt || window.event;
+alert(evt);
+} </script>
+
+
+30. 事件委托方法
+
+IE：document.body.onload = inject; //Function inject()在这之前已被实现
+
+Firefox：document.body.onload = inject();
+
+有人说标准是：
+
+document.body.onload=new Function('inject()');
+
+
+31. firefox与IE(parentElement)的父元素的区别
+
+IE：obj.parentElement
+firefox：obj.parentNode
+
+解决方法: 因为firefox与IE都支持DOM,因此使用obj.parentNode是不错选择.
+
+
+32.cursor:hand VS cursor:pointer
+
+firefox不支持hand，但ie支持pointer
+
+解决方法: 统一使用pointer
+
+
+33.innerText在IE中能正常工作，但是innerText在FireFox中却不行.
+
+解决方法:
+
+if(navigator.appName.indexOf("Explorer") > -1){
+
+     document.getElementById('element').innerText = "my text";
+
+} else{
+
+     document.getElementById('element').textContent = "my text";
+
+}
+
+
+34. FireFox中类似 obj.style.height = imgObj.height 的语句无效
+
+解决方法：
+
+obj.style.height = imgObj.height + 'px';
+
+
+35. IE,firefox以及其它浏览器对于 table 标签的操作都各不相同，在ie中不允许对table和tr的innerHTML赋值，使用js增加一个tr时，使用appendChile方法也不管用。
+
+解决方法：
+
+//向table追加一个空行：
+var row = otable.insertRow(-1);
+var cell = document.createElement("td");
+cell.innerHTML = " ";
+cell.className = "XXXX";
+row.appendChild(cell);
+
+
+36. padding 问题
+
+padding 5px 4px 3px 1px FireFox无法解释简写,
+
+必须改成 padding-top:5px; padding-right:4px; padding-bottom:3px; padding-left:1px;
+
+
+37. 消除ul、ol等列表的缩进时
+
+样式应写成:list-style:none;margin:0px;padding:0px;
+
+其中margin属性对IE有效，padding属性对FireFox有效
+
+
+38. CSS透明
+
+IE：filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=60)。
+
+FF：opacity:0.6。
+
+
+39. CSS圆角
+
+IE：不支持圆角。
+
+FF： -moz-border-radius:4px，或者-moz-border-radius-topleft:4px;-moz-border- radius-topright:4px;-moz-border-radius-bottomleft:4px;-moz-border-radius- bottomright:4px;。
+
+40. CSS双线凹凸边框
+
+IE：border:2px outset;。
+
+FF： -moz-border-top-colors: #d4d0c8 white;-moz-border-left-colors: #d4d0c8 white;-moz-border-right-colors:#404040 #808080;-moz-border-bottom-colors:#404040 #808080;
+
+
+
+
+
+
+
+
+兼容各个浏览器(ie6,ie7,firefox)的利用Javascript来选择本地图片预览的功能
+
+
+兼容各个浏览器(ie6,ie7,firefox)的利用Javascript来选择本地图片预览的功能
+最近要做个上传，想实现file文件框上传选择文件后，能够立即预览到选择的图片。在ie6下一试就行。但在firefox下往往不行。原来是[url=file:///]file:///[/url]做怪。现在特别整理下，制作了适合各种浏览器的预览效果。
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>图片预览 - http://www.itokit.com web开发技术</title>
+<script> 
+function $(o) {
+        return document.getElementById(o);
+}
+function SeePic(img,f){
+        var i = $(img);
+        var f = $(f);
+        if (f.value != "") {
+                if (f.value.indexOf("http://") >= 0) {
+                        i.src = f.value;
+                } else {
+                        i.src = 'file:///'+f.value;
+                }
+                i.style.display = "block";
+                return;
+        }
+        i.style.display = "none";
+} 
+</script> 
+</head>
+ie6下的（但不支持firefox）
+<img src="" id="myimg1" style="display:none;">
+<input type="file" onchange="document.getElementById('myimg1').src=this.value;document.getElementById('myimg1').style.display='block'" size="20">
+
+
+
+ie7和ie6下都兼容的（但不支持firefox）
+<img src="" id="myimg2" style="display:none;">
+<input type="file" onpropertychange="document.getElementById('myimg2').src=this.value;document.getElementById('myimg2').style.display='block'" onchange="document.getElementById('myimg1').src=this.value;document.getElementById('myimg1').style.display='block'" size="20">
+
+
+
+
+Firefox下（同样也适合ie6,ie7哦）：
+<form id='frm1' name='frm1'> 
+<div><input type='file' name='upfile' id='upfile' onChange="SeePic('img', 'upfile');"></div> 
+<div><image src='' id='img' name='img' style="display:none;"> 
+</form> 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

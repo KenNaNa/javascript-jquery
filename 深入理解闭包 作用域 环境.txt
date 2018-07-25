@@ -1,0 +1,115 @@
+深入理解闭包 作用域 环境
+
+取默认值的方法 type = type || '';
+ if(typeof type=='function'){
+   callback = type;
+ }else{
+   type = type||'';
+ }
+
+ 可以选择的参数
+ 一般都是||
+
+ 定义变量
+ ○ 注意一个未初始化的变量的值是undefined
+
+ 背景知识 静态性和动态性
+ （1）静态性 
+ 你必须 function f(){
+    function g(){
+     
+    }
+ }
+ (2) 动态性
+ function g(){}
+ function f(){
+   g();//当我们调用f()，他会调用g()在执行期间 g被f调用代表一种动态关系
+ }
+
+
+背景知识 变量的作用域
+（1）变量作用域
+是指变量的作用域是指变量在何处可以被调用/被访问到
+function foo(){var x;}
+(2)嵌套作用域
+如果在一个变量的直接作用域中嵌套有多个作用域
+那么这个变量在所有的这些作用域中都可以访问到
+不同函数有不同作用域
+function foo(arg){
+   function bar(){
+     console.log('arg:'+arg);
+   }
+   bar();
+}
+
+arg的直接作用域是foo(),但是他同样可以在嵌套作用域bar()中被访问
+我们说嵌套 foo()是外部作用域 bar()是内部作用域
+
+(4)覆盖
+如果在一个作用域中声明了一个与外层作用域同名的变量
+那么在这个内部作用域以及其内部的所有作用域将会访问不到外面的变量
+而内部的变量的变化不影响外部的变量 当离开内部作用域 外部作用变量又可以
+被访问了
+
+var x = 'global';
+function f(){
+   var x = 'local';
+   console.log(x);
+}
+f();//local
+console.log(x);//global
+
+变量以函数为作用域
+function main(){
+  {
+    var foo = 4;
+  }
+  console.log(foo);
+}
+换句话 说 foo在main()中都是可以被访问到的 不仅仅是在块中
+
+变量声明的提前
+javascript 会提前所有的变量声明 它会把所有的声明移到直接作用域的最前面
+很明显当我们试图在变量声明前使用变量
+它不会报错
+function f(){
+   console.log(x);//undefined
+   var x = 'bar';
+   console.log(x);//bar;
+}
+从上面的例子可以看出
+变量x已经存在 只是没有赋值
+只是变量被提前到console.log(x)的前面了
+相当于var x;console.log(x);//undefined
+function f(){
+    var x;
+    console.log(x);//undefined
+    x = 'bar';
+    console.log(x);//bar
+}
+
+陷阱 赋值给一个未定义的变量会产生全局变量
+在非严格模式中 不通过var将一个值付给一个变量的时候
+会产生一个全局变量
+function sloppyFunc(){
+   x = 123;
+}
+而在严格模式中这会导致一个错误
+function f(){
+   'use strict';
+   x = 123;
+}
+f()
+x is not defined;
+
+检查一个全局变量是在存在
+if(window.someVariable){...}这是一种安全的检测方式
+而下面的语句会someVariable未被定义时 会报错
+if(someVariable){...}
+
+另外还有两种通过window来检查
+if(window.someVariable!==undefined){...}
+if(someVariable in window){...}
+
+检测一个变量是否存在(并是否有值)的常用的方法是通过typeof
+if(typeof someVariable!=='undefined')

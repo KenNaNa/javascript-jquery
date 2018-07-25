@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>javascript高级程序设计2-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<frameset rows="160,*">
+<frame src="" name="topFrame">
+<frameset cols="50%,50%">
+<frame src="" name="leftFrame">
+<frame src="" name="rightFrame">
+</frameset>
+</frameset>
+<script>
+  /* function outputNumbers(count){
+	for (var i=0; i < count; i++){
+	     alert(i);
+	}
+	alert(i); //计数0 1 2 3 4 5 
+}*/
+/*function outputNumbers(count){
+for (var i=0; i < count; i++){
+alert(i);
+}
+var i; //重新声明变量
+alert(i); //计数
+}
+outputNumbers(6)*/
+var t = window.frames[0];//window.frames['topFrame']/top.frames[0]/top.frames['topFrame']/frames[0]/frames['topFrame']
+var l = window.frames[1]; 
+var r = window.frames[2];
+console.log(t);
+console.log(l);
+console.log(r);
+
+</script>
+
+</html>

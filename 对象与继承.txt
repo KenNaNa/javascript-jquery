@@ -1,0 +1,134 @@
+第一层：单一对象
+属性的种类
+1 属性
+2 访问器
+3 内置属性
+
+对象字面量
+var jane = {
+   name:'Jane',
+   describe:function(){
+      return this.name;
+   }
+};
+
+点运算符(.):通过固定键值访问属性
+delete 的返回值
+如果属性是自有属性 且不能被删除 delete会返回false
+否则 返回true
+
+中括号操作符[]
+
+this作为函数和方法的隐式参数
+
+26期视频
+链接：http://pan.baidu.com/s/1dFAdv1Z 密码：dplp
+http://www.8aa.me/ 
+http://web.tanzhouedu.com/index/web/javascript_final_test.html
+
+ 在调用函数时设置 this :call(),apply() bind()
+ Function.prototype.apply(thisValue,argArray)第一个参数会赋值给调用函数内的this
+ 第二个参数是一个数组 为被调用函数提供参数
+
+
+ Function.prototype.call(thisValue,arg1,arg2,arg3,....)
+ Function.prototype.bind(thisValue,arg1,arg2,arg3,arg4,...)
+ bind这个方法偏函数应用 意味着他创建一个新的函数
+ 并且接下来的方式调用bind()的接受者
+
+
+
+用于构造函数的apply()
+Math.max(...[13,7,30]);
+Math.max(13,7,30);
+
+对于函数 你可以用apply()实现三点操作符的功能
+Math.max.apply(null,[13,7,30])
+
+三点操作符也同样适合用于构造函数
+new Date(...[2011,11,24]);
+
+
+为构造函数手动模拟apply()
+1 第一步
+  通过方法调用 把参数传给Date（虽然参数不是数组）
+  new (Date.bind(null,2011,11,24))
+
+2 第二部
+  使用apply()把数组传给bind(),因为bind()是方法调用
+  new (Function.prototype.bind.apply(Date,[null,2011,11,24]));
+
+  因为上面多出一个null 
+  var arr = [2011,11,24];
+  new (Function.prototype.bind.apply(Date,[null].concat(arr)));
+
+
+第二层 对象间的原型关系
+两个对象间原型关系类似于继承：每个对象都可以把另一个对象当作他的原型
+并且继承原型的所有属性 对象通过内部的属性[[Prototype]]指定他的原型
+每个对象都有这个属性 而它也可以是null 通过[[Prototype]]属性连接成的对象链
+称为原型链
+
+
+覆写
+在一个原型链中 一个对象的属性可以覆写之后的对象的相同键的属性前者的属性最先被找到
+他隐藏了后者的属性
+obj.describe = function(){
+   return 'overriden'
+}
+
+
+通过原型在对象间共享数据
+
+
+获取和设定原型
+使用给定的prototype创建新对象
+Object.create(proto,propDescObj?)
+
+读取对象原型
+调用方法
+Object.getPrototypeOf(obj)
+返回obj的原型
+
+
+检测一个对象是否是另一个对象的原型
+Object.prototype.isPrototypeOf(Obj);
+
+找到定义属性的对象
+
+
+特殊属性 _proto_
+某些javascript引擎中有特殊的属性可以获取和设置对象原型
+_proto_
+这样可以直接访问[[Prototype]]
+
+
+设置和删除属性仅影响自有属性 不会影响原型的属性
+
+
+列出自有属性键
+Object.getOwnPropertyNames(obj);
+返回obj的所有自有属性键
+ Object.keys(obj) 返回obj的所有可枚举的属性键
+
+
+ 判断属性是否存在
+
+ propKey in obj;//包括继承的属性
+ Object.prototype.hasOwnProperty(propKey)
+//不包括继承属性
+
+避免在一个对象上直接调用hasOwnProperty() 因为他有可能被重写
+var obj = {
+   hasOwnProperty:1,
+   foo:2
+}
+obj.hasOwnProperty('foo');//报错 
+
+
+
+最好的办法就是借用原型的方法
+Object.prototype.hasOwnProperty.call(obj,'foo');
+{}.hasOwnProperty.call(obj,'foo');
+
+

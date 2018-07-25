@@ -1,0 +1,12 @@
+如何将一个类数组转换为真正的数组
+Array.prototype.slice.call(arguments)
+Array.prototype.slice.call(aLi);
+
+QQ列表展示
+1  可以用自定义属性 onOff
+2  当点击每一个列表项时 可以判断是否点击的是当前的列表项 this.index!==i;
+3  清空 1>用for循环全部清空 2>可以逐个清空
+
+
+自定义属性 与 数组下标可以一一对应 起来使用
+图片切换

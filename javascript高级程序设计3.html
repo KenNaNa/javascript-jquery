@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>javascript高级程序设计3-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box"></div>
+<script>
+   function getElement(id){
+		if (document.getElementById){
+		   return document.getElementById(id);
+		} else if (document.all){
+		   return document.all[id];
+		}
+   }
+   var oBox = getElement('box');
+   console.log(oBox);
+</script>
+</body>
+</html>

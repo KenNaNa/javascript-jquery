@@ -1,0 +1,26 @@
+碰撞检测的原理
+
+
+在JS中，用于两个东西的碰撞检测经常用到，比如小球的碰撞，两个DIV的接触，还有一些小游戏中也经常的遇到。如上图示意，原理如下：
+可以逆向推理：
+不碰撞的情况：1：box1的右侧始终在box2的左侧
+2：box1的左侧始终在box2的右侧
+3：box1的下侧始终在box2的上侧
+4：box1的上侧始终在box2的下侧
+否则就是碰撞的。
+Box1:
+                       var L1=oBox.offsetLeft;
+                       var R1=oBox.offsetLeft+oBox.offsetWidth;
+                       var T1=oBox.offsetTop;
+                       var B1=oBox.offsetTop+oBox.offsetHeight;
+Box2:
+ 
+                       var L2=oBox2.offsetLeft;
+                       var R2=oBox2.offsetLeft+oBox2.offsetWidth;
+                       var T2=oBox2.offsetTop;
+                       var B2=oBox2.offsetTop+oBox2.offsetHeight;
+ 
+                       if(L1>R2 || R1B2 || B1
+                              //不碰撞所发生的事件
+                       }else{
+//碰撞所发生的事件 

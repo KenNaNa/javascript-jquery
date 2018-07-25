@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>javascript高级程序设计-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    //var a;
+	//alert(a==undefined);//弹出true 数据类型
+	//alert(b);
+	//var b = null;//空对象
+	//alert(typeof b);//object
+	//alert(undefined === null);//false 严格相等
+	//alert(undefined == null);//true 宽松相等
+	//alert(+0);
+	//alert(-0);
+	//alert(+0===-0);//true;
+	//alert(NaN===NaN);//false
+	//alert(NaN==NaN);//false
+	//很奇怪啊NaN 竟然不等于本身
+	//isNaN()是用来检测是否是NaN 参数是非数字 或者 会被隐形转换为数字的 ''||true||false
+	//alert(isNaN(NaN));//true
+	//alert(0/0);//NaN
+	//alert(isNaN(''));//false;
+	//alert(isNaN(true));//false
+	//alert(isNaN(false));//false
+	//alert(isNaN(null));//false
+	//var a = 10;
+	//alert(typeof String(a));//String
+	//var b = null;
+	//alert(typeof String(b));//String
+	//var c = undefined;
+	//alert(typeof String(c));//String
+	//alert(a.toString());//toString()和toLocaleString()不能转换null undefined 否则会报错
+    //alert(a.toLocaleString());//10
+	//var json = {
+	//    "name":"李金文"
+	//}
+	//console.log(json.hasOwnProperty("name"));//true
+	//console.log(json.propertyIsEnumerable("name"));//true;
+	//var a='10';
+	//alert(a++);//10 字符串a被转换为10
+	//alert(++a);//11
+	//alert(a--);//10
+	//alert(--a);//9
+	//var a = 's';
+	//alert(a++);//NaN
+	//alert(--a);//NaN
+	//alert(a--);//NaN
+	//alert(++a);//NaN
+	///var a = false;
+	//alert(a++);//0
+	//alert(++a);//1
+	//alert(a--);//0
+	//alert(--a);//-1
+	//alert(!0);//true
+	//alert(!undefined);//true
+	//alert(!null);//true
+	//alert(!NaN);//true
+	//alert(!!0);//false
+	//alert(!!undefined);//false
+	//alert(!!null);//false
+	//alert(!!NaN);//false
+	//var b = null;
+	//var a = undefined;
+	//var c = a&&b;
+	//alert(c);//undefined;
+	//var b = undefined;
+	//var a = null;
+	//var c = a&&b;
+	//alert(c);//null
+    
+	//alert(false==0);//true先转换false为数字再跟数字0作比较
+	//alert(true==1);//true
+	//alert('0'==0);//true 现将字符串转换为数字再与数字0比较
+	//alert('0'===0);//false
+	//var a = [0];
+	//alert(a.valueOf()==0);
+	//alert(NaN==0);//false
+	//alert(null===undefined);//false
+	//alert(null==undefined);//true全等比较的是数据类型及数字 而相等只比较数据
+	//for in
+	/*for( var key in document ){
+		if(document[key]!=null){
+	       document.write(key +'<br/>')
+		}
+	}*/
+	/*function fn(name,age){
+	    alert('hello '+ arguments[1]+'岁的'+arguments[0])
+		alert(arguments);//不定参
+		alert(arguments.length)
+	}
+	fn('李金文','20')*/
+	/*var a = 5;
+	var b = a;
+	alert(a==b);*/
+	/*var o = new Object();//instanceof是检测一个对象
+	alert(o instanceof Object);//true
+	//alert(window.CollectGarbage)*/
+	/*var a = [1,2,3,4];
+	alert (a instanceof Array);*/
+	/*var colors = ["red", "blue", "green"]; // 创建一个包含 3 个字符串的数组
+    alert(colors.toString()); // red,blue,green
+    alert(typeof colors.valueOf()); // red,blue,green还是数组
+    alert(colors);*/
+	/*var a = ['a','b','c'];
+	var s = a.slice(1);
+	alert(s);//弹出['b','c'];返回指定位置的到数组结尾
+	var s = a.slice();
+	alert(s);//['a','b','c'];当不带参数时 返回整个数组
+	alert(a);//['a','b','c'];不影响a数组的长度及内容
+	alert(a.slice(-2,-1));//相当于与a.slice(-2+a.length,-1+a,length);b
+	alert(a.slice(-1));//c相当于a.slice(-1+a.length);*/
+
+	/*var colors = ["red", "green", "blue"];
+	var removed = colors.splice(0,1); // 删除第一项
+	alert(colors); // green,blue
+	alert(removed); // red，返回的数组中只包含一项
+	removed = colors.splice(1, 0, "yellow", "orange"); // 从位置 1 开始插入两项
+	alert(colors); // green,yellow,orange,blue
+	alert(removed); // 返回的是一个空数组
+	removed = colors.splice(1, 1, "red", "purple"); // 插入两项，删除一项
+	alert(colors); // green,red,purple,orange,blue
+	alert(removed); // yellow，返回的数组中只包含一项*/
+	/*var numbers = [1,2,3,4,5,4,3,2,1];
+    alert(numbers.indexOf(4)); //3
+	alert(numbers.indexOf(4,4));//5*/
+	//在这些方法中，最相似的是 every()和 some()，它们都用于查询数组中的项是否满足某个条件。
+	//对 every()来说，传入的函数必须对每一项都返回 true，这个方法才返回 true；否则，它就返回
+	//false。而 some()方法则是只要传入的函数对数组中的某一项返回 true，就会返回 true。请看以下
+	//例子。
+	/*var numbers = [1,2,3,4,5,4,3,2,1];
+	var everyResult = numbers.every(function(item, index, array){
+	return (item > 2);
+	});
+	alert(everyResult); //false
+	var someResult = numbers.some(function(item, index, array){
+	return (item > 2);
+	});
+	alert(someResult); //true*/
+
+	//filter()函数，它利用指定的函数确定是否在返回的数组中包含某一项。
+
+	/*function createComparisonFunction(propertyName) {
+		return function(object1, object2){
+			var value1 = object1[propertyName];
+			var value2 = object2[propertyName];
+			if (value1 < value2){
+			     return -1;
+			} else if (value1 > value2){
+			     return 1;
+			} else {
+			     return 0;
+			}
+		};
+	}
+	var data = [{name: "Zachary", age: 28}, {name: "Nicholas", age: 29}];
+	data.sort(createComparisonFunction("name"));
+	alert(data[0].name); //Nicholas
+	data.sort(createComparisonFunction("age"));
+	alert(data[0].name); //Zachary*/
+
+
+	/*function sum(num1, num2){
+	  return num1 + num2;
+	}
+	function callSum1(num1, num2){
+	  //这里的this是window   console.log (this)
+	  return sum.apply(this, arguments); // 传入 arguments 对象
+	  
+	}
+	function callSum2(num1, num2){
+	   return sum.apply(this, [num1, num2]); // 传入数组
+	}
+	alert(callSum1(10,10)); //20
+	alert(callSum2(10,10)); //20*/
+
+	/*window.color = "red";
+	var o = { color: "blue" };
+	function sayColor(){
+	   alert(this.color);
+	   alert(this)
+	}
+	sayColor(); //red window
+	sayColor.call(this); //red window
+	sayColor.call(window); //red window 
+	sayColor.call(o); //blue object*/
+
+
+	/*var s = 'abcdefg';
+	alert(s.charAt(1));//1
+	alert(s.charCodeAt(1));//98
+	//window.onfocus = function(){alert(1)}*/
+	function createFunctions(){
+	   var result = new Array();
+	   for (var i=0; i < 10; i++){
+	       result[i] = function(){
+	          return i;
+	        };
+	    }
+	    return result;
+	}
+	console.log(createFunctions());
+	function createFunctions(){
+	    var result = new Array();
+	    for (var i=0; i < 10; i++){
+	       result[i] = function(num){
+	          return function(){
+	            return num;
+	          };
+	      }(i);
+	    }
+	    return result;
+	}
+	var a = createFunctions();
+	alert(a);
+</script>
+</body>
+</html>

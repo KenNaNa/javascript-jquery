@@ -1,0 +1,651 @@
+window.location:是指在浏览器新打开一个页面
+js特有的标签获取
+document.body.innerHTML 修改body里面的内容能够解析标签
+document.body.innerText 不能解析标签
+document.title=""
+document.head=""
+document.getElementById("")获取元素的id
+document.getElementsTagName()通过标签名获取元素
+document.getElementsTagName().length
+document.getElementsTagName()[0].innerHTML = ""
+document.getElementsClassName()通过类名获取元素 他是一个集合 不兼容及IE8以下
+document.getElementsClassName().innerHTML =""不能这么用
+document.getElementsClassName()[0].innerHTML = ""这么写是可以的
+document.getElementsClassName().length;获取长度
+document.querySelector()//不兼容IE7及以下通过选择器的写法获取元素 第一个选择器对应的元素，不是集合 他们的性能比较哪个
+document.querySelector().innerHTML = ""
+document.querySelectorAll()//是集合，需要配合 需要配合下标进行
+通过name获取元素
+document.getElementByName()//一般用于表单
+除了Id之外强制document.
+
+document.write()在文档流关闭之前，给body添加内容
+在文档流关闭之后，修改HTML的内容,之前的HTML的东西都会被干掉
+
+事件:用户操作 onclick->点击事件 首先先要获取元素 .onclick  = function(){};
+鼠标事件 单击左键onclick 
+左键双击 ondblclick
+移入移出 onmouseover/onmouseenter onmouseout/onmouseleave
+右键单击 oncontextmenu
+鼠标中间 onmousedown onmouseup onmousewheel
+
+键盘事件
+按键按下 onkeyup onkeydown onkeypress
+
+表单事件
+获得焦点 onfocus
+失去焦点 onblur
+内容改变 onchange
+表单提交 onsubmit
+
+系统事件
+加载完成 onload
+内容滚动 onscroll
+窗口大小 onresize
+
+函数
+有名函数 function goudan(){};有名函数可以放在事件后面onclick = goudan;
+匿名函数 function(){};
+goudan();函数自执行时，this指向window
+
+
+this
+在事件函数里面有一个关键字this 
+
+定义变量var this只能在事件函数里面
+
++加号的拼接
+
+获取标签的样式.加属性
+<a href="http://www.baidu.com/" id="box" class="box" title="aaa" afe="123" target="_blank">百度</a>
+ var oBox = document.getElementById('box');
+ alert(oBox.所有存在的属性);
+ alert(oBox.afe)//不存在的属性不能获取
+ oBox.href="http://www.tanzhouedu.com/"//写操作
+ 可以改变该对象的id属性；
+ oBox 只是代表这个标签属性
+
+标签属性
+ 获取getAttribute('属性','属性值')
+ 设置setAttribute('属性','属性值')
+ 移除removeAttribute('属性')
+
+ .操作，不能操作不规范的属性
+ afe是自定义标签属性
+ 标签属性与js自定义属性没有任何关系
+ oBox.x访问一个 对象 从来没有定义过的属性，不会报错，但会出现undefined
+
+ typeof类型
+1.number 数字；
+2.string 字符串；
+3.boolean 布尔值（只有true / false两个）；
+4.function 函数（var定义 或者 有名函数定义都可以）；
+5.object 对象（系统对象、节点对象、自定义对象、数组、json、null）；
+数组 / json的简单介绍
+6.undefined 未定义；
+
+样式
+行内样式
+外部样式 js不能操作外部样式 
+
+内部样式 js可以操作内样式 考虑优先级
+oBox.style.cssText()//获取样式属性
+typeof(oBox.style)
+.cssText()获取的是内容字符串
+
+操作复合属性时 要用驼峰写法
+比如backgroundColor 去掉-符号变大写
+.style.WebkitTransform = '';
+可以添加类名.className = '';
+原来有一大窜类名的话要.className += ' .goudan';
+
+
+
+数组array = [];
+json ={
+    属性名:属性值,
+    属性名:属性值,
+    属性名:属性值,
+    属性名:属性值
+}
+json属性可以加双引号，也可以不加
+但是json在传输数据时 必须加双引号 并且属性值为字符串;
+
+判断if(条件){语句;};
+== 值一定相同 但是类型不一定相同
+=== 值一定相同 类型也一定相同
+
+哪些值会被转换加false;
+数字 0
+false 布尔值
+null 空
+NaN 不是一个数字
+undefined 没定义
+''空字符串
+
+
+http://tzyf.oss-cn-shanghai.aliyuncs.com/style/special/carnival/index.html
+
+图片切换中我们通常把所有图片堆叠在一起然后给多余的图片display:none;
+给点击按钮添加样式.className="";
+也可以用.style.src="";/
+
+
+静态方法
+.querySelector();
+.querySelectorAll();
+var oBox = document.getElementById('box');
+oBox.id = 'goudan';
+oBox.title = 'ni';
+
+动态方法 集合形式
+var aP = document.getElementsByClassName('box');
+alert(aP.length);
+aP[0].className = 'afei';
+alert(aP.length);
+两次alert的数值不同
+
+
+基础数字运算
+NaN 不是一个数字 数字类型特例Not a Number
+isNaN(参数)
+首先把参数转换为数据类型
+当参数是数字时 返回false
+当参数为不是数字时 返回true
+
+y = x++;先赋值 后自增
+y = ++x;先自增 后赋值
+
+&&与 运到假就停下 不会进行类型转换
+||或 运到真就停下 不会进行类型转换 var a;var x = 0 || NaN || null || a; alert(x)//undefined
+！非 存在强制类型转化
+
+刮刮乐
+内容层  for() str = '';
+遮罩层
+妈的学完就被猪吃了哇草
+
+Number 显式类型转换
+强制转换成数字
+Number(num)
+Number(false) = 0;
+Number(true) = 1;
+Number('') 空字符串 =0
+强制转换成字符串
+String();
+var x = 10;
+x.toString(数字);//是指转换成数字进制数字为2 8 16 32 64
+x.toFixed()//保留小数的位数四舍五入
+
+Math.random();//随机数0-1之间
+取整
+Math.ceil(数字)向上取整
+Math.floor(数字)向下取整
+Math.round(数字)四舍五入
+
+三角函数
+Math.PI//π
+Math.sin(弧度值)
+
+
+函数
+有名函数 function get(){};
+匿名函数 var goudan = function(){};
+直接函数执行
+var goudan = function(){}();
+{function(){}}()函数表达式的自执行
+函数表达式
++function(){};
+-function(){};
+!function(){};
+~function(){};
+不会报错
+
+
+参数 任意的类型都可以当参数
+我们在使用函数时，加括号导致函数执行 可以传参
+形参：相当于函数内部的局部变量 命名规则与var相同function goudan(vb){};
+形参可以定义多个，但是不要重复定义，也不要与函数内部的局部变量相同
+形参多了就是没有对应的那些形参就是undefined
+function(x,y,z){
+   x = x||0;
+   y = y||0;
+   z = z||0;
+   //如何给形参赋予默认值
+}
+实参
+var l = 10;
+fn(l)//l 为实参
+
+Fn(function(){
+   alert(1);
+})
+function Fn(a){
+  a();
+}
+不定参 arguments 存储着所有实参的集合
+
+作用 域
+
+作用：读写
+域：空间 区域
+解析：1从上自下
+        找到var 定义函数 参数（var 相当于局部变量）
+	2 执行
+
+alert(a);//undefined
+var a=1;
+
+函数调用 是一个新的作用域
+函数的优先级高于 var变量
+执行仓库里的东西
+
+
+数组
+字符串 str = 'I Love You'
+str.length;长度为10
+str.abb = 'a';
+alert(str.abb);属性自定义 undefined
+str.length = 3;
+alert(str.length)//10
+str[0]通过下标访问子字符串
+str[0] = 'i' 不能修改子字符串
+charAt(数字)访问子字符串
+str.charAt(0);
+总结 字符串不能写进去东西 只能读取
+从左到右
+str.indexOf('o')只能找一个'o'的对应下标 只找一次
+str.indexOf('o',下标); 
+如果没有这个字符串呢
+str.indexOf('o',17)没有这个字符串返回-1
+作用域 用于判断浏览器的类型
+从右到左 lastIndexOf('教育',下标)默认从0位找 下标往左边找
+字符串搜索案例
+
+
+字符串.charCodeAt(i)把字符串转换成对应ASCII码再进行比较
+console.log(2>'10')false隐士类型转换
+console.log('2'>'10')true字符串比较是比较字符串的第一位2>1
+0 - 9  48 - 57 
+a - z  97 - 122
+A - Z  65 - 90
+
+fromCharCode()把ASCII码转换成对应的字符串
+String.fromCharCode();
+
+substring(数字,数字);截取字符串 如果是负数默认从0开始
+
+定时器
+setInterval(执行函数,时间)一直不停的执行
+setTimeout(执行函数,时间)只执行一次 是延时定时器
+setInterval('函数()',时间)会被当成js去执行 可以传入参数
+eval()函数 把字符串当成js代码 但是字符串必须满足js语法规范
+不太安全 互联网没有安全的地方
+
+clearInterval()
+clearTimeout();
+
+Math.random();
+Math.floor();
+Math.ceil();
+
+DOM 文档对象模型
+找孩子 .children(集合形式)标签节点
+找父亲 .parentNode()
+.childNodes孩子节点 IE 不兼容 但是兼容主流浏览器
+节点类型nodeType
+.childNodes[0].nodeType; 
+节点名字nodeName
+.childNodes[0].nodeName;
+
+
+firstChild 第一个儿子 兼容Ie
+lastChild 最后一个儿子 兼容Ie
+firstElementChild 第一个儿子 兼容主流浏览器
+lastElementChild 最后一个儿子 兼容主流浏览器
+
+兄弟节点
+nextSibling  / nextElementSibling  ie678/主流浏览器
+previousSibling /previousElementSibling  ie678/主流浏览器
+
+
+offsetParent 获取定位父级 无论自身有没有定位都可以获取
+offsetLeft 元素到定位父级的left值 具体数字没有带单位 只读属性
+offsetTop 元素到定位父级的Top的值  具体数字没有带单位 只读属性
+innerHTML 会覆盖之前页面的事件及内容
+
+创建一个元素节点document.createElement('元素标签')只有document才能 .上createElement()
+appendChild('')添加一个元素节点
+
+添加一个文本节点document.createTextNode('文本节点') appendChild()
+添加注释节点
+
+往元素前面添加节点元素 insertBefore('添加谁obj','在哪个元素之前obj')
+
+children的静态与动态研究  children是个动态的方法
+
+
+元素的删除 父级元素.removeChild() 元素无法杀掉自己 只能通过他的父级元素（注意不是定位父级）杀掉自己
+
+clientWidth   width+padding 数值
+clientHeight  height+padding 数值
+
+offsetWidth  width+padding+border 数值
+offsetHeight height+padding+border  数值
+
+实际高度
+scrollHeight
+
+
+documentElement.clientWidth 可视区的宽度
+documentElement.clientHeight 可视区的高度
+
+
+分辨率
+window.screen.width
+window.screen.height
+
+window.screen.availwidth
+window.screen.availheight
+
+
+克隆节点 .cloneNode(true);第一个true是指带内容
+
+可视区的鼠标位置 浏览器窗口
+clientX
+clientY
+
+到文档
+pageX
+pageY //IE8不讲容
+
+事件冒泡
+
+阻止事件冒泡
+e.cancelBubble = true
+默认值是false
+
+事件类型 代理对象
+每个事件都有一个e.type事件的名字
+
+代理对象
+事件源e.target
+
+注册事件
+给对象注册对象时
+事件绑定.addEventListener(事件名,事件函数,是否绑定)兼容IE9+ 主流浏览器
+注意事件名必须去掉on
+
+兼容IE8- IE 只兼容IE
+.attachEvent(事件名,事件函数);
+事件名 加on
+
+if( document.addEventListener ){
+   return obj.addEventListener()
+}else{
+   return obj.attachEvent();
+}
+一般事件函数需要单独写出来
+function c(){}
+去掉绑定事件
+.removeEventListener(事件名,事件函数,是否移除)
+.detachEvent(事件名,事件函数,)
+阻止事件冒泡e.cancelBubble = true;
+e.stopPropagation()
+
+数据类型
+引用类型
+
+不常用的解除绑定事件
+
+滚轮事件
+
+
+阻止默认事件
+比如说自定义菜单
+document.oncontextmenu = function(){return false}
+
+return false
+e.preventDefault();阻止默认事件
+event.returnValue = false 
+
+取消页面选中
+在body里面加上 onselectstart = return false
+user-select = none;
+
+可以选中
+在控制台输入 document.onselectstart = null;
+
+滚轮事件
+谷歌
+onmousewheel = function(){} document.onmousewheel === null
+火狐
+DOMMouseScroll
+
+
+判断滚动多远
+event.wheelDelta 上 +值120 下 -值-120
+event.detail 上 -值-3 下 +值3
+
+
+ES6
+
+焦点事件 onfocus 获得焦点时触发
+onblur 失去焦点事件
+input button textarea window select a
+
+js获取焦点
+.focus()
+js失去焦点
+.blur()
+
+
+键盘事件
+onkeydown 触发多次
+onkeyup 触发一次
+onkeypress 如果在输入框里输入内容 可以相应
+
+keyCode 必须在onkeydown使用
+
+onmousedown e.which不兼容IE8- 
+e.keyCode || e.which
+左 1
+右 3
+中 2
+
+
+正则表达式
+/123/
+reg.test( str );匹配成功返回true 否则返回false
+
+使用变量
+new RegExp(变量)
+
+转义字符 \
+转义 斜杠 \/
+转义 转义 \\
+在字符号里的转义符号也有意义 '12\\3'
+
+字符串里也有意义的转义字符 \n \r换行
+\t tab
+
+\s 空格
+\S 非空格 只是不配空格 不是说不能有空格
+\d 数字
+\D 非数字
+\w 字符 数字 字母 下划线
+\W 非字符
+\b 起始 结束 连词符 空格+ - * /处理（\w）
+\B !\b
+
+量词{}
+{n}匹配重复n个
+{m,n}匹配m<=n
+{m,}匹配m<=+无穷大
+{0,1} ?
+{1,} +
+{0,} *
+
+match返回一个类数组 否则返回一个null
+
+标识符 
+g 全部匹配
+i 不区分大小写
+m 字符串多行时 换行
+
+字符集
+[0-9]
+[a-z]
+[A-Z]
+
+cookie
+
+document.cookie = 'goudan=123'一行只能写一个cookie
+document.cookie = 'goudan=123;expires='
+expires设置过期时间
+
+获取cookie值
+c = document.cookie;//是字符串形式存储
+
+ajax
+
+var xhr = new XMLHttpRequest();
+
+jquery 
+http://jquery.cuishifeng.cn/
+http://web.tanzhouedu.com/index/web/javascript_final_test.html
+css
+css88
+
+$符号
+$('#box p')自带遍历 选择器
+$(单个DOM节点) 通过$()转换为jquery对象
+
+$(function(){DOM结构加载完成执行程序
+   
+})
+
+var oDiv = $('<div></div>')创建元素
+o.append(oDiv);
+o.css('color','red');
+var o = $('#box')
+
+转换为js对象
+$('#box').get(0).style.color = 'red';
+
+
+$(#box p).each(function(x){
+   return this.innerHTML = x;
+})
+
+
+attr 设置和获取 标签属性 自定义属性
+prop 设置和获取 标签属性 必须是合法的
+
+var c = $('#box').attr('class','top');设置 c返回$('#box')
+var id = $('#box').prop('id');获取 返回id字符串
+设置 多组属性
+$('#box').attr({
+   class:'',
+   title:''
+})
+
+removeAttr();
+removeProp();
+
+$('#box').removeAttr('id') 返回Jq对象
+
+添加类名 删除类名
+addClass();
+$('#box').addClass('top');
+$('#box').addClass(function(){
+    return 'goudan';
+})
+removeClass();
+
+toggleClass()//有则删除类名 没有则添加
+
+html innerHTML
+text innerText
+val  value
+设置才自带遍历设置
+
+$('#box').html('123456');//设置 返回$('#box')这个对象
+$('#box').html();//获取 返回字符串 获取一般获取第一个
+
+
+$('#box').html($('#box').html()+'123456');//保留原来的东西
+
+
+CSS选择器
+
+$('#box').css({
+   color:'red',
+   line-height:'30px',
+   text-align:'center'
+})
+
+$('#box').css('color','red');
+
+
+获取
+$('#box').css('fontSize')
+
+
+offset  到文档
+position 定位父级 不包含margin
+
+$('#box').offset({
+   left:100,
+   top:200
+})
+
+
+滚动高 宽度
+scrollTop()
+scrollLeft()
+
+
+height
+width  //样式宽高
+
+
+innerHeight
+innerWidth //padding + 上面的
+outerHeight
+outerWidth //border + padding + 上面的
+
+
+
+append什么添加
+prepend
+功能一样
+appendTo添加到
+prependTo
+
+
+after
+before
+
+
+wrap
+unwrap
+wrapall
+wrapInner
+
+
+eq
+
+hasClass()
+
+filter()留下
+not()去除
+
+children不创参数默认全部
+find()不创参数不找
+
+offsetParent
+parent不需要参数
+parents()找名字为什么的parent
+
+siblings()不创参数 包括所有兄弟
