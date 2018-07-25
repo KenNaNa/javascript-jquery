@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Bingge">
+    <title>Title</title>
+    <script src="base.js"></script>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+        img{ border: 0; display: block}
+        #box{
+            width: 790px;
+            height: 340px;
+            background: #ccc;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #box ul{ width: 500%; position: absolute}
+        #box ul li{
+            width: 790px;
+            height: 100%;
+            float: left
+        }
+        .num{
+            height: 20px;
+            background-color: rgba(255,255,255,.5);
+            border-radius: 18px;
+            padding-left: 8px;
+            width: 108px;
+            position: absolute;
+            left: 50%;
+            margin-left:-58px;
+            bottom: 12px;
+            text-align: center;
+        }
+        .num span{
+            display: block;
+            border-radius: 100%;
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            float: left;
+            margin: 4px;
+            cursor: pointer;
+        }
+        .num span.current{ background-color: #db192a}
+        .btn{
+            width: 100%;
+            display: none;
+        }
+        #box:hover .btn{
+            display: block;
+        }
+        .btn span{
+            display: block;
+            width: 29px;
+            height: 60px;
+            position: absolute;
+            top:50%;
+            margin-top: -30px;
+            background-color: rgba(0,0,0,.2);
+            color: #fff;
+            text-align: center;
+            line-height: 60px;
+            cursor: pointer;
+            font-family: Arial;
+        }
+        .btn span:hover{
+            background-color: rgba(0,0,0,.8);
+        }
+        #prev{
+            left: 0
+        }
+        #next{
+            right: 0!important;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/1.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+            <li><img src="images/5.jpg" alt=""></li>
+        </ul>
+        <div class="num">
+            <span class="current"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="btn">
+            <span id="prev">&lt;</span>
+            <span id="next">&gt;</span>
+        </div>
+    </div>
+    <script>
+        var oBox = document.getElementById("box");
+        var boxul = oBox.querySelectorAll("ul");
+        var num = oBox.querySelectorAll(".num span");
+        var btn = oBox.querySelectorAll(".btn span");
+        var index = 0;
+        //console.log(boxul.length);
+        for(var i=0;i<num.length;i++){
+            num[i].index = i;
+            num[i].onclick = function () {
+                num[index].className = "";//将上一个的类名去除
+                this.className = "current";//将当前的添加上类名
+                index = this.index;
+                tMove(boxul[0],{left:-790*index},1500,"elasticOut");
+            }
+        }
+        btn[1].onclick = function () {
+            next();
+        };
+        btn[0].onclick = function () {
+            num[index].className = "";
+            (index==0)?index=4:index --;
+            num[index].className = "current";
+            tMove(boxul[0],{left:-790*index},1500,"elasticOut");
+
+        };
+
+        var timer = setInterval(next,3000);
+
+        oBox.onmouseenter = function () {
+            clearInterval(timer)
+        };
+
+        oBox.onmouseleave = function () {
+            timer = setInterval(next,3000);
+        };
+
+        function next() {
+            num[index].className = "";
+            index ++;
+            index %= 5;
+            num[index].className = "current";
+            tMove(boxul[0],{left:-790*index},1500,"elasticOut");
+        }
+
+
+    </script>
+</body>
+</html>

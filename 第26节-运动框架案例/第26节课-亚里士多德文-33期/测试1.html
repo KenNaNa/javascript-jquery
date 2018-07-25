@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>测试1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+				 text-decoration:none;
+			 }
+			 #box{
+			    position:relative;
+			    width:738px;
+				height:430px;
+				margin:100px auto;
+				/* overflow:hidden; */
+			 }
+			 #box .img{
+			    width:100%;
+				height:100%;
+			 }
+			 #box .img ul{
+			    position:absolute;
+			    width:500%;
+				height:100%;
+			 }
+			 #box .img ul li{
+			    width:738px;
+				height:430px;
+			    float:left;
+			 }
+			 #box .img ul li img{
+			    width:738px;
+				height:430px;
+			 }
+             #box .btn,#box .btn ul{
+			    width:738px;
+				height:20px;
+				text-align:center;
+				
+			 }
+			 #box .btn ul{
+			    position:absolute;
+				bottom:0;
+			 }
+			 #box .btn ul li{
+				width:738px;
+				height:20px;
+			 }
+			 #box .btn ul li a{
+			    
+			    display:inline-block;
+				width:10px;
+				height:10px;
+				border-radius:50%;
+				background:#ccc;
+			 }
+			 #box .btn ul li a.active{
+			   background:#ff0;
+			 }
+			 #box p{
+			    position:absolute;
+				top:50%;
+				left:50%;
+				margin-left:-369px;
+				margin-top:-22.5px;
+			    width:738px;
+				height:45px;
+			 }
+			 #box p span{
+			    display:inline-block;
+				width:80px;
+				height:30px;
+				background:transparent;
+				color:#fff;
+				line-height:30px;
+				padding-bottom:10px;
+				padding-top:5px;
+				text-align:center;
+                font-size:30px;
+				cursor:pointer;
+				transition:background 0.8s ease;
+			 }
+			 #box p span#prev{
+			    float:left;
+			 }
+			 #box p span#next{
+			    float:right;
+			 }
+			 #box p span:hover{
+			    background:rgba(0,0,0,0.6);
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <div class="img">
+	  <ul>
+	  	<li><img src="images/1.jpg" alt="" /></li>
+	  	<li><img src="images/2.jpg" alt="" /></li>
+	  	<li><img src="images/3.jpg" alt="" /></li>
+	  	<li><img src="images/4.jpg" alt="" /></li>
+	  	<li><img src="images/5.jpg" alt="" /></li>
+	  </ul>
+	<div>
+	<div class="btn">
+	  <ul>
+	  	<li>
+		    <a href="javascript:void(0);" class="active"></a>
+            <a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+		</li>
+	  </ul>
+	</div>
+	<p>
+	   <span id="prev">&lt;</span>
+	   <span id="next">&gt;</span>
+	</p>
+</div>
+<script>
+   var oUl = document.querySelector('#box .img ul');
+   var aA = document.querySelectorAll('#box .btn ul li a');
+   var oPrev = document.getElementById('prev');
+   var oNext = document.getElementById('next');
+   var length = aA.length;
+   var l1 = 0;
+   var l2 = 2952;
+   var oBox = document.getElementById('box');
+   for( var i=0;i<length;i++ ){
+	  aA[i].index = i;
+      aA[i].onclick = function(){
+	     if(a!=this.index){
+			 for( var i=0;i<length;i++ ){
+				 aA[i].className = '';
+			 }
+			 aA[this.index].className = 'active';
+			 var a = this.index;//存储当前点击的Id值
+			 
+			 var timer1 = setInterval(function(){
+				l1 += 100;
+				if(l1>=738*a){
+				   l1 = 738*a;
+				   clearInterval(timer1);
+				}
+				oUl.style.left = -l1 + 'px';
+				
+			 },30)
+			  var timer2 = setInterval(function(){
+				  l2+= -100;
+				  if( l2<=738*a ){
+					l2 = 738*a;
+					clearInterval(timer2);
+				  }
+				  oUl.style.left = -l2 + 'px';
+				},30)
+			
+			 }
+	     }
+	  }
+	  var n = 0;
+	  oNext.onclick = function(){
+	     n++;
+		 if(n>=5){n=0;}
+		 for( var i=0;i<length;i++ ){
+		    aA[i].className = '';
+		 }
+		 timer3 = setInterval(function(){
+		    l1 += 100;
+			if(l1>=738*n){
+			   l1 = 738*n;
+			   clearInterval(timer3)
+			}
+			aA[n].className = 'active';
+			oUl.style.left = -l1 + 'px';
+		 },30)
+		 
+	  }
+	  var p = 0;
+	  oPrev.onclick = function(){
+		 if(p<=0){p=5;}
+		 p--;
+		 for( var i=0;i<length;i++ ){
+		    aA[i].className = '';
+		 }
+		 var timer4 = setInterval(function(){
+		    l2 += -100;
+			if( l2<=738*p ){
+			   l2=738*p;
+			   clearInterval(timer4);
+			}
+			aA[p].className = 'active';
+			oUl.style.left = -l2 + 'px';
+		 },30)
+	  }
+	  clearInterval(timer5);
+	  var timer5 = setInterval(function(){
+		    n++;
+			for( var i=0;i<length;i++ ){
+			  aA[i].className = '';
+			}
+			if(n>=5)n=0;
+		    l1 += 738;
+			if(l1>=738*n){
+			   l1 = 738*n;
+			}
+			aA[n].className = 'active';
+			oUl.style.left = -l1 + 'px';
+	    //console.log(n);
+	  },1000/1)
+      oBox.onmouseenter = function(){
+	     clearInterval(timer5);
+	  }
+	  oBox.onmouseleave = function(){
+	     timer5 = setInterval(function(){
+		    n++;
+			for( var i=0;i<length;i++ ){
+			  aA[i].className = '';
+			}
+			if(n>=5)n=0;
+		    l1 += 738;
+			if(l1>=738*n){
+			   l1 = 738*n;
+			}
+			aA[n].className = 'active';
+			oUl.style.left = -l1 + 'px';
+	    //console.log(1);
+	     },1000/1)
+	  }
+</script>
+</body>
+</html>

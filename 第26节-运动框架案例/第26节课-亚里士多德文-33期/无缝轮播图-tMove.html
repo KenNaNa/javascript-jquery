@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>无缝轮播图-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+				 list-style:none;
+				 text-decoration:none;
+			 }
+			 #box{
+			    position:relative;
+			    width:738px;
+				height:430px;
+				margin:100px auto;
+				overflow:hidden;
+			 }
+			 #box .img{
+			    width:100%;
+				height:100%;
+			 }
+			 #box .img ul{
+			    position:absolute;
+			    width:500%;
+				height:100%;
+			 }
+			 #box .img ul li{
+			    width:738px;
+				height:430px;
+			    float:left;
+			 }
+			 #box .img ul li img{
+			    width:738px;
+				height:430px;
+			 }
+             #box .btn,#box .btn ul{
+			    width:738px;
+				height:20px;
+				text-align:center;
+				
+			 }
+			 #box .btn ul{
+			    position:absolute;
+				bottom:0;
+			 }
+			 #box .btn ul li{
+				width:738px;
+				height:20px;
+			 }
+			 #box .btn ul li a{
+			    
+			    display:inline-block;
+				width:10px;
+				height:10px;
+				border-radius:50%;
+				background:#000;
+			 }
+			 #box .btn ul li a.active{
+			   background:#f60;
+			 }
+			 #box p{
+			    position:absolute;
+				top:50%;
+				left:50%;
+				margin-left:-369px;
+				margin-top:-22.5px;
+			    width:738px;
+				height:45px;
+			 }
+			 #box p span{
+			    display:inline-block;
+				width:80px;
+				height:30px;
+				background:transparent;
+				color:#fff;
+				line-height:30px;
+				padding-bottom:10px;
+				padding-top:5px;
+				text-align:center;
+                font-size:30px;
+				cursor:pointer;
+				transition:all 0.8s ease;
+				font-weight:bolder;
+			 }
+			 #box p span#prev{
+			    float:left;
+			 }
+			 #box p span#next{
+			    float:right;
+			 }
+			 #box p span:hover{
+			    background:pink;
+				color:#000;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <div class="img">
+	  <ul>
+	  	<li><img src="images/1.jpg" alt="" /></li>
+	  	<li><img src="images/2.jpg" alt="" /></li>
+	  	<li><img src="images/3.jpg" alt="" /></li>
+	  	<li><img src="images/4.jpg" alt="" /></li>
+	  	<li><img src="images/5.jpg" alt="" /></li>
+	  </ul>
+	<div>
+	<div class="btn">
+	  <ul>
+	  	<li>
+		    <a href="javascript:void(0);" class="active"></a>
+            <a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+		</li>
+	  </ul>
+	</div>
+	<p>
+	   <span id="prev">&lt;</span>
+	   <span id="next">&gt;</span>
+	</p>
+</div>
+<script src="js/tMove.js"></script>
+<script>
+    var oBox = document.getElementById('box');
+    var oUl = oBox.querySelector('#box .img ul');
+	//console.log(oUl)
+	var aA = oBox.querySelectorAll('#box .btn ul li a');
+	var oPrev = document.getElementById('prev');
+	var oNext = document.getElementById('next');
+	var length = aA.length;
+	var n =  0;
+	var timer = null;
+	for( var i=0;i<length;i++ ){
+	   aA[i].index = i;//自定义属性
+	   aA[i].onclick = function(){
+	     for( var j=0;j<length;j++ ){//初始化
+		   aA[j].className = '';
+		 }
+		 aA[this.index].className = 'active';
+		 tMove(oUl,{left:-738*this.index},500)
+	   }
+	}
+	oNext.onclick = function(){
+	   n++;
+	   n%=5;
+	   console.log(n)
+	   for( var i=0;i<length;i++ ){
+	     aA[i].className = '';
+	   }
+	   aA[n].className = 'active';
+	   tMove(oUl,{left:-738*n},500,function(){
+	      if( n>=5 ){
+		     n =0;
+			 this.style.left = '0px';
+		  }
+	   })
+	}
+	oPrev.onclick = function(){
+	   n<=0?n=4:n--;
+	   n%=5;
+	   console.log(n);
+	   for( var i=0;i<length;i++ ){
+	     aA[i].className = '';
+	   }
+	   aA[n].className = 'active';
+	   tMove(oUl,{left:-738*n},500,function(){
+	      if( n<0 ){
+		     n =4;
+			 this.style.left = -(n)*738+'px';
+		  }
+	   })
+	}
+	clearInterval(timer);
+	timer = setInterval(fn,1000);
+	function fn(){
+	   n++;
+	   n%=5;
+	   console.log(n)
+	   for( var i=0;i<length;i++ ){
+	     aA[i].className = '';
+	   }
+	   aA[n].className = 'active';
+	   tMove(oUl,{left:-738*n},1000,function(){
+	      if( n>=5 ){
+		     n =0;
+			 this.style.left = '0px';
+		  }
+	   })
+	};
+    oBox.onmouseenter = function(){
+	   clearInterval(timer);
+	}
+	oBox.onmouseleave = function(){
+	   timer = setInterval(fn,1000);
+	}
+</script>
+</body>
+</html>

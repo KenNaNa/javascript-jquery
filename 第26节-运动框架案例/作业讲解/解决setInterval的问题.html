@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>解决setInterval的问题-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+	   setInterval()的特性
+	     当离开当前网页时 定时器会速度变慢 给人一种‘卡顿’的感觉
+		 回到当前页面时 又恢复正常
+	*/
+	/*var n = 0;
+	var timer = setInterval(function(){
+	     document.title = n++;
+	},100)
+	//解决的方法
+	window.onblur = function(){
+	   clearInterval(timer);//当当前页面失去焦点时 停止定时器
+	}
+	window.onfocus = function(){
+	   var timer = setInterval(function(){
+	     document.title = n++;
+	   },100)//恢复到当前页面时 又开启定时器了
+	}*/
+	//但是requestAnimantionFrame()就不会发生跟setInterval()这样的特性
+	var n = 0;
+	(function fn(){
+		document.title = n++;
+		requestAnimationFrame(fn);//当离开啊当前页面时自动停止定时器
+		//当恢复到当前页面时又自动打开定时器
+		//而且不会产生多个定时器 始终是一个定时器
+		//然而setInterval()每打开一次就产生一个定时器有可能会混乱
+	})();
+</script>
+</body>
+</html>

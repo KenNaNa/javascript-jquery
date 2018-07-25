@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>简易日历-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:150px;
+				height:180px;
+				background:#369;
+				border-radius:6px;
+				margin:60px auto;
+			 }
+			 #box p{
+			    height:60px;
+			    color:#fff;
+				font-size:14px;
+				text-align:center;
+				line-height:60px;
+			 }
+			 #box span{
+			    display:block;
+				width:75px;
+				height:75px;
+				color:#333;
+				font-size:50px;
+				line-height:75px;
+				background:yellowgreen;
+				text-align:center;
+				margin:10px auto;
+				border-radius:6px;
+			 }
+
+		 </style>
+	 </head>
+<body>
+<div id="box">
+    <p>2017-07-05 星期三</p>
+	<span>05</span>
+</div>
+<script>
+    var oBox = document.getElementById('box');
+	var oP = oBox.querySelector('#box p');
+	var oSpan = oBox.querySelector('#box span');
+    
+	var oDate = new Date();
+	var YY = oDate.getFullYear();//获取年份
+	var MM = oDate.getMonth()+1;
+	var DD = oDate.getDate();
+	var XX = oDate.getDay();
+	oP.innerHTML = YY+'-'+getTwo(MM)+'-'+getTwo(DD)+' '+getWeek(XX);
+	oSpan.innerHTML = getTwo(DD);
+	//console.log(XX)
+	//console.log(DD)
+	//console.log(MM)
+	//console.log(YY);\
+	function getTwo(nn){
+	   if(nn<10)return '0'+nn;
+	   else return ''+nn;
+	}
+	function getWeek(xx){
+	   return ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][xx];
+	}
+</script>
+</body>
+</html>

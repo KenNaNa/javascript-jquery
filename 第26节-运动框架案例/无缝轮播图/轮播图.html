@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="Author" content="下辈子">
+		<link rel="stylesheet" type="text/css" href="base.css" />
+		<title>Document</title>
+		<style>
+			.wrap {
+				position: relative;
+				z-index: 2;
+				margin: 50px;
+				width: 792px;
+				height: 445.5px;
+				box-shadow: 0 0 2px #000;
+				transform: scale(.4);
+				overflow: hidden;
+			}
+			
+			span#pre,
+			span#next {
+				display: block;
+				position: absolute;
+				top: calc(50% - 30px);
+				z-index: 2;
+				width: 35px;
+				height: 60px;
+				border: 1px solid #fff;
+				cursor: pointer;
+			}
+			
+			span#pre {
+				left: 0;
+			}
+			
+			span#next {
+				right: 0;
+			}
+			
+			ul.banner {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			
+			ul.banner li {
+				float: left;
+				height: 100%;
+			}
+			
+			ul.banner li img {
+				width: 100%;
+			}
+			
+			.wrap p {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				background-color: rgba(0, 0, 0, .3);
+				text-align: center;
+			}
+			
+			.wrap p span.switch {
+				display: inline-block;
+				margin: 0 5px;
+				width: 50px;
+				height: 50px;
+				border: 1px solid #fff;
+				vertical-align: bottom;
+				cursor: pointer;
+			}
+			
+			.wrap p span.show {
+				background-color: slateblue;
+				border: 1px solid #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<span id="pre"></span>
+			<span id="next"></span>
+			<ul class="banner"></ul>
+			<p></p>
+		</div>
+		<script src="move.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var owrap = getClass('wrap')[0];
+			var oul = getClass('banner')[0];
+			var op = owrap.getElementsByTagName('p')[0];
+			var ospan = op.getElementsByTagName('span');
+			var oimg = owrap.getElementsByTagName("img");
+			
+			oul.src = ['images/window1.jpg', 'images/window2.jpg', 'images/window3.jpg', 'images/window4.jpg'];
+			oul.srcLength = oul.src.length;
+			oul.html = '';
+			op.html = '';
+			oul.index = 1;
+			ospan.index = 0;
+			
+			//根据img个数生成，对应个数的Li和span
+			oul.html += '<li style=" width:' + 1 / (oul.srcLength + 2) * 100 + '%;"><img src="' + oul.src[oul.srcLength-1] + '"></li>';
+			for(var i = 0; i < oul.srcLength; i++) {
+				//生成图片
+				oul.html += '<li style=" width:' + 1 / (oul.srcLength + 2) * 100 + '%;"><img src="' + oul.src[i] + '"></li>';
+				//生成span
+				if(i === 0) { //第一个span有默认样式
+					op.html = '<span class="show switch"></span>';
+				} else {
+					op.html += '<span class="switch"></span>';
+				}
+			}
+			oul.html += '<li style=" width:' + 1 / (oul.srcLength + 2) * 100 + '%;"><img src="' + oul.src[0] + '"></li>';
+			//根据img个数，设定 ul 宽度，并生成的Li把和span放入ul里面
+			op.innerHTML += op.html;
+			oul.style.width = oul.clientWidth * (oul.srcLength + 2) + 'px';
+			oul.style.marginLeft = -1*owrap.offsetWidth + 'px';
+			oul.innerHTML += oul.html;
+			//  ========== 
+			//  = 自动轮播 = =
+			//  ========== 
+			function autoplay() {
+				oul.index++;
+				ospan.index++;
+           		if(oul.index == (oimg.length-1) ){
+           			tMove(oul, {"margin-left": -1*owrap.offsetWidth *oul.index}, 500, function(){this.style.marginLeft = -1*owrap.offsetWidth + 'px'});
+					oul.index = 1;
+					ospan.index = 0;
+	            }else{
+	            	tMove(oul, {"margin-left": -owrap.offsetWidth * oul.index}, 500);
+	            }
+	            spanclass();
+			}
+			oul.auto = setInterval(autoplay,2000);
+			
+			//  ============
+			//  = pagination导航 = 
+			//  ============
+			 for(var i=0;i<oul.srcLength;i++){
+			 	ospan[i].index = i;
+           		ospan[i].onclick =function() {
+           			tMove(oul, {"margin-left": -1*owrap.offsetWidth * (this.index+1)}, 500);
+           			ospan.index = this.index;
+           			spanclass();
+           			oul.index = (this.index+1);
+           		}
+         	}
+			 //  ========== 
+			 //  = 左右导航 = 
+			 //  ========== 
+			 next.onclick =function() {
+			 	click(1, 5, 1, 1, 4, 0);
+			 }
+			 pre.onclick =function() {
+			 	click(-1, 0, 4, 4, -1, 3);
+			 }
+       		//  ========== 
+       		//  = 鼠标移入停止 = 
+       		//  ========== 
+			owrap.onmouseover = function(){
+          		clearInterval(oul.auto);
+      		}
+     	    owrap.onmouseout = function(){
+           		oul.auto = setInterval(autoplay,3000);
+      		}
+			 //  ========== 
+			 //  = 功能模块 = 
+			 //  ========== 
+			function click(calc, Bindex, Aindex, num, bindex, aindex) {
+				oul.index = oul.index + 1*calc;
+       			ospan.index = ospan.index + 1*calc;
+       			if(oul.index == Bindex ){
+       				tMove(oul, {"margin-left": -1*owrap.offsetWidth *oul.index}, 500, function(){this.style.marginLeft = -1*owrap.offsetWidth*num+'px'});
+					oul.index = Aindex;
+         	  	}else{
+         	  		tMove(oul, {"margin-left": -1*owrap.offsetWidth *oul.index}, 500);
+         	  	}
+         	  	ospan.index == bindex ? ospan.index = aindex : ospan.index ;
+         	  	spanclass();
+			}
+       		function spanclass() {
+	          	for(var i=0;i<oul.srcLength;i++){
+               		ospan[i].className ="switch";
+         	   	}
+           		ospan[ospan.index].className = "switch show" ;
+       		}
+     	   
+		</script>
+	</body>
+
+</html>

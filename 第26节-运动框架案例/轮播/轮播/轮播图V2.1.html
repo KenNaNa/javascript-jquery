@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_oow1sqg9vyt4kj4i.css">
+  <title>轮播图V2.0</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    #container {
+      width: 800px;
+      height: 500px;
+      margin: 100px auto;
+      position: relative;
+      /* overflow: hidden; */
+      box-shadow: 2px 2px 4px #ccc;
+    }
+
+    .buttons {
+      display: none;
+    }
+
+    .buttons.show {
+      display: block;
+    }
+
+    .iconfont {
+      font-size: 50px;
+      color: rgba(0, 0, 0, .5);
+      position: absolute;
+      top: 50%;
+      margin-top: -25px;
+      opacity: 0.5;
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    .iconfont:hover {
+      opacity: 1;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .tags {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+    }
+
+    .tags span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, .5);
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    .tags span.checked {
+      background-color: #fff;
+    }
+
+    .images {
+      height: 100%;
+      position: absolute;
+      left: 0;
+    }
+
+    .images img {
+      height: 100%;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="buttons">
+      <i class="prev icon-shangyizhang iconfont"></i>
+      <i class="next icon-xiayizhang iconfont"></i>
+    </div>
+    <div class="tags">
+    </div>
+
+    <div class="images"></div>
+  </div>
+
+  <script>
+    (function () {
+      // 展示区域
+      var container = document.getElementById('container')
+      // 图片容器
+      var images = document.querySelector('#container .images')
+      // 圆点菜单
+      var tags = document.querySelector('#container .tags')
+      // 左右点击父级
+      var button = container.getElementsByClassName('buttons')[0]
+      // 展示区域宽度
+      var w = container.offsetWidth
+      // 展示区域高度
+      var h = container.offsetHeight
+      // 上一张图片
+      var prev = container.getElementsByClassName('prev')[0]
+      // 下一张图片
+      var next = container.getElementsByClassName('next')[0]
+      // 菜单内的小点点
+      var span = tags.getElementsByTagName('span')
+      // 菜单初始选中
+      tags.index = 0
+      // 图片路径
+      images.url = ['./images/xiaomai1.jpg', './images/xiaomai2.jpg', './images/xiaomai3.jpeg',
+        './images/xiaomai4.jpg',
+        './images/p1.jpeg',
+        './images/p2.jpeg'
+      ]
+      // 图片个数
+      images.len = images.url.length
+      // 待插入的图片和菜单
+      images.html = ''
+      tags.html = ''
+      // 插入图片和菜单
+
+      images.html += '<img src="' + images.url[images.len - 1] + '" width="' + w + '" height="' + h + '">'
+      for (var i = 0; i < images.len; i++) {
+        images.html += '<img src="' + images.url[i] + '" width="' + w + '" height="' + h + '">'
+        // 第一菜单默认选中
+        if (i === 0) {
+          tags.html += '<span class="checked"></span>'
+        } else {
+          tags.html += '<span></span>'
+        }
+
+      }
+      images.html += '<img src="' + images.url[0] + '" width="' + w + '" height="' + h + '">'
+      // 应用到节点上
+      images.innerHTML = images.html
+      tags.innerHTML = tags.html
+
+      // 设置容器长度，将图片排成一排
+      images.style.width = (images.len + 2) * w + 'px'
+      // 设置容器位置，显示第一张图片的位置
+      images.style.left = -w + 'px'
+      // 图片序号
+      images.index = 0
+      // 是否正在执行动画
+      images.animated = false
+      // 每张图片停留的时间
+      images.interval = 3000
+      // 初始化计时器
+      images.timer = null
+
+      // 动画，参数为平移距离，大于0 向前， 小于0 向后
+      function animate(offset) {
+        // 若为0 则直接返回
+        if (offset == 0) {
+          return
+        }
+        // 设置状态，动画执行中
+        images.animated = true
+
+        // 设置菜单小圆的样式
+        span[tags.index].className = ''
+        span[images.index].className = 'checked'
+        tags.index = images.index
+
+        // 动画执行时间
+        var time = 300
+        // 每一帧的时间
+        var interval = 10
+        // 固定速度
+        var speed = parseInt(offset / (time / interval))
+
+        // 目标位置
+        var left = parseInt(images.style.left) + offset
+        var go = function () {
+          // 达到目标位置之前执行动画
+          // 解决跳帧
+            if ((speed > 0 && parseInt(images.style.left) + speed > left) || (speed < 0 && parseInt(images.style.left) +
+                speed < left)) {
+              images.style.left = left + 'px'
+              if (left > -w) {
+                images.style.left = -w * (images.len) + 'px';
+              }
+              if (left < (-w * images.len)) {
+                images.style.left = -w + 'px';
+              }
+              // 设置状态，动画执行完毕
+              images.animated = false;
+            } else {
+              images.style.left = parseInt(images.style.left) + speed + 'px'
+              setTimeout(go, interval)
+            }
+          }
+        // 手动执行一次
+        go()
+      }
+
+      // 自动播放
+      function play() {
+        images.timer = setTimeout(function () {
+          next.onclick()
+          play()
+        }, images.interval);
+      }
+
+      // 清除计时器
+      function stop() {
+        clearTimeout(images.timer)
+      }
+
+      // 下一张
+      next.onclick = function () {
+        // 如果动画执行中，直接返回
+        if (images.animated) {
+          return;
+        }
+        // 如果当前为最后一张，设置图片索引为0，执行回弹动画
+        if (images.index == images.len - 1) {
+          images.index = 0;
+
+        } else {
+          // 下一张图片,执行平移动画
+          images.index += 1;
+
+        }
+        animate(-w);
+      }
+
+      // 上一张
+      prev.onclick = function () {
+        // 如果动画执行中，直接返回
+        if (images.animated) {
+          return;
+        }
+        // 如果当前为第一张，设置图片索引为最后一张索引，执行回弹动画
+        if (images.index == 0) {
+          images.index = images.len - 1;
+
+        } else {
+          // 上一张图片,执行平移动画
+          images.index -= 1;
+
+        }
+        animate(w);
+      }
+
+      // 鼠标在图片上停止轮播
+      container.onmouseover = stop;
+      // 图片移开后开始轮播
+      container.onmouseout = play;
+      container.onmouseenter = function () {
+        button.className = 'show'
+      }
+
+      container.onmouseleave = function () {
+        button.className = 'buttons';
+      }
+      // 主动触发轮播
+      play();
+
+      // 菜单操作图片
+      for (var i = 0; i < images.len; i++) {
+        span[i].index = i
+        span[i].onclick = function () {
+          // 动画执行中则返回
+          if (images.animated) {
+            return
+          }
+          // 获取当前图片位置
+          var left = parseInt(images.style.left) + w
+          // 获取当前图片索引
+          var index = Math.abs(parseInt(left / w))
+          // 设置图片索引为当前点击的菜单的索引
+          images.index = this.index
+          // 回弹动画
+          animate((index - this.index) * w)
+        }
+      }
+    })()
+  </script>
+</body>
+
+</html>

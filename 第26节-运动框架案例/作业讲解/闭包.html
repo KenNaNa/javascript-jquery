@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>闭包-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			    width:120px;
+				margin:100px auto;
+			 }
+			 #box ul{
+			    width:100%
+			 }
+			 #box ul li{
+			    width:100%;
+				height:30px;
+				text-align:center;
+				line-height:30px;
+				background:pink;
+				margin-top:5px;
+				cursor:pointer;
+			 }
+		 </style>
+	 </head>
+<body>
+<div id="box">
+   <ul>
+   	<li>000</li>
+   	<li>111</li>
+   	<li>222</li>
+   	<li>333</li>
+   	<li>444</li>
+   	<li>555</li>
+   </ul>
+</div>
+<script>
+    var aLi = document.querySelectorAll('#box ul li');
+	/*for( var i=0;i<aLi.length;i++ ){
+	   //那么要弹出0 1 2 3 4 5的话可以自定义属性 因为这个i是个全局变量
+	   aLi[i].index = i;
+	   aLi[i].onclick = function(){
+	      //alert(i);//在此你会发现弹出来的数字是6 为什么呢 因为for循环瞬间就完成了
+		  alert(this.index)
+	   }
+	}*/
+    /*for( var i=0;i<aLi.length;i++ ){
+	   (function(){
+	      aLi[i].onclick = function(){
+		     alert(i);//这次还是6
+		  }
+	   })()
+	}*/
+    /*for( var i=0;i<aLi.length;i++ ){
+	   (function(){
+		  var a = i;
+	      aLi[a].onclick = function(){
+		     alert(a);//这下弹出0 1 2 3 4 5
+			 //是因为局部变量引用了外部的全局变量i是的局部变量a得以永久的保存下来
+			 //不会被垃圾机制回收
+		  }
+	   })()
+	}*/
+    for( var i=0;i<aLi.length;i++ ){
+	   (function(a){//形参
+	      aLi[a].onclick = function(){
+		     alert(a);//这下弹出0 1 2 3 4 5
+			 //是因为局部变量引用了外部的全局变量i是的局部变量a得以永久的保存下来
+			 //不会被垃圾机制回收
+		  }
+	   })(i)//实参
+	}
+	/*
+	   产生闭包的因素有以下
+	   1 可能是两个函数
+	   2 外部变量被内部函数引用
+	   3 是的内部局部变量不会被垃圾机制回收
+	   4 此时就产生了闭包
+	  
+	*/
+	/*
+       垃圾回收：
+       全局变量除非关闭页面，否则不会被回收
+       局部变量在没有任何引用价值之后会被回收
+
+       闭包：
+        两个函数，内部函数使用了外部函数的参数/变量，构成一个闭包
+        特点：这个参数/变量不会被回收
+    */
+</script>
+</body>
+</html>

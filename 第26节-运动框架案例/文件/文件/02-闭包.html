@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+                <li>444</li>
+            </ul>
+        </div>
+        <script>
+
+            var aLi = document.querySelectorAll("ul li");
+
+
+            for (var i = 0,length = aLi.length; i < length; i++) {
+                (function(x) {
+                    aLi[x].onclick = function () {
+                        alert(x);
+                    };
+                })(i);
+            }
+
+            /*for (var i = 0,length = aLi.length; i < length; i++) {
+
+                //(function() {
+                    alert(i);
+                //})();
+
+            }*/
+
+            for (var i = 0; i < 4; i++) {
+                (function (x) {
+                    setTimeout(function () {
+                        alert( x );
+                    });
+                })(i);
+            }
+
+
+
+            /*
+             垃圾回收：
+                 全局变量除非关闭页面，否则不会被回收
+                 局部变量在没有任何引用价值之后会被回收
+
+            闭包：
+                两个函数，内部函数使用了外部函数的参数/变量，构成一个闭包
+                特点：这个参数/变量不会被回收
+             */
+
+            //var a = 10;
+            //alert( a );
+
+            /*function Fn() {
+                var a = 5;
+                alert( a );
+            }
+            Fn();*/
+
+            /*var a = 5;
+            function Fn() {
+                var a = 10;
+                return function () {
+                    a ++;
+                    alert( a );
+                }
+            }
+
+            var g = Fn();
+
+            document.onclick = function () {
+                g();
+            }*/
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
