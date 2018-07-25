@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>键值1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<script>
+    /*
+		e.which 存在于键盘事件和鼠标事件 不兼容IE8-
+
+		e.keyCode 存在于键盘事件，兼容所有
+
+	*/
+	document.onkeydown = function(e){
+		e = e||window.event;
+	    console.log(e);
+		alert(e.which);
+		alert(e.code);
+		alert(e.key);
+		alert(e.shiftKey);
+	}
+</script>
+</body>
+</html>

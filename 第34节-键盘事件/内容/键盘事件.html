@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>键盘事件-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		 </style>
+	 </head>
+<body>
+<input type="text" id="goudan">
+<script>
+     /*
+		onkeydown 键按下 触发 ，只要不抬起，就会一直触发
+		onkeypress 键按下 触发，只响应能输入内容的键以及enter
+
+		onkeyup 键抬起 触发
+	 */
+	 var oG = document.getElementById("goudan");
+     oG.onkeydown = function(e){//只要按键按下不抬起 事件就会一直触发 所有的键盘按键都有效
+	     console.log('键盘按键按下')
+	 }
+	 /*oG.onkeyup = function(e){//只触发一次
+	     console.log('键盘按键抬起')
+	 }*/
+     oG.onkeypress = function(){
+	     console.log('press');//只响应能输入内容的键以及enter
+	 }
+</script>
+</body>
+</html>

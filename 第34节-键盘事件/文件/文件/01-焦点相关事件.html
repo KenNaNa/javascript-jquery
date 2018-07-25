@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                width: 100px;
+                height: 100px;
+                background: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <!--<input type="text" id="goudan">-->
+
+        <!--<div id="box"></div>-->
+
+
+
+        <!--所有的表单类-->
+        <input type="text" id="goudan">
+        <input type="checkbox">
+        <input type="radio">
+        <select name="" id="">
+            <option value="1">111</option>
+        </select>
+
+        <!--这几个也可以-->
+        <a href="">aaaaa</a>
+        <button>555</button>
+        <textarea name="" cols="30" rows="10"></textarea>
+
+        <script>
+
+            /*
+            onfocus事件，获得焦点 的时候触发
+
+            onblur事件，失去焦点 的时候触发
+
+             .focus() 通过js方法 获得焦点
+             .blur() 通过js方法 失去焦点
+             */
+
+            var oG = document.getElementById("goudan");
+
+            /*oG.onfocus = function () {
+                console.log( "focus!!" );
+            };*/
+            /*oG.onblur = function () {
+                console.log( "blur!!!" );
+            };*/
+
+            /*var oBox = document.getElementById("box");
+
+            oBox.onfocus = function () {
+                console.log( "狗蛋!" );
+            };*/
+
+            //oG.focus();
+            oG.onfocus = function () {
+                setTimeout(function () {
+                    oG.blur();
+                },2000);
+            }
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

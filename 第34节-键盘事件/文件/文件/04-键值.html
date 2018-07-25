@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+             
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+                e.which 存在于键盘事件和鼠标事件 不兼容IE8-
+
+                e.keyCode 存在于键盘事件，兼容所有
+
+            */
+            /*document.onclick = function (e) {
+                e = e||window.event;
+
+                console.log( e.keyCode ); //离开键盘事件的话，这个值是没有意义的
+            }*/
+
+            /*document.onmousedown = function (e) {
+                e = e || window.event;
+                console.log( e.which );//左键：1  中键：2  右键：3
+            }*/
+
+            document.onkeydown = function (e) {
+                e = e || window.event;
+                //alert( e.which ); //也能响应键盘事件！和 .keyCode 的值意义
+                alert( e.keyCode )
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

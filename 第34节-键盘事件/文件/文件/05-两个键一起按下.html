@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: absolute;
+                top: 300px;
+                left: 300px;
+                width: 50px;
+                height: 50px;
+                background: deeppink;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box"></div>
+        <script>
+            /*
+                e.altKey
+                e.ctrlKey
+                e.shiftKey
+
+             */
+
+            /*document.onkeydown = function (e) {
+                e = e || window.event;
+                console.log( e.keyCode );
+                console.log( e.altKey );
+            }*/
+            /*document.onkeydown = function (e) {
+                e = e || window.event;
+                console.log( e.keyCode );
+            }*/
+
+            var oBox = document.getElementById("box");
+            var timerArr = [];
+
+            document.onkeydown = function (e) {
+                switch (e.keyCode){
+                    case 37:
+                        if ( timerArr[37] === undefined ){
+                            (function m() {
+                                var left = oBox.offsetLeft - 2;
+                                oBox.style.left = left + 'px';
+                                timerArr[37] = requestAnimationFrame(m);
+                            })();
+                        }
+                        break;
+                    case 38:
+                        if ( timerArr[38] === undefined ) {
+                            (function m() {
+                                var top = oBox.offsetTop - 2;
+                                oBox.style.top = top + 'px';
+                                timerArr[38] = requestAnimationFrame(m);
+                            })();
+                        }
+                        break;
+                    case 39:
+                        if ( timerArr[39] === undefined ) {
+                            (function m() {
+                                var left = oBox.offsetLeft + 2;
+                                oBox.style.left = left + 'px';
+                                timerArr[39] = requestAnimationFrame(m);
+                            })();
+                        }
+                        break;
+                    case 40:
+                        if ( timerArr[40] === undefined ) {
+                            (function m() {
+                                var top = oBox.offsetTop + 2;
+                                oBox.style.top = top + 'px';
+                                timerArr[40] = requestAnimationFrame(m);
+                            })();
+                        }
+                        break;
+                }
+            };
+
+            document.onkeyup = function (e) {
+                var keyCode = e.keyCode;
+                cancelAnimationFrame(timerArr[keyCode]);
+                timerArr[keyCode] = undefined;
+            }
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
