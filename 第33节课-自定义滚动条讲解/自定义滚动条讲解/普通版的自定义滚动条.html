@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>普通版的自定义滚动条-李金文</title>
+		 <style type="text/css">
+		     *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+
+            #box{
+                overflow: hidden;
+                position: relative;
+                width: 710px;
+                height: 510px;
+                background: pink;
+                margin: 50px auto;
+                padding: 15px;
+                /*user-select: none;*/
+            }
+            #content{
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 15px;
+                border: 1px solid red;
+            }
+            #content .pbold{
+                font-size: 16px;
+                font-weight: bold;
+            }
+            #scroll{
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 15px;
+                height: 100%;
+                background: #ddd;
+            }
+            #scroll .bar{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                background: #333;
+            }
+        </style>
+    </head>
+    <body>
+<div id="box">
+
+	<!--内容的盒子-->
+	<div id="content">
+		<h2>阿甘正传</h2><br/>
+		<p class="pbold">1、Life was like a box of chocolates, you never know what you're going to get.</p>
+	　　<p>生命就像一盒巧克力，结果往往出人意料。</p>
+	　　<p class="pbold">2、Stupid is as stupid does.</p>
+	　　<p>蠢人做蠢事，也可理解为傻人有傻福。</p>
+	　　<p class="pbold">3、Miracles happen every day.</p>
+	　　<p>奇迹每天都在发生。</p>
+	　　<p class="pbold">4、it made me look like a duck in water.</p>
+	　　<p>它让我如鱼得水。</p>
+	　　<p class="pbold">5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+	　　<p>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</p>
+	　　<p class="pbold">6、Death is just a part of life, something we're all destined to do.</p>
+	　　<p>死亡是生命的一部分，是我们注定要做的一件事。</p>
+	　　<p class="pbold">7、You have got to put the past behind you before you can move on.</p>
+	　　<p>放下包袱，继续前进。</p>
+	　　<p class="pbold">8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+	　　<p>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</p>
+	　　<p class="pbold">9、If there is anything you need, I will not be far away.</p>
+	　　<p>只要你需要，我就在这里。</p>
+	　　<p class="pbold">10、I am a man of my word.</p>
+	　　<p>我是信守承诺的人。</p>
+	　　<p class="pbold">11、There is one small step for a man,a giant leap for mankind.</p>
+	　　<p>某人的一小步就是人类的一大步。</p>
+	</div>
+
+	<!--滚动条的盒子-->
+	<div id="scroll">
+		<div class="bar"></div>
+	</div>
+
+</div>
+<script>
+    function $(id){//封装一个获取iD的函数 
+	   return document.getElementById(id);
+	}
+	function stopDefault(e){
+	   //如果提供了事件对象 这是一个非IE浏览器
+	   if(e&&e.preventDefault){//判断e事件对象 e.preventDefault是否存在
+		  e.preventDefault();
+	   }else{
+		  //console.log(window.event)
+		  window.event.returnValue = false;
+	   }
+	   return false;
+	}
+    var oBox = $('box');//获取大盒子
+    var oCon = $('content');//获取内容盒子
+	var oScr = $('scroll');//获取滚动盒子
+	var oBar = oBox.querySelector('.bar');//获取滑块
+	//console.log(oBar)
+	var maxSH = oScr.offsetHeight - oBar.offsetHeight;//这里要用offset因为如果有border才能获取到 
+	var maxCH = oCon.offsetHeight - oBox.offsetHeight;//内容的高度减去内容可视区的高度
+	var flag = true;//
+	var flag1 = true;//
+	oScr.style.display = 'none';//display='none'必须放在上面的值获取后
+    oBar.onmousedown = function(e){
+	   stopDefault(e);//阻止默认事件
+	   e = e||window.event;//兼容浏览器
+	   var sY = e.clientY,//获取鼠标的初始位置
+	       sT = oBar.offsetTop;//获取oBar的初始Top值
+	   document.onmousemove = function(e){
+	       stopDefault(e);//阻止默认事件
+		   e = e||window.event;//兼容浏览器
+		   var nY = e.clientY,//获取当前的鼠标位置
+		       nT = nY - sY + sT;//当前鼠标位置-初时鼠标位置+oBar的初始Top值  
+		   setnT(nT);//设置当前的Top值
+	   }
+	   document.onmouseup = function(){
+	       document.onmousemove = null;//取消mousemove事件
+		   document.onmouseup = null;//取消onmouseup事件
+		   flag = true;
+		   flag1&&(oScr.style.display = 'none');
+
+	   }
+	}
+	oBox.onmouseenter = function(){
+	   flag1 = false;
+	   oScr.style.display = 'block';
+	}
+	oBox.onmouseleave = function(){
+	   flag1 = true;
+	   flag&&(oScr.style.display = 'none');
+	   console.log(flag)
+	}
+	oScr.onmousedown = function(){
+	   flag = false;
+	   console.log(flag)
+	}
+	mousewheel(oBox,function(e,d){//滚轮调用
+	   var nT = oBar.offsetTop;
+	   if(d<0){//往下拉
+		  nT += 20;
+		  setnT(nT);
+	   }else{//往上拉
+	      nT -= 20;
+		  setnT(nT);
+	   }
+	   return false;//阻止默认事件 当function(e,d){}()被调用时 就返回return false
+	   //return true也可以的
+	})
+	function setnT(nT){//设置当前的Top值 函数
+	   nT = Math.max(nT,0);//限制最小Top值
+	   nT = Math.min(nT,maxSH);//限制最大Top值
+	   cnT =  nT/maxSH*maxCH;//求出content盒子当前滑动的Top 这一步必须放在限制Top值之后 否则会有bug
+	   oBar.style.top = nT + 'px';
+	   oCon.style.top = -cnT + 'px';
+	}
+	//滚轮事件
+	function mousewheel(obj , Fn) {
+		function eFn(e) {
+			e = e || window.event;
+			if ( Fn.call(this,e,e.wheelDelta/120 || -e.detail/3)=== false  ){
+				e.preventDefault && e.preventDefault();//阻止的浏览器的滚轮默认事件
+				//if(e.preventDefault){e.preventDefault();}
+				e.returnValue = false;//else {e.returnValue = false;}//兼容IE
+				//this指向的是oBox
+				//console.log(1);
+			}
+		}
+		document.onmousewheel!==undefined?obj.onmousewheel=eFn:obj.addEventListener('DOMMouseScroll',eFn,false);
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html onselectstart = "return false">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+
+            #box{
+                overflow: hidden;
+                position: relative;
+                width: 710px;
+                height: 510px;
+                background: pink;
+                margin: 50px auto;
+                padding: 15px;
+                /*user-select: none;*/
+            }
+            #content{
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 15px;
+                border: 1px solid red;
+            }
+            #content .pbold{
+                font-size: 16px;
+                font-weight: bold;
+            }
+            #scroll{
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 15px;
+                height: 100%;
+                background: #ddd;
+            }
+            #scroll .bar{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                background: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+
+            <!--内容的盒子-->
+            <div id="content">
+                <h2>阿甘正传</h2><br/>
+                <p class="pbold">1、Life was like a box of chocolates, you never know what you're going to get.</p>
+            　　<p>生命就像一盒巧克力，结果往往出人意料。</p>
+            　　<p class="pbold">2、Stupid is as stupid does.</p>
+            　　<p>蠢人做蠢事，也可理解为傻人有傻福。</p>
+            　　<p class="pbold">3、Miracles happen every day.</p>
+            　　<p>奇迹每天都在发生。</p>
+            　　<p class="pbold">4、it made me look like a duck in water.</p>
+            　　<p>它让我如鱼得水。</p>
+            　　<p class="pbold">5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+            　　<p>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</p>
+            　　<p class="pbold">6、Death is just a part of life, something we're all destined to do.</p>
+            　　<p>死亡是生命的一部分，是我们注定要做的一件事。</p>
+            　　<p class="pbold">7、You have got to put the past behind you before you can move on.</p>
+            　　<p>放下包袱，继续前进。</p>
+            　　<p class="pbold">8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+            　　<p>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</p>
+            　　<p class="pbold">9、If there is anything you need, I will not be far away.</p>
+            　　<p>只要你需要，我就在这里。</p>
+            　　<p class="pbold">10、I am a man of my word.</p>
+            　　<p>我是信守承诺的人。</p>
+            　　<p class="pbold">11、There is one small step for a man,a giant leap for mankind.</p>
+            　　<p>某人的一小步就是人类的一大步。</p>
+            </div>
+
+            <!--滚动条的盒子-->
+            <div id="scroll">
+                <div class="bar"></div>
+            </div>
+
+        </div>
+        <script>
+            /*
+
+
+            初始给了 display：none 之后
+            获取 clientHeight  offsetHeight  scrollHeight的时候要特别注意
+
+            */
+
+            var oScroll = document.getElementById("scroll"),
+                oBar = oScroll.children[0],
+                oBox = document.getElementById("box"),
+                oContent = document.getElementById("content");
+
+            var flag = true , flag1 = true;//用来scroll的显示隐藏的
+
+            //滑块儿的max
+            var maxTop = oScroll.offsetHeight - oBar.offsetHeight;
+
+            oScroll.style.display = "none";
+
+            //content的max
+            var maxCTop = oBox.scrollHeight - oBox.clientHeight;
+
+            //bar按下时的事件及取消
+            oBar.onmousedown = function (e) {
+                e = e || window.event;
+
+                //获取按下时的初始值
+                var sY = e.clientY, //y的坐标
+                    sT = this.offsetTop; //初始top值
+
+                document.onmousemove = function (e) {
+                    e = e || window.event;
+                    var top = sT + e.clientY - sY;//变化后的top
+                    setTop(top);
+                };
+            };
+            document.onmouseup = function () {
+                this.onmousemove = null;
+                flag = true;
+                flag1 && (oScroll.style.display = "none");
+            };
+
+            //给box添加滚轮事件
+            mousewheel( oBox , function (e,d) {
+                var top = oBar.offsetTop;
+                if ( d < 0 ){
+                    top += 20;
+                }else{
+                    top -= 20;
+                }
+                setTop(top);
+                return false;
+            } );
+
+            //显示scroll
+            oBox.onmouseenter = function () {
+                flag1 = false;
+                oScroll.style.display = "block";
+            };
+            oBox.onmouseleave = function () {
+                flag1 = true;
+                flag && (oScroll.style.display = "none");
+            };
+            oScroll.onmousedown = function () {
+                flag = false;
+            };
+
+            //设定bar和content的top值
+            function setTop(top) {
+                //限定top的取值范围
+                top = Math.max(top , 0);
+                top = Math.min(top , maxTop);
+                oBar.style.top = top + "px";
+
+                //求出content的top
+                var cTop = top*maxCTop / maxTop;
+                oContent.style.top = -cTop + 'px';
+            }
+
+            //滚轮事件
+            function mousewheel(obj , Fn) {
+                function eFn(e) {
+                    e = e || window.event;
+                    if ( Fn.call(this,e,e.wheelDelta/120 || -e.detail/3) === false ){
+                        e.preventDefault && e.preventDefault();
+                        e.returnValue = false;
+						//console.log(this);//this指向oBox
+                    }
+                }
+                document.onmousewheel!==undefined?obj.onmousewheel=eFn:obj.addEventListener('DOMMouseScroll',eFn,false);
+            }
+
+            /*
+             clientHeight    height+padding
+             offsetHeight    height+padding+border
+             scrollHeight    实际盒子高
+             */
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
