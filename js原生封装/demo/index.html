@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Fly">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+    </style>
+</head>
+<body>
+    <p id="goudan">1111</p>
+    <p>2222</p>
+    <p>3333</p>
+    <script src="fly.js"></script>
+    <script>
+        //console.log( $("#goudan").length );
+        /*
+        * $("#box") //string
+        * $(function(){}) //function
+        * $(document/this) // object
+        *
+
+        $("p").css({
+            color : 'red',
+            backgroundColor : 'yellow'
+        });
+
+        console.log( $("p").css('fontSize') );
+//        $("p").each(function (x) {
+//            this.style.fontSize = 12+x*2 + 'px';
+//        });*/
+        var aP = document.querySelectorAll('p');
+        var oBox = document.getElementById('goudan');
+
+        $(aP).css('color' , 'red');
+        
+        $(function () {
+            
+        });
+        
+        window.onload = function () {
+            
+        }
+    </script>
+</body>
+</html>
