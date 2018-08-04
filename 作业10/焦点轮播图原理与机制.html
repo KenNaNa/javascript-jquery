@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>焦点轮播图原理-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #container{
+			     position:relative;
+			     width:1000px;
+				 margin:50px auto;
+				 overflow:hidden;
+			 }
+			 #container #images{
+			     width:7000px;/* 给div足够的宽度容纳下五张图片 */
+				 /* width:1000px; */
+				 height:500px;
+				 /* background:green; */
+				 /* margin:auto; */
+			 }
+			 #container #images img{
+			     display:block;/*让图片块级显示*/
+			     width:1000px;
+				 height:500px;
+			     float:left;/*让图片左浮动*/
+			 }
+			 #container #button{
+			     height:24px;
+                 text-align:center;
+				 /* background:skyblue; */
+				 /* border:1px solid red; */
+				 margin-top:10px;
+			 }
+			 #container #button span{
+			     display:inline-block;
+				 width:10px;
+				 height:10px;
+				 background:#ccc;
+				 border-radius:50%;
+			 }
+			 #container #button span.on{
+			     background:red;
+			 }
+			 #container #prev,
+			 #container #next{
+			     position:absolute;
+			     width:30px;
+				 height:50px;
+				 top:50%;
+				 background:#000 url("images/2.png") no-repeat;
+			 }
+			 #container #prev{
+			     left:0px;
+			     background-position:-12px -89px;
+			 }
+			 #container #next{
+			     right:0px;
+				 background-position:-15px -162px;
+			 }
+			 #container #prev:hover,
+			 #container #next:hover{
+			     opacity:0.5;
+			 }
+			 #container #prev:focus,
+			 #container #next:focus{
+			     border:1px dotted #fff;
+			 }
+			 #container #prev:focus{
+			     border-left-color:transparent;
+			 }
+			 #container #next:focus{
+			     border-right-color:transparent;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="container">
+	     <div id="images" style="left:0">
+		     <img src="images/7.jpg" width="804" height="402" alt="奋斗吧" />
+		     <img src="images/3.jpg" width="1000" height="500" alt="时髦派对妆" />
+			 <img src="images/4.jpg" width="1000" height="500" alt="情人节约会妆" />
+			 <img src="images/5.jpg" width="1000" height="500" alt="夏天彩妆" />
+			 <img src="images/6.jpg" width="1000" height="500" alt="开运红美甲" />
+			 <img src="images/7.jpg" width="804" height="402" alt="奋斗吧" />
+			 <img src="images/3.jpg" width="1000" height="500" alt="时髦派对妆" />
+		 </div>
+		 <div id="button">
+		     <span index="1" class="on"></span>
+			 <span index="2"></span>
+			 <span index="3"></span>
+			 <span index="4"></span>
+			 <span index="5"></span>
+		 </div>
+		 <a href="javascript:;" id="prev"></a>
+		 <a href="javascript:;" id="next"></a>
+	 </div>
+	 <script type="text/javascript">
+	     window.onload = function(){
+		     var container = document.getElementById('container');/*获取container的id存在于containter*/
+			 var images = document.getElementById('images');
+			 var button = document.getElementById('button').getElementsByTagName('span');
+			 var prev = document.getElementById('prev');
+			 var next = document.getElementById('next');
+			 var offsetL = 0;
+			 prev.onclick = function(){
+			     /*给左箭头绑定一个点击事件*/
+				 /*改变left值*/
+				 /* var oldLeft = parseInt(images.style.left);
+				 var newLeft = oldLeft -1000 + 'px';
+				 offsetL = oldLeft;
+				 console.log(newLeft);*/
+				 animated(-1000);
+			 }
+				 
+			 next.onclick = function(){
+				  animated(1000);
+			 }
+			 function animated(offset){
+			     var newLeft = parseInt(images.style.left) + offset;
+				 images.style.left = newLeft + 'px';
+				 console.log(images.style.left);
+				 if(newLeft>-1000){
+					 images.style.left= -6000 + 'px';
+				 }
+				 if(newLeft<-6000){
+				     images.style.left= -1000 + 'px'; 
+				 }
+			 }
+			 /*
+			 console.log(parseInt(images.style.left)); 
+			 */
+		 }
+	 </script>
+</body>
+</html>

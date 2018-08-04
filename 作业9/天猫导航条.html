@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>天猫导航条-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{background:#eee;}
+			 #banWrap{
+			     min-width:1000px;
+				 height:30px;
+				 background:#F2F2F2;
+			 }
+			 #banWrap .menu{
+			     width:1250px;
+				 height:30px;
+				 margin:auto;
+				 /* border:1px solid red; */
+			 }
+			 #banWrap .menu p,
+			 #banWrap .menu ul{
+			     font-size:14px;
+				 font-family:"微软雅黑";
+				 color:#B6B6B6;
+				 height:30px;
+				 line-height:30px;
+				 float:left;
+			 }
+			 a{
+			     margin:15px;
+			     text-decoration:none;
+				 color:#B6B6B6;
+			 }
+			 #banWrap .menu p a:hover,
+			 #banWrap .menu ul li a:hover{
+			     color:#cd0752;
+			 }
+			 #banWrap .menu p em{
+			     font-style:normal;
+				 padding:15px;
+			 }
+			 #banWrap .menu ul{
+			     list-style:none;
+			     float:right;
+				 position:relative;
+			 }
+			 #banWrap .menu ul li{
+			     float:left;
+			 }
+			 #banWrap .menu ul:after,
+			 #banWrap .menu:after{
+			     content:"";
+				 display:block;
+				 clear:both;
+			 }
+			 #banWrap .menu ul li:nth-child(1):before,
+			 #banWrap .menu ul li:nth-child(4):before,
+			 #banWrap .menu ul li:nth-child(8):before{
+			     position:absolute;
+				 left:72px;
+				 top:15px;
+			     content:"";
+				 width:0px;
+				 height:0px;
+				 border:3px solid transparent;
+				 border-top-color:#ccc;
+			 }
+			 #banWrap .menu ul li:nth-child(4):before{
+			     left:353px;
+			 }
+			 #banWrap .menu ul li:nth-child(8):before{
+			     left:655px;
+			 }
+			 #banWrap .menu ul li:nth-child(1):hover:before,
+			 #banWrap .menu ul li:nth-child(4):hover:before,
+			 #banWrap .menu ul li:nth-child(8):hover:before{
+			     -webkit-transform:rotate(180deg);
+				 -webkit-transform-origin:50% 10%;
+			 }
+			 #banWrap .menu ul li div.list1Wrap,
+			 #banWrap .menu ul li div.list2Wrap{
+			     position:absolute;
+				 top:30px;
+				 left:0px;
+				 background:#fff;
+				 /* border:1px solid #eee;
+				 border-top-color:transparent; */
+			 }
+			 #banWrap .menu ul li div.list2Wrap{
+			     left:294px;
+			 }
+			 #banWrap .menu ul li div.list1Wrap a,.list2Wrap a{
+				 display:none;
+				 line-height:10px;
+			 }
+			 #banWrap .menu ul li div.list1Wrap a:hover,
+			 #banWrap .menu ul li div.list2Wrap a:hover{
+			     text-decoration:underline;
+			 }
+			 #banWrap .menu ul li:hover div.list1Wrap a,
+			 #banWrap .menu ul li:hover div.list2Wrap a{
+			     display:block;
+			 } 
+			 #banWrap .menu ul li:nth-child(1):hover,
+			 #banWrap .menu ul li:nth-child(4):hover{
+			     background:#fff;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="banWrap">
+	     <div class="menu">
+		     <p>
+			     <em>喵,欢迎来天猫</em>
+				 <a href="https://login.tmall.com/?spm=875.7931836/B.a2226mz.1.oYoNpy&redirectURL=https%3A%2F%2Fwww.tmall.com%2F%3Fali_trackid%3D2%3Amm_26632332_7312232_24126800%3A1490790797_2k6_59793795">请登录</a>
+				 <a href="https://register.tmall.com/?spm=875.7931836/B.a2226mz.2.oYoNpy">免费注册</a>
+			 </p>
+			 <ul>
+			     <li><a href="https://i.taobao.com/my_taobao.htm?spm=875.7931836/B.a2226mz.3.oYoNpy">我的淘宝</a>
+				<div class="list1Wrap">
+				     <a href="https://trade.taobao.com/trade/itemlist/list_bought_items.htm?spm=875.7931836/B.a2226mz.4.CexsYB&t=20110530">已买到的宝贝</a>
+					 <a href="https://trade.taobao.com/trade/itemlist/list_sold_items.htm?spm=875.7931836/B.a2226mz.5.CexsYB&t=20110530">已卖出的宝贝</a>
+				 </div>
+				 </li>
+				 <li><a href="https://mybrand.tmall.com/?spm=875.7931836/B.a2226mz.7.oYoNpy&scm=1048.1.1.1">我关注的品牌</a></li>
+				 <li><a href="https://cart.tmall.com/cart/myCart.htm?spm=875.7931836/B.a2226mz.8.oYoNpy&from=btop">购物车0件</a></li>
+				 <li><a href="https://shoucang.taobao.com/shop_collect_list.htm?spm=875.7931836/B.a2226mz.9.oYoNpy&scjjc=c1">收藏夹</a>
+				 <div class="list2Wrap">
+				     <a href="https://shoucang.taobao.com/item_collect.htm?spm=875.7931836/B.a2226mz.10.4xTpSu">收藏的宝贝</a>
+					 <a href="https://shoucang.taobao.com/shop_collect_list.htm?spm=875.7931836/B.a2226mz.11.4xTpSu">收藏的店铺</a>
+				 </div>
+				 </li>
+				 <li><a href="https://pages.tmall.com/wow/portal/act/app-download?spm=875.7931836/B.a2226mz.12.oYoNpy&scm=1027.1.1.1">手机版</a></li>
+				 <li><a href="https://www.taobao.com/?spm=875.7931836/B.a2226mz.13.oYoNpy">淘宝网</a></li>
+				 <li><a href="https://b.tmall.com/?spm=875.7931836/B.a2226mz.14.oYoNpy">企业购</a></li>
+				 <li><a href="https://mai.taobao.com/?spm=875.7931836/B.a2226mz.15.oYoNpy">商家支持</a></li>
+			 </ul>
+		 </div>
+	 <div>
+</body>
+</html>

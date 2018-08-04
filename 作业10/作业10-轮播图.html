@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作业10-轮播图-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{
+			     background:#eee;
+			 }
+			 .box{
+			     width:1100px;
+				 height:770px;
+				 margin:100px auto;
+				 background:#fff url("images/1.jpg") no-repeat;
+				 background-position:360px -521px;
+				 border:1px solid #ddd;
+				 position:relative;
+			 }
+			 .box .img{
+			     margin:5px auto;
+			     height:700px;
+			 }
+			 .box .img img{
+			     position:absolute;
+				 left:50px;
+				 top:110px;
+			 }
+			 hr{
+			     width:360px;
+				 border:1px solid #ccc;
+				 position:absolute;
+				 left:0px;
+				 top:40px;
+			 }
+			 .hr2{
+			     left:737px;
+				 top:40px;
+			 }
+			 .bottom{
+			     position:absolute;
+				 left:120px;
+				 bottom:88px;
+				 z-index:10;
+			     width:780px;
+				 height:150px;
+				 background:rgba(67,67,67,0.8);
+			 }
+			 .bottom .left{
+			     width:250px;
+				 position:absolute;
+				 top:8px;
+				 margin:40px 50px;
+			 }
+			 .bottom .left p{
+			     font-size:20px;
+				 font-family:"微软雅黑";
+				 color:#fff;
+			 }
+			 .bottom .right{
+			     width:400px;
+				 position:absolute;
+				 right:50px;
+				 bottom:35px;
+				 border:1px solid transparent;
+				 border-left-color:#fff;
+			 }
+			 .bottom .right p{
+			     padding:15px 10px;
+			     font-size:12px;
+				 font-family:"微软雅黑";
+				 color:#fff;
+			 }
+			 .arrow1{
+			     position:absolute;
+				 bottom:265px;
+				 left:90px;
+			     width:25px;
+				 height:50px;
+				 background:url("images/2.png") no-repeat;
+				 background-position:-126px -146px;
+				 /* border:1px solid red; */
+			 }
+			 .arrow2{
+			     position:absolute;
+				 bottom:265px;
+				 right:95px;
+			     width:25px;
+				 height:50px;
+				 background:url("images/2.png") no-repeat;
+				 background-position:-149px -146px;
+				 /* border:1px solid red; */
+			 }
+			 .circle ul{
+			     width:48px;
+			     list-style:none;
+				 /* border:1px solid red; */
+				 margin:5px auto;
+			 }
+			 .circle ul li{
+			     float:left;
+				 width:7px;
+				 height:7px;
+				 border-radius:50%;
+				 background:#ddd;
+				 margin-right:5px;
+			 }
+			 .circle ul:after{
+			     content:'';
+				 display:block;
+				 clear:both;
+			 }
+			 .circle ul li:nth-child(1){
+			     background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <hr/>
+		 <hr class="hr2"/>
+		 <div class="img">
+		     <img src="images/6.jpg" width="1000" height="500" alt="6.jpg" />
+			 <img src="images/4.jpg" width="1000" height="500" alt="4.jpg" />
+			 <img src="images/5.jpg" width="1000" height="500" alt="5.jpg" />
+			 <img src="images/3.jpg" width="1000" height="500" alt="3.jpg" />
+			 <div class="arrow1"></div>
+			 <div class="arrow2"></div>
+		 </div>
+		 <div class="bottom">
+		     <div class="left">
+			     <p>
+				     5分钟就能搞定的时髦派对妆 
+				     秒杀大红唇和烟熏眼
+				 </p>
+			 </div>
+			 <div class="right">
+			     <p>
+				     红唇与烟熏妆曾是派对的“标配”,这个过时的规则早就该打破了,今年秋冬的彩妆流行简洁时髦的美感:一抹亮片眼影,一个出其不意的眼线,一只镇住全场的唇膏,既然能花5分钟就能搞定的派对妆,为什么要花一小时呢?
+				 </p>
+			 </div>
+		 </div>
+		 <div class="circle">
+		     <ul>
+			     <li></li>
+				 <li></li>
+				 <li></li>
+				 <li></li>
+			 </ul>
+		 </div>
+	 </div>
+</body>
+</html>

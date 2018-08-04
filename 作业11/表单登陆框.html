@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>表单登陆框-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{
+			     background:#eee;
+			 }
+			 #box{
+			     width:720px;
+				 background:#fff;
+				 margin:100px auto;
+				 padding:50px 80px;
+				 /* height:600px; */
+			 }
+			 .container{
+			     width:500px;
+				 border:1px solid #ddd;
+				 border-radius:10px;
+				 /* height:600px; */
+				 /* margin:30px 50px;被上面的margin:100px auto所叠加了，故而不起作用 */
+			 }
+			 .formField{
+			     width:460px;
+				 margin:65px auto;
+				 /* height:500px; */
+				 /* border:1px solid #ccc; */
+			 }
+			 .same{
+			     position:relative;
+			     width:420px;
+				 margin:20px auto;
+				 /* height:50px; */
+				 /* border:1px solid blue; */
+				 /* padding:10px; */
+			 }
+			 .txt{
+				 padding-left:20px;
+			     /* border:1px solid yellow; */
+			 }
+			 .txt_input{
+			     width:335px;
+				 outline:none;
+				 border:none;
+				 border:1px solid #ddd;
+				 border-radius:5px;
+				 height:40px;
+			 }
+			 .ch_paw .txt{
+			     padding-left:4px;
+			 }
+			 .paw .txt{
+			     padding-left:36px;
+			 }
+			 .Em .txt{
+			     padding-left:27px;
+			 }
+			 .nc .txt{
+			     padding-left:36px;
+			 }
+			 .txt span{
+			     margin-right:5px;
+			 }
+			 .txt_input:focus{
+			     border:1px solid #4892e7;
+				 box-shadow:0 0 2px 2px #4892e7;
+			 }
+			 .button1,.button2{
+			     height:25px;
+				 text-align:center;
+				 line-height:25px;
+				 color:#fff;
+				 outline:none;
+				 border:1px solid #4892e7;
+				 background:#4892e7;
+				 border-radius:5px;
+			 }
+			 .button1{
+			     width:80px;
+				 margin-right:10px;
+			 }
+			 .button2{
+			     width:150px;
+			 }
+			 .button{
+			     /* border:1px solid #ccc; */
+			     padding-left:80px;
+			 }
+			 .txt:before{
+			     position:absolute;
+			 	 right:-5px;
+			 	 top:10px;
+			     content:"";
+			 	 width:0;
+			 	 height:0;
+			 	 border:10px solid transparent;
+			 	 border-right-color:#56a9d3;
+				 display:none;
+			 }
+			 .txt:after{
+			     position:absolute;
+				 right:-325px;
+				 top:-5px;
+				 content:"用户名必须为4-16位数字或英文字母";
+				 color:#fff;
+				 width:300px;
+				 height:50px;
+				 line-height:50px;
+				 border-radius:5px;
+				 padding-left:20px;
+                 background:#56a9d3;
+				 box-shadow:0 0 2px 2px #56a9d3;
+				 display:none;
+			 }
+			 .passW:after{
+			     content:"密码必须含有大小写字母和数字";
+			 }
+			 .ch_passW:after{
+			     content:"请再次确认密码是否正确";
+			 }
+			 .Email:after{
+			     content:"请输入邮箱地址";
+			 }
+			 .Nch:after{
+			     content:"请输入昵称";
+			 }
+			 .txt:hover:before,
+			 .txt:hover:after{
+			     display:block;
+			 }
+             .button1:hover,
+			 .button2:hover{
+			     cursor:pointer;
+			     background:#2323c7;
+			 }
+			 /* .button1:focus,
+			 .button2:focus{
+			     background:#3c6cb1;
+			 } */
+		 </style>
+	 </head>
+<body>
+     <div id="box">
+	     <div class="container">
+		     <div class="formField">
+			     <form action="" method="post" class="form">
+				     <div class="user same">
+					     <div class="txt">
+					         <span>用户名</span>
+							 <input type="text" name="txt" placeholder ="请输入用户名" class="txt_input"/>
+						 </div>
+					 </div>
+					 <div class="paw same">
+					     <div class="txt passW">
+					         <span>密码</span>
+							 <input type="text" name="txt" placeholder ="请输入密码" class="txt_input"/>
+						 </div>
+					 </div>
+					 <div class="ch_paw same">
+					     <div class="txt ch_passW">
+					         <span>确认密码</span>
+							 <input type="text" name="txt" placeholder ="请确认密码" class="txt_input"/>
+						 </div>
+					 </div>
+					 <div class="Em same">
+					     <div class="txt Email">
+					         <span>Email</span>
+							 <input type="text" name="txt" placeholder ="请输入邮箱地址" class="txt_input"/>
+						 </div>
+					 </div>
+					 <div class="nc same">
+					     <div class="txt Nch">
+					         <span>昵称</span>
+							 <input type="text" name="txt" placeholder ="请输入昵称" class="txt_input"/>
+						 </div>
+					 </div>
+					 <div class="same">
+					     <div class="button">
+						     <input type="sumbit" value="注册" class="button1"/>
+							 <input type="sumbit" value="我有账号,我要登录" class="button2"/>
+						 </div>
+					 </div>
+				 </form>
+			 </div>
+		 </div> 
+	 </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>demo1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #box{
+			     width:900px;
+				 height:500px;
+				 border:1px solid #666;
+				 border-radius:5px;
+				 box-shadow:0 0 3px 3px #666;
+				 margin:100px auto;
+			 }
+			 .txt{
+				 margin:20px;
+			 }
+			 .txt h1{
+			     margin-bottom:20px;
+			 }
+			 .txt p{
+			     font-family:"微软雅黑";
+				 font-weight:bold;
+			 }
+			 textarea{
+			     resize:none;
+				 width:400px;
+				 height:40px;
+			 }
+			 input{
+			     width:300px;
+				 height:30px;
+				 margin-bottom:20px;
+			 }
+			 select{
+			     width:200px;
+				 height:30px;
+			 }
+			 .contxt{
+			     width:400px;
+				 height:60px;
+			 }
+			 .con_form{
+			     width:830px;
+				 margin-left:20px;
+			 }
+			 textarea{
+			     width:500px;
+				 height:80px;
+				 resize:none;
+			 }
+			 .button{
+			     margin-left:72px;
+				 margin-top:10px;
+			 }
+			 .same{
+			     width:123px;
+				 height:37px;
+				 margin-right:10px;
+				 outline:none;
+				 border:none;
+			 }
+			 .sub{
+			     background:url("images/but_submit.jpg") no-repeat;
+			 }
+			 .reset{
+			     background:url("images/but_reset.jpg") no-repeat;
+			 }
+			 span{
+			     font-weight:bold;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="box">
+	     <div class="txt">
+		     <h1>在 线 报 名</h1>
+			 <p>如果你有任何建议想对我们说,可以通过下面方式发送信息给我们.我们将非常乐意跟你交流!请留下你准确的联系方式,我们承诺保密你个人信息.</p>
+			 <div class="con_form">
+			 <form action="" method="post" name="form">
+			     <table>
+				     <tr>
+					     <td>
+						     <span>姓名:</span> <input type="text" name="userName">
+						 </td>
+						 <td>
+							 <span>性别:</span> <select>
+							     <option>--请选择--</option>
+								 <option>--男生--</option>
+								 <option>--女生--</option>
+							 </select>
+						 </td>
+					 </tr>
+					 <tr>
+					     <td>
+						     <span>手机:</span> <input type="text" name="phone">
+						 </td>
+						 <td>
+						     <span>年龄:</span> <input type="text" name="age">
+						 </td>
+					 </tr>
+					 <tr>
+					     <td>
+						     <span>喜欢课程:</sapn>
+							 <select>
+							     <option>--请选择--</option>
+								 <option>网页制作</option>
+								 <option>JavaScript</option>
+								 <option>PHP</option>
+								 <option>Jquery</option>
+							 </select>
+						 </td>
+						 <td>
+						     <span>Q Q: </span>
+							 <input type="text" name="QQ">
+						 </td>
+					 </tr>
+					 <tr>
+					     <td>
+						     <span>详细地址:</span>
+							 <input type="text" name="address">
+						 </td>
+					 </tr>
+				 </table>
+				 <span style="vertical-align:middle;">补充内容:</span>
+				 <textarea style="vertical-align:middle;"></textarea>
+				 <div class="button">
+				     <input type="submit" name="sub" value="" class="same sub">	
+				     <input type="reset" name="reset" value="" class="same reset">
+				 </div>
+			 </form>
+			 </div>
+		 </div>
+	 </div>
+</body>
+</html>

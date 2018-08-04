@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>悬浮导航栏-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{
+			     font-size:small;
+			 }
+             ul.nav{
+			     max-width:850px;
+				 margin:auto;
+				 list-style:none;
+				 padding:80px 0 0 200px;
+				 background:#FDCA2C;
+				 /* background:repeating-linear-gradient(top,#fff,#FDCA2C); */
+				 /* box-shadow:0 0 3px 3px #FDCA2C; */
+				 border-radius:10px;
+				 /* border:1px solid red; */
+			 }
+			 .clearfloat:after{
+			     display:block;
+				 content:"";
+				 clear:both;
+			 }
+             ul.nav li{
+			     float:left;
+				 font-family:"微软雅黑";
+			 }
+			 ul.nav li a{
+			     float:left;
+				 text-decoration:none;
+				 border-radius:5px;
+				 margin-right:5px;
+				 padding:10px 20px;
+				 border:1px solid #989898;
+				 border-bottom-color:transparent;
+			 }
+			 ul.nav li a:hover
+			 {
+			     color:#333;
+				 border-color:blue;
+				 background:#fff;
+				 box-shadow:0 0 3px 3px blue;
+			 } 
+			 ul.nav li a:focus{
+			     outline:0;
+				 background:pink;
+			 }
+			 ul.nav li a:active{
+			     background:yellow;
+			 }
+		 </style>
+	 </head>
+<body>
+     <ul class="nav clearfloat">
+	     <li><a href="#">首页</a></li>
+		 <li><a href="#">java频道</a></li>
+		 <li><a href="#">软件分享</a></li>
+		 <li><a href="#">Photoshop</a></li>
+		 <li><a href="#">Flash</a></li>
+		 <li><a href="#">黑客技术</a></li>
+		 <li><a href="#">联系我们</a></li>
+	 </ul>
+</body>
+</html>

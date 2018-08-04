@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>作业13-demo1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }/* 
+			   
+			 body{
+			     background:url("images2/mxcp1.jpg") no-repeat;
+			 } 
+			 frameset{
+			     background:url('images2/mxcp1.jpg'); 
+			 }
+			 frameset{
+			     border:1px solid #ddd;
+			 }
+			 frame{
+			     border:1px solid #ddd;
+			 } */
+			 #box{
+			     min-width:1000px;
+				 height:700px;
+				 background:url("images2/mxcp1.jpg") no-repeat center/cover;
+				 /* margin:100px auto; */ 
+				 padding:10px 0 10px 10px;
+				 /* 解决超出影藏overflow:hidden; */
+			 }
+			 .contxt{
+			     min-width:1000px;
+				 /* overflow:hidden; */
+				 /* height:600px; */
+				 /* border:1px solid red; */
+				 /* margin:50px auto; */
+			 }
+			 .contxt:after{
+			     content:"";
+				 display:block;
+				 clear:both;
+			 }
+			 .ifam1{
+			     width:450px;
+				 height:540px;
+				 float:left;
+				 margin-right:10px;
+			 }
+			 .ifam2{
+			     width:700px;
+			     height:700px;
+				 border:1px solid #eee;
+				 border-radius:10px;
+				 float:left;
+			 }
+		 </style>
+	 </head>
+ <body>
+<!-- frame与frameset必须嵌套使用而且frame不能放在html标签里而iframe则可以放在任意html标签里 其实iframe是html标签<frameset noresize="noresize" frameborder="0">
+     <iframe cols=""></iframe>
+	 <iframe cols=""></iframe>
+</frameset> -->
+     <div id="box">
+	     <div class="contxt">
+			 <iframe class="ifam1" frameborder="0" scrolling="no" src="left.html">
+			 </iframe>
+			 <iframe class="ifam2" frameborder="0" scrolling="no" src="right.html" name="TagName">
+			 </iframe>
+		 </div>
+     </div>
+</body>
+</html>
