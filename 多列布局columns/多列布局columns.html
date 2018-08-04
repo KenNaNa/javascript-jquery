@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>多列布局columns-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 p{font-size:16px;}
+			 body{padding-left:100px;}
+		 </style>
+	 </head>
+<body>
+     <div>
+	     
+<h1>多列布局<h1>
+
+<p>Internet Explorer 10 及适用于 Windows 8 的使用 JavaScript 的 Windows 应用商店应用引入了 CSS 多列布局模块支持。<br>截止到编写本文档时，多列布局模块是一个候选的万维网联合会 (W3C) 推荐标准。<br>使用多列布局功能可以将内容分流至多个列中，这些列之间保持一定的间距和可选隔线。<br>该功能还可以让你根据浏览器窗口的大小来更改列的数量。</p>
+
+<p>多列元素由 W3C 定义为一种元素，该元素的 column-width 或 column-count 属性不设置为 "auto"，因此充当多列布局的容器。<br/>多列布局引入了列框，它被定义为一种介于内容框与内容之间的新类型的容器。<br>列框中包含一些行，这些行按多列元素的方向排序。<br>每个列框都具有列高度和列宽度。<br>相邻的列框之间具有列间距，可选择包含列隔线。</p>
+
+<h3>指定列宽度和数量</h3>
+
+<p>你必须至少为多列元素内的列指定宽度。Internet Explorer 10 将在浏览器窗口中显示尽可能多的列，且列的宽度不小于你所指定的值。要指定列的宽度，请使用以下属性：</p>
+
+<h3>属性	描述</h3>
+<h1>column-width</h1>
+
+指定多列元素内列的最佳宽度。
+
+此属性可能的值如下：
+
+auto
+指示列的最佳宽度由多列元素的其他属性值确定，如 column-count 属性。<br>这是默认值。
+
+<length>
+在 CSS 值和单位参考中指定的相对或绝对长度值相对或绝对长度值。<br>
+
+ 
+
+例如，以下选择器已经添加了列宽度属性并将其设置为 200 像素。<br>这意味着 Internet Explorer 10 将使用尽可能多的 200 像素或更宽的列来填充浏览器窗口。<br>
+
+
+<style type="text/css">
+#multicol1 {
+  column-width: 200px;
+}
+</style><br/>
+
+
+你可以查看此选择器应用到大型文本块时的情况。<br>（为了正确呈现该页面，必须提供 Internet Explorer 10 或与不带前缀的级联样式表级别 3 (CSS3) 多列属性兼容的浏览器。）<br>
+
+你还可以指定多列元素应该包含的列数。要指定列的数量，请使用以下属性：<br>
+
+属性	描述<br>
+column-count<br>
+
+指定多列元素内的最佳列数。<br>
+
+该属性的可能值包括：<br>
+
+auto<br>
+指示列数由多列元素的其他属性值确定，如 column-width 属性。这是默认值。
+
+<integer>
+指定列数。<br/>
+
+ 
+
+例如，以下选择器已经添加了 column-count 属性并将其设置为 "2"。这意味着 Internet Explorer 10 将用两列来填充浏览器窗口。<br>
+
+
+<style type="text/css">
+#multicol1 {
+  column-count: 2;
+}
+</style><br/>
+
+
+你可以查看此选择器应用到大型文本块时的情况。<br>（Internet Explorer 10 或与不带前缀的 CSS3 多列属性兼容的浏览器是让该页面正确呈现所必需的。）<br>
+
+列的宽度和数量也可使用以下速记属性来表示：<br>
+
+属性	描述<br>
+columns<br>
+
+为多列元素的 column-width 和 column-count 属性指定值的速记值。<br>
+
+ 
+
+该属性的语法如下所示：<br>
+
+columns: <column-width> <column-count>;<br>
+
+以下语法也是有效的：<br>
+
+columns: <column-count> <column-width>;<br>
+
+如果仅指定整数，则将 column-width 设置为 auto 并将 column-count 设置为整数。<br>如果仅指定长度值，则将 column-width 设置为长度值并将 column-count 设置为 auto。<br>如果仅指定 auto，则将 column-width 和 column-count 都设置为 auto。<br>
+
+例如，以下选择器中添加了 columns 属性并将其设置为等于 "auto 12em"。<br>这表示该多列元素的 column-width 为 12 em，column-count 为 auto。<br>
+
+
+<style type="text/css">
+#multicol3 {
+  columns: auto 12em;
+}
+</style>
+
+
+你可以查看此选择器应用到大型文本块时的情况。<br>（Internet Explorer 10 或与不带前缀的 CSS3 多列属性兼容的浏览器是让该页面正确呈现所必需的。）<br>
+
+指定列间距和列隔线<br>
+
+列间距和列隔线位于多列元素内的列之间的位置，且不超出该多列元素的长度。<br>列间距在相邻列之间创建空间以便于阅读。<br>列隔线在列间距的中间进行绘制，且仅在其中都包含内容的两列之间进行绘制。<br>
+
+以下属性用于指定列间距和列隔线：<br>
+
+属性	描述<br>
+column-gap<br>
+
+指定多列元素内的相邻两列的间距宽度。<br>
+
+此属性的可能值包括：<br>
+
+normal<br>
+默认宽度为 1 em。
+
+<length><br>
+在 CSS 值和单位参考中指定的相对或绝对长度值相对或绝对长度值。<br>
+
+column-rule-color<br>
+
+为多列元素内的所有列隔线指定颜色。可将此属性设置为任何受支持的颜色值。<br>
+
+column-rule-style<br>
+
+为多列元素内的所有列隔线指定样式。此属性接受与 border-style 属性相同的值。<br>
+
+column-rule-width<br>
+
+为多列元素内的所有列隔线指定宽度。此属性接受与 border-width 属性相同的值。<br>
+
+column-rule<br>
+
+为多列元素的 column-rule-width、column-rule-style 和 column-rule-color 属性指定值的速记值。<br>
+
+该属性的语法如下所示：<br>
+
+column-rule: <column-rule-width> <column-rule-style> <column-rule-color>;<br>
+
+ 
+
+以下是选择器内其中一些属性的示例：<br>
+
+
+<style type="text/css">
+#multicol4 {
+  columns: auto 12em;
+  column-gap: 1em;
+  column-rule-width: 1em;
+  column-rule-style: solid;
+  column-rule-color: black;
+}
+</style>
+
+
+在此方案中，列间距和列隔线的宽度已被指定为 1 em。列隔线是纯黑色。<br>你可以查看此选择器应用到大型文本块时的情况。（Internet Explorer 10 或与不带前缀的 CSS3 多列属性兼容的浏览器是让该页面正确呈现所必需的。）<br>
+
+请注意前面的示例还可以使用 column-rule 速记属性来表示，如下所示：<be>
+
+
+<p><style type="text/css">
+#multicol4 {
+  columns: auto 12em;
+  column-gap: 1em;
+  column-rule: 1em solid black;
+}
+</style></p>
+
+
+指定分列<br>
+
+你可以指定应该何时在相邻两列之间中断内容。这可防止在段落、章节等的中间中断内容。<br>分列的概念与印刷中的分页符相似，且实际上可以由级联样式表 (CSS) 以更多方式进行控制。<br>
+
+以下属性用于控制分列<br>
+
+属性	描述<br>
+break-before<br>
+
+指定分列行为在多列元素中发生于内容块的前面。<br>
+
+此属性接受与 page-break-before 属性相同的值，此外还包括以下值：<br>
+
+page
+始终在生成框的前面强制分页。<br>
+
+column
+始终在生成框的前面强制分列。<br>
+
+avoid-page
+避免在生成框的前面强制分页。<br>
+
+avoid-column
+避免在生成框的前面强制分列。<br>
+
+break-after
+
+指定分列行为在多列元素中发生于内容块的后面。<br>
+
+此属性接受与 page-break-after 属性相同的值，此外还包括以下值：<br>
+
+page
+始终在生成框的后面强制分页。<br>
+
+column
+始终在生成框的后面强制分列。<br>
+
+avoid-page
+避免在生成框的后面强制分页。<br>
+
+avoid-column
+避免在生成框的后面强制分列。<br>
+
+break-inside
+
+指定分列行为在多列元素中发生于内容块的中间。<br>
+
+此属性接受与 page-break-inside 属性相同的值，此外还包括以下值：<br>
+
+avoid-page
+避免在生成框的内部强制分页。<br>
+
+avoid-column
+避免在生成框的内部强制分列。<br>
+
+ 
+
+以下是选择器内其中一些属性的示例：
+
+
+<style type="text/css">
+#multicol5 {
+  columns: auto 12em;
+  column-gap: 1em;
+  column-rule-width: 1px;
+  column-rule-style: solid;
+  column-rule-color: black;
+}
+#multicol5 h2 {
+  column-span: all;
+  background: lightgreen;
+}
+#multicol5 blockquote {
+  break-inside: avoid-column;
+}
+</style>
+
+
+在此示例中，在所有 h2 元素的前面执行分列操作并添加一个 2-em 边距，在 blockquote 元素内部不出现任何分列。<br>你可以查看这些选择器应用到大型文本块时的情况。<br>（Internet Explorer 10 或与不带前缀的 CSS3 多列属性兼容的浏览器是让该页面正确呈现所必需的。）<br>
+
+指定列跨越<br>
+
+你可指定内容块跨越多个列。一个跨越多个列的元素实际上所起的作用是将跨越前面的内容和后面的内容分隔开。以下属性用于控制列跨越：<br>
+
+属性	描述<br>
+column-span<br>
+
+指定在多列元素中内容块跨越的列数。
+
+此属性的可能值包括：
+
+all<br>
+内容块跨越页面上的所有列。内容块前面声明的所有内容都显示在该内容块前面。
+
+"1"<br>
+这是默认值。内容块不跨越多个列。
+
+ 
+
+以下是选择器内该属性的示例：
+
+
+<style type="text/css">
+#multicol6 {
+  columns: auto 12em;
+  column-gap: 1em;
+  column-rule-width: 1px;
+  column-rule-style: solid;
+  column-rule-color: black;
+}
+#multicol6 h2 {
+  column-span: all;
+  background: lightgreen;
+}
+</style>
+
+
+在此方案中，所有 h2 元素跨越所有列，并具有淡绿色背景。<br>
+
+你可以查看这些选择器应用到大型文本块时的情况。<br>（Internet Explorer 10 或与不带前缀的 CSS3 多列属性兼容的浏览器是让该页面正确呈现所必需的。）<br>
+
+平衡列内容<br>
+
+你可以指定是否平衡列的内容—也就是使列长度的差异最小化。<br>否则，所有列将被依次填充进来并将具有不同的长度。
+
+以下属性用于控制列填充：<br>
+
+属性	描述<br>
+column-fill<br>
+
+指定在多列元素中内容流如何影响列长度。
+
+此属性的可能值包括以下关键字：<br>
+
+balance<br>
+所有列将被依次填充进来，并且使列的长度尽可能平衡，具体取决于其他列属性值。<br>
+
+auto<br>
+这是默认值。所有列将被依次填充进来，并且列的长度可能会不同，具体取决于其他列属性值。<br>
+
+列平衡还取决于 orphans 和 widows 属性的值（如果已设置）。<br>
+
+ 
+
+以下是选择器内该属性的示例：
+
+<pre><style type="text/css">
+#multicol7 {
+  columns: auto 12em;
+  column-gap: 1em;
+  column-rule-width: 1px;
+  column-rule-style: solid;
+  column-rule-color: black;
+  column-fill: balance;
+}
+</style></pre>
+
+
+在此方案中，column-fill 属性已被设为 balance，这意味着列的长度将会尽可能地平衡。<br>
+
+你可以查看这些选择器应用到大型文本块时的情况。<br>（Internet Explorer 10 或与不带前缀的 CSS3 多列属性兼容的浏览器是让该页面正确呈现所必需的。）<br>
+	 </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>flex拆分-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     width:500px;
+				 height:200px;
+				 margin:100px auto;
+				 box-shadow:0 0 2px red;
+				 display:flex;/*把容器定义为伸缩容器*/
+				 justify-content:flex-start;
+                 justify-content:flex-end;
+				 justify-content:space-around;
+				 justify-content:space-between;
+				 justify-content:center;
+				 /* flex-direction:column;
+				 flex-wrap:wrap-reverse; */
+				 /*
+				 伸缩的方向row-reverse
+				 row column 
+				 column-reverse
+				 对应的宽高度失效
+				 flex-wrap:nowrap/wrap/wrap-reverse;
+				 */
+			}
+			.box div{/*按比例分配*/
+			     width:50px;
+				 height:50px;
+				 border:1px solid #ccc;
+				 flex:none; /*设置伸缩项目当父级元素设置成换行时，子集flex:none*/
+				 /* flex-grow:0.5;放大比例
+				 flex-shrink:2;缩小比例 */
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div>11</div>
+	     <div>22</div>
+	     <div>33</div>
+	     <div>44</div>
+	     <div>55</div>
+	 </div>
+</body>
+</html>

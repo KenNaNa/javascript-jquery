@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>线性渐变制作按钮-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 a{text-decoration:none;}
+			 @import url("http://fonts.googleeais.com/css?family=Arvo");
+			 body{
+			     background:-webkit-linear-gradient(top bottom,#f8fcd4 19%,#dbfacb 100%);
+				 background-attachment:fixed;
+			 }
+			 body > div{
+			     text-align:center;
+				 display:block;
+				 width:800px;
+				 margin:50px auto;
+			 }
+			 /*加载本地图标*/
+			 @font-face{
+			     font-family: 'EntypoRegular';
+				 src: url('font/entypo-webfont.eot');
+                 src: url('font/entypo-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('font/entypo-webfont.woff') format('woff'),
+                 url('font/entypo-webfont.ttf') format('truetype'),
+                 url('font/entypo-webfont.svg#EntypoRegular') format('svg');
+				 font-weight:normal;
+				 font-style:normal;  
+			 }
+			 .button-bevel{
+			     font-family:Arial, Helvetica, sans-serif;
+                 font-size:13px;
+				 color:#FFF;
+				 text-decoration:none;
+				 display:inline-block;
+				 text-align:center;
+				 padding:7px 20px 9px;
+				 margin:.5em .5em .5em 0;
+				 cursor:pointer;
+				 text-shadow:0 1px 1px rgba(0,0,0,.4);
+				 text-transform:capitalize;
+				 transition:0.1s linear;
+			 }
+			 .button-bevel:hover{
+			     /* box-shadow:inset rgba(255,255,255,0.3) 1px 1px 0; */
+				 color:#fff;
+				 text-decoration:none;
+			 }
+			 .button-bevel:active{
+			     box-shadow:inset rgba(0,0,0,0.4) 0 0 6px;
+			 }
+			 .orange{
+			     border:1px solid #e59500;
+				 background:-webkit-linear-gradient(top,rgba(255,183,0,1) 0%,rgba(255,140,0,1) 100%);
+			 }
+			 .orange:hover{
+			     background:rgb(255,203,72);
+				 background:-webkit-linear-gradient(top,rgba(255,203,72,1) 0%,rgba(255,156,35,1) 100%);
+			 }
+			 .button-bevel{
+			     vertical-align:top;
+				 border-radius:4px;
+				 border:none;
+				 padding:10px 25px 12px ;
+			 }
+			 .button-bevel:active{
+			     position:relative;
+				 top:5px;
+			 }
+			 .button-bevel .orange{
+			     box-shadow:#c46d00 0 6px 0,rgba(0,0,0,.3) 0 10px 3px; 
+			 }
+			 .button-bevel .orange:hover{
+			     box-shadow:#c46d00 0 3px 0,rgba(0,0,0,.3) 0 6px 3px; 
+			 }
+			 .button-bevel span{
+			     font-family:'EntypoRegular';
+				 font-size:20px;
+				 font-weight:normal;
+				 vertical-align:middle;
+				 line-height:0;
+				 margin-right:.1em;
+			 }
+			 .refresh:after{
+			     content:"h";
+				 font-size:34px;
+			 }
+			 .shuffle:after{
+			     content:"f";
+				 font-size:34px;
+			 }
+
+			 .preview:after{
+				 content:"M";
+				 font-size:34px;
+			 }
+
+			 .tea:after{
+				 content:"u";
+				 font-size:34px;
+			 }
+
+		     .wifi:after{
+				 content:"h";
+			     font-size:34px;
+			 }
+
+			 .locator:after{
+				 content:"0 ";
+				 font-size:34px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div date-for="beveled">
+	     <div>
+		     <a href="#"  class="button-bevel orange">
+			     <span class="refresh"></span>
+				 Refresh
+			 </a>
+			 <a href="#"  class="button-bevel orange">
+			     <span class="shuffle"></span>
+				 Shuffle
+			 </a>
+			 <a href="#"  class="button-bevel orange">
+			     <span class="preview"></span>
+				 Preview
+			 </a>
+			 <a href="#"  class="button-bevel orange">
+			     <span class="tea"></span>
+				 Tea
+			 </a>
+			 <a href="#"  class="button-bevel orange">
+			     <span class="wifi"></span>
+				 WIFI
+			 </a>
+			 <a href="#"  class="button-bevel orange">
+			     <span class="locator"></span>
+				 Locator
+			 </a>
+		 </div>
+	 </div>
+</body>
+</html>

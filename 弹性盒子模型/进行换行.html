@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>设置主轴方向上进行换行-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     width:300px;
+				 height:200px;
+				 margin:100px auto;
+				 box-shadow:0 0 2px red;
+				 display:flex;/*把容器定义为伸缩容器*/
+				 flex-direction:column;
+				 flex-wrap:wrap-reverse;
+				 /*
+				 伸缩的方向row-reverse
+				 row column 
+				 column-reverse
+				 对应的宽高度失效
+				 flex-wrap:nowrap/wrap/wrap-reverse;
+				 */
+			}
+			 .box div{/*按比例分配*/
+			     width:100px;
+				 height:100px;
+				 border:1px solid #ccc;
+				 flex:none;/*设置伸缩项目当父级元素设置成换行时，子集flex:none*/
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div>1</div>
+	     <div>2</div>
+	     <div>3</div>
+	     <div>4</div>
+	     <div>5</div>
+	 </div>
+</body>
+</html>

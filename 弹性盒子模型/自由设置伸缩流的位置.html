@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>自由设置伸缩流的位置-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     width:500px;
+				 height:200px;
+				 margin:100px auto;
+				 box-shadow:0 0 2px red;
+				 display:flex;/*把容器定义为伸缩容器*/
+				 flex-direction:column;
+				 /*
+				 伸缩的方向row-reverse
+				 row column 
+				 column-reverse
+				 对应的宽高度失效
+				 */
+			}
+			 .box div{/*按比例分配*/
+			     width:200px;
+				 height:50px;
+				 border:1px solid #ccc;
+				 flex:1;/*设置伸缩项目*/
+			 }
+			 .box div:nth-child(1){
+			     order:3;/*改变元素指定的位置*/
+			 }
+			 .box div:nth-child(2){
+			     order:2;
+			 }
+			 .box div:nth-child(3){
+			     order:1;
+			 }
+			 .box div:nth-child(4){
+			     order:3;
+			 }
+			 .box div:nth-child(5){
+			     order:4;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div>1</div>
+	     <div>2</div>
+	     <div>3</div>
+	     <div>4</div>
+	     <div>5</div>
+	 </div>
+</body>
+</html>

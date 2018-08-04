@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>弹性盒子模型-1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     width:500px;
+				 height:200px;
+				 margin:100px;
+				 background:red;
+				 display:flex;/*把容器定义为伸缩容器*/
+			 }
+			 .box div{/*按比例分配*/
+			     /* width:200px; */
+				 height:50px;
+				 border:1px solid #ccc;
+				 flex:1;/*设置伸缩项目*/
+			 }
+			 .box div:nth-child(1){
+			     flex:3;
+			 }
+			 .box div:nth-child(2){
+			     flex:2;
+			 }
+			 .box div:nth-child(3){
+			     flex:1;
+			 }
+			 .box div:nth-child(4){
+			     flex:3;
+			 }
+			 .box div:nth-child(5){
+			     flex:4;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div>1</div>
+	     <div>2</div>
+	     <div>3</div>
+	     <div>4</div>
+	     <div>5</div>
+	 </div>
+</body>
+</html>

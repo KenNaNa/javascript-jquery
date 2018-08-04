@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>径向渐变-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 /*
+			     -webkit-radial-gradient(<position>, <position>,[shape||size],color-stop,color-stop)
+				 length:径向渐变的圆心坐标
+				 left/right:设置左边/右边为径向渐变的圆心的横坐标
+				 top/bottom:设置顶部/底部为径向渐变的圆心的纵坐标
+				 center:设置中间为径向渐变的圆心的横/纵坐标;
+
+				 circle:指定圆形的径向渐变
+				 ellipse:指定椭圆形的径向渐变
+
+				 closest-side:指定径向渐变的半径长度为从圆心到离圆心最近的边；
+				 closest-corner:指定径向渐变的半径长度为从圆心到离圆心最近的角；
+				 farthest-side:指定径向渐变的半径长度为从圆心到离圆心最远的边
+				 farthest-corner:指定径向渐变的半径长度为从圆心到离圆心最远的角
+			 */
+			 div{
+			     width:300px;
+				 height:200px;
+				 margin:10px;
+				 text-align:center;
+				 line-height:200px;
+				 color:#fff;
+				 font-size:20px;
+				 border:5px solid hsla(60,50%,80%,.8);
+			 }
+			 .circle{background:-webkit-radial-gradient(20px 20px ,circle,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));}
+			 .ellipse{background:-webkit-radial-gradient(ellipse,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));width:300px;}
+			 .circle-center{background:-webkit-radial-gradient(left top,circle ,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));}
+			 .ellipse-top{background:-webkit-radial-gradient(bottom,ellipse,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));}
+			 .ellipse-closest-side{background:-webkit-radial-gradient(closest-side ellipse,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));}
+			 .ellipse-closest-corner{background:-webkit-radial-gradient(closest-corner ellipse,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));}
+			 .ellipse-farthest-side{
+			     background:-webkit-radial-gradient(farthest-side ellipse,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));
+			 }
+			 .ellipse-farthest-corner{
+			     background:-webkit-radial-gradient(farthest-corner ellipse,hsla(120,70%,60%,.9),hsla(360,60%,60%,.9));
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="circle">圆心相同</div>
+	 <div class="ellipse">椭圆模形</div>
+	 <div class="circle-center">圆心center/top/bottom/right/left相同</div>
+	 <div class="ellipse-top">椭圆center/top/bottom/right/left模形</div>
+	 <div class="ellipse-closest-side">椭圆ellipse-closest-sid模形</div>
+	 <div class="ellipse-closest-corner">椭圆ellipse-closest-corner模形</div>
+	 <div class="ellipse-farthest-side">椭圆ellipse-farthest-side模形</div>
+	 <div class="ellipse-farthest-corner">椭圆ellipse-farthest-corner模形</div>
+	 
+</body>
+</html>

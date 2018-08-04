@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>怪异模型与标准盒模型的比较-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .bz,.gy{
+			     width:500px;
+				 height:300px;
+				 background:#ccc;
+				 color:#fff;
+				 text-align:center;
+				 line-height:50px;
+				 margin-top:10px;
+				 padding:10px;
+				 border:20px solid red;
+			 }
+			 .gy{box-sizing:border-box;/*怪异模型的设置模式 content-box为默认方式*/}
+			 .bz img{display:block;width:238px;height:231px;}
+			 .gy img{display:block;width:247px;height:229px;}
+		 </style>
+	 </head>
+<body>
+     <div class="txt">
+	     <!-- <pre>
+	     		     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	     		 
+	     
+	     		     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+	     
+	     		     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	     
+	     		     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	     
+	     		     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+	     
+	     		     <!DOCTYPE HTML>
+	     		 </pre> -->
+		 <p>以上几种DOCTYPE都是标准的文档类型，无论使用哪种模式完整定义DOCTYPE，都会触发标准模式，而如果DOCTYPE缺失则在ie6，ie7，ie8下将会触发怪异模式（quirks 模式）</p>。
+	 </div>
+     <div class="bz">
+	     <img src="images/bz.png">
+		 我是标准模型
+		 整体的宽高=width/height+padding+margin+border
+	 </div>
+	 <div class="gy">
+	     <img src="images/gy.png">
+		 我是怪异模型
+		 整体的宽高（包含了宽高内边距，外边距，边框等，总宽高）
+	 </div>
+</body>
+</html>

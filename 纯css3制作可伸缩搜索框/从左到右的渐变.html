@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>从左到右的渐变-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 div{
+			     width:400px;
+				 height:150px;
+				 border:1px solid red;
+				 margin:10px auto;
+				 font-size:16px;
+				 font-family:"微软雅黑";
+				 text-align:center;
+				 line-height:150px;
+				 font-weight:bold;
+				 color:#fff;
+			 }
+			 .toright{
+			     background:-webkit-linear-gradient(left,orange,green);
+			 }
+			 .toright-deg{
+			     background:-webkit-linear-gradient(90deg,orange,green);
+			 }
+			 .toright-deg1{
+			     background:-webkit-linear-gradient(-270deg,orange,green);
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="toright">使用关键字,left</div>
+	 <div class="toright-deg">使用角度 90deg</div>
+	 <div class="toright-deg1">使用角度 -270deg</div>
+</body>
+</html>

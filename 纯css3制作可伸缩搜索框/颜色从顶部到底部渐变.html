@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>颜色从顶部到底部渐变-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 div{
+			     width:400px;
+				 height:150px;
+				 border:1px solid red;
+				 margin:10px auto;
+				 font-size:16px;
+				 font-family:"微软雅黑";
+				 text-align:center;
+				 line-height:150px;
+				 font-weight:bold;
+				 color:#fff;
+			 }
+			 .tobottom{
+			     background:-webkit-linear-gradient(top,orange,green);
+			 }
+			 .tobottom-deg{
+			     background:-webkit-linear-gradient(0,orange,green);
+			 }
+			 .tobottom-deg1{
+			     background:-webkit-linear-gradient(180deg,orange,green);
+			 }
+			 .tobottom-deg2{
+			     background:-webkit-linear-gradient(-180deg,orange,green);
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="tobottom">使用关键字,top</div>
+	 <div class="tobottom-deg">使用角度 0deg</div>
+	 <div class="tobottom-deg1">使用角度 180deg</div>
+	 <div class="tobottom-deg2">使用角度 -180deg</div>
+</body>
+</html>

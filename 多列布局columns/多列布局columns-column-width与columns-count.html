@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>多列布局columns-column-width与columns-count-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     width:900px;
+				 height:auto;
+				 background:#ccc;
+				 columns:auto 4;/*是指columns-width:auto每列的宽度*//*columns-count:4列数*/
+				 /* columns:225px auto;与上面属性值相反但是效果截然不同了
+				 columns:225px 4; */
+				 column-gap:8px;/*列与列之间的距离*/
+				 column-rule:5px dotted red;/*与border有点相似可以分解成 column-rule-color column-rule-style column-rule-width*/
+				   /*始终在生成框的前面强制分列。column
+
+					avoid-page
+					避免在生成框的前面强制分页。
+
+					avoid-column
+					避免在生成框的前面强制分列。
+
+					break-after也有三个相同的属性值break-inside
+
+					指定分列行为在多列元素中发生于内容块的后面。
+
+					此属性接受与 page-break-after 属性相同的值，此外还包括以下值：
+					break-inside只有avoid-page avoid-column
+
+					column-span:默认值为 1；
+					all
+
+					column-fill:balance/auto
+					*/
+                 column-fill:balance;
+				 column-fill:auto;
+			 }
+			 h1{font-size:20px;color:red;column-span:all;}
+			 p{font-size:14px;color:blue;
+			     break-before:column;
+				 break-before:avoid-page;
+				 break-before:avoid-column;}
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	    <h1>
+             多列布局
+        <h1>
+		<p>
+		      Internet Explorer 10 及适用于 Windows 8 的使用 JavaScript 的 Windows 应用商店应用引入了 CSS 多列布局模块支持。
+			  截止到编写本文档时，多列布局模块是一个候选的万维网联合会 (W3C) 推荐标准。
+			  使用多列布局功能可以将内容分流至多个列中，这些列之间保持一定的间距和可选隔线。
+			  该功能还可以让你根据浏览器窗口的大小来更改列的数量。
+			  多列元素由 W3C 定义为一种元素，该元素的 column-width 或 column-count 属性不设置为 "auto"，因此充当多列布局的容器。
+			  多列布局引入了列框，它被定义为一种介于内容框与内容之间的新类型的容器。
+			  列框中包含一些行，这些行按多列元素的方向排序。
+			  每个列框都具有列高度和列宽度。
+			  相邻的列框之间具有列间距，可选择包含列隔线。
+		</p>
+		<h1>
+             多列布局
+        <h1>
+		<p>
+		      Internet Explorer 10 及适用于 Windows 8 的使用 JavaScript 的 Windows 应用商店应用引入了 CSS 多列布局模块支持。
+			  截止到编写本文档时，多列布局模块是一个候选的万维网联合会 (W3C) 推荐标准。
+			  使用多列布局功能可以将内容分流至多个列中，这些列之间保持一定的间距和可选隔线。
+			  该功能还可以让你根据浏览器窗口的大小来更改列的数量。
+			  多列元素由 W3C 定义为一种元素，该元素的 column-width 或 column-count 属性不设置为 "auto"，因此充当多列布局的容器。
+			  多列布局引入了列框，它被定义为一种介于内容框与内容之间的新类型的容器。
+			  列框中包含一些行，这些行按多列元素的方向排序。
+			  每个列框都具有列高度和列宽度。
+			  相邻的列框之间具有列间距，可选择包含列隔线。
+		</p>
+		<h1>
+             多列布局
+        <h1>
+		<p>
+		      Internet Explorer 10 及适用于 Windows 8 的使用 JavaScript 的 Windows 应用商店应用引入了 CSS 多列布局模块支持。
+			  截止到编写本文档时，多列布局模块是一个候选的万维网联合会 (W3C) 推荐标准。
+			  使用多列布局功能可以将内容分流至多个列中，这些列之间保持一定的间距和可选隔线。
+			  该功能还可以让你根据浏览器窗口的大小来更改列的数量。
+			  多列元素由 W3C 定义为一种元素，该元素的 column-width 或 column-count 属性不设置为 "auto"，因此充当多列布局的容器。
+			  多列布局引入了列框，它被定义为一种介于内容框与内容之间的新类型的容器。
+			  列框中包含一些行，这些行按多列元素的方向排序。
+			  每个列框都具有列高度和列宽度。
+			  相邻的列框之间具有列间距，可选择包含列隔线。
+		</p>
+		<h1>
+             多列布局
+        <h1>
+		<p>
+		      Internet Explorer 10 及适用于 Windows 8 的使用 JavaScript 的 Windows 应用商店应用引入了 CSS 多列布局模块支持。
+			  截止到编写本文档时，多列布局模块是一个候选的万维网联合会 (W3C) 推荐标准。
+			  使用多列布局功能可以将内容分流至多个列中，这些列之间保持一定的间距和可选隔线。
+			  该功能还可以让你根据浏览器窗口的大小来更改列的数量。
+			  多列元素由 W3C 定义为一种元素，该元素的 column-width 或 column-count 属性不设置为 "auto"，因此充当多列布局的容器。
+			  多列布局引入了列框，它被定义为一种介于内容框与内容之间的新类型的容器。
+			  列框中包含一些行，这些行按多列元素的方向排序。
+			  每个列框都具有列高度和列宽度。
+			  相邻的列框之间具有列间距，可选择包含列隔线。
+		</p>
+	 </div>
+</body>
+</html>
