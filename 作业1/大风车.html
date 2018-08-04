@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>大风车1-李金文</title>
+		 <style type="">
+		     *{
+			     margin:0;
+				 padding:0;
+			 }
+		     body{
+				 background:pink;
+			 }
+			 #box{
+			     width:300px;
+				 margin:200px auto;
+			 }
+			 .house_top{
+			     margin:0 auto;
+			     width:0px;
+				 height:0px;
+				 border-right:100px solid transparent;
+				 border-left:100px solid transparent;
+				 border-bottom:200px solid gray;
+		         position:relative;
+			 }
+			 .windmill_box{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 40px;
+				left: 50%;
+				margin-left: -50px;
+				-moz-animation:rotate 20s infinite linear;
+				-webkit-animation:rotate 20s infinite linear;
+				-o-animation:rotate 20s infinite linear;
+				animation:rotate 20s infinite linear;
+			}
+             @-webkit-keyframes rotate{
+			     from{
+				     -webkit-transform:rotate(0);
+				 }
+				 to{
+				     -webkit-transform:rotate(360deg);
+				 }
+
+			 }
+			 @-moz-keyframes rotate{
+			     from{
+				     -moz-transform:rotate(0);
+				 }
+				 to{
+				     -moz-transform:rotate(360deg);
+				 }
+
+			 }
+			 @-o-keyframes rotate{
+			     from{
+				     -o-transform:rotate(0);
+				 }
+				 to{
+				     -o-transform:rotate(360deg);
+				 }
+			 }
+			 @keyframes rotate{
+			     from{
+				     transform:rotate(0);
+				 }
+				 to{
+				     transform:rotate(360deg); 
+				 }
+			 }
+			 .triangle_up{
+			     width:0;
+				 height:0;
+				 border-left:50px solid transparent;
+				 border-right:50px solid transparent;
+				 border-bottom:120px solid red;
+				 position:absolute;
+				 top:-90px;
+				 left:0;
+				 transform:rotate(-40deg);
+				
+			 }
+			 .triangle_right{
+			     width:0;
+				 height:0;
+				 border-top:50px solid transparent;
+				 border-left:120px solid #00ffd8;
+				 border-bottom:50px solid transparent;
+				 position:absolute;
+				 top:0;
+				 right:-90px;
+				 transform:rotate(-40deg);
+			 }
+			 .triangle_down{
+			     width:0;
+                 height:0;
+				 border-top:120px solid #00ff48;
+				 border-right:50px solid transparent;
+				 border-left:50px solid transparent;
+				 position:absolute;
+				 left:0;
+				 bottom:-90px;
+				 transform:rotate(-40deg);
+			 }
+			 .triangle_left{
+			     width:;
+				 height:0;
+				 border-top:50px solid transparent;
+				 border-right:120px solid #009cff;
+				 border-bottom:50px solid transparent;
+				 position:absolute;
+				 top:0;
+				 left:-90px;
+				 transform:rotate(-40deg);
+			 }
+			 .house_body{
+			     width:200px;
+				 height:200px;
+				 background:#0000FF;
+				 margin:0 auto;
+				 overflow:hidden;/*?*/
+			 }
+			 .house_body .window{
+			     width:120px;
+				 height:10px;
+				 background:#808080;
+				 margin:30px auto 0;
+				 /* font-size:0; *//*去除display:inline-block的间距*/
+			 }
+			 .house_body ul{
+			     width:100px;
+				 margin:0 auto;
+				 /* background:red; */
+				 /* float:left; *//*float与margin不能并用，否则浮动失效，也不会居中*/
+				 overflow:hidden;
+			 }
+			 .house_body ul li{
+			     list-style:none;
+				 width:40px;
+				 height:40px;
+				 background:yellow;
+				 float:left;
+				 /* overflow:hidden; */
+				 /* display:inline-block; */
+				 margin:5px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="box">
+	     <div class="house_top">
+				<div class="windmill_box">
+					<div class="triangle_up"></div>
+					<div class="triangle_right"></div>
+					<div class="triangle_down"></div>
+					<div class="triangle_left"></div>
+				</div>
+			</div>
+			<div class="house_body">
+				<div class="window"></div>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+	 </div>
+</body>
+</html>
