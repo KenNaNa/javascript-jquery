@@ -1,0 +1,142 @@
+<!DOCTYPE html> 
+<html lang="zh-cn"> 
+<head>
+<meta charset="utf-8"/>
+<title>Pseudo Demo</title> 
+<style> 
+/* 1、利用 :before 和 :after 添加背景，比如给一段文字前后打引号； 
+
+2、利用 :before, :after, box-shadow 实现3D阴影效果; 
+
+3、利用 :before, :after, box-shadow 实现照片叠加效果.  */
+     body{
+	     background-color:#ccd3d7;
+		 padding:40px;
+	 } 
+     h2{
+	     display:block;
+		 border-bottom:1px solid #ddd;
+		 padding:15px;
+	 } 
+     p.myquote{
+	     padding:1em;
+		 font-size:16px;
+		 margin:8px 1em;
+		 position:relative;
+		 color:blue;
+		 line-height:1.7em;
+	 } 
+     p.myquote:before,p.myquote:after{
+	     font-size:40px;
+		 position:absolute;
+		 padding:0;
+		 margin:0;
+		 color:green;
+	 } 
+     p.myquote:hover:before,p.myquote:hover:after{
+	     color:red;
+		 font-size:50px;
+	 } 
+     p.myquote:before{
+	     content:"“";
+		 left:0;
+		 left:-10px;
+	 } 
+     p.myquote:after{
+	     content:"”";
+		 padding-left:15px;
+		 bottom:4px;
+	 } 
+	 .shbox{ 
+		 background:#fff; 
+		 padding:10px; 
+		 width:90%; 
+		 margin:40px auto; 
+		 height:auto; 
+		 margin:40px auto; 
+	 } 
+     .sh-down-lr{
+	     position:relative;
+	 } 
+     .sh-down-lr:before,.sh-down-lr:after{ 
+         z-index: -1; 
+		 position: absolute; 
+         content: ""; 
+         bottom: 15px; 
+         left: 10px; 
+         width: 50%; 
+         top: 80%; 
+         max-width:300px; 
+         background: #777; 
+         -webkit-box-shadow: 0 15px 10px #777; 
+         -moz-box-shadow: 0 15px 10px #777; 
+         box-shadow: 0 15px 10px #777; 
+         -webkit-transform: rotate(-3deg); 
+         -moz-transform: rotate(-3deg); 
+         -o-transform: rotate(-3deg); 
+         -ms-transform: rotate(-3deg); 
+         transform: rotate(-3deg); 
+     } 
+     .sh-down-lr:after{ 
+		-webkit-transform: rotate(3deg); 
+		-moz-transform: rotate(3deg); 
+		-o-transform: rotate(3deg); 
+		-ms-transform: rotate(3deg); 
+		transform: rotate(3deg); 
+		right:10px; 
+		left:auto; 
+	 } 
+	 .stackone { 
+		border: 6px solid #fff; 
+		width: 400px; 
+		height:225px; 
+		margin: 50px; 
+		position: relative; 
+		-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+		-moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+		box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+	 } 
+	 .stackone img{width:100%;heigth:100%;} 
+	 .stackone:before,.stackone:after { 
+		content: ""; 
+		width: 400px; 
+		height:225px; 
+		background: #aaa; 
+		border: 6px solid #fff; 
+		position:absolute; 
+		z-index:-1; 
+		top:0; 
+		left:-10px; 
+		-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+		-moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+		box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+		-webkit-transform: rotate(-5deg); 
+		-moz-transform: rotate(-5deg); 
+		-o-transform: rotate(-5deg); 
+		-ms-transform: rotate(-5deg); 
+		transform: rotate(-5deg); 
+	 } 
+	 .stackone:after { 
+		top:5px; 
+		left:0; 
+		-webkit-transform: rotate(3deg); 
+		-moz-transform: rotate(3deg); 
+		-o-transform: rotate(3deg); 
+		-ms-transform: rotate(3deg); 
+		transform: rotate(3deg); 
+	 } 
+</style> 
+</head> 
+<body> 
+<div class="shbox sh-down-lr"> 
+<h2>CSS Demo :before, :after, box-shadow</h2> 
+<p class="myquote">人最宝贵的是生命。生命属于人只有一次。人的一生应当这样度过：当回忆往事的时候，他不会因为虚度年华而悔恨，也不会因为碌碌无为而羞愧.</p> 
+<p class='myquote'>钢是在烈火里燃烧、高度冷却中炼成的，因此它很坚固。我们这一代人也是在斗争中和艰苦考验中锻炼出来的，并且学会了在生活中从不灰心丧气。</p> 
+</div> 
+<div class="shbox" style="background:none;"> 
+<div class="stackone"> 
+<img src="http://photos.tuchong.com/392707/f/6512410.jpg" /> 
+<div> 
+</div> 
+</body> 
+</html> 

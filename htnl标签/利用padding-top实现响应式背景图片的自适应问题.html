@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>利用padding-top实现响应式背景图片的自适应问题-李金文</title>
+		 <style type="text/css">
+		    /* 
+			     10. 使用padding-top:(percentage)实现响应式背景图片
+
+      我门都知道，处理在响应性布局的时候，背景图片都是等比例缩放，比如上面的使用图片的情况，使用<img /> 引入的图片的话，那么设置她们的width属性为100%；<img src=”” width=”100%”/> 的话，高度就会等比例缩放，这是图片，但是如果是背景图片呢？我门之前的项目中的常见的做法是根据css3媒体查询的方法来做的，根据不同手机的分辨率等不同，来等比例缩放背景图的高度，虽然这种方式是可以解决问题的，但是这种通过人肉的方式来进行设置并不好，也很繁琐，今天我门来学习使用padding－top这么一个属性来设置了；
+
+	  实现的基本原理：将使用到保持元素的宽高比的技巧，为元素添加垂直方向的padding-top的值，使用百分比的形式，这个值是相对于元素的宽而定的，比如我上面的一张图片的宽度是1024px，高度为316px；那么现在的
+
+	  padding-top = （高度 / 宽度 ）＊ 100% ＝ （316 ／ 1024）＊ 100% ＝  30.85%;
+
+	  但是仅仅对图片高度和宽度缩放的放还不够，我门还必须添加 background-size:cover, 使这个属性让背景铺满元素的，但是IE8及以下不支持该属性，因此为了兼容IE下面的浏览器，我门还需要再加一个属性 background-position: center ; 同时我门也要保证 图片的宽度最大等于父容器的宽度；因此下面的HTML代码如下：
+	 */
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     max-width:1024px;
+				 margin:100px auto;
+			 }
+			 .box .image{
+			     padding-top:30.85%;
+				 background:url("http://images2015.cnblogs.com/blog/561794/201603/561794-20160310002800647-50077395.jpg")no-repeat;
+				 background-size:cover;
+				 background-position:center;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div class="image">
+		      
+		 </div>
+	 </div>
+</body>
+</html>

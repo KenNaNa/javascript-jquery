@@ -1,0 +1,64 @@
+body,html{margin:0; padding:0; border:0;}
+
+.top{height:72px; width:100%; background:url("../images/bg.png") repeat-x; text-align:center;} 
+.header{width:980px; height:72px; margin:auto;}
+.logo{float:left; height:72px;}
+.banner{float:left; margin:20px auto auto 20px; }
+.menu{float:right; width:250px; height:72px; text-align:right;}
+.menu a{line-height:72px;color:#fff; font-size:12px; text-decoration:none; margin:auto 5px;}
+
+.menu .down{padding-right:20px;background-image:url("../images/ico_new.png"); background-repeat:no-repeat; background-position:100% 3px;}
+
+
+.content{width:980px; min-height:300px; margin:0px auto;}
+
+.content .left{float:left; width:220px; min-height:650px; background:url("../images/sidebar-bg.png") no-repeat; background-color:#ebf2fa; border:1px solid #d4d4d4; border-top:0;}
+
+.content .right{float:right; width:730px; min-height:300px;}
+
+.content .right .right-top{float:left; width:100%;height:200px; height:auto; margin-top:30px;}
+.content .right .right-bottom-left{float:left; margin-top:20px; width:250px; height:200px; }
+.content .right .right-bottom-right{float:right; margin-top:20px; width:450px; height:200px; padding-top:50px;  }
+.content .right .right-bottom-right .erwei{width:78px; height:78px; border:0;float:left;}
+
+.big-text{float:left; margin:0 20px; font-weight:800; font-size:18px;}
+.text{float:left; margin:0 20px; font-size:16px; color:#aaa; margin-top:10px;}
+
+.btn-box{margin-top:20px; float:left; width:100%; height:39px;}
+.btn-box .android{display:block; float:left; height:39px; width:144px; background-image:url("../images/client-btn.jpg"); }
+.btn-box .ipad{display:block; float:left;  margin-left:20px; height:39px; width:144px; background-image:url("../images/client-btn.jpg"); background-position:144px 0px;}
+.more-client{float:left; font-size:14px; color:#aaa;}
+.more-client a{text-decoration:none; font-size:14px; color:#33a; padding-left:20px; background-image:url("../images/win-sym.jpg"); background-position:0px -23px; background-repeat:no-repeat;}
+.more-client a:hover{text-decoration:underline;}
+.line{width:100%; background:#aaa; height:1px; float:left; margin-top:30px;}
+
+
+.login-box{margin:50px auto 0 10px;}
+
+.login-box  input{ border:1px solid #999;width:160px; height:30px;}
+.login-box input[type=text]{ padding-left:30px; border-radius:5px; background-image:url(../images/ico_new.png); background-position:8px -80px; background-repeat:no-repeat;}
+.login-box input[type=password]{ padding-left:30px; border-radius:5px; background-image:url(../images/ico_new.png); background-position:8px -110px; background-repeat:no-repeat;}
+.login-box input[type=checkbox]{width:5px; height:5px;}
+.login-box  p{font-size:14px; height:30px; line-height:30px;}
+.login-box  p a{float:right; text-decoration:none;line-height:30px;}
+.login-box input[type=submit]{cursor:pointer; border:0; width:190px; height:38px; background-image:url("../images/btn.png");}
+.login-box .nav{width:190px; height:0px; border-top:1px solid #ccc; margin:20px 0; border-bottom:1px solid #fff;}
+.login-box .reg{display:block; float:left; width:190px; height:38px; background-image:url("../images/btn.png"); background-position:0px -38px;}
+.login-box .new-stu{display:block; float:left; width:190px; height:38px; background:url("../images/student-enter.png") no-repeat; margin-top:20px;}
+.more-login p{float:left; margin-left:10px; font-size:12px; margin-top:50px; color:#666;}
+.more-login div{float:left;}
+.more-login div a{color:#339; height:20px; font-size:14px; display:block; float:left; padding-left:20px; margin:10px; background-image:url("../images/icon_new2.png"); background-repeat:no-repeat;}
+
+.more-login div .msn{background-position:0 -290px;}
+.more-login div .qh{background-position:0 -320px;}
+.more-login div .ty{background-position:0 -380px;}
+.more-login div .baidu{  background-position:0 -415px;}
+.more-login div .yd{  background-position:0 -445px;}
+
+.footer{width:980px; height:150px; border-top:1px solid #999; margin:30px auto;}
+
+.footer p{color:#aaa; font-size:12px;}
+.footer p a{text-decoration:none; font-size:12px; color:#669; }
+.bottom-menu{float:right;}
+.foot{width:100%; height:80px;background-color:#f4f4f4;}
+.foot p{text-align:center; color:#aaa; font-size:12px; line-height:16px;}

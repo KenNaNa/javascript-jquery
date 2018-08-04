@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>自制的立体感2-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     position:relative;
+			     width:300px;
+				 height:100px;
+				 border-radius:10px;
+				 margin:100px auto;
+				 background:#ccc;
+				 text-align:center;
+				 line-height:100px;
+				 color:white;
+				 font-size:20px;
+				 font-family:"微软雅黑";
+				 cursor:pointer;
+			 }
+			 .box p{
+			     text-shadow:1px 1px #233cc9,2px 2px #33cc00,3px 3px #4a42ea,4px 4px #233cc9,5px 5px #33cc00,6px 6px #4a42ea;
+			 }
+			 .shadow::before,
+			 .shadow::after{
+			     position:absolute;
+				 z-index:-1;
+				 overflow:hidden;
+				 left:10px;
+				 bottom:10px;
+			     content:"";
+				 width:150px;
+				 height:20px;
+				 background:red;
+				 transform:rotate(-8deg);
+				 box-shadow:0px 10px 6px #ccc;
+			 }
+			 .shadow::after{
+			     right:10px;
+				 left:auto;
+				 transform:rotate(8deg);
+			 }
+			 p:hover::before,
+			 p:hover::after{
+			     content:"“";
+				 color:red;
+				 font-size:40px;
+                 position:absolute;
+				 left:30px;
+				 top:-10px;
+			 }
+			 p:hover::after{
+			     content:"”";
+				 left:235px;
+				 top:10px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box shadow">
+	     <p>自制的立体感效果</p>
+	 </div>
+</body>
+</html>

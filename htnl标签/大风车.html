@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="content" content="text/html"charset=utf-8>
+		<title>作业</title>
+		<style>
+			*{margin: 0;padding: 0;}
+
+			.box{
+				width: 300px;
+				margin: 200px auto;
+			}
+
+			.house_top{
+				width: 0;
+				height: 0;
+				border-left: 100px solid transparent;
+				border-right: 100px solid transparent;
+				border-bottom: 200px solid gray;
+				margin: 0 auto;
+				position: relative;
+			}
+
+			.windmill_box{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 40px;
+				left: 50%;
+				margin-left: -50px;
+				-moz-animation:rotate 20s infinite linear;
+				-webkit-animation:rotate 20s infinite linear;
+			}
+
+			@-webkit-keyframes rotate{
+				0%{-webkit-transform:rotate(0deg);}
+				100%{-webkit-transform:rotate(360deg);}
+			}
+
+			@-moz-keyframes rotate{
+				0%{-moz-transform:rotate(0deg);}
+				100%{-moz-transform:rotate(360deg);}
+			}
+
+			.triangle_up{
+				width: 0;
+				height: 0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				border-bottom: 120px solid red;
+				position: absolute;
+				top: -90px;
+				left: 0;
+				transform: rotate(-40deg);
+			}
+
+			.triangle_right{
+				width: 0;
+				height: 0;
+				border-top: 50px solid transparent;
+				border-bottom: 50px solid transparent;
+				border-left: 120px solid #00ffd8;
+				position: absolute;
+				top: 0;
+				right: -90px;
+				transform: rotate(-40deg);
+			}
+
+			.triangle_down{
+				width: 0;
+				height: 0;
+				border-left: 50px solid transparent;
+				border-right: 50px solid transparent;
+				border-top: 120px solid #00ff48;
+				position: absolute;
+				left: 0;
+				bottom: -90px;
+				transform: rotate(-40deg);
+			}
+
+			.triangle_left{
+				width: 0;
+				height: 0;
+				border-top: 50px solid transparent;
+				border-bottom: 50px solid transparent;
+				border-right: 120px solid #009cff;
+				position: absolute;
+				top: 0;
+				left: -90px;
+				transform: rotate(-40deg);
+			}
+
+			.house_body{
+				width: 200px;
+				height: 200px;
+				background: blue;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			
+			.house_body .window{
+				width: 120px;
+				height: 10px;
+				background: gray;
+				margin: 30px auto 0;
+			}
+
+			.house_body ul{
+				width: 100px;
+				/*background: gray;*/
+				padding: 5px;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+
+			.house_body ul li{
+				list-style: none;
+				width: 40px;
+				height: 40px;
+				float: left;
+				margin: 5px;
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="house_top">
+				<div class="windmill_box">
+					<div class="triangle_up"></div>
+					<div class="triangle_right"></div>
+					<div class="triangle_down"></div>
+					<div class="triangle_left"></div>
+				</div>
+			</div>
+			<div class="house_body">
+				<div class="window"></div>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	
+</html>

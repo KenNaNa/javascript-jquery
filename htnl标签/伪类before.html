@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>伪类before-李金文</title>
+		 <style type="text/css">/*鼠标移上链接，出现方括号*/
+		     *{
+			     margin:0;
+				 padding:0;
+			 }
+			 a {  
+				 position: relative;  
+				 display: inline-block;  
+				 outline: none;  
+				 text-decoration: none;  
+				 color: #000;  
+				 font-size: 32px;  
+				 padding: 5px 10px;  
+			 }  
+  
+			 a:hover::before, a:hover::after { position: absolute; }  
+			 a:hover::before { content: "\5B"; left: -20px; }  
+			 a:hover::after { content: "\5D"; right:  -20px; }  
+		 </style>
+	 </head>
+<body>
+     <a href="#">李金文</a>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>遮罩特效</title>
+<style type="text/css">
+#bbox {
+	width: 635px;
+	height: 674px;
+	margin: 5% auto;
+	background: url("images/bg.png") no-repeat;
+	overflow: hidden;
+	}
+#shadow {
+	width: 451px;
+	height: 450px;
+	margin: 112px 92px;
+	border-radius: 20px;
+	box-shadow: 0px 0px 12px rgba(0,0,0,0.50);
+	overflow: hidden;
+	}
+#box {
+	width: 451px;
+	height: 450px;
+	position: relative;
+	-webkit-mask-image: url("images/bg.png");
+	-webkit-mask-image: url("images/bg.png");
+	}
+#bar {
+	width: 451px;
+	height: 450px;
+	float: left;
+	top: 0px;
+	position: absolute;
+	background-color: rgba(255,255,255,0.30);
+	overflow: hidden;
+	}
+#momo {
+	width: 451px;
+	height: 450px;
+	float: left;
+	filter: blur(5px);
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5,MakeShadow=false);
+	-webkit-filter: blur(5px); -moz-filter: blur(5px);
+	background: url("images/bg.png") no-repeat center center;
+	top: 0px;
+	overflow: hidden;
+	}
+</style>
+</head>
+<body>
+<div id="bbox">
+    <div id="shadow">
+      <div id="box">
+        <div id="momo"></div>
+        <div id="bar"></div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>:before添加遮罩层-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     position:relative;
+				 left:0px;
+				 top:0px;
+				 width:460px;
+				 height:460px;
+				 background:pink;
+				 border-radius:50%;
+				 /* box-shadow:0 0 3px 3px pink; */
+				 margin:100px auto;
+				 cursor:pointer;
+			 }
+			 /* .box:hover{
+			 	 width:460px;
+			 	 height:460px;
+			 	 background:#ccc;
+			 	 border-radius:50%;
+			 } */
+			 .box:hover:before{/*不能有空格，他们是伪类选择器*/
+				 position:absolute;
+				 left:0px;
+				 top:0px;
+				 content:"用伪类before添加的遮罩层";
+				 width:460px;
+				 height:460px;
+				 border-radius:50%;
+				 background:#ccc;
+				 text-align:center;
+				 line-height:460px;
+				 /* margin:0px 0px 0px 0px; */
+				 color:white;
+			     /* display:block; */
+			 }
+
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     
+	 </div>
+</body>
+</html>

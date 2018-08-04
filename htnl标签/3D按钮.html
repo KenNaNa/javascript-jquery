@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>3D按钮-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+		     #button{
+			     position:relative;
+				 width:200px;
+				 height:30px;
+				 background:#019BD1;
+				 margin:100px auto;
+				 text-align:center;
+				 box-shadow:0 1px 5px #01526F;
+				 border-radius:0 5px 5px 0;
+				 cursor:pointer;
+				 /* margin与display:inline-block发生冲突; */
+			 }
+			 #button h3{
+			     color:white;
+				 line-height:30px;
+
+			 }
+			 #button::before{
+			     position:absolute;
+				 left:-30px;
+				 top:0px;
+				 content:"1";
+				 /* text-align:center; */
+				 line-height:30px;
+				 color:#8AD2EB;
+				 width:30px;
+				 height:30px;
+				 background:#016981;
+				 box-shadow:0 1px 5px #002939;
+				 border-radius:5px 0 0 5px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="button">
+	     <h3>NUMBAH ONEI</h3>
+	 </div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>HTML5新增属性作业-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{background:#ccc;}
+			 .box{
+			     width:500px;
+				 height:400px;
+				 background:white;
+				 margin:100px auto;
+				 padding:30px 50px 0 50px;
+			 }
+			 .box .orderBox{
+			     width:500px;
+				 height:310px;
+				 border:5px solid #009999;
+			 }
+			 .box .orderBox h1{
+			     font-size:20px;
+				 font-family:"微软雅黑";
+				 padding:10px 0 10px 20px;
+				 border-bottom:1px solid #ccc;
+			 }
+			 .box .orderBox form{
+			     padding:15px 0 0 15px;
+			 }
+			 .box .orderBox form p{
+			     width:500px;
+			     height:22px;
+				 line-height:22px;
+				 margin-bottom:10px;
+				 /* vertical-align:middle; */
+			 }
+			 .box .orderBox form input[type="radio"]{
+			     vertical-align:middle;
+			 }
+			 .box .orderBox form label{
+			     font-size:14px;
+				 font-family:"微软雅黑";
+				 vertical-align:middle;
+			 }
+			 .box .orderBox form p select{
+			     width:200px;height:24px;
+				 margin-right:10px;
+			 }
+			 .box .orderBox form p span{
+			     display:inline-block;
+				 width:60px;
+				 height:24px;
+				 font-size:10px;
+				 text-align:center;
+				 line-height:24px;
+				 background:#009999;
+			 }
+			 .box .orderBox form p.time input[type="text"],
+			 .box .orderBox form p.time input[type="date"]{
+			     width:136px;
+				 height:20px;
+				 vertical-align:middle;
+				 margin-top:-2px;
+				 margin-right:10px;
+				 
+			 }
+			 .box .orderBox form p input[type="search"]{
+			     width:354px;
+				 height:24px;
+				 vertical-align:middle;
+				 text-align:center;
+				 line-height:24px;
+				 margin-top:-2px;
+			 }
+			 .jige1{
+			     margin-top:-30px;
+			 }
+			 .jige1 h5{
+			     font-size:13px;
+				 font-weight:bold;
+			 }
+			 .jige1 label{
+			     margin-right:109px;
+			 }
+			 p.zdy input[type="number"]{
+			     width:100px;
+				 height:24px;
+				 text-align:center;
+				 line-height:24px;
+				 font-size:16px;
+			 }
+			 p.zdy input[type="button"]{
+			     width:30.67px;
+				 height:27px;
+				 line-height:27px;
+				 vertical-align:middle;
+				 text-align:center;
+				 margin-top:0px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div class="orderBox">
+		     <h1>酒店预订</h1>
+			 <form action="#" method="post" name="order">
+			     <p>
+				     <input type="radio" name="jiudian" id="gn"><label for="gn">国内酒店</label>
+				     <input type="radio" name="jiudian" id="gw"><label for="gw">国外酒店</label>
+				 </p>
+				 <p>
+				     <!-- <input type="text" list="mdd">
+				     <datalist id="mdd">
+				     <option value="1">上海</option>
+				     <option value="2">深圳</option>
+				     <option value="3">广州</option>
+				     <option value="4">北京</option>
+				     <option value="5">南京</option>
+				     </datalist -->
+					 <select name="s1" id="s1">
+					     <option value="">--选择目的地--</option>
+						 <option value="">上海</option>
+						 <option value="">深圳</option>
+						 <option value="">广州</option>
+						 <option value="">北京</option>
+						 <option value="">南京</option>
+					 </select>
+					 <select name="s2" id="s2">
+					     <option value="">--选择酒店商圈--</option>
+						 <option value="">上海</option>
+						 <option value="">深圳</option>
+						 <option value="">广州</option>
+						 <option value="">北京</option>
+						 <option value="">南京</option>
+					 </select>
+				 </p>
+				 <p class="time">
+				     <span class="txt">入住时间:</span><input type="date" name="txt" class="tx"/>
+					 <span class="dat">离开时间:</span><input type="date" name="dat" class="da"/>
+				 </p>
+				 <p>
+				     <span class="jib">酒店级别:</span><input type="search" placeholder="选择酒店级别" list="list"/>
+					 <datalist id="list">
+					     <option value="五星级">高级</option>
+						 <option value="四星级">中等</option>
+						 <option value="三星级">快捷</option>
+						 <option value="二星级">其他</option>
+					 </datalist>
+				 </p>
+				 <p class="jige1">
+				     <h5>价格范围</h5>
+					 <input type="checkbox" id="two" style="vertical-align:middle;">
+					 <label for="two" style="margin-right:125px;vertical-align:middle;">￥200以下</label>
+					 <input type="checkbox" id="two-four" style="vertical-align:middle;">
+					 <label for="two-four" style="margin-right:125px;vertical-align:middle;">￥200-￥400</label>
+				 </p>
+				 <p class="jige1">
+					 <input type="checkbox" id="four-six" style="vertical-align:middle;">
+					 <label for="four-six" style="margin-right:109px;vertical-align:middle;">￥400-￥600</label>
+					 <input type="checkbox" id="six" style="vertical-align:middle;">
+					 <label for="six" style="margin-right:125px;vertical-align:middle;">￥600以上</label>
+				 </p>
+				 <p class="zdy">
+				     自定义<input type="number" />-<input type="number" /><input type="button" value="确定"/>
+				 </p>
+			 </form>
+		 </div>
+	 </div>
+</body>
+</html>
