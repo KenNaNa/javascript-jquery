@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+        <title>欢迎使用正方教务管理系统！请登录</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=7">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-Language" content="utf-8">
+		<meta content="all" name="robots">
+		<meta name="author" content="作者信息">
+		<meta name="Copyright" content="版权信息">
+		<meta name="description" content="站点介绍">
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{background:#EAEEF7;}
+			 .login_logo{
+			     max-width:553px;
+				 margin-left:250px;
+				 margin-top:50px;
+			 }
+			 .login_logo:after{
+			     content:"";
+				 display:block;
+				 clear:both;
+			 }
+			 .login_logo .logo_school{
+			     float:left;
+				 margin-left:0px;
+			 }
+			 .login_logo .logo_jw{
+			     float:left;
+			 }
+			 .left{
+			     width:890px;
+				 /* height:265px; */
+				 /* margin-left:250px;
+				 margin-top:20px; */
+				 margin:20px 250px;
+			     background:#83A5D3;
+			 }
+			 .right{
+			     position:absolute;
+				 right:170px;
+				 top:60px;
+			     width:440px;
+				 /* height:310px; */
+				 background:#BAD3F2;
+				 border-radius:5px;
+				 /* border:1px solid #BAD3F2; */
+			 }
+			 .contxt{
+			     width:430px;
+				 height:300px;
+				 margin:5px;
+				 background:#EDF6FF;
+				 border-radius:5px;
+				 overflow:hidden;/*用来解决.txt中margin:10px 20px 被叠加的效果,给父级元素加上overflow:hidden*/
+				 /* 布局出问题padding:10px 20px; */
+				 /* border:1px solid yellow; */
+			 }
+			 .txt{
+			     width:270px;
+				 /* height:230px; */
+				 margin:30px 80px;
+			 }
+			 .txt h3{
+			     font-size:20px;
+				 color:#3B67B0;
+				 margin-bottom:10px;
+			 }
+			 span{
+			     color:#ccc;
+				 margin-left:10px;
+			 }
+			 td{
+			     float:left;
+			 }
+			 .pas_w label{
+			     margin-left:7px;
+			 }
+			 input{
+			     margin-bottom:20px;
+			 }
+			 .table{
+			     padding:15px;
+			     border:1px solid transparent;
+				 border-top-color:#8AACD2;
+			 }
+			 .sub,.rest{
+			     width:80px;
+				 height:20px;
+				 outline:none;
+				 text-align:center;
+				 line-height:20px;
+				 border:1px solid #729BD0;
+				 background:#729BD0;
+			 }
+			 .sub{
+			     margin-right:10px;
+			 }
+			 .bottom{
+			     max-width:500px;
+				 margin:50px auto;
+			 }
+			 .bottom span{
+			     color:#99D7F0;
+			 }
+			 a{
+			     text-decoration:none;
+				 color:#99D7F0;
+			 }
+			 a:hover{
+			     color:#0474D2;
+			 }
+			 #login_main{
+			     margin:0 -80px;
+			 }
+			 form{
+			     position:relative;
+			     width:1200px;
+				 height:auto;
+				 /* border:1px solid red; */
+				 margin:auto;
+			 }
+		 </style>
+	 </head>
+<body>
+<div class="form">
+     <form action="" method="post">
+	     <div id="login_main">
+		     <div class="login_logo">
+			     <h3 class="logo_school">
+				     <img src="images/logo_school.png" width="386" height="60" alt="logo_school.png" />
+				 </h3>
+				 <h3 class="logo_jw">
+				     <img src="images/logo_jw.png" width="167" height="60" alt="logo_jw.png" />
+				 </h3>
+			 </div>
+             <div class="left">
+			     <img src="images/login_pic.png" width="422" height="265" alt="login_pic.png" />
+			 </div>
+			 <div class="right">
+			     <div class="contxt">
+				     <div class="txt">
+				         <h3>用 户 登 录 <span>LOGIN</span></h3>
+						 <div class="table">
+						 <table>
+						     <tr>
+							     <td>
+								     <label>
+									     用户名:
+									 </label>
+									 <input type="text" name="userName" class="same"/>
+								 </td>
+							 </tr>
+							 <tr class="pas_w">
+							     <td>
+								     <label> 密 码 :
+									 </label>
+									 <input type="text" name="userName" class="same"/>
+								 </td>
+							 </tr>
+							 <tr>
+							     <td>
+								     <label>
+									     验证码:
+									 </label>
+									 <input type="text" name="userName" class="same"/>
+								 </td>
+							 </tr>
+							 <tr>
+							     <td>
+								     <input type="radio" name="radio" id="bum">
+								     <label for="bum">
+									     部门
+									 </label>
+								 </td>
+								 <td>
+								     <input type="radio" name="radio" id="tech">
+								     <label for="tech">
+									     教师
+									 </label>
+								 </td>
+								 <td>
+								     <input type="radio" name="radio" id="stu">
+								     <label for="stu">
+									     学生
+									 </label>
+								 </td>
+								 <td>
+								     <input type="radio" name="radio" id="vist">
+								     <label for="vist">
+									     访客
+									 </label>
+								 </td>
+							 </tr>
+							 <tr>
+							     <td>
+									 <input type="submit" value="登录" name="sub" class="sub" />
+								 </td>
+								 <td>
+									 <input type="reset" value="重置" name="rest" class="rest" />
+								 </td>
+							 </tr>
+						 </table>
+						 </div>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+		 <div class="bottom">
+		     <span>©1999-2012</span>
+			 <span>
+			     <a href="http://www.zfsoft.com/">正方股份有限公司
+				 </a>
+			 </span>
+			 <span>联系电话:0571-89902828</span>
+		 </div>
+	 </form>
+</div>
+</body>
+</html>

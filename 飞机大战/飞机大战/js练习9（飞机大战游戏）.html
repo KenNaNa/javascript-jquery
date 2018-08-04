@@ -1,0 +1,380 @@
+﻿<html>
+<head>
+<title>飞机大战</title>
+	<meta http-equiv="content-type" content="text/html" charset="UTF-8">
+	<meta name="Author" content="zcpxzx">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+<style type="text/css">
+	.obox{
+	width:300px;
+	height:500px;
+	border:10px solid #fff;
+	margin:10px auto;
+	font-family:"微软雅黑";
+	position:relative;
+	overflow:hidden;
+	}
+	.zhizhen:hover{cursor:none;}
+	.oHead{
+	line-height:24px;
+	font-size:30px;
+	text-align:center;
+	color:#fff;
+	text-weight:bold;
+	padding-top:50px;
+	}
+	p.diff{
+	width:150px;
+	height:35px;
+	background:red;
+	margin:40px auto;
+	text-align:center;
+	font-size:14px;
+	line-height:35px;
+	color:#000;
+	cursor:pointer;
+	}
+	#kaigua{font-weight:bold;
+	color:#f70;
+	background:gold;
+	}
+	p.diff:hover{
+	background:pink;
+	color:#fff;
+
+	}
+	#kaigua:hover{background:skyblue;
+	color:#08f;
+	}
+	.plane{
+	position:absolute;
+}
+	.bullet{position:absolute;
+	}
+	.di{position:absolute;}
+	.over{position:absolute;
+	top:30px;
+	left:50%;
+	width:200px;
+	height:30px;
+	margin-left:-100px;
+	color:red;
+	font-size:30px;
+	font-weight:bold;
+	text-align:center;
+	line-height:30px;
+	}
+	.score{
+	position:absolute;
+	top:10px;
+	left:5px;
+	width:120px;
+	height:30px;
+	font-size:16px;
+	text-align:center;
+	line-height:30px;
+	color:#fff;
+	}
+	.over2{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-90px;
+	width:180px;
+	height:30px;
+	font-size:16px;
+	text-align:center;
+	line-height:30px;
+	color:#fff;
+	
+	}
+	.over3{
+	margin:120px auto;
+	cursor:pointer;
+	width:180px;
+	height:30px;
+	font-size:16px;
+	text-align:center;
+	line-height:30px;
+	color:blue;
+	border:1px solid #000;
+	}
+	.over3:hover{
+	color:gold;
+	
+	}
+	.restart{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:90px;
+	margin-left:-60px;
+	width:120px;
+	height:30px;
+	font-size:16px;
+	text-align:center;
+	line-height:30px;
+	color:purple;
+	cursor:pointer;
+	}
+</style>
+<script type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+	window.onload=function(){
+		Game.exe();
+		}
+	var Game={
+		exe:function(){
+		document.body.style.background="#000";
+		var oD=document.createElement("div");
+			oD.className="obox";
+			document.body.appendChild(oD);
+			this.init(oD);
+		},
+		init:function(oD){
+			oD.innerHTML="";
+		var oH=document.createElement("h3");
+			oH.className="oHead";
+			oH.innerHTML="飞机大战";
+			oD.appendChild(oH);
+			for(var i=0;i<4;i++){
+			var oP=document.createElement("p");
+				oP.className="diff";
+				oD.appendChild(oP);
+				var html="";
+				var difficulty=0;
+				var speed=0;
+				var a=0;//a>=-3
+				var b=0;
+				oP.s=i;
+				switch(i){
+					case 0:
+					html="简单难度";
+					break;
+					case 1:
+					html="普通难度";
+					break;
+					case 2:
+					html="困难难度";
+					break;
+					case 3:
+					html="无敌模式";
+					oP.id="kaigua";
+					break;
+					}
+					oP.innerHTML=html;
+					oD.appendChild(oP);
+					oP.onclick=function(e){
+						e=e||event;
+					/*集中设置区
+					speed:子弹产生速度
+					diffculty：敌军产生速度
+					a：敌军移动速度
+					b：子弹移动速度
+					*/
+					if(this.s==3){speed=50;difficulty=100;a=5;b=3}
+					else{speed=1000-parseInt(this.s)*350;difficulty=400-parseInt(this.s)*100;a=2+this.s;b=1+this.s};
+						oD.className+=" zhizhen";
+						Game.plane(oD,e,speed,difficulty,a,b);}
+			};
+		},
+		//创建我军战机
+		plane:function(oD,e,speed,difficulty,a,b){
+			oD.innerHTML="";
+			var oplane=new Image();
+			oplane.src="img/plane.png";
+			oplane.className="plane";
+			oplane.width=30;
+			oplane.height=20;
+			oplane.style.left=e.pageX-oD.offsetLeft-10-oplane.width/2+"px";
+			oplane.style.top=e.pageY-oD.offsetTop-10-oplane.height/2+"px";
+			oD.appendChild(oplane);
+			var leftMin=-oplane.width/2;
+			var topMin=0;
+			var leftMax=parseFloat(Game.getstyle(oD,"width"))-oplane.width/2;
+			var topMax=parseFloat(Game.getstyle(oD,"height"))-oplane.height;
+			document.onmousemove=function(e){
+				e=e||event;
+				var l=e.pageX-oD.offsetLeft-10-oplane.width/2;
+				var t=e.pageY-oD.offsetTop-10-oplane.height/2;
+				l= Math.max(l,leftMin);
+				l= Math.min(l,leftMax);
+				t= Math.max(t,topMin);
+				t= Math.min(t,topMax);
+				oplane.style.left=l+"px";
+				oplane.style.top=t+"px";
+			}
+			oplane.timer=setInterval(function(){
+				var oB=new Image();
+					oB.src="img/bullet.png";
+					oB.className="bullet";
+					oB.width=6;
+					oB.height=22;
+					oB.style.top=oplane.offsetTop-oB.height;
+					
+					oB.style.left=oplane.offsetLeft+oplane.width/2-oB.width/2;
+					oD.appendChild(oB);
+					oB.btimer =setInterval(function(){
+					oB.style.top=oB.offsetTop-2-b+"px";//设置我机子弹速度b
+					if(oB.offsetTop<-oB.height){
+						clearInterval(oB.btimer);
+						oD.removeChild(oB); 
+					}
+					},20);
+			},speed);Game.diplane(oD,oplane,speed,difficulty,a,b);
+			},
+		//创建敌军战机
+		diplane: function(oD,oplane,speed,difficulty,a,b){
+			var score=0;
+			
+			var fen=document.createElement("span");
+				fen.className="score";
+				fen.innerHTML="当前得分："+score;
+				oD.appendChild(fen);
+			var ditimer=setInterval(function(){
+				var dip=new Image();
+				dip.src="img/enemy.png";
+				dip.className="di";
+				dip.width=23;
+				dip.height=30; 
+				dip.style.top=-dip.height/2+"px";
+				dip.style.left=Math.random()*parseFloat(Game.getstyle(oD,"width"))-dip.width/2+"px";
+				
+				oD.appendChild(dip);
+			//设置敌军战机速度a
+				dip.movetimer=setInterval(function(){
+					dip.style.top=dip.offsetTop+a*Math.random()+3+"px";
+					if(dip.offsetTop>=parseFloat(Game.getstyle(oD,"height"))){
+						clearInterval(dip.movetimer);
+						dip.parentNode.removeChild(dip);
+					}
+				},50);
+				dip.pztimer=setInterval(function(){
+					var aBiu=Game.getClass("bullet");
+					for(var i=0;i<aBiu.length;i++)
+					{
+					if(Game.pz(dip,aBiu[i])){
+						score+=15;
+						fen.innerHTML="当前得分："+score;
+						oD.removeChild(aBiu[i]);
+						dip.src="img/boom.png";
+						clearInterval(dip.movetimer);
+						clearInterval(dip.pztimer);
+						setTimeout(function(){
+						if(dip.parentNode)
+						dip.parentNode.removeChild(dip);
+						},500);
+					}
+				}
+					if(Game.pz(oplane,dip))
+					{	oplane.src="img/boom2.png";
+						dip.src="img/boom.png";
+						clearInterval(oplane.timer);
+						clearInterval(dip.pztimer);
+						clearInterval(ditimer);
+						clearInterval(dip.movetimer);
+						document.onmousemove=null;
+						setTimeout(function(){
+						if(dip.parentNode)
+						{Game.over(oD,score);}
+						},500);
+					}
+				
+				},20);
+		},difficulty);
+		},
+		//游戏结束页面
+		over:function(oD,score){
+			oD.innerHTML="";
+			oD.className="obox";
+			var op=document.createElement("p"); 
+				op.innerHTML="GAME OVER"; 
+				op.className="over";
+				oD.appendChild(op);
+			var op3=document.createElement("div"); 
+				op3.innerHTML="Author:<br \/>zcpxzx"; 
+				op3.className="over3";
+				oD.appendChild(op3);
+			var op1=document.createElement("p"); 
+				op1.innerHTML="您本次游戏的得分是：<br>"+score+"分"; 
+				op1.className="over2";
+				oD.appendChild(op1);
+			var op2=document.createElement("p"); 
+				op2.innerHTML="重新开始"; 
+				op2.className="restart";
+				oD.appendChild(op2);
+				op2.onclick=function(){
+				Game.init(oD);
+				};
+		},
+		//碰撞检测
+		pz:function(obj1,obj2){
+		var T1=obj1.offsetTop,
+			L1=obj1.offsetLeft,
+			R1=L1+obj1.clientWidth,
+			B1=T1+obj1.clientHeight;
+			
+		var	T2=obj2.offsetTop,
+			L2=obj2.offsetLeft,
+			R2=L2+obj2.clientWidth,
+			B2=T2+obj2.clientHeight;
+		
+		if( R2<L1 || B2<T1 || L2>R1 || T2>B1)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+			
+		},
+		
+		//扩展方法
+		getClass:function(name,parent){
+			parent=parent||document;
+			var arr=[];
+			if(document.getElementsByClassName){
+				var x = parent.getElementsByClassName(name);
+				for(var i in x)
+				{
+				arr[i]=x[i];
+				
+				}
+			
+			}
+			else
+			{
+				var y=parent.getElementsByTagName("*");
+				for(var i=0;i<y.length;i++)
+				{
+					var arry =y[i].className.split(" ");
+					for(var j=0;j<arry.length;j++)
+					{
+						if (arry[j]==name)
+						{
+							arr.push(y[i]); 
+							break;
+						
+						}
+					
+					}
+				}
+			} return arr;
+		},
+		
+		
+		
+		
+		getstyle: function(obj,attr){
+			return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr]; 
+		},
+
+
+	};
+</script>
+</body>
+</html>

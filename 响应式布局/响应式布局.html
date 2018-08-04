@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>响应式布局-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 /*方式一媒体查询
+			   @media [not|only] mediatype [and] (media feature){
+			     css code;
+			   }
+			 */
+			 /*方式二必须顶格写必须是其他样式的最前面
+			     @import url("index.css") [not|only] mediatype [and] (media feature);以分号结束
+				 media feature:orientation:potrait竖屏
+				 orientation:landscape横屏
+			 */
+			 /*方式三
+			 <link ref="stylesheet" type="" href="index.css" media="[not|only] mediatype [and] (media feature)">
+			   
+			 */
+			 /*
+			     link import的对比
+				 link 是HTML标签 属性
+				 import 属于css样式
+				 加载顺序 link<import
+
+			 */
+			 div {
+			     width:200px;
+				 height:200px;
+				 border:1px solid red;
+			  }
+			  @media screen and (max-width:600px){
+			     /*screen彩屏条件下，最大宽度为600px*/
+				 /*包含括号里面的数值
+				    not排除某种屏宽
+					only指定某种屏宽
+
+				 */
+				 div{background:red;}
+			  }
+			  @media screen and (min-width:600px) and (max-width:800px){
+			     div{background:green;height:500px;}
+			  }
+		 </style>
+	 </head>
+<body>
+     <div></div>
+</body>
+</html>

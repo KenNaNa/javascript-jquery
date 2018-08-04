@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>电子科技大学中山学院首页-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 a{text-decoration:none;font-size:12px;font-family:"宋体";color:#000;}
+			 a:hover{color:red;}
+			 ul{list-style:none;width:100%;height:100%;}
+			 span{color:#ccc;font-size:12px;}
+			 #mainBody{
+			     width:100%;
+				 /* position:relative; */
+			 }
+			 #mainBody .head{
+			     /* position:relative; */
+			     width:100%;
+				 height:130px;
+				 background:#0154A4;
+			 }
+			 #mainBody .head .head_nav{
+			    position:relative;
+			    width:1000px;
+				height:130px;
+				margin:auto;
+				/* background:red; */
+			 }
+			 #mainBody .head .head_nav .logo img{
+			     margin-top:20px;
+				 margin-left:10px;
+			 }
+			 #mainBody .head .head_nav .logo .search{
+			     width:165px;
+				 position:absolute;
+				 right:8px;
+				 top:25px;
+			 }
+			 #mainBody .head .head_nav .logo .search input.find{
+			     border-radius:0 10px 10px 0;
+				 position:absolute;
+				 right:-4px;
+				 top:0px;
+				 outline:none;
+			 }
+			 #mainBody .head .head_nav .logo .search input.txt{
+			     width:130px;
+				 height:21px;
+				 outline:none;
+			 }
+			 .listMenu{
+			     width:100%;
+				 margin-top:13px;
+				 /* padding:5px; */
+				 /* background:red; */
+			 }
+			 .listMenu .list{
+			     height:32px;
+				 background:#028CD5;
+				 border-radius:5px 5px 0 0;
+			 }
+			 .listMenu .list ul li{
+			     position:relative;
+				 z-index:10;
+			     float:left;
+				 width:82px;
+				 height:32px;
+				 text-align:center;
+				 line-height:32px;
+			 }
+			 .listMenu .list ul li a{
+			     display:inline-block;
+				 width:100%;
+				 color:#fff;
+				 font-size:15px;
+				 font-weight:bold;
+				 font-family:"宋体";
+			 }
+			 ul.UList li.list1 ul.ul1 li,
+			 ul.UList li.list2 ul.ul2 li,
+			 ul.UList li.list3 ul.ul3 li,
+			 ul.UList li.list4 ul.ul4 li{
+			     display:none; 
+			 }
+			 ul.UList li.list1:hover ul.ul1 li,
+			 ul.UList li.list2:hover ul.ul2 li,
+			 ul.UList li.list3:hover ul.ul3 li,
+			 ul.UList li.list4:hover ul.ul4 li{
+			     display:block;
+			 }
+			 .ul1 li,.ul2 li,.ul3 li,.ul4 li{
+			     background:#006DB8;
+				 margin-bottom:1px;
+			 }
+			 .ul1 li a:hover,
+			 .ul2 li a:hover,
+			 .ul3 li a:hover,
+			 .ul4 li a:hover{
+			     text-decoration:underline;
+			 }
+			 .centerBox{
+			     width:100%;
+				 height:760px;
+				 background:url("images/bg_01.jpg") no-repeat center/cover;
+			 }
+			 .centerBox .BigImgBox{
+			     position:relative;
+			     width:1000px;
+				 margin:auto;
+				 overflow:hidden;
+			 }
+			 .centerBox .BigImgBox .BigImg{
+			     width:400%;
+			     height:245px;
+			 }
+			 .centerBox .BigImgBox .BigImg img{
+			     float:left;
+			 }
+			 .centerBox .BigImgBox .btnBox{
+			     position:absolute;
+				 bottom:10px;
+				 left:895px;
+			     width:100px;
+				 height:21px;
+				 line-height:21px;
+			 }
+			 .centerBox .BigImgBox .btnBox a{
+			     display:inline-block;
+				 background:#666;
+				 color:#fff;
+				 width:21px;
+				 height:21px;
+				 text-align:center;
+			 }
+			 .clearfixed:after{
+			     content:"";
+				 display:block;
+				 clear:both;
+			 }
+			 .centerBtmBox{
+			     width:1000px;
+				 padding:10px 0 0 0;
+				 margin:auto;
+				 background:#fff;
+			 }
+			 .centerBtmBox .centerBtmBox_l{
+			     width:270px;
+				 height:360px;
+				 float:left;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_A,
+			 .centerBtmBox .centerBtmBox_l .con_B,
+			 .centerBtmBox .centerBtmBox_l .con_C,
+			 .centerBtmBox .centerBtmBox_l .con_D{
+			     position:relative;
+			     width:249px;
+				 height:93px;
+				 margin-left:21px;
+				 background:url("images/indexGuideA_bg.png") no-repeat;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_A ul,
+			 .centerBtmBox .centerBtmBox_l .con_B ul,
+			 .centerBtmBox .centerBtmBox_l .con_C ul{
+			     width:150px;
+				 position:absolute;
+				 right:0px;
+				 top:3px;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_A ul li,
+			 .centerBtmBox .centerBtmBox_l .con_B ul li,
+			 .centerBtmBox .centerBtmBox_l .con_C ul li{
+			     float:left;
+				 height:25px;
+				 line-height:25px;
+				 margin-right:15px;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_B{
+			     background:url("images/indexGuideB_bg.png") no-repeat;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_B ul{
+				 right:0px;
+				 top:15px;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_C{
+				 background:url("images/indexGuideC_bg.png") no-repeat; 
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_C ul{
+				 right:0px;
+				 top:3px;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_C ul li{
+				 margin-right:0px;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_D{
+				 background:url("images/indexGuideD_bg.png") no-repeat; 
+			 } 
+			 .centerBtmBox .centerBtmBox_l .con_D .con_D1{
+			     position:absolute;
+				 top:30px;
+				 right:90px;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_D .con_D2{
+			     position:absolute;
+				 top:29px;
+				 right:35px;
+			 }
+			 .centerBtmBox .centerBtmBox_l .con_D .con_D3{
+			     position:absolute;
+				 top:45px;
+				 right:35px;
+			 }
+			 .centerBtmBox .centerBtmBox_c{
+			     width:430px;
+				 height:360px;
+				 float:left;
+				 margin-left:20px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t{
+			     height:224px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_h,
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_h{
+			     border-bottom:2px solid blue;
+				 height:24px;
+				 line-height:24px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_h span{
+			     margin:0 10px 0 10px;
+				 color:#000;
+				 font-size:16px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_h a{
+			     color:blue;
+				 margin-left:265px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_m ul li,.centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_b ul li{
+			     border-bottom:1px solid #ccc;
+				 height:24px;
+				 line-height:24px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_m ul li a,
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_b .centerBtmBox_c_t_b_m ul li a,
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_b ul li a{
+			     display:inline-block;
+				 vertical-align:middle;
+				 width:325px;
+				 white-space:nowrap;
+				 text-overflow:ellipsis;
+				 overflow:hidden;
+				 margin:0 5px 0 5px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_m ul li img{
+			     vertical-align:middle;
+				 margin-right:2px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_b .centerBtmBox_c_t_b_h{
+			     border-bottom:2px solid blue;
+				 height:24px;
+				 line-height:24px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_b a{
+			     margin:0 0 0 20px;
+				 font-size:16px;
+				 font-weight:bold;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_b span a{
+			     color:blue;
+				 font-weight:normal;
+				 font-size:14px;
+				 margin-left:210px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_b .centerBtmBox_c_t_b_m ul li{
+			     border-bottom:1px solid #ccc;
+				 height:26px;
+				 line-height:26px;
+			 }
+			 .centerBtmBox .centerBtmBox_c .centerBtmBox_c_t .centerBtmBox_c_t_b .centerBtmBox_c_t_b_m ul li a{
+				 font-size:12px;
+				 font-weight:normal;
+			 }
+			 .centerBtmBox .centerBtmBox_r{
+			     width:260px;
+				 height:360px;
+				 float:right;
+			 }
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_img{
+			     height:210px;
+			     background:url("images/indexSlogan.jpg") no-repeat;
+				 margin:0 15px 15px 0;
+			 }
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_h{
+			     width:245px;
+			 }
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_h a{
+			     font-size:16px;
+				 font-weight:bold;
+				 margin:0 0 0 20px;
+			 }
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_h span a{
+			     color:blue;
+				 font-size:14px;
+				 font-weight:normal;
+				 margin-left:90px;
+			 }
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_b ul li{
+			     height:26px;
+				 line-height:26px;
+			 }
+			 .centerBtmBox .centerBtmBox_r .centerBtmBox_r_m .centerBtmBox_r_m_b ul li a{
+			     width:230px;
+			 }
+			 .centerBox .bottomFooter{
+			     width:960px;
+				 padding:20px;
+				 margin:auto;
+				 background:#fff;
+			 }
+			 .centerBox .bottomFooter .bottomFooter_l{
+			     width:696px;
+				 height:35px;
+				 float:left;
+			 }
+			 .centerBox .bottomFooter .bottomFooter_l ul li,
+			 .centerBox .bottomFooter .bottomFooter_r ul li{
+			     float:left;
+			     width:173px;
+				 height:35px;
+				 text-align:center;
+				 line-height:35px;
+				 background:#ccc;
+				 border-right:1px solid #666;
+			 }
+			 .centerBox .bottomFooter .bottomFooter_l ul li a,
+			 .centerBox .bottomFooter .bottomFooter_r ul li a{
+			     font-size:14px;
+				 font-weight:bold;
+			 }
+			 .centerBox .bottomFooter .bottomFooter_r{
+			     width:240px;
+				 height:35px;
+				 float:right;
+			 }
+			 .centerBox .bottomFooter .bottomFooter_r ul li{
+				 width:99px;
+			     padding-left:20px;
+				 background:#ccc url("images/E_mails.png")no-repeat 16px 12px;
+			 }
+			 #footBox{
+			     width:100%;
+				 height:60px;
+				 background:#0154A4;
+			 }
+			 #footBox .footBox_m{
+			     width:1000px;
+				 height:60px;
+				 margin:auto;
+			 }
+			 #footBox .footBox_m .footBox_m_l{
+			     width:350px;
+				 height:60px;
+				 float:left;
+			 }
+			 #footBox .footBox_m .footBox_m_l img{
+			     margin:5px 10px 0 20px;
+				 float:left;
+			 }
+			 #footBox .footBox_m .footBox_m_l a{
+			     display:inline-block;
+				 margin-top:11px;
+				 color:#fff;
+			 }
+			 #footBox .footBox_m .footBox_m_r{
+			     width:650px;
+				 height:60px;
+				 text-align:right;
+				 float:right;
+			 }
+			 #footBox .footBox_m .footBox_m_r a{
+			     color:#fff;
+				 display:inline-block;
+				 margin-top:15px;
+				 margin-right:20px;
+			 }
+			 #footBox .footBox_m .footBox_m_r span{
+			     margin-right:20px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="mainBody">
+	     <div class="head">
+		     <div class="head_nav">
+			     <div class="logo">
+				     <a href="http://http://www.zsc.edu.cn/">
+					 <img src="images/logo.png" width="339" height="61" alt="电子科技大学"/>
+					 </a>
+					 <div class="search">
+					     <form action="#" method="post">
+						     <input type="text" name="txt" class="txt" placeholder="网站搜索" onfocus="if (value =='网站搜索'){value =''}" onblur="if (value ==''){value='网站搜索'}" onclick="return value=''"/>
+							 <input type="image" name="submit" src="images/find.jpg" class="find" title="搜索" />
+						 </form>
+					 </div>
+				 </div>
+				 <div class="listMenu">
+				     <div class="list">
+					     <ul class="UList">
+						     <li>
+							     <a href="http://www.zsc.edu.cn/article.php?tack=index">
+								     新闻网
+								 </a>
+							 </li>
+							 <li class="list1">
+							     <a href="http://www.zsc.edu.cn/infoPage.php?infoPageId=15754&infoPageAction=display">
+								     学校状况
+								 </a>
+								 <ul class="ul1">
+								     <li>
+									  <a href="http://www.zsc.edu.cn/infoPage.php?infoPageId=15754&infoPageAction=display">
+									     学校简介
+									  </a>
+									 </li>
+									 <li>
+									  <a href="http://www.zsc.edu.cn/infoPage.php?infoPageId=15755&infoPageAction=display">
+									     学校领导
+									  </a>
+									 </li> 
+									 <li>
+									  <a href="http://www.zsc.edu.cn/infoPage.php?infoPageId=15761&infoPageAction=display">
+									     校长寄语
+									  </a>
+									 </li> 
+									 <li>
+									  <a href="http://www.zsc.edu.cn/accessory.php?tack=index">
+									     校园风光
+									  </a>
+									 </li> 
+								 </ul>
+							 </li>
+							 <li class="list2">
+							     <a href="http://www.zsc.edu.cn/infoPage.php?tack=institution">
+								     机构设置
+								 </a>
+								 <ul class="ul2">
+								     <li>
+									     <a href="http://www.zsc.edu.cn/infoPage.php?tack=institution">
+										     二级学院（部）
+										 </a>
+									 </li>
+									 <li>
+									     <a href="http://www.zsc.edu.cn/infoPage.php?tack=institutions">
+										     职能部门
+										 </a>
+									 </li>
+								 </ul>
+							 </li>
+							 <li class="list3">
+							     <a href="http://www.zsc.edu.cn/">
+								     人才培养
+								 </a>
+								 <ul class="ul3">
+								     <li>
+									     <a href="http://jwc.zsc.edu.cn/">
+										     本科生
+										 </a>
+									 </li>
+									 <li>
+									     <a href="http://www.zsc.edu.cn/infoPage.php?tack=yjs">
+										     研究生
+										 </a>
+									 </li>
+								 </ul>
+							 </li>
+							 <li>
+							     <a href="http://kyc.zsc.edu.cn/">
+								     科学研究
+								 </a>
+							 </li>
+							 <li class="list4">
+							     <a href="http://www.zsc.edu.cn/">
+								     招生就业
+								 </a>
+								 <ul class="ul4">
+								     <li>
+									     <a href="http://zsb.zsc.edu.cn/">
+										     招生信息
+										 </a>
+									 </li>
+									 <li>
+									     <a href="http://jyxx.zsc.edu.cn/">
+										     就业信息
+										 </a>
+									 </li>
+								 </ul>
+							 </li>
+							 <li>
+							     <a href="http://www2.zsc.edu.cn:1080/hzjl/">
+								     对外交流
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://jxjy.zsc.edu.cn/">
+								     继续教育
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://lib.zsc.edu.cn/">
+								     图书情报
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://www2.zsc.edu.cn/rsc/">
+								     人才招聘
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://xyh.zsc.edu.cn/">
+								     校友会
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://www2.zsc.edu.cn/zbxxw/">
+								     招标信息
+								 </a>
+							 </li>
+						 </ul>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+		 <div class="centerBox">
+             <div class="BigImgBox">
+			     <div class="BigImg">
+					 <img src="images/莲.jpg">
+					 <img src="images/省市共建高校大图(黄潇扬 韦文杰).jpg">
+					 <img src="images/应用型大学 (2).jpg">
+					 <img src="images/高校辅导员职业能力大赛.jpg">
+				 </div>
+				 <div class="btnBox">
+				     <a href="">1</a>
+					 <a href="">2</a>
+					 <a href="">3</a>
+					 <a href="">4</a>
+				 </div>
+			 </div>
+			 <div class="centerBtmBox clearfixed">
+			     <div class="centerBtmBox_l">
+				     <div class="con_A">
+					     <ul>
+						     <li>
+							     <a href="http://oa.zsc.edu.cn/">
+								     办公系统
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://jwgl.zsc.edu.cn:90/">
+								     教务系统
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://www2.zsc.edu.cn/kyxxglxt/">
+								     科研管理
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://172.16.20.1:8800/">
+								     数字财务
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://www3.zsc.edu.cn/sbweb/">
+								     资产管理
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://jwc.zsc.edu.cn/zyk.php">
+								     学习资源
+								 </a>
+							 </li>
+						 </ul>
+					 </div>
+					 <div class="con_B">
+					     <ul>
+						     <li>
+							     <a href="http://xxgk.zsc.edu.cn/">
+							         信息公开
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://mail.zsc.edu.cn/">
+							         教师邮箱
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://lib.zsc.edu.cn/">
+							         图书借阅
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://www.zsc.edu.cn/infoPage.php?tack=xydh">
+							         校园导航
+								 </a>
+							 </li>
+						 </ul>
+					 </div>
+					 <div class="con_C">
+					     <ul>
+						     <li>
+							     <a href="http://www.zsc.edu.cn/article.php?tack=xqzt">
+							         30周年校庆专题
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://zlgc.zsc.edu.cn/">
+							         质量工程建设
+								 </a>
+							 </li>
+							 <li>
+							     <a href="http://www.zsc.edu.cn/article.php?tack=lxyz">
+							         两学一做、十八届六中全会
+								 </a>
+							 </li>
+						 </ul>
+					 </div>
+					 <div class="con_D">
+					     <div class="con_D1">
+						     <a href="#">
+							     <img src="images/indexGuideD-1.png">
+							 </a>
+						 </div>
+						 <div class="con_D2">
+						     <a href="http://zscnewspaper.cuepa.cn/">
+							     <img src="images/indexGuideD-2.png">
+							 </a>
+						 </div>
+						 <div class="con_D3">
+						     <a href="http://www.zsc.edu.cn/article.php?articleLabel=15232&articleAction=List">
+							     <img src="images/indexGuideD-3.png">
+							 </a>
+						 </div>
+					 </div>
+				 </div>
+				 <div class="centerBtmBox_c">
+				     <div class="centerBtmBox_c_t">
+					     <div class="centerBtmBox_c_t_h">
+						     <span>综合•新闻</span>
+							 <img src="images/more.jpg">
+							 <a href="">更多新闻</a>
+						 </div>
+						 <div class="centerBtmBox_c_t_m">
+						     <ul>
+							     <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212992&articleAction=display">
+									     凝心聚力同心同德  共谋学校发展新局面——学校召开第五届教代会暨第八届工代会第三次会议
+									 </a>
+									 <img src="images/news.gif">
+									 <span>04-14</span>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212971&articleAction=display">
+									     【省市共建】学校举行共建总体规划及体制机制改革方案专家论证会
+									 </a>
+									 <img src="images/news.gif">
+									 <span>04-14</span>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212939&articleAction=display">
+									     我校3个教育部产学合作协同育人项目获授牌
+									 </a>
+									 <span>04-14</span>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212927&articleAction=display">
+									     我校辅导员荣获第六届广东高校辅导员职业能力大赛一等奖
+									 </a>
+									 <span>04-14</span>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212903&articleAction=display">
+									     【省市共建】立足中山，校企共建协同创新和育人中心——电子信息学院与中山市马迅电器有限公司产教融合探索应用型转型升级之路 
+									 </a>
+									 <span>04-14</span>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212819&articleAction=display">
+									     我校2017年春季招聘会成功举办
+									 </a>
+									 <span>04-14</span>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212817&articleAction=display">
+									     学校举办与企业、机构、协会签约就业创业“战略合作伙伴”仪式 
+									 </a>
+									 <span>04-14</span>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+									 <a href="http://www.zsc.edu.cn/article.php?articleId=212696&articleAction=display">
+									     以产教融合促应用型转型，以课程改革助推创新强校——学校召开教学工作会议部署人才培养工作
+									 </a>
+									 <span>04-14</span>
+								 </li>
+							 </ul>
+						 </div>
+						 <div class="centerBtmBox_c_t_b">
+						     <div class="centerBtmBox_c_t_b_h">
+							     <a href="http://www.zsc.edu.cn/article.php?articleLabel=15228&articleAction=List">
+								     媒体聚焦
+								 </a>
+								 <a href="http://www.zsc.edu.cn/article.php?articleLabel=15223&articleAction=List">
+								     焦点资讯
+								 </a>
+								 <span>
+								     <a href="http://www.zsc.edu.cn/article.php?tack=index">
+									     更多
+								     </a>
+								 </span>
+							 </div>
+							 <div class="centerBtmBox_c_t_b_m">
+							     <ul>
+								 <li>
+								     <img src="images/icon_01.jpg">
+									 <a href="http://www.zsc.edu.cn/article.php?articleId=212974&articleAction=display">
+									     广东省教育厅:电子科技大学中山学院省市共建总体规划及体制机制改革方案通过专家论证
+									 </a>
+									 <img src="images/news.gif">
+									 </li>
+									 <li>
+								     <img src="images/icon_01.jpg">
+									 <a href="http://www.zsc.edu.cn/article.php?articleId=212932&articleAction=display">
+									     中山日报：“聪明”的开关让你远程监控冰箱——校企合作协同创新育人，研发的智能产品获462万元订单
+									 </a>
+									 <img src="images/news.gif">
+									 </li>
+									 <li>
+								     <img src="images/icon_01.jpg">
+									 <a href="http://www.zsc.edu.cn/article.php?articleId=212974&articleAction=display">
+									     南方日报：中山多所高校探索校企合作新模式——协同创新中心建八个月 研发产品远销国外
+									 </a>
+									 <img src="images/news.gif">
+									 </li>
+									 <li>
+								     <img src="images/icon_01.jpg">
+									 <a href="http://www.zsc.edu.cn/article.php?articleId=212974&articleAction=display">
+									     广东省教育厅：电子科技大学中山学院举办2017年春季招聘会
+									 </a>
+									 <img src="images/news.gif">
+									 </li>
+								 </ul>
+							 </div>
+						 </div>
+					 </div>
+					 
+				 </div>
+				 <div class="centerBtmBox_r">
+				     <div class="centerBtmBox_r_img">
+					 </div>
+					 <div class="centerBtmBox_r_m">
+					     <div class="centerBtmBox_r_m_h">
+						     <a herf="http://www.zsc.edu.cn/article.php?articleLabel=15229&articleAction=List">
+							     公告
+							 </a>
+							 <a herf="http://www.zsc.edu.cn/article.php?articleLabel=15230&articleAction=List">
+							     学术
+							 </a>
+							 <span>
+							     <a herf="http://www.zsc.edu.cn/article.php?tack=index">
+							         更多
+							     </a>
+							 </span>
+						 </div>
+						 <div class="centerBtmBox_r_m_b">
+						     <ul>
+							     <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212941&articleAction=display">
+									     “南北关于减少污染排放的谈判——基于讨价还价博弈的分析框架”学术报告通知
+									 </a>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212940&articleAction=display">
+									     “大学生科技发明创新思维及方法”讲座通知
+									 </a>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=212666&articleAction=display">
+									     “Source of Finance and the Cost of Capital”主题讲座通知
+									 </a>
+								 </li>
+								 <li>
+								     <img src="images/icon_01.jpg">
+								     <a href="http://www.zsc.edu.cn/article.php?articleId=211512&articleAction=display">
+									     “云计算与大数据应用案例分享”系列讲座通知
+									 </a>
+								 </li>
+							 </ul>
+						 </div>
+					 </div>
+				 </div>
+			 </div>
+			 <div class="bottomFooter clearfixed">
+			     <div class="bottomFooter_l">
+				     <ul>
+					     <li>
+						     <a href="http://www.zsc.edu.cn/">
+							     友情链接
+							 </a>
+						 </li>
+						 <li>
+						     <a href="http://www.zsc.edu.cn/">
+							     学校机构导航
+							 </a>
+						 </li>
+						 <li>
+						     <a href="http://www.zsc.edu.cn/">
+							     二级学院网站
+							 </a>
+						 </li>
+						 <li>
+						     <a href="http://www.zsc.edu.cn/">
+							     学生社团组织
+							 </a>
+						 </li>
+					 </ul>
+				 </div>
+				 <div class="bottomFooter_r">
+				     <ul>
+					     <li>
+						     <a href="http://www.zsc.edu.cn/infoPage.php?infoPageId=15765&infoPageAction=display">
+							     书记信箱
+							 </a>
+						 </li>
+						 <li>
+						     <a href="http://www.zsc.edu.cn/infoPage.php?infoPageId=15765&infoPageAction=display">
+							     校长信箱
+							 </a>
+						 </li>
+					 </ul>
+				 <div>
+			 </div>
+		 </div>
+	 </div>
+	 <div id="footBox">
+	     <div class="footBox_m clearfixed">
+		     <div class="footBox_m_l">
+			     <img src="images/foot_unit.jpg">
+				 <a href="http://www.zsc.edu.cn/infoPage.php?infoPageId=15754&infoPageAction=display">学校简介</a> <span>|       </span><a href="http://www.zsc.edu.cn/article.php?articleAction=add">在线投稿</a>
+				 <br/>
+				 <span>网络备案:</span><a href="http://www.miitbeian.gov.cn/">
+				     粤ICP备05008828号
+				 </a>
+			 </div>
+			 <div class="footBox_m_r">
+			     <span>版权所有：电子科技大学中山学院 /</span><a href="http://www.booen.com.cn/">技术支持:布恩</a><br/>
+				 <span>地址：广东省中山市石岐区学院路1号 / 电话：0760-88328103、88888611(普教招生热线)/88328348(继教招生热线)</span>
+			 </div>
+		 </div>
+	 </div>
+</body>
+</html>
