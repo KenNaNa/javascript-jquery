@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>综合实例-css3渐变制作纹理背景-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body,html{height:100%;}
+			 body{
+			     background: radial-gradient(center , ellipse cover , rgb(67, 43, 64) 1% , rgb(249, 175, 29) 14% , rgb(122, 209, 191) 33% , rgb(70, 178, 244) 36% , rgb(22, 80, 10) 43% , rgb(181, 152, 237) 47% , rgb(153, 23, 5) 48% , rgb(105, 236, 196) 68% , rgb(84, 168, 186) 76% , rgb(77, 164, 142) 85% , rgb(1, 112, 12) 93%);
+				background: -o-radial-gradient(center , ellipse cover , rgb(67, 43, 64) 1% , rgb(249, 175, 29) 14% , rgb(122, 209, 191) 33% , rgb(70, 178, 244) 36% , rgb(22, 80, 10) 43% , rgb(181, 152, 237) 47% , rgb(153, 23, 5) 48% , rgb(105, 236, 196) 68% , rgb(84, 168, 186) 76% , rgb(77, 164, 142) 85% , rgb(1, 112, 12) 93%);
+				background: -ms-radial-gradient(center , ellipse cover , rgb(67, 43, 64) 1% , rgb(249, 175, 29) 14% , rgb(122, 209, 191) 33% , rgb(70, 178, 244) 36% , rgb(22, 80, 10) 43% , rgb(181, 152, 237) 47% , rgb(153, 23, 5) 48% , rgb(105, 236, 196) 68% , rgb(84, 168, 186) 76% , rgb(77, 164, 142) 85% , rgb(1, 112, 12) 93%);
+				background: -moz-radial-gradient(center , ellipse cover , rgb(67, 43, 64) 1% , rgb(249, 175, 29) 14% , rgb(122, 209, 191) 33% , rgb(70, 178, 244) 36% , rgb(22, 80, 10) 43% , rgb(181, 152, 237) 47% , rgb(153, 23, 5) 48% , rgb(105, 236, 196) 68% , rgb(84, 168, 186) 76% , rgb(77, 164, 142) 85% , rgb(1, 112, 12) 93%);
+				background: -webkit-radial-gradient(center , ellipse cover , rgb(67, 43, 64) 1% , rgb(249, 175, 29) 14% , rgb(122, 209, 191) 33% , rgb(70, 178, 244) 36% , rgb(22, 80, 10) 43% , rgb(181, 152, 237) 47% , rgb(153, 23, 5) 48% , rgb(105, 236, 196) 68% , rgb(84, 168, 186) 76% , rgb(77, 164, 142) 85% , rgb(1, 112, 12) 93%);
+
+			 }
+			 .patterns{
+			     width:200px;
+				 height:200px;
+				 float:left;
+				 margin:10px;
+				 box-shadow:0 1px 8px #ccc;
+			 }
+			 .p1{
+			     background-position:50px 50px;
+				 background-color:#0ae;
+				 background-image:-webkit-linear-gradient(rgb(67, 43, 43) 50%,rgb(0, 0, 0) 50%,transparent);
+			 }
+			 .p2{
+			     background-position:50px 50px;
+				 background-color:#f90;
+				 background-image:-webkit-linear-gradient(0deg,rgba(255,255,255,.2) 50%,rgb(0,0,0) 50%,transparent);
+			 }
+			 .p3{
+			     background-position:0 0px ,40px 40px;
+				 background-size:80px 80px;
+				 background-color:#def;
+				 background-image:-webkit-radial-gradient(closest-side,transparent 98%,rgba(0,0,0,.3) 99%) ,-webkit-radial-gradient(closest-side,transparent 98%,rgba(0,0,0,.3) 99%);
+			 }
+			 .p4{
+			     background-position:0 70px,20px 20px;
+				 background-color:#0ae;
+				 background-image:-webkit-radial-gradient(rgba(67, 43, 43,0) 50%,rgba(0, 0, 0,.2) 50%,rgba(0,0,0,.5) 50%),-webkit-linear-gradient(rgba(67, 43, 43,0) 50%,rgba(0, 0, 0,.2) 100%,rgba(0,0,0,.5) 50%),-webkit-radial-gradient(rgba(67, 43, 43,0) 50%,rgba(0, 0, 0,.2) 50%,rgba(0,0,0,.5)),-webkit-linear-gradient(rgba(67, 43, 43,0) 50%,rgba(0, 0, 0,.2) 50%,rgba(0,0,0,.5) 100%);
+				 background-size:20px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="p1 patterns"></div>
+	 <div class="p2 patterns"></div>
+	 <div class="p3 patterns"></div>
+	 <div class="p4 patterns"></div>
+	 <div class="box"></div>
+</body>
+</html>

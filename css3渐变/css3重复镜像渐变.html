@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>css3重复镜像渐变-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .fl{float:left;}
+			 div{margin-right:10px;}
+			 .box{
+			     width:400px;
+				 height:300px;
+				 margin:20px auto;
+				 background:-webkit-radial-gradient(red,green 40px,orange 80px);
+			 }
+			 .box1{
+			     width:400px;
+				 height:300px;
+				 margin:20px auto;
+				 background:-webkit-repeating-radial-gradient(red,green 40px,orange 80px);
+			 }
+			 .box2{
+			     width:400px;
+				 height:300px;
+				 margin:20px auto;
+				 background:-webkit-repeating-linear-gradient(red,green 40px,orange 80px);
+			 }
+			 .box3{
+			     width:400px;
+				 height:300px;
+				 margin:20px auto;
+				 background:-webkit-linear-gradient(red,green 40px,orange 80px);
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box fl"></div>
+	 <div class="box1 fl"></div>
+	 <div class="box2 fl"></div>
+	 <div class="box3 fl"></div>
+</body>
+</html>
+ 

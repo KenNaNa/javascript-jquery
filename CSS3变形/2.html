@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords"content=""/>
+<meta name="description" content="本篇网页的概述，一段话，对网站的进一步描述"/>
+<meta name="author"  content="网页作者的资料">
+<meta name="robots" content="" />
+<meta http-equiv="Content－Type" content="text/html; charset=gb2312">
+<title>无标题文档</title>
+<style>
+  .first-div{
+   border:1px solid red;
+  }
+   .second-div{
+   border:1px solid green;
+  }
+  .third-div{
+  border:1px solid blue;
+  }
+  div{
+    margin:5px 0;
+  }
+</style>
+<style>
+</style>
+<script>
+   window.onload=function  () {
+    var selects=document.getElementById("select");
+	var spans=document.getElementsByTagName("span")[0];
+	selects.onkeyup=function  () {
+       if(selects.value==""){
+	     return;
+	   }
+	   for (var i=0; i<document.styleSheets[1].cssRules.length; i++) {
+	      document.styleSheets[1].deleteRule(i);
+	   }
+	   var rule=selects.value+spans.innerHTML;
+       document.styleSheets[1].insertRule(rule,0);
+	}
+   }
+</script>
+</head>
+
+<body>
+   <input type="text" id="select">
+   <span>
+   {
+    border:1px solid #000;
+   }
+   </span>
+<div class="first-div">
+	<div class="first-one">
+		first-one
+	</div>
+	<div class="first-two">
+		first-two
+	</div>
+	<div class="first-three">
+		first-three
+	</div>
+</div>
+
+<div class="second-div">
+	<div class="second-one">
+		second-one
+	</div>
+	<div class="second-two">
+		second-two
+	</div>
+	<div class="second-three">
+		second-three
+	</div>
+	<span></span>
+</div>
+
+<div class="third-div">
+	<div class="third-one">
+		third-one
+	</div>
+</div>
+<div></div>
+</body>
+</html>
