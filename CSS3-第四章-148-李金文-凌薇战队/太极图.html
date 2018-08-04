@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>太极图-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .taiji{
+			     position:relative;
+				 width:48px;
+				 height:100px;
+				 background:#fff;
+				 border:2px solid #000;
+				 border-right-width:50px;
+				 border-radius:50%;
+				 margin:100px auto;
+				 animation:rotate 5s linear infinite;
+			 }
+			 .taiji:hover{background:skyblue;}
+			 .white-circle{
+			     position:absolute;
+				 top:0px;
+				 left:50%;
+				 width:50px;
+				 height:50px;
+				 background:white;
+				 border-radius:50%;
+			 }
+			 .white-circle::after{
+			     position:absolute;
+				 left:14px;
+				 top:14px;
+				 content:"";
+				 width:20px;
+				 height:20px;
+				 border-radius:50%;
+				 background:black;
+			 }
+			 .black-circle::after{
+			     position:absolute;
+				 left:14px;
+				 top:14px;
+				 content:"";
+				 width:20px;
+				 height:20px;
+				 border-radius:50%;
+				 background:white;
+			 }
+			 .black-circle{
+			     position:absolute;
+				 top:50%;
+				 left:50%;
+				 width:50px;
+				 height:50px;
+				 background:#000;
+				 border-radius:50%;
+			 }
+			 @keyframes rotate{
+			     0%{transform:rotate(0);}
+				 100%{transform:rotate(360deg);}
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="taiji">
+	     <div class="white-circle"></div>
+		 <div class="black-circle"></div>
+	 </div>
+</body>
+</html>

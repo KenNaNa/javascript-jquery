@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>修改版的纯CSS选项卡-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 a{text-decoration:none;color:#fff; font-size:14px;font-family:"微软雅黑";}
+			 li{list-style:none;}
+			 #Tab{margin:100px auto;width:400px;background:red;position:relative;}
+			 #Tab ul li.toutiao #toutiao_txt_box,
+			 #Tab ul li.gonggao #gonggao_txt_box,
+			 #Tab ul li.zuqiu #zuqiu_txt_box{background:green; width:300px;padding:10px 0 10px 20px;position:absolute;}
+			 #Tab ul li.toutiao a.toutiao_Tab_a,
+			 #Tab ul li.gonggao a.gonggao_Tab_a,
+			 #Tab ul li.zuqiu a.zuqiu_Tab_a
+			 {position:absolute;left:0px;top:-30px;}
+			 #Tab ul li.toutiao a.toutiao_Tab_a,
+			 #Tab ul li.gonggao a.gonggao_Tab_a,
+			 #Tab ul li.zuqiu a.zuqiu_Tab_a{font-size:16px; display:block;width:50px;height:30px;background:#889F52;line-height:30px;text-align:center;margin-left:20px;}
+			 #Tab ul li.toutiao .toutiao_Tab_a:hover,
+			 #Tab ul li.gonggao .gonggao_Tab_a:hover,
+			 #Tab ul li.zuqiu .zuqiu_Tab_a:hover
+			 {text-decoration:underline;}
+			 #Tab ul li.toutiao #toutiao_txt_box ul li,
+			 #Tab ul li.gonggao #gonggao_txt_box ul li,
+			 #Tab ul li.zuqiu #zuqiu_txt_box ul li{
+			     height:30px;
+				 line-height:30px;
+			 }
+			 #Tab ul li.gonggao a.gonggao_Tab_a{
+			     left:51px;
+				 top:-30px;
+			 }
+			 #Tab ul li.zuqiu a.zuqiu_Tab_a{
+			     left:102px;
+				 top:-30px;
+			 }
+			 #Tab ul li.taotiao div#toutiao_txt_box,
+			 #Tab ul li.gonggao div#gonggao_txt_box,
+			 #Tab ul li.zuqiu div#zuqiu_txt_box{display:none;}
+		     #Tab ul li.taotiao div#toutiao_txt_box:target,
+			 #Tab ul li.gonggao div#gonggao_txt_box:target,
+			 #Tab ul li.zuqiu div#zuqiu_txt_box:target{
+				 display:block;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="Tab">
+	     <ul>
+		     <li class="checked toutiao">
+			     <a href="#toutiao_txt_box" class="toutiao_Tab_a" >头条</a>
+				 <div id="toutiao_txt_box">
+				     <ul>
+					     <li><a href="#">[热议]GalaxyS8成最值期待新机11</a></li>
+				         <li><a href="#">[实用]魅族5s30分钟充电56%11</a></li>
+				         <li><a href="#">[划算]爆款9.9元秒杀还包邮11</a></li>
+				         <li><a href="#">[时尚]摩拜单车真的不如olo?11</a></li>
+					 </ul>
+				 </div>
+			 </li>
+			 <li class="checked gonggao">
+			     <a href="#gonggao_txt_box" class="gonggao_Tab_a" >公告</a>
+				 <div id="gonggao_txt_box">
+				     <ul>
+					     <li><a href="#">[热议]GalaxyS8成最值期待新机22</a></li>
+				         <li><a href="#">[实用]魅族5s30分钟充电56%22</a></li>
+				         <li><a href="#">[划算]爆款9.9元秒杀还包邮22</a></li>
+				         <li><a href="#">[时尚]摩拜单车真的不如olo?22</a></li>
+					 </ul>
+				 </div>
+			 </li>
+			 <li class="checked zuqiu">
+			     <a href="#zuqiu_txt_box" class="zuqiu_Tab_a" >足球</a>
+				 <div id="zuqiu_txt_box">
+				     <ul>
+					     <li><a href="#">[热议]GalaxyS8成最值期待新机33</a></li>
+				         <li><a href="#">[实用]魅族5s30分钟充电56%33</a></li>
+				         <li><a href="#">[划算]爆款9.9元秒杀还包邮33</a></li>
+				         <li><a href="#">[时尚]摩拜单车真的不如olo?33</a></li>
+					 </ul>
+				 </div>
+			 </li>
+		 </ul>
+	 </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>爱心跳跳-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     position:relative;
+				 width:400px;
+				 height:400px;
+				 margin:100px auto;
+				 animation:jump 2s linear infinite alternate;
+			 }
+			 .box .same{
+			     position:absolute;
+			     top:0px;
+				 width:210px;
+				 height:345px;
+				 border-radius: 150px 150px 0px 0px;
+				 background:red;
+			 }
+			 .box .heartL{
+				 left:47px;
+				 transform:rotate(-45deg);
+			 }
+			 .box .heartR{
+				 right:47px;
+				 transform:rotate(45deg);
+			 }
+			 .box:before{
+			     position:absolute;
+				 left:80px;
+				 top:130px;
+				 z-index:10;
+			     content:"爱心送给你";
+				 font-size:48px;
+				 color:#fff;
+				 text-shadow:0 1px 0 #ccc,
+				             0 2px 0 #9c9c9c,
+							 0 3px 0 #bbb,
+							 0 4px 0 #9b9b9b,
+							 0 5px 0 #aaa;
+			 }
+			 @keyframes jump{
+			     0%, 50%, 70%, 90%, 100%{
+				     transform:scale(1);
+				 }
+				 20%{transform:scale(0.5)}
+				 30%{transform:scale(0.6)}
+				 40%{transform:scale(0.7)}
+				 60%{transform:scale(0.6)}
+				 80%{transform:scale(0.4)}
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div class="heartL same"></div>
+		 <div class="heartR same"></div>
+	 </div>
+</body>
+</html>

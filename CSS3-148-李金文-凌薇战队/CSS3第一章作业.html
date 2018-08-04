@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>CSS3第一章作业-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .fr{float:right;}
+			 .fl{float:left;}
+			 .clearfixed:after{content:"";display:block;clear:both;}
+			 a{text-decoration:none;color:#fff;font-family:"宋体";font-size:12px;}
+			 li{list-style:none;}
+			 #tabBox{
+			     width:300px;
+				 min-height:200px;
+				 margin:100px auto;
+				 overflow:hidden;
+				 background:#ccc;
+			 }
+			 #tabBox #listA{
+			     width:200px;
+			     margin:20px 0 0 50px;
+			 }
+			 #tabBox #listA a{
+				 width:50px;
+				 height:30px;
+				 font-size:16px;
+				 margin-right:1px;
+				 line-height:30px;
+				 text-align:center;
+				 background:#889F52;
+			 }
+			 #tabBox #listA a:hover{text-decoration:underline;height:40px;width:60px;line-height:40px;text-align:center;margin-top:-10px;background:green;}
+			 #tabBox #toutiao,
+			 #tabBox #gonggao,
+			 #tabBox #zuqiu{display:none;}
+			 
+			 #tabBox div#toutiao:target,
+			 #tabBox div#gonggao:target,
+			 #tabBox div#zuqiu:target{
+			     width:260px;
+				 height:140px;
+				 margin-left:10px;
+				 overflow:hidden;
+				 background:green;
+			     display:block;
+			 }
+			 #tabBox #toutiao .listMenu1,
+			 #tabBox #gonggao .listMenu2,
+			 #tabBox #zuqiu .listMenu3{
+			     width:200px;
+				 margin:10px 0 0 20px;
+			 }
+			 #tabBox #toutiao .listMenu1 li,
+			 #tabBox #gonggao .listMenu2 li,
+			 #tabBox #zuqiu .listMenu3 li{
+			     height:30px;
+				 line-height:30px;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="tabBox">
+	     <nav id="listA" class="clearfixed">
+		     <a href="#toutiao" class="fl">头条</a>
+			 <a href="#gonggao" class="fl">公告</a>
+			 <a href="#zuqiu" class="fl">足球</a>
+		 </nav>
+		 <div id="toutiao">
+		     <ul class="listMenu1">
+			     <li><a href="#">[热议]GalaxyS8成最值期待新机11</a></li>
+				 <li><a href="#">[实用]魅族5s30分钟充电56%</a></li>
+				 <li><a href="#">[划算]爆款9.9元秒杀还包邮</a></li>
+				 <li><a href="#">[时尚]摩拜单车真的不如olo?</a></li>
+			 </ul>
+		 </div>
+		 <div id="gonggao">
+		     <ul class="listMenu2">
+			     <li><a href="#">[热议]GalaxyS8成最值期待新机22</a></li>
+				 <li><a href="#">[实用]魅族5s30分钟充电56%</a></li>
+				 <li><a href="#">[划算]爆款9.9元秒杀还包邮</a></li>
+				 <li><a href="#">[时尚]摩拜单车真的不如olo?</a></li>
+			 </ul>
+		 </div>
+		 <div id="zuqiu">
+		     <ul class="listMenu3">
+			     <li><a href="#">[热议]GalaxyS8成最值期待新机33</a></li>
+				 <li><a href="#">[实用]魅族5s30分钟充电56%</a></li>
+				 <li><a href="#">[划算]爆款9.9元秒杀还包邮</a></li>
+				 <li><a href="#">[时尚]摩拜单车真的不如olo?</a></li>
+			 </ul>
+		 </div>
+	 </div>
+</body>
+</html>

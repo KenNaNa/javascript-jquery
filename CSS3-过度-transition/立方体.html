@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>立方体-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			
+			 .cube {
+                 position: relative;
+                 top: 200px;
+            }
+
+             .rightFace,
+             .leftFace,
+             .topFace div {
+                 padding: 10px;
+                 width: 180px;
+                 height: 180px;
+            }
+
+			 .rightFace,
+			 .leftFace,
+			 .topFace {
+				 position: absolute;
+			}
+			 .leftFace {
+				 -webkit-transform: skewY(30deg);
+				 -moz-transform: skewY(30deg);
+				 background-color: #ccc;
+		    }
+
+			 .rightFace {
+				 -webkit-transform: skewY(-30deg);
+				 -moz-transform: skewY(-30deg);
+				 background-color: #ddd;
+				 left: 200px;
+			}
+			 .topFace div {
+                 -webkit-transform: skewY(-30deg) scaleY(1.16);
+				 -moz-transform: skewY(-30deg) scaleY(1.16);
+				 background-color: #eee;
+				 font-size: 0.862em;
+            }
+
+			 .topFace {
+			     -webkit-transform: rotate(60deg);
+			     -moz-transform: rotate(60deg);
+			     top: -158px;
+			     left: 100px;
+			}
+		 </style>
+	 </head>
+<body>
+     <div class="cube">
+         <div class="topFace">
+             <div>
+                 Content
+             </div>
+         </div>
+         <div class="leftFace">
+             Content
+         </div>
+         <div class="rightFace">
+             Content
+         </div>
+     </div>
+</body>
+</html>

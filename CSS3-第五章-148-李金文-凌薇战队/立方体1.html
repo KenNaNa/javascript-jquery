@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			.rect-wrap {
+                 position: relative;
+                 perspective: 1600px;
+            }
+			.container {
+				 width: 800px;
+				 height: 800px;
+				 transform-style: preserve-3d;
+				 transform-origin: 50% 50% 200px; 
+				 animation: rotate-frame 30s linear infinite;
+				 /* //设置3d空间的原点在平面中心再向Z轴移动200px的位置 */
+		    }
+			.slide {
+				 width: 400px;
+				 height: 400px;
+				 position: absolute; //定位
+		    }
+			.top {
+				 left: 200px;
+				 top: -200px;
+				 transform: rotateX(-90deg);
+				 transform-origin: bottom;
+				 background:rgba(255,255,255,0.3) url("images/1.jpg")center/cover no-repeat;
+			}
+			.bottom {
+				 left: 200px;
+				 bottom: -200px;
+				 transform: rotateX(90deg);
+				 transform-origin: top;
+				 background:rgba(255,255,255,0.3) url("images/2.jpg")center/cover no-repeat;
+			}
+			.left {
+				 left: -200px;
+				 top: 200px;
+				 transform: rotateY(90deg);
+				 transform-origin: right;
+				 background:rgba(255,255,255,0.3) url("images/3.jpg")center/cover no-repeat;
+			}
+			.right {
+				 left: 600px;
+				 top: 200px;
+				 transform: rotateY(-90deg);
+				 transform-origin: left;
+				 background:rgba(255,255,255,0.3) url("images/4.jpg")center/cover no-repeat;
+			}
+			.front {
+				 left: 200px;
+				 top: 200px;
+				 transform: translateZ(400px); 
+				 background:rgba(255,255,255,0.3) url("images/5.jpg")center/cover no-repeat;
+				 /* //立方体前面正对着屏幕，所以不用旋转，只需向Z轴前移动距离 */
+			}
+			.back {
+				 left: 200px;
+				 top: 200px;
+				 transform: translateZ(0);
+				 background:rgba(255,255,255,0.3) url("images/6.jpg")center/cover no-repeat;
+				 /* //立方体后面正对着屏幕，所以不用旋转，只需向Z轴后移动距离 */
+			}
+			@keyframes rotate-frame {
+				 0% {
+				 transform: rotateX(0deg) rotateY(0deg);
+				 }
+				 10% {
+				 transform: rotateX(0deg) rotateY(180deg);
+				 }
+				 20% {
+				 transform: rotateX(-180deg) rotateY(180deg);
+				 }
+				 30% {
+				 transform: rotateX(-360deg) rotateY(180deg);
+				 }
+				 40% {
+				 transform: rotateX(-360deg) rotateY(360deg);
+				 }
+				 50% {
+				 transform: rotateX(-180deg) rotateY(360deg);
+				 }
+				 60% {
+				 transform: rotateX(90deg) rotateY(180deg);
+				 }
+				 70% {
+				 transform: rotateX(0) rotateY(180deg);
+				 }
+				 80% {
+				 transform: rotateX(90deg) rotateY(90deg);
+				 }
+				 90% {
+				 transform: rotateX(90deg) rotateY(0);
+				 }
+				 100% {
+				 transform: rotateX(0) rotateY(0);
+				 }
+			}
+		 </style>
+	 </head>
+<body>
+     <div class="rect-wrap"> 
+	 <!-- //舞台元素，设置perspective，让其子元素获得透视效果。 -->
+     <div class="container">
+	 <!-- //容器，设置transform-style: preserve-3d，让其子元素在3D空间呈现 -->
+     <div class="top slide"></div> <!-- //立方体的六个面 -->
+     <div class="bottom slide"></div>
+     <div class="left slide"></div>
+     <div class="right slide"></div>
+     <div class="front slide"></div>
+     <div class="back slide"></div>
+     </div>
+     </div>
+</body>
+</html>

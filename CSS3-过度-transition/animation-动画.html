@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>animation-动画-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 /*
+			     animation:
+				 name：动画名称
+				 duration：动画持续时间
+				 delay：动画延迟时间
+				 timing-function:动画曲线
+				 iteration-count：播放次数
+				 diration:动画方向
+			 */
+			 .box{
+			     width:100px;
+				 height:100px;
+				 background:red;
+				 /* animation:move 5s 1s linear infinite alternate running; */
+				 /*alternate:反向轮流播放
+				   running:动画正在播放
+				   animation-play-state:
+                   paused:已经暂停
+                   running:动画正在播放
+				    animation-fill-mode:动画播放之前或者之后的效果
+                    none:不改变默认行为;
+                    forwards:动画完成后,保持最后一个属性(停在最后的关键帧);
+                    backwards:保留第一个显示的属性;
+                    both:向前和向后填充模式都被应用;
+
+				 */
+				 /* animation:move 5s linear backwards; */
+				 /* animation:move 5s linear forwards; */
+                 animation:move 5s linear both;/*被覆盖了他回去的效果所以只停留在最后一帧*/
+			 }
+			 @keyframes move{
+			     0%{width:100px;background:pink;height:100px;}
+				 30%{width:200px;background:green;height:200px;}
+				 100%{width:400px;background:skyblue;height:400px;}/*from{} to{}*//*to{}默认初始*//*infinite:无数次播放*/
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box"></div>
+</body>
+</html>

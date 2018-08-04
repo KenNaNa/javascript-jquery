@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>拓展transform-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 /*
+			     transition
+				 常用的属性
+				 tranform
+				     rotate 旋转
+			 */
+			 .box{width:100px;height:100px;background:skyblue;margin:100px auto;animation:move 5s linear infinite alternate;text-align:center;line-height:100px;}
+			 /* transition:transform 1s linear;text-align:center;line-height:100px;}
+			 .box:hover{transform:scale(1.5,1.5);} */
+			 @keyframes move{
+			     from{transform:scale(1,1)}
+				 to{transform:scale(1.5,1.5)}
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">跟我一起旋转</div>
+</body>
+</html>

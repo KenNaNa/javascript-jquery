@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>CSS3第二章作业2-1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 body{background:#ccc;}
+			 .fl{float:left;}
+			 .same{
+			     width:260px;
+				 height:260px;
+				 border-radius:50%;
+				 margin:auto;
+			 }
+			 .circle{
+				 background:-webkit-repeating-radial-gradient(#ace,#ace 5px,#f96 5px,#f96 10px);/*重复渐变*/
+			 }
+			 .circle1{
+			     background:-webkit-radial-gradient(#ace,#f96,#1E90FF);
+			 }
+			 .circle2{
+			     background:-webkit-radial-gradient(#ace 5%,#f96 25%,#1E90FF 50%); 
+			 }
+			 .circle3{
+			     background:-webkit-radial-gradient(center,circle,#ace,#f96,#1E90FF);
+				 /*规定形状圆形*默认与class="circle"相同*/
+			 }
+			 .circle4{
+			     background:-webkit-radial-gradient(left bottom,ellipse,#ace,#f96,#1E90FF);
+				 /*规定形状椭圆形*/
+			 }
+			 .circle5{
+			     background:-webkit-radial-gradient(cover,#ace 10%,#f96 50%,#1E90FF);
+				 /*规定形状圆形*/
+			 }
+			 .circle6{
+			     background:-webkit-radial-gradient(contain,#ace 10%,#f96 50%,#1E90FF);
+				 /*规定形状圆形*/
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="circle same fl"></div>
+	 <div class="circle1 same fl"></div>
+	 <div class="circle2 same fl"></div>
+	 <div class="circle3 same fl"></div>
+	 <div class="circle4 same fl"></div>
+	 <div class="circle5 same fl"></div>
+	 <div class="circle6 same fl"></div>
+</body>
+</html>

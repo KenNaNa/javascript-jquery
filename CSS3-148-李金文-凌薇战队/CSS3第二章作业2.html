@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>CSS3第二章作业2-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 #Box{
+			     position:relative;
+			     width:380px;
+				 height:600px;
+				 margin:auto;
+				 background:#ccc;
+			 }
+			 #Box h1{
+			     color:#fff;
+				 text-align:center;
+				 margin-bottom:10px;
+				 text-shadow:0 1px 0 #ccc,0 2px 0 #9c9c9c,0 3px  #bbb,0 4px 0 #9b9b9b,0 5px 0 #aaa;/* 立体字 */
+				 /* text-shadow:2px 2px 4px #000; *//*浮雕字*/
+				 /* color:rgba(0,0,0,0.5); text-shadow:0 0 20px blue; */
+                 /*模糊字*/
+			 }
+			 #Box .circle{
+			     width:260px;
+				 height:260px;
+				 border-radius:50%;
+				 margin:auto;
+				 background:-webkit-radial-gradient(center,#fafafa,#9d559b,#ff0080,#1c12d6,#0fb541,#32f127,#31bf60,#edc93a,#f94620,#d037c9,#ed2379);
+				 background:-moz-radial-gradient(center,#fafafa,#9d559b,#1c12d6,#0fb541,#32f127,#edc93a,#f94620,#d037c9,#ed2379);
+				 background:-ms-radial-gradient(center,#fafafa,#9d559b,#1c12d6,#0fb541,#32f127,#edc93a,#f94620,#d037c9,#ed2379);
+				 background:-o-radial-gradient(center,#fafafa,#9d559b,#1c12d6,#0fb541,#32f127,#edc93a,#f94620,#d037c9,#ed2379);
+				 background:radial-gradient(center,#fafafa,#9d559b,#1c12d6,#0fb541,#32f127,#edc93a,#f94620,#d037c9,#ed2379);
+			 }
+			 #Box .bar{
+			     width:20px;
+				 height:260px;
+				 margin:auto;
+				 background:-webkit-linear-gradient(left,#fff,#f9f5b0,#f5db5f,#d7c413);
+			 }
+			 #Box .LRsame{
+			     position:absolute;
+				 bottom:0px;
+				 right:0px;
+			     width:0px;
+				 height:0px;
+				 border:50px solid #9AFF35;
+				 border-top-color:transparent;
+				 border-bottom-color:transparent;
+			 }
+			 #Box .Ltr{
+			     right:150px;
+				 bottom:140px;
+				 border-left:120px solid #9AFF35;
+				 border-right-color:transparent;
+			 }
+			 #Box .Rtr{
+			     right:60px;
+				 bottom:140px;
+				 border-right:120px solid #9AFF35;
+				 border-left-color:transparent;
+			 }
+		 </style>
+	 </head>
+<body>
+     <div id="Box">
+	     <h1>超级棒棒糖</h1>
+		 <div class="circle"></div>
+		 <div class="bar"></div>
+		 <div class="Ltr LRsame"></div>
+		 <div class="Rtr LRsame"></div>
+	 </div>
+</body>
+</html>

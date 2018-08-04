@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>transition-过度-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 /*
+			    transition
+				transition-property:过度要添加的对象
+				transition-duration:过度的持续时间
+				transition-delay:过度的延迟时间
+				transition-timing-funtion：
+				linear匀速
+                ease 慢快慢
+                ease-in 匀加速
+                ease-out 匀减速
+				不可以过度的属性display:block,display:none;
+				过度的缺点
+				    1需要加事件触发，不能在网页加载时触发
+					2一次性运动，多次运动需要多次添加事件
+					3只有开始和结束两个状态，没有中间状态
+					4一条规则只能定义一个元素进行变换，不能作用多个元素
+				过度的优点
+				    1简单易用
+			 */
+			 .box{width:100px;height:100px;background:red;transition:width,background-color 2s  2s Fast ;}
+			 .box:hover{width:800px;background-color:green;}
+		 </style>
+	 </head>
+<body>
+     <div class="box"></div>
+</body>
+</html>

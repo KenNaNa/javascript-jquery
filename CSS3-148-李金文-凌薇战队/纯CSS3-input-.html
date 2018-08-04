@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>纯CSS3-input-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 li{list-style:none;}
+			 a{text-decoration:none;font-size:14px;font-family:"微软雅黑";color:#fff;}
+			 .fl{float:left;}
+			 .fr{float:right;}
+			 .clearfixed:after{content:"";display:block;clear:both;}
+			 ul.Tab{position:relative;padding:40px 0 0 50px;margin:100px auto ;width:400px;}
+			 ul.Tab li{float:left; margin-right:1px;}
+			 ul.Tab li div.Tab_toutiaoBox,
+			 ul.Tab li div.Tab_gonggaoBox,
+			 ul.Tab li div.Tab_zuqiuBox{
+			     width:300px;
+				 padding:10px 0 10px 30px;
+				 position:absolute;
+			     background:green;
+			 }
+			 input[type="radio"]{display:none;}
+			 label{display:block; width:50px;height:30px;background:#889F52;line-height:30px;text-align:center;color:#fff;position:absolute;top:10px;left:80px;}
+			 p{height:30px;line-height:30px;}
+			 label:hover{text-decoration:underline;}
+			 input[id$="gonggao"]+label{/*~*/
+			     left:130px;
+				 top:10px;
+			 }
+			 input[id$="zuqiu"]+label{/*关联选择器*//*~*//*同级元素的兄弟元素*/
+			     left:180px;
+				 top:10px;
+			 }
+			 input[id^="Tab"]:checked+label{/*~*/
+			     height:35px;
+				 line-height:35px;
+				 margin-top:-5px;
+				 background:green;
+				 -webkit-transition: all 0.2s ease-in-out;
+                 -moz-transition: all 0.2s ease-in-out;
+				 -ms-transition: all 0.2s ease-in-out;
+                 -o-transition: all 0.2s ease-in-out;
+                 transition: all 0.2s ease-in-out;
+			 }
+			 input[id^="Tab"]:checked~[class^="Tab"]{/*~选择元素1后面的同级所有元素*/
+			     z-index:1;
+			 }
+		 </style>
+	 </head>
+<body>
+     <ul class="Tab clearfixed">
+	     <li>
+		     <input type="radio" name="tabs" id="Tab_toutiao" checked/>
+			 <label for="Tab_toutiao">头条</label>
+			 <div class="Tab_toutiaoBox">
+			     <p><a href="#">[热议]GalaxyS8成最值期待新机 头条</a></p>
+				 <p><a href="#">[实用]魅族5s30分钟充电56%11</a></p>
+				 <p><a href="#">[划算]爆款9.9元秒杀还包邮11</a></p>
+				 <p><a href="#">[时尚]摩拜单车真的不如olo?11</a></p>
+			 </div>
+		 </li>
+		 <li>
+		     <input type="radio" name="tabs" id="Tab_gonggao" />
+			 <label for="Tab_gonggao">公告</label>
+			 <div class="Tab_gonggaoBox">
+			     <p><a href="#">[热议]GalaxyS8成最值期待新机 公告</a></p>
+				 <p><a href="#">[实用]魅族5s30分钟充电56%22</a></p>
+				 <p><a href="#">[划算]爆款9.9元秒杀还包邮22</a></p>
+				 <p><a href="#">[时尚]摩拜单车真的不如olo?22</a></p>
+			 </div>
+		 </li>
+		 <li>
+		     <input type="radio" name="tabs" id="Tab_zuqiu" />
+			 <label for="Tab_zuqiu">足球</label>
+			 <div class="Tab_zuqiuBox">
+			     <p><a href="#">[热议]GalaxyS8成最值期待新机 足球</a></p>
+				 <p><a href="#">[实用]魅族5s30分钟充电56%33</a></p>
+				 <p><a href="#">[划算]爆款9.9元秒杀还包邮33</a></p>
+				 <p><a href="#">[时尚]摩拜单车真的不如olo?33</a></p>
+			 </div>
+		 </li>
+	 </ul>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>textshadow-动画-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     width:400px;
+				 height:400px;
+				 background:#ccc;
+				 color:#fff;
+				 font-size:48px;
+				 margin:100px auto;
+				 text-align:center;
+				 line-height:400px;
+				 animation:move 5s linear  infinite;
+			 }
+			 @keyframes move{
+			     0%{
+				     text-shadow:2px 2px 4px #000;
+				 }
+				 20%{
+				     text-shadow:4px 4px 4px #000;
+				 }
+				 40%{
+				     text-shadow:6px 6px 4px #000;
+				 }
+				 60%{
+				     text-shadow:8px 8px 4px #000;
+				 }
+				 80%{
+				     text-shadow:10px 10px 4px #000;
+				 }
+				 100%{
+				     text-shadow:12px 12px 4px #000;
+				 }
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     I Love You!
+	 </div>
+</body>
+</html>
