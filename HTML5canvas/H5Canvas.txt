@@ -1,0 +1,4 @@
+canvas元素知识
+1 获取canvas对象
+2 获取上下文环境对象context
+3 开始绘制图形
