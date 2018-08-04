@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>datalist-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 details{width:300px;}
+		 </style>
+	 </head>
+<body>
+     <input type="text" list="abcd">
+	 <datalist id="abcd">
+	     <option value="10086">移动客服</option>
+	 	 <option value="10010">联通客服</option>
+	 	 <option value="12345">市长热线</option>
+	 	 <option value="12580">一按我帮你</option>
+	 	 <option value="515235">邮政编码</option>
+	     <!--联想的是value里面的值,后面的提示是标签中的文字-->
+	 </datalist>
+	 <details><!--open默认打开-->
+	     <summary>标题与details配合着使用</summary>
+		 我已经爱上你了,你知道吗,跟我交往好吗?
+	 </details>
+	 <audio src="" controls autoplay loop preload="true"></audio>
+	 <!--
+	     controls:控制条；
+		 src:音频路径
+		 autoplay:自动播放默认预加载
+		 source src
+		 muted:静音
+		 loop:循环
+         preload:预加载
+		 src是指当文件没有加载完成时，不进行后面的炒作  替代资源
+		 href是指可以并行加载link一次性向服务器请求数目 引入资源
+	 -->
+	 <video poster="" width="" height="" controls></video><br/>
+	 <!--
+	     poster 加一张图片封面用于未播放
+	 -->
+	 <input type="date"/>日期<br/>
+	 <input type="number" min="0" max="10" step="2"/>数字/*min设置最小值，max设置最大值 step设置步长*/<br/>
+	 <input type="range" min="0" max="100" step="2" value="50"/>数字/*min设置最小值，max设置最大值 step设置步长*/<br/>
+	 <input type="search"/>搜索<br/>
+	 <input type="url"/>路径<br/>
+	 <input type="tel"/>手机号码<br/>
+	 <form action="#" method="post">
+	     <input type="text" autofocus autocomplete="on" pattern="[0-9]{0-9}">
+		 <input type="submit" value="提交"/>
+		 /*是否自动完成表当on off pattern正则 autocapitalize='off'关闭首字母大写
+		   autocorrect="off" 关闭自动校正
+		 */
+	 </form><br/>
+	 <!--
+	     a>b子选择器
+         a+b匹配某个元素的紧邻元素的选择器
+		 a~b兄弟级的匹配某个元素以后的兄弟元素
+		 ::first-letter首字符
+		 ::selection选中的文字
+		 div[class=""]
+		 div[class^=""]以什么开头
+		 div[class$=""]以什么结束
+		 div[class*=""]包含什么
+		 :nth-child(n)
+		 :only-child元素里面只有一个子元素
+		 :not()不是括号里面的元素
+	 -->
+	 <style type="text/css">
+	     .list > li{float:left;}/*第一层子元素*/
+		 .list li p:not
+	 </style>
+	 <ul class="list">
+	     <li>
+		     <p>111111</p>
+             <ul>
+			     <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+			 </ul>
+		 </li>
+		 <li>
+		     <p>111111</p>
+             <ul>
+			     <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+			 </ul>
+		 </li>
+		 <li>
+		     <p>111111</p>
+             <ul>
+			     <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+				 <li>a>b子选择器</li>
+			 </ul>
+		 </li>
+	 </ul><br>
+	 
+</body>
+</html>

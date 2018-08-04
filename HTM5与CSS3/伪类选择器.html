@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>伪类选择器-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 a{text-decoration:none;color:#000;}
+			 .box{margin:100px auto;width:500px}
+			 .box a{
+			     display:inline-block;
+				 width:20px;
+				 height:20px;
+				 text-align:center;
+				 line-height:20px;
+				 background:#ccc;
+			 }
+			 .box span{
+			     display:inline-block;
+				 width:100px;
+				 height:20px;
+				 text-align:center;
+				 line-height:20px;
+				 background:blue;
+				 color:#fff;
+				 cursor:pointer;
+			 }
+			 .on ~ a{background:red;}
+			 label{display:inline-block;width:20px;height:20px;background:#33ff00;vertical-align:middle;margin-top:-3px;}
+			 input[type="checkbox"]{display:none;/*其实也可可以用定位position:absolute;left:-9999px;top:-9999px来去除checkbox*/}
+             input[type="checkbox"]:checked + label{background:#ff0000;}/*当表单input[type="checkbox"]被选中时后面的第一级兄弟元素背景颜色变成红色的背景*/
+			 .box1{width:300px;height:300px;background:red url('images/bg.png') no-repeat;margin:100px auto;padding:10px;background-origin:content-box;/*以内容为中心的*/
+			 background-origin:padding-box;
+			 border:10px dotted green;
+			 background-origin:border-box;
+			 background-clip:border-box;
+			 
+			 }
+			 .box2{width:200px;height:30px;background-image:-webkit-linear-gradient(left,red,green);}
+			 .box3{width:300px;height:30px;background-image:-webkit-repeating-linear-gradient(45deg,red 0,green 10px);}
+			 .box4{width:300px;height:300px;background:-webkit-repeating-radial-gradient(red 20px,green 30px);margin:10px auto;color:skyblue;}
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <span>上一页</span>
+		 <a href="#">1</a>
+		 <a href="#">2</a>
+		 <a href="#" class="on">3</a>
+		 <a href="#">4</a>
+		 <a href="#">5</a>
+		 <a href="#">6</a>
+		 <a href="#">7</a>
+		 <a href="#">8</a>
+		 <a href="#">9</a>
+		 <span>下一页</span>
+	 </div>
+	 <input type="text" disabled/>/*禁止选中disabled*/<br/><br/>
+	 
+	 <input type="checkbox" id="checkbox">
+	 <label for="checkbox"></label>/*用label来模拟表单的checkbox来选中*/<br/><br/>
+	 <div class="box1">
+	     你好啊
+	 </div>
+	 /*径向渐变与线性渐变*/
+	 <div class="box2"></div>
+	 /*百叶窗进度条重复线性渐变*/
+	 <div class="box3"></div>
+	 
+	 <div class="box4">/*百叶窗进度条重复径向渐变*/</div>
+</body>
+</html>

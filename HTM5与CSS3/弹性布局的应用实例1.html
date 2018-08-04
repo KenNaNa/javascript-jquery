@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>弹性布局的应用实例1-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 ul{list-style:none;}
+			 body{background:#ccc;}
+			 .box{width:288px;height:188px;background:#fff;margin:30px auto;border-radius:4px;display:flex;flex-direction:column;}
+			 .userinfo{flex:1;padding:0 20px;display:flex;}
+			 .userinfo_c{flex:1;margin-top:40px;}
+			 .userinfo img{
+			     width:80px;
+				 height:80px;
+				 border-radius:50%;
+				 margin-right:20px;
+				 margin-top:24px;
+				 background:url("images/img_flwr.gif") center/cover;
+			 }
+			 .list{height:64px;display:flex;}
+			 .list li{flex:1;text-align:center;height:64px;color:#fff;}
+			 .list li:nth-child(1){
+			     background:#f60;
+			 }
+			 .list li:nth-child(2){
+			     background:#ff6;
+			 }
+			 .list li:nth-child(3){
+			     background:#6f0;
+			 }
+			 .list li span{display:block;width:20px;height:20px;background:#ccc;
+			 margin:10px auto;}
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	     <div class="userinfo">
+		     <img src="images/img_flwr.gif" alt="花" />
+			 <div class="userinfo_c">
+			     <h3>爱上对方</h3>
+				 <p>对方是谁</p>
+			 </div>
+		 </div>
+		 <ul class="list">
+		     <li><span></span>12345</li>
+			 <li><span></span>12345</li>
+			 <li><span></span>12345</li>
+		 </ul>
+	 </div>
+</body>
+</html>

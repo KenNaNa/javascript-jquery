@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>位移-translate-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{width:200px;height:200px;background:pink;margin:100px auto;transition:transform 2s;text-shadow:0 2px 2px #fff;font-size:20px;}
+			 .box:hover{transform:translate(100px,100px) skew(45deg);}
+			 .box1{width:500px;height:500px;background:green;margin:50px;perspective:800px;/*3d景深*/}
+			 .box2{width:200px;height:200px;background:red; transition:transform 2s linear; transform-style:preserve-3d;}
+			 .box1:hover .box2{transform:/* rotate(45deg) */ rotateX(360deg);/* transform-origin:left top; */}
+		 </style>
+	 </head>
+<body>
+     <div class="box">你好啊</div>
+	 嗯<br/>
+	 注解位移不会改变原来的位置translate(45deg)<br/>
+	 添加倾斜的角度skew(45deg)<br/>
+	 添加景深perspective:800px 1200px ,transform-style:preserve-3d;/*添加在要旋转的元素上*/
+	 <div class="box1">
+	     <div class="box2"></div>
+	 </div>
+</body>
+</html>

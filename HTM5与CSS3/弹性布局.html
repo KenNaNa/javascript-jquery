@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>弹性布局-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 ul{list-style:none;display:-webkit-box;/*像是给li 加了浮动似的ul是一个弹性盒子开启弹性布局*/
+			    height:300px;
+				border:1px solid red;
+			    -webkit-box-pack:justify;/*分散对齐*/
+                -webkit-box-pack:center;/*居中对齐*/
+				-webkit-box-pack:end;/*右边对齐*/
+				-webkit-box-pack:start;/*左边对齐*/
+				-webkit-box-direction:reverse;/*是否反转,不反转是none*/
+				-webkit-box-align:start;/*垂直对齐方式的起始位置*/
+				-webkit-box-align:end;
+				-webkit-box-align:center;
+				-webkit-box-align:baseline;/*默认start*/
+				-webkit-box-align:stretch;
+				-webkit-box-orient:vertical;/*竖直排放*/
+				-webkit-box-orient:horizontal;/*水平对齐方式*/
+				-webkit-box-pack:end;
+			 }
+			 /*
+			     display:-wenkit-box旧版的标准；
+				 display:-webkit-flex;新版的标准；
+				 box-flex均分剩余宽度出去内容之外所得到的宽度；
+				 水平对齐方式：-webkit-box-pack:start/end/center/justify分散对齐
+				 垂直对齐方式:-webkit-box-align:start/end/center/baseline/stretch
+				 排列方式:-webkit-box-orient:vertical/horizontal决定他的主轴方向，改变想，y轴的方向
+
+				 display:flex;开启弹性布局；
+				 flex:1;平均分配宽度，不是剩余宽度用于均分宽度的子集元素
+				 flex-direction:row row-reverse column column-reverse/决定主轴的方向
+				 收缩比例剩余空间不足时flex-shrink总宽度减去盒子里面的内容的宽度：0不参与缩放，1：参与缩放，（每个元素的宽度的实际宽度/总宽度）*剩余宽度
+				 flex-grow:扩张比例，没写，则默认为0不参与扩张，1为扩张
+				 flex-wrap:wrap换行，none不参与换行
+			 */
+			 ul li{-webkit-box-flex:none;width:30px;height:30px;text-align:center;line-height:30px;}
+			 ul li:nth-child(1){
+			     background:#ccc;
+				 
+			 }
+			 ul li:nth-child(2){
+			     background:red;
+			 }
+			 ul li:nth-child(3){
+			     background:green;
+			 }
+			 ul li:nth-child(4){
+			     background:blue;
+			 }
+			 ul li:nth-child(5){
+			     background:red;
+			 }
+		 </style>
+	 </head>
+<body>
+     <ul>
+     	<li>1</li>
+     	<li>2</li>
+     	<li>3</li>
+     	<li>4</li>
+     	<li>5</li>
+     </ul>
+</body>
+</html>

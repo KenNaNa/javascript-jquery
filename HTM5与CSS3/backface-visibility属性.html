@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>backface-visibility属性-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 div {
+				position: relative;
+				height: 60px;
+				width: 60px;
+				background-color: red;
+				-webkit-transform: rotateY(180deg);  /* Chrome, Safari, Opera */
+				transform: rotateY(180deg);
+			}
+
+		#div1 {
+			-webkit-backface-visibility: hidden;  /* Chrome, Safari, Opera */
+			backface-visibility: hidden;
+		}
+
+		#div2 {
+			-webkit-backface-visibility: visible;  /* Chrome, Safari, Opera */
+			backface-visibility: visible;
+			transform: rotateY(0deg);
+		}
+		 </style>
+	 </head>
+<body>
+
+<p>This example shows two div elements, rotated 180 degrees, facing away from the user.</p>
+<p>The first div element has the backface-visibility property set to "hidden", and should therefore be invisible.</p>
+
+<div id="div1">DIV 1</div>
+<div id="div2">DIV 2</div>
+
+<p><strong>Note:</strong> The backface-visibility property is not supported in Internet Explorer 9 and earlier versions.</p>
+</body>
+</html>

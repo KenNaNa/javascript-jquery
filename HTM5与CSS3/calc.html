@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="EditPlus®">
+         <meta name="Author" content="">
+	     <meta name="Keywords" content="">
+	     <meta name="Description" content="">
+         <title>calc-李金文</title>
+		 <style type="text/css">
+		     *{
+			     margin:0;
+			     padding:0;
+			 }
+			 .box{
+			     width:-webkit-calc(300px - 20px);
+				 /* width:300px; */
+				 height:300px;
+				 border:10px solid yellow;
+				 background:#ccc;
+				 /* box-sizing:border-box; */
+				 padding:20px;
+				 margin:20px;/*加完border-box仍然保持300px*300px
+				 content-box默认为标准盒模型 不会改变margin的值*/
+				 /*
+				     使用“+”、“-”、“*” 和 “/”四则运算；
+					 可以使用百分比、px、em、rem等单位；
+					 可以混合使用各种单位进行计算；
+					 表达式中有“+”和“-”时，其前后必须要有空格，如"widht: calc(12%+5em)"这种没有空格的写法是错误的；
+					 表达式中有“*”和“/”时，其前后可以没有空格，但建议留有空格。
+				 */
+			 }
+		 </style>
+	 </head>
+<body>
+     <div class="box">
+	 </div>
+</body>
+</html>
