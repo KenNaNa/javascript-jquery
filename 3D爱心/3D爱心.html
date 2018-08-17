@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	 <head>
+         <meta charset="UTF-8">
+         <meta name="Generator" content="html5 css3 动画 爱心">
+         <meta name="Author" content="Ken 李金文">
+	     <meta name="Keywords" content="爱心 爱 3d 3D">
+	     <meta name="Description" content="爱心">
+         <title>HTML5+CSS3制作3D爱心</title>
+		 <link rel="stylesheet" type="text/css" href="css/heart3d.css">
+	 </head>
+<body>
+	<canvas id="canvas"></canvas>
+	<div class="div1">
+	    <span class="a1">I LOVE YOU</span>
+	    <span class="a2">YES</span>
+	    <span class="a3">YOU LOVE ME ?</span>
+	</div>
+     <div id="kePublic">
+	     <div class="heart3d">
+		     
+		 </div>
+	 </div>
+	 <script type="text/javascript" src="js/3dheart.js"></script>
+	 <script type="text/javascript" src='js/text_move.js'></script>
+	 <script type="text/javascript" src="js/digital_rain.js"></script>
+	 <script type="text/javascript" src='js/rain.js'></script>
+	 <script type="text/javascript">
+	 	<!-- 初始化3d爱心 -->
+	 	var oHeart3d = document.querySelector('.heart3d')
+	 	var ai = new HeartLove3D(oHeart3d);
+	 	console.log(ai)
+	 	// 文本飘动
+	 	var oDiv1 = document.querySelector('.div1');
+	 	var textmove = new TextMove(oDiv1);
+	 </script>
+</body>
+</html>
