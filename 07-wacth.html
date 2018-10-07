@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" name="" v-model = 'msg'>
+		<h3>{{msg}}</h3>
+		<button @click = 'stus[0].name = "rose"'>改变</button>
+		<h4>{{stus[0].name}}</h4>
+	</div>
+	<script type="text/javascript" src="../vue.min.js"></script>
+	<script type="text/javascript">
+
+		
+
+		new Vue({
+			el:'#app',
+			data:function() {
+				return {
+					msg:'',
+					stus:[{name:'jack'}]
+				}
+			},
+			watch:{
+				msg:function(newV,oldV){
+
+					// console.log(newV,oldV);
+
+					if (newV ==='tusir') {
+						console.log('tusir 出来了');
+					}
+				},
+				// 监听复杂数据类型  object array 深度监视  
+				stus:{
+					deep:true,//深度监视
+					handler:function(newV,oldV) {
+						console.log(newV[0].name);
+					}
+				}
+
+			}
+		});
+	</script>
+	
+
+</body>
+</html>

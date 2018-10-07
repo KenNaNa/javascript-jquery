@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/javascript" src="../vue.min.js"></script>
+	<script type="text/javascript">
+
+		Vue.component('mySlot',{
+			template:`
+				<li>
+					预留的第一个坑
+					<slot name = 'two'></slot>
+					预留的第二个坑
+					<slot name = 'one'></slot>
+				</li>
+
+			`
+		});
+		
+		var App = {
+			template:`
+				<div>
+					<ul>
+						<mySlot>
+							<h2 slot = 'one'>我是第一个坑</h2>
+							<h3 slot = 'two'>我是第二个坑</h3>
+						</mySlot>
+						
+
+					</ul>
+				</div>
+			`
+		}
+
+		new Vue({
+			el:'#app',
+			components:{
+				App
+			},
+			template:'<App />'
+		});
+	</script>
+	
+
+</body>
+</html>

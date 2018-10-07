@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .head {
+        width: 100%;
+        height: 80px;
+        background-color: purple;
+    }
+
+    .main2 {
+        width: 100%;
+        height: 1000px;
+    }
+
+    .main2 .aside {
+        float: left;
+        width: 30%;
+        height: 100%;
+        background-color: green;
+    }
+
+    .main2 .content {
+        float: left;
+        width: 70%;
+        height: 100%;
+        background-color: red;
+    }
+
+    .default {
+        display: inline-block;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        background: #fff;
+        border: 1px solid #dcdfe6;
+        border-color: #dcdfe6;
+        color: #606266;
+        -webkit-appearance: none;
+        text-align: center;
+        box-sizing: border-box;
+        outline: none;
+        margin: 0;
+        transition: .1s;
+        font-weight: 500;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    .success {
+        color: #fff;
+        background-color: #67c23a;
+        border-color: #67c23a;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/javascript" src="../vue.min.js"></script>
+    <script type="text/javascript">
+    // 全局组件
+
+    Vue.component('Vbtn', {
+        data() {
+            return {
+
+            }
+        },
+        template: `
+				<button>登录</button>
+			`
+    });
+
+    // 第一个参数是组件的名字，第二个参数是options
+
+    // 1.在父组件中  先绑定  :自定义的属性名 = posts
+    // 2.子要声明 props:['自定义的属性名']  来接收
+    // 3.收到了就是自己 你可以任意使用
+
+
+
+
+    // bootstrap  下拉菜单  html+css+js
+    // slot 元素作为承载分发内容的出口
+    Vue.component('Vbtn', {
+        template: `
+				<button class = 'default' :class = 'type'>
+					<slot></slot>
+				</button>
+			`,
+        props: ['type']
+    });
+
+    var Vcontent = {
+        template: `
+				<div class='content'>我是内容组件
+					<Vbtn @click.native = 'add'>删除</Vbtn>
+					<ul>
+						<li v-for = '(item,index) in posts'>
+							<h3>{{item.title}}</h3>
+							<h4>{{item.content}}</h4>
+						</li>
+
+					</ul>
+				</div>
+			`,
+        props: ['posts'],
+        methods:{
+        		add(){
+        			alert(1);
+        		}
+        }
+    }
+
+    var Vaside = {
+        template: `
+				<div class='aside'>我是侧边栏组件
+					<Vbtn type = 'success'>播放</Vbtn>
+				</div>
+			`
+    };
+
+
+    // 局部组件：声子  挂子 用子
+    var Vheader = {
+        template: `
+				<div class='head'>
+					我是头部组件
+					<button @click = 'changeFontSize'>字体变大</button>
+					
+				</div>
+			`,
+        methods: {
+            changeFontSize() {
+
+                // 触发父组件 中声明的自定义事件   vue $emit()
+                // 第一个参数是触发自定义事件的名字 第二个参数就是传进去的值
+                this.$emit('change')
+            }
+        }
+    };
+
+
+    // 1.声明局部组件 App入口组件
+    var App = {
+        template: `
+				<div class='main' :style = '{fontSize:postFontSize+"em"}'>
+					<Vheader @change = 'changeHandler'/>
+					<div class = 'main2'>
+						<Vaside />
+						<Vcontent  :posts = 'posts'/>
+					</div>
+				</div>
+			`,
+        methods: {
+            changeHandler() {
+                this.postFontSize += .1;
+            }
+        },
+        data() {
+            return {
+                posts: [
+                    { id: 1, title: "我的第一篇博客", content: '天王该帝王' },
+                    { id: 2, title: "我的第二篇博客", content: '小鸡炖蘑菇' },
+                    { id: 3, title: "我的第三篇博客", content: '宝塔镇河妖' }
+
+
+                ],
+                postFontSize: 1
+
+            }
+        },
+        components: {
+            Vheader,
+            Vaside,
+            Vcontent
+        }
+    };
+
+    new Vue({
+        el: '#app',
+        // 3.使用
+        template: '<App></App>',
+        data() {
+            return {
+
+            }
+        },
+        // 2.挂载组件
+        components: {
+            App
+        }
+    });
+    </script>
+</body>
+
+</html>

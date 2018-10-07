@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.main{
+			width: 100%;
+		}
+		.head{
+			width: 100%;
+			height: 80px;
+			background-color: purple;
+
+		}
+		.main2{
+			width: 100%;
+			height: 1000px;
+		}
+		.main2 .aside{
+			float: left;
+			width: 30%;
+			height: 100%;
+			background-color: green;
+		}
+		.main2 .content{
+			float: left;
+			width: 70%;
+			height: 100%;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/javascript" src="../vue.min.js"></script>
+	<script type="text/javascript">
+
+
+		// 全局组件
+
+		// 第一个参数是组件的名字，第二个参数是options
+
+		// 1.在父组件中  先绑定  :自定义的属性名 = posts
+		// 2.子要声明 props:['自定义的属性名']  来接收
+		// 3.收到了就是自己 你可以任意使用
+
+
+
+
+		// bootstrap  下拉菜单  html+css+js
+		Vue.component('Vbtn',{
+			template:`
+				<button>按钮</button>
+			`
+		});
+
+		var Vcontent = {
+	       	template:`
+				<div class='content'>我是内容组件
+					<ul>
+						<li v-for = '(item,index) in posts'>
+							<h3>{{item.title}}</h3>
+							<h4>{{item.content}}</h4>
+						</li>
+
+					</ul>
+				</div>
+			`,
+		props:['posts']
+	       }
+
+	       var Vaside = {
+	       	template:`
+				<div class='aside'>我是侧边栏组件
+					
+				</div>
+			`
+	       };
+
+
+		// 局部组件：声子  挂子 用子
+		var Vheader  = {
+			template:`
+				<div class='head'>
+					我是头部组件
+					
+				</div>
+			`
+		};
+
+
+		// 1.声明局部组件 App入口组件
+		var App  = {
+			template:`
+				<div class='main'>
+					<Vheader />
+					<div class = 'main2'>
+						<Vaside />
+						<Vcontent  :posts = 'posts'/>
+					</div>
+				</div>
+			`,
+			data(){
+				return {
+					posts:[
+					{id:1,title:"我的第一篇博客",content:'天王该帝王'},
+					{id:2,title:"我的第二篇博客",content:'小鸡炖蘑菇'},
+					{id:3,title:"我的第三篇博客",content:'宝塔镇河妖'}
+
+
+					]
+
+				}
+			},
+			components:{
+				Vheader,
+				Vaside,
+				Vcontent
+			}
+		};
+
+		new Vue({
+			el:'#app',
+			// 3.使用
+			template:'<App></App>',
+			data(){
+				return {
+
+				}
+			},
+			// 2.挂载组件
+			components:{
+				App
+			}
+		});
+
+	</script>
+
+	
+</body>
+</html>

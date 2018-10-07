@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		ul li{
+			margin: 20px 20px;
+			padding: 10px 5px;
+			border-radius: 3px;
+		}
+		ul li.active{
+			background-color: #66FFFF;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<audio :src = 'getCurrentSongSrc' autoplay  controls></audio>
+		<ul>
+			<li v-for = '(item,index) in musicData' :class = '{active:currentIndex == index}' @click = 'clickHandler(index)'>
+				<h2>{{item.id}}- 歌名：{{item.name}}</h2>
+				<p>歌手:{{item.author}}</p>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../vue.min.js"></script>
+	<script type="text/javascript">
+		
+		var musicData = [
+			{id:1,name:'于荣光 - 少林英雄',author:'于荣光',songSrc:'./static/于荣光 - 少林英雄.mp3'},
+			{id:2,name:'Joel Adams - Please Dont Go',author:'Joel Adams',songSrc:'./static/Joel Adams - Please Dont Go.mp3'},
+			{id:3,name:'MKJ - Time',author:'MKJ',songSrc:'./static/MKJ - Time.mp3'},
+			{id:4,name:'Russ - Psycho (Pt. 2)',author:'Russ',songSrc:'./static/Russ - Psycho (Pt. 2).mp3'}
+		];
+
+		new Vue({
+			el:'#app',
+			data(){
+				return {
+					musicData:musicData,
+					currentIndex: 0
+				}
+			},
+			computed:{
+
+				// setter  getter
+				// getCurrentSongSrc:function() {
+				// 	// 默认只有getter
+				// 	return this.musicData[this.currentIndex].songSrc
+				// }
+				getCurrentSongSrc :{
+					set:function(newV) {
+						console.log(newV); //索引
+						this.currentIndex = newV;
+					},
+					get:function() {
+						return this.musicData[this.currentIndex].songSrc;
+					}
+				}
+			},
+			methods:{
+				clickHandler(index){
+					// this.currentIndex = index;
+					// console.log(this.getCurrentSongSrc);
+					this.getCurrentSongSrc = index;
+				}
+			}
+		});
+
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<!-- <App></App> -->
+	</div>
+	<script type="text/javascript" src="../vue.min.js"></script>
+	<script type="text/javascript">
+
+		/*
+		生命周期的钩子函数   函数
+		beforeCreate
+		created
+		beforeMount
+		mounted
+		beforeUpdate
+		updated
+		activated
+		deactivated
+		beforeDestroy
+		destroyed
+
+
+		*/
+		var Test = {
+			data:function() {
+				return {
+					msg:'hello world'
+				}
+			},
+			template:`
+				<div>
+					<div>{{msg}}</div>
+					<button @click = 'changeHandler'>改变</button>
+				</div>
+			`,
+			methods:{
+				changeHandler(){
+					this.msg = this.msg +'哈哈哈';
+				}
+			},
+			beforeCreate:function() {
+				// 组件创建之前
+				console.log(this.msg);
+			},
+			created:function() {
+				// 组件创建之后
+
+				// 使用该组件，就会调用created方法 在created这个方法中可以操作后端的数据，数据响应视图
+				// 应用： 发起ajax请求
+				console.log(this.msg);
+				this.msg = '改变了吧'
+			},
+			beforeMount:function  () {
+				// 挂载数据到DOM之前会调用
+				console.log(document.getElementById('app'));
+			},
+			mounted:function() {
+				// 挂载数据到DOM之后会调用  Vue 作用以后的DOM
+				console.log(document.getElementById('app'));
+			},
+			beforeUpdate(){
+				// 在更新DOM之前 调用此钩子函数 应用：可以获取原始的DOM
+				console.log(document.getElementById('app').innerHTML);
+			},
+			updated(){
+				// 在更新DOM之后 调用此钩子函数 应用：可以获取最新的DOM
+				console.log(document.getElementById('app').innerHTML);
+			},
+			beforeDestroy(){
+				console.log('beforeDestroy');
+			},
+			destroyed(){
+				console.log('destroyed');
+			},
+			activated(){
+				console.log('组件被激活了');
+			},
+			deactivated(){
+				console.log('组件被停用了');
+
+			}
+
+		}
+
+		var App = {
+			data:function() {
+				return {
+					isShow:true
+				}
+			},
+			// Vue的内置组件，能在组件的切换过程中将状态保留在内存中父，防止重复渲染DOM
+			template:`
+				<div class='app'>
+					<keep-alive>
+						<Test v-if = 'isShow'></Test>
+					</keep-alive>
+					<button @click = 'isShow = !isShow'>改变生死</button>
+				</div>
+
+			`,
+			components:{
+				Test
+			},
+			methods:{
+
+			}
+		}
+		new Vue({
+			el:'#app',
+			data:function() {
+				return {
+					
+				}
+			},
+			template:`<App />`,
+			components:{
+				App
+			}
+		});
+	</script>
+	
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.main{
+			width: 100%;
+		}
+		.head{
+			width: 100%;
+			height: 80px;
+			background-color: purple;
+
+		}
+		.main2{
+			width: 100%;
+			height: 1000px;
+		}
+		.main2 .aside{
+			float: left;
+			width: 30%;
+			height: 100%;
+			background-color: green;
+		}
+		.main2 .content{
+			float: left;
+			width: 70%;
+			height: 100%;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/javascript" src="../vue.min.js"></script>
+	<script type="text/javascript">
+
+
+		// 全局组件
+
+		// 第一个参数是组件的名字，第二个参数是options
+
+		// bootstrap  下拉菜单  html+css+js
+		Vue.component('Vbtn',{
+			template:`
+				<button>按钮</button>
+			`
+		});
+
+		var Vcontent = {
+	       	template:`
+				<div class='content'>我是内容组件
+					<Vbtn />
+				</div>
+			`
+	       }
+
+	       var Vaside = {
+	       	template:`
+				<div class='aside'>我是侧边栏组件
+					<Vbtn></Vbtn>
+				</div>
+			`
+	       };
+
+
+		// 局部组件：声子  挂子 用子
+		var Vheader  = {
+			template:`
+				<div class='head'>
+					我是头部组件
+					<Vbtn></Vbtn>
+				</div>
+			`
+		};
+
+
+		// 1.声明局部组件 App入口组件
+		var App  = {
+			template:`
+				<div class='main'>
+					<Vheader />
+					<div class = 'main2'>
+						<Vaside />
+						<Vcontent />
+					</div>
+				</div>
+			`,
+			data(){
+				return {
+
+				}
+			},
+			components:{
+				Vheader,
+				Vaside,
+				Vcontent
+			}
+		};
+
+		new Vue({
+			el:'#app',
+			// 3.使用
+			template:'<App></App>',
+			data(){
+				return {
+
+				}
+			},
+			// 2.挂载组件
+			components:{
+				App
+			}
+		});
+
+	</script>
+
+	
+</body>
+</html>
