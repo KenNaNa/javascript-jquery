@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.po{
+			color: red;
+		}
+		.active{
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		
+	</div>
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#app',
+			template:`
+				<div>
+					<p class ='po' :class=" {active:isRed} " >bing绑定</p>
+					<button @click = 'changeColor'>切换字体的颜色</button>
+				</div>
+			`,
+			data:function(){
+				return {
+					// msg:'active'
+					isRed:false
+				}
+			},
+			methods:{
+				changeColor(e){
+					console.log(e.target)
+					console.log(this);
+					this.isRed = !this.isRed;
+				}
+			}
+		});
+	</script>
+	
+</body>
+</html>

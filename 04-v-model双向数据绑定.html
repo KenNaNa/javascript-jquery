@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#app',
+			template:`
+				<div>
+					<!-- <input type="text"  v-model = 'msg'/>-->
+					<input type="text"  v-bind:value = 'msg' v-on:input = 'change'/>
+					<p>{{ msg }}</p>
+				</div>
+			`,
+			data:function(){
+				return {
+					msg:'hello 双向绑定'
+				}
+			},
+			methods:{
+				change(e){
+					console.log(e.target.value);
+					this.msg = e.target.value;
+				}
+			}
+		});
+	</script>
+	
+</body>
+</html>

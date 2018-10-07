@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="app">
+		<h3>{{ msg }}</h3>
+		<h4>{{ {name:'tom'} }}</h4>
+		<p>{{ msg2 }}</p>
+		<p>{{1 > 2 ? '真的': '假的'}}</p>
+	</div>
+	<!-- 1.引包 -->
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		// MVVM    Model  View  ViewModel
+		
+		//2.创建实例化vue对象
+		// 插值模板语法 {{ }}  react: {} angular {{}}
+		new Vue({
+			el:"#app", //目的地
+			template:``,
+			data :function(){
+				// 声明的数据
+				return {
+					msg:'大家学习vue3',
+					msg2:1==1
+
+				}
+			}
+		});
+	</script>
+	
+</body>
+</html>
